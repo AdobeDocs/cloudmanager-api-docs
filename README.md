@@ -1,39 +1,23 @@
-# Open Source Starter Repo
+# Cloud Manager API Documentation
 
-This repository contains templates for project documentation, ensuring necessary
-legal and contributor documentation is explicit. All sections below in this `README.md`
-should be considered a template for a typical project `README.md`.
+This repository contains the source files for the documentation of the Adobe Cloud Manager APIs as published on https://www.adobe.io/
 
-## PROJECT NAME
+> This API is still a work-in-progress and is not considered stable.
 
-A short description of what this project does.
+## Description
 
-## Goals
+Cloud Manager, part of the Adobe Managed Cloud Services, enables organizations to self-manage Experience Manager environments in the cloud. Cloud Manager includes
+a full-featured web user interface at https://my.cloudmanager.adobe.com/
 
-It is a good idea to provide a mission statement for your project, enshrining
-what the project wants to accomplish so that as more people join your project
-everyone can work in alignment.
+The Cloud Manager API enables Cloud Manager customers to interact with the same underlying capabilities exposed through the web UI in a fully programmatic fashion. This allows for integration of the Cloud Manager Continuous Integration / Continuous Delivery pipeline with other systems.
 
-### Installation
+## Sample Use Cases
 
-Instructions for how to download/install the code onto your machine.
+There are a variety of use cases enabled with this API, including:
 
-Example:
-```
-npm install myProject --save
-```
-
-### Usage
-
-Usage instructions for your code.
-
-Example:
-
-```
-var myMod = require('mymodule');
-
-myMod.foo('hi');
-```
+* Starting the Cloud Manager CI/CD pipeline from an external system.
+* Executing additional tests between the standard Cloud Manager performance tests and the ultimate production deployment.
+* Triggering additional activities after the production deployment is complete, e.g. CDN cache invalidation.
 
 ### Contributing
 
@@ -41,4 +25,4 @@ Contributions are welcomed! Read the [Contributing Guide](CONTRIBUTING.md) for m
 
 ### Licensing
 
-This project is licensed under the Apache V2 License. See [LICENSE](LICENSE) for more information.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for more information.
