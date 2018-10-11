@@ -11,6 +11,8 @@ a full-featured web user interface at https://my.cloudmanager.adobe.com/
 
 The Cloud Manager API enables Cloud Manager customers to interact with the same underlying capabilities exposed through the web UI in a fully programmatic fashion. This allows for integration of the Cloud Manager Continuous Integration / Continuous Delivery pipeline with other systems.
 
+General information on Cloud Manager can be found at https://www.adobe.com/go/aem_cloud_mgr_userguide_en
+
 ## Sample Use Cases
 
 There are a variety of use cases enabled with this API, including:
