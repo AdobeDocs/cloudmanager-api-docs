@@ -10,7 +10,7 @@ The [Getting Started with Adobe I/O Events](https://www.adobe.io/apis/cloudplatf
 
 Once your webhook is up and running and you have your certificate, to create an Event Integration:
 
-1. Navigate to the following URL: (https://console.adobe.io/integrations)[https://console.adobe.io/integrations].
+1. Navigate to the following URL: [https://console.adobe.io/integrations](https://console.adobe.io/integrations).
 
 2. Click the `New integration` button.
 
