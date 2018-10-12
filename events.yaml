@@ -1,0 +1,46 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Cloud Manager Event Definitions
+
+host: cloudmanager.adobe.io
+
+basePath: /
+
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+
+
+definitions:
+  Pipeline Execution Start:
+    type: object
+    properties:
+      "@id":
+        type: string
+        description: A unique identifier for the event
+      "@type":
+        type: string
+        description: The XDM event type
+      "activitystreams:to":
+        $ref: '#/definitions/Organization'
+      "activitystreams:actor":
+        $ref: '#/definitions/User'
+  Organization:
+    type: object
+    properties:
+      "@id":
+        type: string
+        description: An Adobe Organization Id
+  User:
+    type: object
+    properties:
+      "@id":
+        type: string
+        description: An Adobe User Id
+
