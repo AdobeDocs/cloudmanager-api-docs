@@ -12,12 +12,12 @@
     "pages": [
             {
                 "pages": [],
-                "path": "AdobeDocs/cloudmanager-api-docs/master/swagger.yaml",
+                "path": "AdobeDocs/cloudmanager-api-docs/master/swagger-specs/api.yaml",
                 "title": "Cloud Manager API"
             },
             {
                 "pages": [],
-                "path": "AdobeDocs/cloudmanager-api-docs/master/events.yaml",
+                "path": "AdobeDocs/cloudmanager-api-docs/master/swagger-specs/events.yaml",
                 "title": "Event Definitions"
             }
         ]
