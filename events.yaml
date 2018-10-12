@@ -18,7 +18,7 @@ paths:
 
 
 definitions:
-  Pipeline Execution Start:
+  Pipeline Execution Start Event:
     type: object
     properties:
       "@id":
@@ -26,11 +26,32 @@ definitions:
         description: A unique identifier for the event
       "@type":
         type: string
-        description: The XDM event type
+        description: The XDM event type. For this event, will always be https://ns.adobe.com/xdm/common/event/created
+      "activitystreams:objectType":
+        type: string
+        description: The object type. For this event, will always be https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+      "activitystreams:published":
+        type: string
+        format: date-time
       "activitystreams:to":
         $ref: '#/definitions/Organization'
       "activitystreams:actor":
         $ref: '#/definitions/User'
+      "activitystreams:object":
+        type: object
+        properties:
+          "@id":
+            type: string
+            description: The identifier of the pipeline execution. Will always be a URL to the execution endpoint.
+          "@type":
+            type: string
+            description: For this event, will always be https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+          "https://ssg.dev.cloud.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/autotriggered":
+            type: boolean
+          "https://ssg.dev.cloud.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/status":
+            type: string
+            description: The status of the pipeline. For this event, will always be 'RUNNING'
+
   Organization:
     type: object
     properties:
