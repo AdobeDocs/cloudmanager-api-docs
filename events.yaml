@@ -46,9 +46,9 @@ definitions:
           "@type":
             type: string
             description: For this event, will always be https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
-          "https://ssg.dev.cloud.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/autotriggered":
+          "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/autotriggered":
             type: boolean
-          "https://ssg.dev.cloud.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/status":
+          "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/status":
             type: string
             description: The status of the pipeline. For this event, will always be 'RUNNING'
 
