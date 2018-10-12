@@ -1,0 +1,1068 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: Cloud Manager API
+
+host: cloudmanager.adobe.io
+
+basePath: /api
+
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Programs
+  - name: Pipelines
+  - name: Pipeline Execution
+paths:
+  /programs:
+    get:
+      tags:
+        - Programs
+      summary: Lists Programs
+      description: Returns all programs that the requesting user has access to
+      operationId: getPrograms
+      parameters:
+        - in: body
+          name: body
+          required: false
+          schema:
+            $ref: '#/definitions/AdobeIOAuthInfo'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: false
+          type: string
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Program List'
+  /program/{programId}:
+    get:
+      tags:
+        - Programs
+      summary: Get Program
+      description: Returns a program by its id
+      operationId: getProgram
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Program'
+        '404':
+          description: Unknown program
+  /program/{programId}/pipelines:
+    get:
+      tags:
+        - Pipelines
+      summary: List Pipelines
+      description: Returns all the pipelines that the requesting user has access to in an program
+      operationId: getPipelines
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pipeline List'
+        '404':
+          description: Unknown program
+  /program/{programId}/pipeline/{pipelineId}:
+    get:
+      tags:
+        - Pipelines
+      summary: Get Pipeline
+      description: Returns a pipeline by its id
+      operationId: getPipeline
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: integer
+          format: int64
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Pipeline'
+        '404':
+          description: Unknown pipeline
+  /program/{programId}/pipeline/{pipelineId}/execution:
+    get:
+      tags:
+        - Pipeline Execution
+      summary: Get current pipeline execution
+      description: Returns current pipeline execution if any.
+      operationId: getCurrentExecution
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program.
+          required: true
+          type: integer
+          format: int64
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of current execution
+          schema:
+            $ref: '#/definitions/Pipeline Execution'
+        '404':
+          description: No pipeline execution exits or unknown pipeline
+    put:
+      tags:
+        - Pipeline Execution
+      summary: Start the pipeline
+      description: Starts the Pipeline. This works only if the pipeline is not already started.
+      operationId: startPipeline
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program.
+          required: true
+          type: integer
+          format: int64
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Successful started pipeline execution
+        '404':
+          description: Unknown pipeline
+        '412':
+          description: Pipeline is busy
+    delete:
+      tags:
+        - Pipeline Execution
+      summary: Cancel
+      description: Do a DELETE to this url in order to cancel the current pipeline execution
+      operationId: cancelPipelineExecution
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program.
+          required: true
+          type: integer
+          format: int64
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Successfully cancelled current pipeline execution
+        '404':
+          description: Unknown pipeline
+  /program/{programId}/pipeline/{pipelineId}/execution/{executionId}:
+    get:
+      tags:
+        - Pipeline Execution
+      summary: Get pipeline execution
+      description: Returns a pipeline execution by id
+      operationId: getExecution
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program.
+          required: true
+          type: integer
+          format: int64
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: integer
+          format: int64
+        - name: executionId
+          in: path
+          description: Identifier of the execution
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of execution
+          schema:
+            $ref: '#/definitions/Pipeline Execution'
+        '404':
+          description: Pipeline execution does not exists
+  /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance:
+    put:
+      tags:
+        - Pipeline Execution
+      summary: Advance
+      description: 'Post to this url in order to advance the current pipeline execution, if paused and waiting for user interaction. Link is present in output only in that case.'
+      operationId: advancePipelineExecution
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program.
+          required: true
+          type: integer
+          format: int64
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: integer
+          format: int64
+        - name: executionId
+          in: path
+          description: Identifier of the execution
+          required: true
+          type: integer
+          format: int64
+        - name: phaseId
+          in: path
+          description: Identifier of the phase
+          required: true
+          type: integer
+          format: int64
+        - name: stepId
+          in: path
+          description: Identifier of the step
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Successful resume pipeline execution
+        '202':
+          description: Successful update of pipeline step (for scheduling)
+  /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel:
+    put:
+      tags:
+        - Pipeline Execution
+      summary: Cancel
+      description: Post to this url in order to cancel the current pipeline execution. Link is present in output only in that case.
+      operationId: cancelPipelineExecutionStep
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program.
+          required: true
+          type: integer
+          format: int64
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: integer
+          format: int64
+        - name: executionId
+          in: path
+          description: Identifier of the execution
+          required: true
+          type: integer
+          format: int64
+        - name: phaseId
+          in: path
+          description: Identifier of the phase
+          required: true
+          type: integer
+          format: int64
+        - name: stepId
+          in: path
+          description: Identifier of the step
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '202':
+          description: Successful cancel of pipeline execution
+  /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/logs:
+    get:
+      tags:
+        - Pipeline Execution
+      summary: GetLogs
+      description: Get the logs associated with a step.
+      operationId: getStepLogs
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program.
+          required: true
+          type: integer
+          format: int64
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: integer
+          format: int64
+        - name: executionId
+          in: path
+          description: Identifier of the execution
+          required: true
+          type: integer
+          format: int64
+        - name: phaseId
+          in: path
+          description: Identifier of the phase
+          required: true
+          type: integer
+          format: int64
+        - name: stepId
+          in: path
+          description: Identifier of the step
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of logs
+  /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/metrics:
+    get:
+      tags:
+        - Pipeline Execution
+      summary: Get step metrics to retrieve the step metrics
+      description: ''
+      operationId: stepMetric
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program.
+          required: true
+          type: integer
+          format: int64
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: integer
+          format: int64
+        - name: executionId
+          in: path
+          description: Identifier of the execution
+          required: true
+          type: integer
+          format: int64
+        - name: phaseId
+          in: path
+          description: Identifier of the phase
+          required: true
+          type: integer
+          format: int64
+        - name: stepId
+          in: path
+          description: Identifier of the step
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of metrics
+          schema:
+            $ref: '#/definitions/Pipeline Step Metrics'
+        '404':
+          description: Pipeline execution does not exists
+  /program/{programId}/pipeline/{pipelineId}/executions:
+    get:
+      tags:
+        - Pipeline Execution
+      summary: List Executions
+      description: Returns the history of pipeline executions
+      operationId: getExecutions
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the programId.
+          required: true
+          type: integer
+          format: int64
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: integer
+          format: int64
+        - name: Authorization
+          in: header
+          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of execution history
+          schema:
+            $ref: '#/definitions/Pipeline Execution List'
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  Program List:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          programs:
+            type: array
+            items:
+              $ref: '#/definitions/Embedded Program'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+          prev:
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+  Embedded Program:
+    type: object
+    required:
+      - name
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 14
+        description: Identifier of the program. Unique within the space.
+        readOnly: true
+      name:
+        type: string
+        example: AcmeCorp Main Site
+        description: Name of the program
+      enabled:
+        type: boolean
+        description: Whether this Program has been enabled for Cloud Manager usage
+        readOnly: true
+        default: false
+      tenantId:
+        type: string
+        example: acmeCorp
+        description: Tenant Id
+        readOnly: true
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          solutions:
+            type: array
+            items:
+              $ref: '#/definitions/Embedded Solution'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          self:
+            $ref: '#/definitions/HalLink'
+    description: Describes an __Embedded Program__
+  Program:
+    type: object
+    required:
+      - name
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 14
+        description: Identifier of the program. Unique within the space.
+        readOnly: true
+      name:
+        type: string
+        example: AcmeCorp Main Site
+        description: Name of the program
+      description:
+        type: string
+        example: This is our primary site
+        description: Description of the program
+      enabled:
+        type: boolean
+        description: Whether this Program has been enabled for Cloud Manager usage
+        readOnly: true
+        default: false
+      imsOrgId:
+        type: string
+        example: 6522A55453334E247F120101@AdobeOrg
+        description: Organisation Id
+        readOnly: true
+      tenantId:
+        type: string
+        example: acmecorp
+        description: Tenant Id
+        readOnly: true
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/pipelines':
+            description: Pipelines defined in the Program
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+    description: Describes a __Program__
+  Embedded Solution:
+    type: object
+    required:
+      - name
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 29
+        description: Identifier of the solution. Unique within the program.
+        readOnly: true
+      name:
+        type: string
+        example: aemsites
+        description: Name of the solution
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/solution/endpoint':
+            description: Solution URL
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+    description: Describes a __Solution__
+  HalLink:
+    type: object
+    properties:
+      href:
+        type: string
+      templated:
+        type: boolean
+        default: false
+      type:
+        type: string
+      deprecation:
+        type: string
+      profile:
+        type: string
+      title:
+        type: string
+      hreflang:
+        type: string
+      name:
+        type: string
+  ArrayOfHalLink:
+    type: array
+    items:
+      $ref: '#/definitions/HalLink'
+  AdobeIOAuthInfo:
+    type: object
+    properties:
+      displayName:
+        type: string
+      region:
+        type: string
+      scope:
+        type: string
+      environment:
+        type: string
+      clientId:
+        type: string
+      createdAt:
+        type: string
+      userId:
+        type: string
+      expiresIn:
+        type: string
+      authorizationScope:
+        type: string
+      xuserScope:
+        type: string
+      userEmail:
+        type: string
+      countryCode:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      userAccessToken:
+        type: string
+      authorizationToken:
+        type: string
+      twoTokenUserToken:
+        type: string
+      xuserToken:
+        type: string
+      gatewayAuthorizationToken:
+        type: string
+  Pipeline:
+    type: object
+    required:
+      - name
+    properties:
+      id:
+        type: integer
+        format: int64
+        example: 29
+        description: Identifier of the pipeline. Unique within the program.
+        readOnly: true
+      programId:
+        type: integer
+        format: int64
+        example: 14
+        description: Identifier of the program. Unique within the space.
+        readOnly: true
+      name:
+        type: string
+        example: AcmeCorp Main Pipeline
+        description: Name of the pipeline
+      description:
+        type: string
+        example: This is our primary pipeline ending in a Prod environment.
+        description: Description of the pipeline
+      trigger:
+        type: string
+        example: MANUAL
+        description: 'How should the build be triggered. ON_GIT: each time a PR is available and the Pipeline is idle then a build is triggered. MANUAL: triggerd through UI or API. SCHEDULE: recurring schedule'
+        enum:
+          - ON_GIT
+          - MANUAL
+          - SCHEDULE
+      triggerSchedule:
+        type: string
+        example: '0 0 16 ? * MON-FRI *'
+        description: 'If builds are triggered on a schedule, a cron expression.'
+      status:
+        type: string
+        description: Pipeline status
+        readOnly: true
+        enum:
+          - IDLE
+          - BUSY
+          - WAITING
+      createdAt:
+        type: string
+        format: date-time
+        description: Create date
+        readOnly: true
+      updatedAt:
+        type: string
+        format: date-time
+        description: Update date
+        readOnly: true
+      lastStartedAt:
+        type: string
+        format: date-time
+        description: Last pipeline execution start
+        readOnly: true
+      lastFinishedAt:
+        type: string
+        format: date-time
+        description: Last pipeline execution end
+        readOnly: true
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/program':
+            description: The Program this pipeline belongs to.
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/execution':
+            description: Current pipeline execution if any
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/executions':
+            description: Run history
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+    description: Describes a __CI/CD Pipeline__
+  Pipeline List:
+    type: object
+    properties:
+      totalNumberOfItems:
+        type: integer
+        format: int32
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          pipelines:
+            type: array
+            items:
+              $ref: '#/definitions/Pipeline'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+          prev:
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+  Pipeline Execution:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: id
+      programId:
+        type: integer
+        format: int64
+        example: 14
+        description: Identifier of the program. Unique within the space.
+      pipelineId:
+        type: integer
+        format: int64
+        description: Identifier of the pipeline
+      artifactsVersion:
+        type: string
+        description: Version of the artifacts generated during this execution
+      user:
+        type: string
+        example: jdoe@adobe.com
+        description: User who started the pipeline. Empty for auto triggered builds
+      autotriggered:
+        type: boolean
+        description: Whether the pipeline was auto-triggered or not
+        default: false
+      status:
+        type: string
+        description: 'Status: NOT_STARTED, RUNNING, CANCELLING, CANCELLED, FINISHED, ERROR, WAITING_FOR_INPUT, FAILED'
+        enum:
+          - NOT_STARTED
+          - RUNNING
+          - CANCELLING
+          - CANCELLED
+          - FINISHED
+          - ERROR
+          - WAITING_FOR_INPUT
+          - FAILED
+      createdAt:
+        type: string
+        format: date-time
+        description: Start time
+      updatedAt:
+        type: string
+        format: date-time
+        description: Date of last status change
+      finishedAt:
+        type: string
+        format: date-time
+        description: Date the execution reached a final state
+      stepStates:
+        type: array
+        description: Step states
+        items:
+          $ref: '#/definitions/Pipeline Execution Step State'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/program':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/pipeline':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/pipeline/advance':
+            description: 'Post to this link in order to advance the pipeline, if paused and waiting for user interaction. Link is present in output only in that case.'
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/pipeline/cancel':
+            description: Post to this link in order to cancel the pipeline. Link is present in output only in that case.
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/pipeline/logs':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/pipeline/metrics':
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+    description: Describes a pipeline execution
+  Pipeline Execution Step State:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      stepId:
+        type: integer
+        format: int64
+      phaseId:
+        type: integer
+        format: int64
+      action:
+        type: string
+        example: Build
+        description: Name of the action for display purposes
+      repository:
+        type: string
+        description: Target repository
+      branch:
+        type: string
+        description: Target branch
+      environment:
+        type: string
+        description: Target environment
+      environmentType:
+        type: string
+        description: Target environment type
+      startedAt:
+        type: string
+        format: date-time
+        description: Start time
+      finishedAt:
+        type: string
+        format: date-time
+        description: Date the execution reached a final state
+      updatedAt:
+        type: string
+        format: date-time
+        description: Date of last status change
+      result:
+        type: string
+        enum:
+          - OVERRIDE
+          - SCHEDULED
+          - APPROVED
+          - NOT_APPROVED
+          - CANCELLED
+      details:
+        type: object
+        example: scheduled time
+        description: Information about step result
+        additionalProperties:
+          type: object
+      status:
+        type: string
+        example: NOT_STARTED
+        description: Action status
+        enum:
+          - NOT_STARTED
+          - RUNNING
+          - FINISHED
+          - ERROR
+          - ROLLING_BACK
+          - ROLLED_BACK
+          - WAITING
+          - CANCELLED
+          - FAILED
+      statusString:
+        type: string
+        example: Merging to Smoothie branch failed because of conflicts
+        description: Status string. Contains extra info for current status
+      autostart:
+        type: boolean
+        default: false
+    description: Describes the status of a particular pipeline execution step for display purposes
+  Pipeline Execution List:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+      executions:
+        type: array
+        items:
+          $ref: '#/definitions/Pipeline Execution'
+      next:
+        $ref: '#/definitions/HalLink'
+      prev:
+        $ref: '#/definitions/HalLink'
+  Pipeline Step Metrics:
+    type: object
+    properties:
+      metrics:
+        type: array
+        description: metrics
+        readOnly: true
+        items:
+          $ref: '#/definitions/Metric'
+  Metric:
+    type: object
+    properties:
+      id:
+        type: string
+        description: KPI result identifier
+      severity:
+        type: string
+        description: Severity of the metric
+        enum:
+          - CRITICAL
+          - IMPORTANT
+          - INFORMATIONAL
+      passed:
+        type: boolean
+        description: Whether metric is considered passed
+        default: false
+      override:
+        type: boolean
+        description: Whether user override the failed metric
+        default: false
+      actualValue:
+        type: string
+        description: Expected value for the metric
+      expectedValue:
+        type: string
+        description: Expected value for the metric
+      comparator:
+        type: string
+        description: Comparator used for the metric
+      kpi:
+        type: string
+        description: KPI identifier
+      data:
+        type: object
+        additionalProperties:
+          $ref: '#/definitions/HalLink'
+    description: Describes a __Metric__

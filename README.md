@@ -1,17 +1,13 @@
 # Cloud Manager API Documentation
 
-This repository contains the source files for the documentation of the Adobe Cloud Manager APIs as published on https://www.adobe.io/
-
-> This API is still a work-in-progress and is not considered stable.
-
-## Description
-
 Cloud Manager, part of the Adobe Managed Cloud Services, enables organizations to self-manage Experience Manager environments in the cloud. Cloud Manager includes
 a full-featured web user interface at https://my.cloudmanager.adobe.com/
 
 The Cloud Manager API enables Cloud Manager customers to interact with the same underlying capabilities exposed through the web UI in a fully programmatic fashion. This allows for integration of the Cloud Manager Continuous Integration / Continuous Delivery pipeline with other systems.
 
 General information on Cloud Manager can be found at https://www.adobe.com/go/aem_cloud_mgr_userguide_en
+
+> This API (and documentation) is in **draft** form.
 
 ## Sample Use Cases
 
@@ -23,8 +19,5 @@ There are a variety of use cases enabled with this API, including:
 
 ### Contributing
 
-Contributions are welcomed! Read the [Contributing Guide](CONTRIBUTING.md) for more information.
+We encourage you to participate in our open documentation initiative, if you have suggestions, corrections, additions or deletions for this documentation, check out the source from [this github repo](https://github.com/AdobeDocs/cloudmanager-api-docs), create issues, and submit pull requests with your contribution. For more information, refer to the [Contributing](https://github.com/AdobeDocs/cloudmanager-api-docs/blob/master/CONTRIBUTING.md) page.
 
-### Licensing
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for more information.
