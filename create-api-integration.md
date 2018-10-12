@@ -6,7 +6,7 @@ All requests to the Cloud Manager API must be authenticated using an access toke
 
 Once you've generated your certificate, to create an API Integration:
 
-1. Navigate to the following URL: https://console.adobe.io/integrations.
+1. Navigate to the following URL: (https://console.adobe.io/integrations)[https://console.adobe.io/integrations].
 
 2. Click the `New integration` button.
 
