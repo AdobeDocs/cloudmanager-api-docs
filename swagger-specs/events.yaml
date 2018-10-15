@@ -64,9 +64,15 @@ definitions:
       "@id":
         type: string
         description: An Adobe Organization Id
+      "@type":
+        type: string
+        const: http://ns.adobe.com/adobecloudplatform/ims/organization
   User:
     type: object
     properties:
       "@id":
         type: string
         description: An Adobe User Id
+      "@type":
+        type: string
+        const: https://ns.adobe.com/adobecloudplatform/ims/user
