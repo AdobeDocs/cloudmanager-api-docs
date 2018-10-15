@@ -38,19 +38,22 @@ definitions:
       "activitystreams:actor":
         $ref: '#/definitions/User'
       "activitystreams:object":
-        type: object
-        properties:
-          "@id":
-            type: string
-            description: The identifier of the pipeline execution. Will always be a URL to the execution endpoint.
-          "@type":
-            type: string
-            description: For this event, will always be https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
-          "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/autotriggered":
-            type: boolean
-          "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/status":
-            type: string
-            description: The status of the pipeline. For this event, will always be 'RUNNING'
+        $ref: '#/definitions/Pipeline Execution Object'
+
+  Pipeline Execution Object:
+    type: object
+    properties:
+      "@id":
+        type: string
+        description: The identifier of the pipeline execution. Will always be a URL to the execution endpoint.
+      "@type":
+        type: string
+        description: For this event, will always be https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+      "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/autotriggered":
+        type: boolean
+      "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/status":
+        type: string
+        description: The status of the pipeline. For this event, will always be 'RUNNING'
 
   Organization:
     type: object
@@ -64,4 +67,3 @@ definitions:
       "@id":
         type: string
         description: An Adobe User Id
-
