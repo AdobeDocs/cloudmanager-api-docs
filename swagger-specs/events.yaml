@@ -26,6 +26,7 @@ definitions:
         description: A unique identifier for the event
       "@type":
         type: string
+        const: https://ns.adobe.com/xdm/common/event/created
         description: The XDM event type. For this event, will always be https://ns.adobe.com/xdm/common/event/created
       "activitystreams:objectType":
         type: string
