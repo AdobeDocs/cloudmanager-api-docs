@@ -34,7 +34,7 @@ paths:
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
-          required: false
+          required: true
           type: string
         - name: Authorization
           in: header
