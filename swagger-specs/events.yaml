@@ -27,10 +27,11 @@ definitions:
       "@type":
         type: string
         const: https://ns.adobe.com/xdm/common/event/created
-        description: The XDM event type. For this event, will always be https://ns.adobe.com/xdm/common/event/created
+        description: The XDM event type.
       "activitystreams:objectType":
         type: string
-        description: The object type. For this event, will always be https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+        const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+        description: The object type.
       "activitystreams:published":
         type: string
         format: date-time
@@ -49,12 +50,13 @@ definitions:
         description: The identifier of the pipeline execution. Will always be a URL to the execution endpoint.
       "@type":
         type: string
-        description: For this event, will always be https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+        const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
       "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/autotriggered":
         type: boolean
       "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/status":
         type: string
-        description: The status of the pipeline. For this event, will always be 'RUNNING'
+        const: RUNNING
+        description: The status of the pipeline.
 
   Organization:
     type: object
