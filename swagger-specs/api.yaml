@@ -350,7 +350,7 @@ paths:
           type: string
       responses:
         '201':
-          description: Successful resume pipeline execution
+          description: "Successful resume pipeline execution"
         '202':
           description: "Successful update of pipeline step (for scheduling)"
   /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel:
