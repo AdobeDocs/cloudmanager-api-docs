@@ -2,7 +2,7 @@
 
 When Cloud Manager emits an event, all configured webhooks will be called. The specific event type will be sent in a header named `x-adobe-event-type`.
 
-The body of the requests received by the webhook will vary based on the event type. The [API Reference](swagger-specs/events.yaml) details the schema for each event body.
+The body of the requests received by the webhook will vary based on the event type. The [API Reference](../swagger-specs/events.yaml) details the schema for each event body.
 
 | Event Type                      | `x-adobe-event-type` Header       |
 |---------------------------------|-----------------------------------|
