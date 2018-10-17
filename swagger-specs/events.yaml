@@ -34,6 +34,7 @@ definitions:
         description: The object type.
       "activitystreams:published":
         type: string
+        description: The timestamp of the event.
         format: date-time
       "activitystreams:to":
         $ref: '#/definitions/Organization'
@@ -41,6 +42,107 @@ definitions:
         $ref: '#/definitions/User'
       "activitystreams:object":
         $ref: '#/definitions/Pipeline Execution Object'
+
+  Pipeline Step Start Event:
+    type: object
+    properties:
+      "@id":
+        type: string
+        description: A unique identifier for the event
+      "@type":
+        type: string
+        const: https://ns.adobe.com/xdm/common/event/updated
+        description: The XDM event type.
+      "activitystreams:objectType":
+        type: string
+        const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+        description: The object type.
+      "activitystreams:published":
+        type: string
+        description: The timestamp of the event.
+        format: date-time
+      "activitystreams:to":
+        $ref: '#/definitions/Organization'
+      "activitystreams:actor":
+        $ref: '#/definitions/User'
+      "activitystreams:object":
+        $ref: '#/definitions/Pipeline Execution Object'
+
+  Pipeline Step Waiting Event:
+    type: object
+    properties:
+      "@id":
+        type: string
+        description: A unique identifier for the event
+      "@type":
+        type: string
+        const: https://ns.adobe.com/xdm/common/event/updated
+        description: The XDM event type.
+      "activitystreams:objectType":
+        type: string
+        const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+        description: The object type.
+      "activitystreams:published":
+        type: string
+        description: The timestamp of the event.
+        format: date-time
+      "activitystreams:to":
+        $ref: '#/definitions/Organization'
+      "activitystreams:actor":
+        $ref: '#/definitions/User'
+      "activitystreams:object":
+        $ref: '#/definitions/Pipeline Execution Object'
+
+  Pipeline Step End Event:
+    type: object
+    properties:
+      "@id":
+        type: string
+        description: A unique identifier for the event
+      "@type":
+        type: string
+        const: https://ns.adobe.com/xdm/common/event/updated
+        description: The XDM event type.
+      "activitystreams:objectType":
+        type: string
+        const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+        description: The object type.
+      "activitystreams:published":
+        type: string
+        description: The timestamp of the event.
+        format: date-time
+      "activitystreams:to":
+        $ref: '#/definitions/Organization'
+      "activitystreams:actor":
+        $ref: '#/definitions/User'
+      "activitystreams:object":
+        $ref: '#/definitions/Pipeline Execution Object'
+
+  Pipeline Execution End Event:
+    type: object
+    properties:
+      "@id":
+        type: string
+        description: A unique identifier for the event
+      "@type":
+        type: string
+        const: https://ns.adobe.com/xdm/common/event/updated
+        description: The XDM event type.
+      "activitystreams:objectType":
+        type: string
+        const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+        description: The object type.
+      "activitystreams:published":
+        type: string
+        description: The timestamp of the event.
+        format: date-time
+      "activitystreams:to":
+        $ref: '#/definitions/Organization'
+      "activitystreams:actor":
+        $ref: '#/definitions/User'
+      "activitystreams:object":
+        $ref: '#/definitions/Pipeline Execution Object'
+
 
   Pipeline Execution Object:
     type: object
@@ -55,8 +157,43 @@ definitions:
         type: boolean
       "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/status":
         type: string
-        const: RUNNING
         description: The status of the pipeline.
+        enum:
+          - NOT_STARTED
+          - RUNNING
+          - CANCELLING
+          - CANCELLED
+          - FINISHED
+          - ERROR
+          - WAITING_FOR_INPUT
+          - FAILED
+      "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution/properties/stepStates":
+        type: array
+        description: The state of the individual steps within the execution
+        items:
+          $ref: '#/definitions/Pipeline Execution Step State'
+
+  Pipeline Execution Step State:
+    type: object
+    properties:
+        "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/Pipeline+Execution+Step+State/properties/stepId":
+          type: string
+          description: The identifier of the pipeline step state.
+        "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/Pipeline+Execution+Step+State/properties/action":
+          type: string
+          description: The action name for the pipeline step state.
+        "https://cloudmanager.adobe.io/api/swagger.json#!/definitions/Pipeline+Execution+Step+State/properties/status":
+          type: string
+          enum:
+            - NOT_STARTED
+            - RUNNING
+            - FINISHED
+            - ERROR
+            - ROLLING_BACK
+            - ROLLED_BACK
+            - WAITING
+            - CANCELLED
+            - FAILED
 
   Organization:
     type: object
