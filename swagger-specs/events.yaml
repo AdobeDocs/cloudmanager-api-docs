@@ -43,7 +43,7 @@ definitions:
       "activitystreams:object":
         $ref: '#/definitions/Pipeline Execution Object'
 
-  Pipeline Step Start Event:
+  Pipeline Execution Step Start Event:
     type: object
     properties:
       "@id":
@@ -68,7 +68,7 @@ definitions:
       "activitystreams:object":
         $ref: '#/definitions/Pipeline Execution Object'
 
-  Pipeline Step Waiting Event:
+  Pipeline Execution Step Waiting Event:
     type: object
     properties:
       "@id":
@@ -93,7 +93,7 @@ definitions:
       "activitystreams:object":
         $ref: '#/definitions/Pipeline Execution Object'
 
-  Pipeline Step End Event:
+  Pipeline Execution Step End Event:
     type: object
     properties:
       "@id":
