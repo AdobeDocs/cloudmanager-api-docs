@@ -39,11 +39,6 @@
           ],
           "path": "AdobeDocs/cloudmanager-api-docs/master/getting-started.md",
           "title": "Getting Started"
-        },
-        {
-            "importedFileName": "receiving-events",
-            "path": "AdobeDocs/cloudmanager-api-docs/master/receiving-events.md",
-            "title": "Receiving Events"
         }
     ]
     }
