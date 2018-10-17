@@ -30,10 +30,20 @@
                 "pages": [],
                 "path": "AdobeDocs/cloudmanager-api-docs/master/create-event-integration.md",
                 "title": "Creating an Event Integration"
+            },
+            {
+                "importedFileName": "getting-started-with-postman",
+                "path": "AdobeDocs/cloudmanager-api-docs/master/getting-started-with-postman.md",
+                "title": "Getting Started with Postman"
             }
           ],
           "path": "AdobeDocs/cloudmanager-api-docs/master/getting-started.md",
           "title": "Getting Started"
+        },
+        {
+            "importedFileName": "receiving-events",
+            "path": "AdobeDocs/cloudmanager-api-docs/master/receiving-events.md",
+            "title": "Receiving Events"
         }
     ]
     }
