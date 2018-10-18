@@ -1,13 +1,13 @@
 ## Receiving Events
 
-When Cloud Manager emits an event, all configured webhooks will be called. The specific event type will be sent in a header named `x-adobe-event-type`.
+When Cloud Manager emits an event, all webhooks configured for that event will be called. As it is possible to reuse the same webhook for multiple events and even multiple events from different providers, two HTTP headers can be used to differentiate events. The `x-adobe-provider` header will be `cloudmanager` for Cloud Manager events. The type of event is contained in the `x-adobe-event-code` header.
 
-The body of the requests received by the webhook will vary based on the event type. The [API Reference](swagger-specs/events.yaml) details the schema for each event body.
-
-| Event Type                      | `x-adobe-event-type` Header       |
+| Event Type                      | `x-adobe-event-code` Header       |
 |---------------------------------|-----------------------------------|
 | Pipeline Execution Started      | `pipeline_execution_start`        |
 | Pipeline Execution Step Started | `pipeline_execution_step_start`   |
 | Pipeline Execution Step Waiting | `pipeline_execution_step_waiting` |
 | Pipeline Execution Step Ended   | `pipeline_execution_step_end`     |
 | Pipeline Execution Ended        | `pipeline_execution_end`          |
+
+ The body of the requests received by the webhook will vary based on the event type. The [API Reference](swagger-specs/events.yaml) details the schema for each event body.
