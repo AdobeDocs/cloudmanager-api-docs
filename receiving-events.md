@@ -14,4 +14,4 @@ The body of the requests received by the webhook will vary based on the event ty
 
 ### Validating Events
 
-Webhooks used in Adobe I/O must be accessible from the public internet. As a result, it is a best practice to use the `x-adobe-signature` header to validate that the event did, in fact, originate from Adobe I/O. Information on this header can be found in the Authenticating events section of the [Adobe I/O Events Webhooks Introduction](../../../../adobeio/adobeio-documentation/blob/master/events/intro/webhook_docs_intro.md).
+Webhooks used in Adobe I/O must be accessible from the public internet. As a result, it is a best practice to use the `x-adobe-signature` header to validate that the event did, in fact, originate from Adobe I/O. Information on this header can be found in the Authenticating events section of the [Adobe I/O Events Webhooks Introduction](../../../../adobeio/adobeio-documentation/master/events/intro/webhook_docs_intro.md).

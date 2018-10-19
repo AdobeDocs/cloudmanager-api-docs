@@ -9,7 +9,10 @@
     "publish_date": "01/11/2018",
     "show_edit_github_banner": false,
     "base_path": "https://raw.githubusercontent.com",
-    "app2app_map":{"AdobeDocs/cloudmanager-api-docs/master/swagger-specs/":"/apis/experiencecloud/cloud-manager/api-reference.html"},
+    "app2app_map":{
+        "AdobeDocs/cloudmanager-api-docs/master/swagger-specs/":"/apis/experiencecloud/cloud-manager/api-reference.html",
+        "adobeio/adobeio-documentation/blob/master/":"/apis/cloudplatform/events/documentation.html"
+    },
     "pages": [
         {
           "importedFileName": "readme",
