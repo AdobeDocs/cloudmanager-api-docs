@@ -759,7 +759,7 @@ definitions:
         description: Version of the artifacts generated during this execution
       user:
         type: string
-        example: jdoe@adobe.com
+        example: 0123456789ABCDE@AdobeID
         description: Adobe ID of the user who started the pipeline. Empty for auto triggered builds
       status:
         type: string
