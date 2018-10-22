@@ -876,6 +876,11 @@ definitions:
         type: object
         readOnly: true
         properties:
+          'http://ns.adobe.com/adobecloud/rel/execution':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/pipeline':
+            description: Get the pipeline of the execution
+            $ref: '#/definitions/HalLink'
           "http://ns.adobe.com/adobecloud/rel/pipeline/logs":
             $ref: '#/definitions/HalLink'
           "http://ns.adobe.com/adobecloud/rel/pipeline/metrics":
@@ -885,6 +890,9 @@ definitions:
             $ref: '#/definitions/HalLink'
           "http://ns.adobe.com/adobecloud/rel/pipeline/cancel":
             description: Post to this link in order to cancel the pipeline. Link is present in output only in that case.
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/program':
+            description: Get the program of the execution
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
