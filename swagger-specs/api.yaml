@@ -676,9 +676,44 @@ paths:
           description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
           required: true
           type: string
+        - name: Accept
+          in: header
+          description: Specify application/json in this header to receive a JSON response. Otherwise, a 307 response code will be returned with a Location header.
+          required: false
+          type: string
       responses:
+        '200':
+          description: Successful retrieval of logs (if application/json is specified in the Accept header)
+          schema:
+            type: object
+            properties:
+              location:
+                type: string
+                description: A signed URL for the step logs.
         '307':
-          description: Successful retrieval of logs. Log location will be contained in the Location header.
+          description: Successful retrieval of logs (if application/json is not specified in the Accept header). Log location will be contained in the Location header.
+        '400':
+          description: The request is malformed.
+        '401':
+          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
+        '403':
+          description: Missing permission for user to read logs
+        '404':
+          description: Pipeline execution does not exists
+        '405':
+          description: Client sent a request using a HTTP method that the server doesn't support.
+        '406':
+          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+        '409':
+          description: The resource was modified before the call. Client should reload and try again
+        '500':
+          description: This is an indicator of a server-side error.
+        '502':
+          description: This is an indicator that the back-end service did not send a valid response.
+        '503':
+          description: This is an indicator of a potential server overload.
+        '504':
+          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/metrics:
     get:
       tags:
