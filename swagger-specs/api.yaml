@@ -207,14 +207,12 @@ paths:
           in: path
           description: Identifier of the program.
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: pipelineId
           in: path
           description: Identifier of the pipeline
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -237,40 +235,6 @@ paths:
           description: Unknown pipeline
         '412':
           description: Pipeline is busy
-    delete:
-      tags:
-        - Pipeline Execution
-      summary: Cancel
-      description: Do a DELETE to this url in order to cancel the current pipeline execution
-      operationId: cancelPipelineExecution
-      parameters:
-        - name: programId
-          in: path
-          description: Identifier of the program.
-          required: true
-          type: integer
-          format: int64
-        - name: pipelineId
-          in: path
-          description: Identifier of the pipeline
-          required: true
-          type: integer
-          format: int64
-        - name: Authorization
-          in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
-          required: true
-          type: string
-        - name: x-api-key
-          in: header
-          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
-          required: true
-          type: string
-      responses:
-        '204':
-          description: Successfully cancelled current pipeline execution
-        '404':
-          description: Unknown pipeline
   /program/{programId}/pipeline/{pipelineId}/execution/{executionId}:
     get:
       tags:
@@ -328,32 +292,27 @@ paths:
           in: path
           description: Identifier of the program.
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: pipelineId
           in: path
           description: Identifier of the pipeline
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: executionId
           in: path
           description: Identifier of the execution
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: phaseId
           in: path
           description: Identifier of the phase
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: stepId
           in: path
           description: Identifier of the step
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -386,32 +345,27 @@ paths:
           in: path
           description: Identifier of the program.
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: pipelineId
           in: path
           description: Identifier of the pipeline
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: executionId
           in: path
           description: Identifier of the execution
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: phaseId
           in: path
           description: Identifier of the phase
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: stepId
           in: path
           description: Identifier of the step
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -442,32 +396,27 @@ paths:
           in: path
           description: Identifier of the program.
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: pipelineId
           in: path
           description: Identifier of the pipeline
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: executionId
           in: path
           description: Identifier of the execution
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: phaseId
           in: path
           description: Identifier of the phase
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: stepId
           in: path
           description: Identifier of the step
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -553,14 +502,12 @@ paths:
           in: path
           description: Identifier of the programId.
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: pipelineId
           in: path
           description: Identifier of the pipeline
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -611,8 +558,7 @@ definitions:
       - name
     properties:
       id:
-        type: integer
-        format: int64
+        type: string
         example: 14
         description: Identifier of the program. Unique within the space.
         readOnly: true
@@ -700,24 +646,18 @@ definitions:
         type: string
       name:
         type: string
-  ArrayOfHalLink:
-    type: array
-    items:
-      $ref: '#/definitions/HalLink'
   Pipeline:
     type: object
     required:
       - name
     properties:
       id:
-        type: integer
-        format: int64
+        type: string
         example: 29
         description: Identifier of the pipeline. Unique within the program.
         readOnly: true
       programId:
-        type: integer
-        format: int64
+        type: string
         example: 14
         description: Identifier of the program. Unique within the space.
         readOnly: true
@@ -823,7 +763,7 @@ definitions:
         description: Adobe ID of the user who started the pipeline. Empty for auto triggered builds
       status:
         type: string
-        description: 'Status: NOT_STARTED, RUNNING, CANCELLING, CANCELLED, FINISHED, ERROR, WAITING_FOR_INPUT, FAILED'
+        description: Status of the pipeline
         enum:
           - NOT_STARTED
           - RUNNING
@@ -853,11 +793,13 @@ definitions:
         type: string
         format: date-time
         description: Date the execution reached a final state
-      stepStates:
-        type: array
-        description: Step states
-        items:
-          $ref: '#/definitions/Pipeline Execution Step State'
+      _embedded:
+        type: object
+        properties:
+          stepStates:
+            type: array
+            items:
+              $ref: '#/definitions/Pipeline Execution Step State'
       _links:
         type: object
         readOnly: true
@@ -865,16 +807,6 @@ definitions:
           'http://ns.adobe.com/adobecloud/rel/program':
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/pipeline':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline/advance':
-            description: 'Post to this link in order to advance the pipeline, if paused and waiting for user interaction. Link is present in output only in that case.'
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline/cancel':
-            description: Post to this link in order to cancel the pipeline. Link is present in output only in that case.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline/logs':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline/metrics':
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
@@ -940,6 +872,22 @@ definitions:
           - WAITING
           - CANCELLED
           - FAILED
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          "http://ns.adobe.com/adobecloud/rel/pipeline/logs":
+            $ref: '#/definitions/HalLink'
+          "http://ns.adobe.com/adobecloud/rel/pipeline/metrics":
+            $ref: '#/definitions/HalLink'
+          "http://ns.adobe.com/adobecloud/rel/pipeline/advance":
+            description: 'Post to this link in order to advance the pipeline, if paused and waiting for user interaction. Link is present in output only in that case.'
+            $ref: '#/definitions/HalLink'
+          "http://ns.adobe.com/adobecloud/rel/pipeline/cancel":
+            description: Post to this link in order to cancel the pipeline. Link is present in output only in that case.
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
     description: Describes the status of a particular pipeline execution step for display purposes
   Pipeline Execution List:
     type: object
@@ -947,11 +895,28 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
-      executions:
-        type: array
-        items:
-          $ref: '#/definitions/Pipeline Execution'
+      _embedded:
+        type: object
+        properties:
+          executions:
+            type: array
+            items:
+              $ref: '#/definitions/Pipeline Execution'
+      _page:
+        type: object
+        properties:
+          limit:
+            type: integer
+            format: int32
+          next:
+            type: integer
+            format: int32
+          prev:
+            type: integer
+            format: int32
       next:
+        $ref: '#/definitions/HalLink'
+      page:
         $ref: '#/definitions/HalLink'
       prev:
         $ref: '#/definitions/HalLink'
