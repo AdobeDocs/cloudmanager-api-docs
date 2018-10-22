@@ -668,7 +668,7 @@ definitions:
       trigger:
         type: string
         example: MANUAL
-        description: 'How should the build be triggered. ON_GIT: each time a PR is available and the Pipeline is idle then a build is triggered. MANUAL: triggerd through UI or API. SCHEDULE: recurring schedule'
+        description: 'How should the execution be triggered. ON_GIT: each time a PR is available and the Pipeline is idle then a execution is triggered. MANUAL: triggerd through UI or API. SCHEDULE: recurring schedule'
         enum:
           - ON_GIT
           - MANUAL
@@ -676,7 +676,7 @@ definitions:
       triggerSchedule:
         type: string
         example: '0 0 16 ? * MON-FRI *'
-        description: 'If builds are triggered on a schedule, a cron expression.'
+        description: 'If executions are triggered on a schedule, a cron expression.'
       status:
         type: string
         description: Pipeline status
@@ -760,7 +760,7 @@ definitions:
       user:
         type: string
         example: 0123456789ABCDE@AdobeID
-        description: Adobe ID of the user who started the pipeline. Empty for auto triggered builds
+        description: Adobe ID of the user who started the pipeline. Empty for auto triggered executions
       status:
         type: string
         description: Status of the pipeline
@@ -776,7 +776,7 @@ definitions:
       trigger:
         type: string
         example: MANUAL
-        description: 'How the build was triggered.'
+        description: 'How the execution was triggered.'
         enum:
           - ON_GIT
           - MANUAL
