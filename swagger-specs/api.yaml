@@ -26,11 +26,6 @@ paths:
       description: Returns all programs that the requesting user has access to
       operationId: getPrograms
       parameters:
-        - in: body
-          name: body
-          required: false
-          schema:
-            $ref: '#/definitions/AdobeIOAuthInfo'
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -63,8 +58,12 @@ paths:
           in: path
           description: Identifier of the program
           required: true
-          type: integer
-          format: int64
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
         - name: Authorization
           in: header
           description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
@@ -94,8 +93,12 @@ paths:
           in: path
           description: Identifier of the program
           required: true
-          type: integer
-          format: int64
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
         - name: Authorization
           in: header
           description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
@@ -125,14 +128,17 @@ paths:
           in: path
           description: Identifier of the program
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: pipelineId
           in: path
           description: Identifier of the pipeline
           required: true
-          type: integer
-          format: int64
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
         - name: Authorization
           in: header
           description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
@@ -162,14 +168,17 @@ paths:
           in: path
           description: Identifier of the program.
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: pipelineId
           in: path
           description: Identifier of the pipeline
           required: true
-          type: integer
-          format: int64
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
         - name: Authorization
           in: header
           description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
@@ -206,6 +215,11 @@ paths:
           required: true
           type: integer
           format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
         - name: Authorization
           in: header
           description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
@@ -269,20 +283,22 @@ paths:
           in: path
           description: Identifier of the program.
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: pipelineId
           in: path
           description: Identifier of the pipeline
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: executionId
           in: path
           description: Identifier of the execution
           required: true
-          type: integer
-          format: int64
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
         - name: Authorization
           in: header
           description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
@@ -338,6 +354,11 @@ paths:
           required: true
           type: integer
           format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
         - name: Authorization
           in: header
           description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
@@ -391,6 +412,11 @@ paths:
           required: true
           type: integer
           format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
         - name: Authorization
           in: header
           description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
@@ -442,6 +468,11 @@ paths:
           required: true
           type: integer
           format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
         - name: Authorization
           in: header
           description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
@@ -453,8 +484,8 @@ paths:
           required: true
           type: string
       responses:
-        '200':
-          description: Successful retrieval of logs
+        '307':
+          description: Successful retrieval of logs. Log location will be contained in the Location header.
   /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/metrics:
     get:
       tags:
@@ -467,32 +498,32 @@ paths:
           in: path
           description: Identifier of the program.
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: pipelineId
           in: path
           description: Identifier of the pipeline
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: executionId
           in: path
           description: Identifier of the execution
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: phaseId
           in: path
           description: Identifier of the phase
           required: true
-          type: integer
-          format: int64
+          type: string
         - name: stepId
           in: path
           description: Identifier of the step
           required: true
-          type: integer
-          format: int64
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
         - name: Authorization
           in: header
           description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
@@ -530,6 +561,11 @@ paths:
           required: true
           type: integer
           format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
         - name: Authorization
           in: header
           description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
@@ -567,10 +603,6 @@ definitions:
         type: object
         readOnly: true
         properties:
-          next:
-            $ref: '#/definitions/HalLink'
-          prev:
-            $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
   Embedded Program:
@@ -598,14 +630,6 @@ definitions:
         example: acmeCorp
         description: Tenant Id
         readOnly: true
-      _embedded:
-        type: object
-        readOnly: true
-        properties:
-          solutions:
-            type: array
-            items:
-              $ref: '#/definitions/Embedded Solution'
       _links:
         type: object
         readOnly: true
@@ -619,8 +643,7 @@ definitions:
       - name
     properties:
       id:
-        type: integer
-        format: int64
+        type: string
         example: 14
         description: Identifier of the program. Unique within the space.
         readOnly: true
@@ -657,31 +680,6 @@ definitions:
           self:
             $ref: '#/definitions/HalLink'
     description: Describes a __Program__
-  Embedded Solution:
-    type: object
-    required:
-      - name
-    properties:
-      id:
-        type: integer
-        format: int64
-        example: 29
-        description: Identifier of the solution. Unique within the program.
-        readOnly: true
-      name:
-        type: string
-        example: aemsites
-        description: Name of the solution
-      _links:
-        type: object
-        readOnly: true
-        properties:
-          'http://ns.adobe.com/adobecloud/rel/solution/endpoint':
-            description: Solution URL
-            $ref: '#/definitions/HalLink'
-          self:
-            $ref: '#/definitions/HalLink'
-    description: Describes a __Solution__
   HalLink:
     type: object
     properties:
@@ -706,47 +704,6 @@ definitions:
     type: array
     items:
       $ref: '#/definitions/HalLink'
-  AdobeIOAuthInfo:
-    type: object
-    properties:
-      displayName:
-        type: string
-      region:
-        type: string
-      scope:
-        type: string
-      environment:
-        type: string
-      clientId:
-        type: string
-      createdAt:
-        type: string
-      userId:
-        type: string
-      expiresIn:
-        type: string
-      authorizationScope:
-        type: string
-      xuserScope:
-        type: string
-      userEmail:
-        type: string
-      countryCode:
-        type: string
-      firstName:
-        type: string
-      lastName:
-        type: string
-      userAccessToken:
-        type: string
-      authorizationToken:
-        type: string
-      twoTokenUserToken:
-        type: string
-      xuserToken:
-        type: string
-      gatewayAuthorizationToken:
-        type: string
   Pipeline:
     type: object
     required:
@@ -768,10 +725,6 @@ definitions:
         type: string
         example: AcmeCorp Main Pipeline
         description: Name of the pipeline
-      description:
-        type: string
-        example: This is our primary pipeline ending in a Prod environment.
-        description: Description of the pipeline
       trigger:
         type: string
         example: MANUAL
@@ -823,7 +776,7 @@ definitions:
             description: Current pipeline execution if any
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/executions':
-            description: Run history
+            description: Execution history
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
@@ -831,7 +784,7 @@ definitions:
   Pipeline List:
     type: object
     properties:
-      totalNumberOfItems:
+      _totalNumberOfItems:
         type: integer
         format: int32
       _embedded:
@@ -846,27 +799,20 @@ definitions:
         type: object
         readOnly: true
         properties:
-          next:
-            $ref: '#/definitions/HalLink'
-          prev:
-            $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
   Pipeline Execution:
     type: object
     properties:
       id:
-        type: integer
-        format: int64
-        description: id
+        type: string
+        description: Pipeline execution identifier
       programId:
-        type: integer
-        format: int64
+        type: string
         example: 14
         description: Identifier of the program. Unique within the space.
       pipelineId:
-        type: integer
-        format: int64
+        type: string
         description: Identifier of the pipeline
       artifactsVersion:
         type: string
@@ -874,11 +820,7 @@ definitions:
       user:
         type: string
         example: jdoe@adobe.com
-        description: User who started the pipeline. Empty for auto triggered builds
-      autotriggered:
-        type: boolean
-        description: Whether the pipeline was auto-triggered or not
-        default: false
+        description: Adobe ID of the user who started the pipeline. Empty for auto triggered builds
       status:
         type: string
         description: 'Status: NOT_STARTED, RUNNING, CANCELLING, CANCELLED, FINISHED, ERROR, WAITING_FOR_INPUT, FAILED'
@@ -891,6 +833,14 @@ definitions:
           - ERROR
           - WAITING_FOR_INPUT
           - FAILED
+      trigger:
+        type: string
+        example: MANUAL
+        description: 'How the build was triggered.'
+        enum:
+          - ON_GIT
+          - MANUAL
+          - SCHEDULE
       createdAt:
         type: string
         format: date-time
@@ -933,14 +883,11 @@ definitions:
     type: object
     properties:
       id:
-        type: integer
-        format: int64
+        type: string
       stepId:
-        type: integer
-        format: int64
+        type: string
       phaseId:
-        type: integer
-        format: int64
+        type: string
       action:
         type: string
         example: Build
@@ -965,10 +912,6 @@ definitions:
         type: string
         format: date-time
         description: Date the execution reached a final state
-      updatedAt:
-        type: string
-        format: date-time
-        description: Date of last status change
       result:
         type: string
         enum:
@@ -997,13 +940,6 @@ definitions:
           - WAITING
           - CANCELLED
           - FAILED
-      statusString:
-        type: string
-        example: Merging to Smoothie branch failed because of conflicts
-        description: Status string. Contains extra info for current status
-      autostart:
-        type: boolean
-        default: false
     description: Describes the status of a particular pipeline execution step for display purposes
   Pipeline Execution List:
     type: object
@@ -1038,9 +974,9 @@ definitions:
         type: string
         description: Severity of the metric
         enum:
-          - CRITICAL
-          - IMPORTANT
-          - INFORMATIONAL
+          - critical
+          - important
+          - informational
       passed:
         type: boolean
         description: Whether metric is considered passed
@@ -1058,11 +994,14 @@ definitions:
       comparator:
         type: string
         description: Comparator used for the metric
+        enum:
+          - GT
+          - GTE
+          - LT
+          - LTE
+          - EQ
+          - NEQ
       kpi:
         type: string
         description: KPI identifier
-      data:
-        type: object
-        additionalProperties:
-          $ref: '#/definitions/HalLink'
     description: Describes a __Metric__
