@@ -25,4 +25,4 @@ Once you've generated your certificate, to create an API Integration:
 ![Select Role Dropdown](img/integration-selectrole.png)
 9. Click `Create Integration`.
 
-Your client is now created. Notice your client has an `API Key (Client ID)` and an `Organization ID`. You'll need these when making API calls.
+Your client is now created. Notice your client has an `API Key (Client ID)` and an `Organization ID`. You'll need these when making API calls. You will also need the `Technical Account ID` and `Client Secret` values to obtain an Access Token.
