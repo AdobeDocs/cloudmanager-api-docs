@@ -718,7 +718,7 @@ paths:
     get:
       tags:
         - Pipeline Execution
-      summary: Get step metrics to retrieve the step metrics
+      summary: Get step metric results.
       description: ''
       operationId: stepMetric
       parameters:
