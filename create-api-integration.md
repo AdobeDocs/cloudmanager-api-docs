@@ -20,6 +20,9 @@ Once you've generated your certificate, to create an API Integration:
 
 7. Upload your certificate file.
 
-8. Click `Create Integration`.
+8. If the integration needs access based on a [specific role](https://www.adobe.com/go/aem_cloud_mrg_usersroles_en), select the role from the dropdown list:
+
+![Select Role Dropdown](img/integration-selectrole.png)
+9. Click `Create Integration`.
 
 Your client is now created. Notice your client has an `API Key (Client ID)` and an `Organization ID`. You'll need these when making API calls.
