@@ -19,7 +19,7 @@ For example, if you look at the code quality metrics, you will see an object lik
 
 Here, we can see that this is the `coverage` metric, the expected value is `50`, the actual value is `50.4`, to pass the actual value must be greater than or equal to (GTE) the expected value, that the metric passed.
 
-The `kpi` value is a _technical_ value which will generally need to be translated into a user-facing value. The reference material below provides a mapping between the technical name in the API response and the names/definitions in the [documentation](https://www.adobe.com/go/aem_cloud_mgr_testresults_en).
+The `kpi` value is a _technical_ value which will generally need to be translated into a user-facing value. The reference tables below provide mappings between the technical name in the API response and the names/definitions in the [documentation](https://www.adobe.com/go/aem_cloud_mgr_testresults_en) for each of the quality gates.
 
 ### Code Quality
 
