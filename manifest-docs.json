@@ -15,39 +15,41 @@
     },
     "pages": [
         {
-          "importedFileName": "readme",
           "pages": [],
           "path": "AdobeDocs/cloudmanager-api-docs/master/README.md",
           "title": "Overview"
         },
         {
-          "importedFileName": "getting-started",
           "pages": [
             {
-                "importedFileName": "create-api-integration",
+              "path": "AdobeDocs/cloudmanager-api-docs/master/understanding-the-api.md",
+              "title": "Understanding the API"
+            },
+            {
                 "pages": [],
                 "path": "AdobeDocs/cloudmanager-api-docs/master/create-api-integration.md",
                 "title": "Creating an API Integration"
             },
             {
-                "importedFileName": "create-event-integration",
                 "pages": [],
                 "path": "AdobeDocs/cloudmanager-api-docs/master/create-event-integration.md",
                 "title": "Creating an Event Integration"
             },
             {
-                "importedFileName": "getting-started-with-postman",
                 "path": "AdobeDocs/cloudmanager-api-docs/master/getting-started-with-postman.md",
                 "title": "Getting Started with Postman"
             }
           ],
-          "path": "AdobeDocs/cloudmanager-api-docs/master/getting-started.md",
           "title": "Getting Started"
         },
         {
-            "importedFileName": "receiving-events",
-            "path": "AdobeDocs/cloudmanager-api-docs/master/receiving-events.md",
-            "title": "Receiving Events"
+            "pages" : [
+                {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/receiving-events.md",
+                    "title": "Receiving Events"
+                }
+            ],
+            "title": "Using Cloud Manager API"
         }
     ]
     }

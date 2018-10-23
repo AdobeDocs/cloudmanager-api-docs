@@ -1,4 +1,4 @@
-## Getting Started
+## Understanding the API
 
 The Cloud Manager API is composed of two components:
 
