@@ -23,6 +23,8 @@ Once you've generated your certificate, to create an API Integration:
 8. If the integration needs access based on a [specific role](https://www.adobe.com/go/aem_cloud_mrg_usersroles_en), select the role from the dropdown list:
 
 ![Select Role Dropdown](img/integration-selectrole.png)
+> At present, you can only select this role when first creating the integration. If you need a different role, the integration must be deleted and recreated.
+
 9. Click `Create Integration`.
 
 Your client is now created. Notice your client has an `API Key (Client ID)` and an `Organization ID`. You'll need these when making API calls. You will also need the `Technical Account ID` and `Client Secret` values to obtain an Access Token.
@@ -31,5 +33,9 @@ Your client is now created. Notice your client has an `API Key (Client ID)` and 
 #kirbyMainContent p img {
   padding-top: 0;
   padding-bottom: 0;
+}
+#kirbyMainContent blockquote {
+  background-color: rgb(240, 240, 240);
+  margin-left: 1em;
 }
 </style>
