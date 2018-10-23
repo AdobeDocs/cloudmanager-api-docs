@@ -47,6 +47,10 @@
                 {
                     "path": "AdobeDocs/cloudmanager-api-docs/master/receiving-events.md",
                     "title": "Receiving Events"
+                },
+                {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/understanding-metric-data.md",
+                    "title": "Understanding Metric Data"
                 }
             ],
             "title": "Using Cloud Manager API"
