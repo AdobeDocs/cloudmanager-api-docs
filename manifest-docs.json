@@ -54,6 +54,19 @@
                 }
             ],
             "title": "Using Cloud Manager API"
+        },
+        {
+            "pages" : [
+                {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/tutorial/0-setup.md",
+                    "title": "Step 0 - Setup"
+                },
+                {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/tutorial/1-a-basic-webhook.md",
+                    "title": "Step 1 - A Basic Webhook"
+                }
+            ],
+            "title": "Using Cloud Manager API"
         }
     ]
     }
