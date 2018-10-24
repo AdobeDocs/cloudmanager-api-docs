@@ -127,3 +127,9 @@ Click the Save button.
 
 With all that done, you're ready to proceed to the next step. Continue to [Step 2](2-webhook-signature-validation.md).
 
+<style type="text/css">
+#kirbyMainContent .hljs .hljs-function,
+#kirbyMainContent .hljs .hljs-params {
+    color: #333;
+}
+</style>

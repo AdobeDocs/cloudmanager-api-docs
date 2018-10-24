@@ -51,9 +51,12 @@ async function getAccessToken() {
       "https://ims-na1.adobelogin.com/s/ent_cloudmgr_sdk" : true
   };
 
-  const jwtToken = jsrsasign.jws.JWS.sign("RS256", JSON.stringify(header), JSON.stringify(payload), process.env.PRIVATE_KEY);
+  const jwtToken = jsrsasign.jws.JWS.sign("RS256",
+                                          JSON.stringify(header),
+                                          JSON.stringify(payload),
+                                          process.env.PRIVATE_KEY);
 
-  const response = await fetch(`https://ims-na1.adobelogin.com/ims/exchange/jwt/`, {
+  const response = await fetch("https://ims-na1.adobelogin.com/ims/exchange/jwt/", {
       method: "POST",
       body: new URLSearchParams({
           client_id: process.env.API_KEY,
@@ -91,3 +94,14 @@ If you are running the script through Glitch, Glitch will restart automatically.
 <a href="https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step4" target="_new">
   <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button">
 </a>
+
+#### Next Step
+
+With all that done, you're ready to proceed to the next step. Continue to [Step 5](5-getting-the-execution.md).
+
+<style type="text/css">
+#kirbyMainContent .hljs .hljs-function,
+#kirbyMainContent .hljs .hljs-params {
+    color: #333;
+}
+</style>

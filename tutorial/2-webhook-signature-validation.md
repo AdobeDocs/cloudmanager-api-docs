@@ -67,3 +67,10 @@ If you are running the script through Glitch, Glitch will restart automatically.
 #### Next Step
 
 With all that done, you're ready to proceed to the next step. Continue to [Step 3](3-handling-specific-events.md).
+
+<style type="text/css">
+#kirbyMainContent .hljs .hljs-function,
+#kirbyMainContent .hljs .hljs-params {
+    color: #333;
+}
+</style>
