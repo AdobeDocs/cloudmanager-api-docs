@@ -68,6 +68,22 @@
                 {
                     "path": "AdobeDocs/cloudmanager-api-docs/master/tutorial/2-webhook-signature-validation.md",
                     "title": "Step 2 - Signature Validation"
+                },
+                {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/tutorial/3-handling-specific-events.md",
+                    "title": "Step 3 - Handling Specific Events"
+                },
+                {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/tutorial/4-getting-an-access-token.md",
+                    "title": "Step 4 - Obtaining an Access Token"
+                },
+                {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/tutorial/5-getting-the-execution.md",
+                    "title": "Step 5 - Getting the Execution"
+                },
+                {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/tutorial/6-getting-the-program.md",
+                    "title": "Step 6 - Getting the Program"
                 }
             ],
             "title": "Cloud Manager API Tutorial"
