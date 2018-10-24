@@ -1,6 +1,6 @@
 ## Tutorial Step 1 - A Basic Webhook
 
-In this first tutorial, we're going to create an event handler (webhook) which is compatible with Adobe I/O Events. This webhook doesn't actually do much; it just logs the body of the request. But it provides a skeleton on which you'll build in later steps.
+In the first step of the tutorial, we're going to create an event handler (webhook) which is compatible with Adobe I/O Events. This webhook doesn't actually do much; it just logs the body of the request. But it provides a skeleton on which you'll build in later steps.
 
 ### Dependencies
 
@@ -103,7 +103,7 @@ Forwarding                    https://e639e8fd.ngrok.io -> localhost:4000
 Alternatively, you can run the webhook script using <a href="https://glitch.com/" target="_new">Glitch</a>. Glitch is an interactive web-based code editor for Node.js applications with built-in hosting. To save you the trouble of copy and pasting the files you've created already, you can just click the button below to create a new application on Glitch pre-populated with the content of the tutorial so far.
 
 <!-- Remix Button -->
-<a href="https://glitch.com/edit/#!/remix/adobe-cloudmanager-apis-tutorial-step1" target="_new">
+<a href="https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step1" target="_new">
   <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button">
 </a>
 
@@ -122,4 +122,8 @@ If you are using ngrok, the Webhook URL will be the Forwarding address appended 
 ![Event Registration](../img/add-webhook-to-existing-integration.png)
 
 Click the Save button.
+
+#### Next Step
+
+With all that done, you're ready to start the actual tutorial. Continue to [Step 2](2-webhook-signature-validation.md).
 

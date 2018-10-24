@@ -64,6 +64,10 @@
                 {
                     "path": "AdobeDocs/cloudmanager-api-docs/master/tutorial/1-a-basic-webhook.md",
                     "title": "Step 1 - A Basic Webhook"
+                },
+                {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/tutorial/2-webhook-signature-validation.md",
+                    "title": "Step 2 - Signature Validation"
                 }
             ],
             "title": "Cloud Manager API Tutorial"
