@@ -125,5 +125,5 @@ Click the Save button.
 
 #### Next Step
 
-With all that done, you're ready to start the actual tutorial. Continue to [Step 2](2-webhook-signature-validation.md).
+With all that done, you're ready to proceed to the next step. Continue to [Step 2](2-webhook-signature-validation.md).
 

@@ -63,3 +63,7 @@ If you are running the script through Glitch, Glitch will restart automatically.
 <a href="https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step2" target="_new">
   <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button">
 </a>
+
+#### Next Step
+
+With all that done, you're ready to proceed to the next step. Continue to [Step 3](3-handling-specific-events.md).
