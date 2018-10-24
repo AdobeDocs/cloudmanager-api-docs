@@ -117,7 +117,7 @@ Now that you have your webhook running at a publicly accessible URL, you can reg
 
 Select Cloud Manager in the `Add New Event Provider` section and click the `Add event provider` button. Then click the `Add Event Registration` button. Provide a name and description for the webhook and select the events you want to subscribe to. For the purpose of this tutorial, you will need **at least** the Pipeline Execution Started event.
 
-If you are using ngrok, the Webhook URL will be the Forwarding address appended with `/webhook`, e.g. `https://e639e8fd.ngrok.io/webhook`. If you are using Glitch, the URL will be the Glitch application name appended with `.glitch.me/webhook`, e.g. `https://enchanted-bathroom.glitch.em/webhook`
+If you are using ngrok, the Webhook URL will be the Forwarding address appended with `/webhook`, e.g. `https://e639e8fd.ngrok.io/webhook`. If you are using Glitch, the URL will be the Glitch application name appended with `.glitch.me/webhook`, e.g. `https://enchanted-bathroom.glitch.me/webhook`
 
 ![Event Registration](../img/add-webhook-to-existing-integration.png)
 
