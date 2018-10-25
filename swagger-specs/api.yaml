@@ -1143,8 +1143,8 @@ definitions:
         type: string
       action:
         type: string
-        example: Build
-        description: Name of the action for display purposes
+        example: build
+        description: Name of the action
       repository:
         type: string
         description: Target repository
