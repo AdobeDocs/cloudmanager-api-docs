@@ -687,7 +687,7 @@ paths:
           schema:
             type: object
             properties:
-              location:
+              redirect:
                 type: string
                 description: A signed URL for the step logs.
         '307':
@@ -989,9 +989,9 @@ definitions:
       trigger:
         type: string
         example: MANUAL
-        description: 'How should the execution be triggered. ON_GIT: each time a PR is available and the Pipeline is idle then a execution is triggered. MANUAL: triggerd through UI or API. SCHEDULE: recurring schedule'
+        description: 'How should the execution be triggered. ON_COMMIT: each time a PR is available and the Pipeline is idle then a execution is triggered. MANUAL: triggerd through UI or API. SCHEDULE: recurring schedule'
         enum:
-          - ON_GIT
+          - ON_COMMIT
           - MANUAL
           - SCHEDULE
       triggerSchedule:
@@ -1099,7 +1099,7 @@ definitions:
         example: MANUAL
         description: 'How the execution was triggered.'
         enum:
-          - ON_GIT
+          - ON_COMMIT
           - MANUAL
           - SCHEDULE
       createdAt:
