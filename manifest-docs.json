@@ -84,6 +84,10 @@
                 {
                     "path": "AdobeDocs/cloudmanager-api-docs/master/tutorial/6-getting-the-program.md",
                     "title": "Step 6 - Getting the Program"
+                },
+                {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/tutorial/7-sending-notifications.md",
+                    "title": "Step 7 - Sending Notifications"
                 }
             ],
             "title": "Cloud Manager API Tutorial"

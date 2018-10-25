@@ -89,6 +89,10 @@ If you are running the script through Glitch, Glitch will restart automatically.
   <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button">
 </a>
 
+#### Next Step
+
+With all that done, you're ready to proceed to the next and final step. Continue to [Step 7](7-sending-notifications.md).
+
 <style type="text/css">
 #kirbyMainContent .hljs .hljs-function,
 #kirbyMainContent .hljs .hljs-params {
