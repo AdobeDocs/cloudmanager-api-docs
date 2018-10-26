@@ -1165,14 +1165,6 @@ definitions:
         type: string
         format: date-time
         description: Date the execution reached a final state
-      result:
-        type: string
-        enum:
-          - OVERRIDE
-          - SCHEDULED
-          - APPROVED
-          - NOT_APPROVED
-          - CANCELLED
       details:
         type: object
         example: scheduled time
