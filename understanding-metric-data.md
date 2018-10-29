@@ -44,7 +44,7 @@ The `kpi` value is a _technical_ value which will generally need to be translate
 | `default_login_accounts`                        | Default Login Accounts                        |
 | `sling_get_servlet`                             | Sling Get Servlet                             |
 | `cq_dispatcher_configuration`                   | CQ Dispatcher Configuration                   |
-| `cq_htlm_library_manager_config`                | CQ HTML Library Manager Config                |
+| `cq_html_library_manager_config`                | CQ HTML Library Manager Config                |
 | `sling_java_script_handler`                     | Sling Java Script Handler                     |
 | `sling_jsp_script_handler`                      | Sling JSP Script Handler                      |
 | `sling_referrer_filter`                         | Sling Referrer Filter                         |
@@ -68,6 +68,6 @@ The `kpi` value is a _technical_ value which will generally need to be translate
 | `response_time`            | 95 Percentile Response Time                   |
 | `peak_resp_time`           | Peak Response Time                            |
 | `views_per_minute`         | Page Views Per Minute                         |
-| `disk_bandwith_util`       | Disk Bandwidth Utilization                    |
-| `network_bandwith_util`    | Network Bandwidth Utilization                 |
+| `disk_bandwidth_util`      | Disk Bandwidth Utilization                    |
+| `network_bandwidth_util`   | Network Bandwidth Utilization                 |
 | `requests_per_minute`      | Requests Per Minute                           |
