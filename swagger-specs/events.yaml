@@ -32,11 +32,11 @@ definitions:
             description: A unique identifier for the event
           "@type":
             type: string
-            const: https://ns.adobe.com/xdm/common/event/created
+            const: xdmCreated
             description: The XDM event type.
           "activitystreams:objectType":
             type: string
-            const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+            const: https://ns.adobe.com/experience/cloudmanager/pipeline-execution
             description: The object type.
           "activitystreams:published":
             type: string
@@ -63,11 +63,11 @@ definitions:
             description: A unique identifier for the event
           "@type":
             type: string
-            const: https://ns.adobe.com/xdm/common/event/updated
+            const: xdmUpdated
             description: The XDM event type.
           "activitystreams:objectType":
             type: string
-            const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/StepState
+            const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
             description: The object type.
           "activitystreams:published":
             type: string
@@ -92,11 +92,11 @@ definitions:
             description: A unique identifier for the event
           "@type":
             type: string
-            const: https://ns.adobe.com/xdm/common/event/updated
+            const: xdmUpdated
             description: The XDM event type.
           "activitystreams:objectType":
             type: string
-            const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/StepState
+            const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
             description: The object type.
           "activitystreams:published":
             type: string
@@ -121,11 +121,11 @@ definitions:
             description: A unique identifier for the event
           "@type":
             type: string
-            const: https://ns.adobe.com/xdm/common/event/updated
+            const: xdmUpdated
             description: The XDM event type.
           "activitystreams:objectType":
             type: string
-            const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/StepState
+            const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
             description: The object type.
           "activitystreams:published":
             type: string
@@ -150,11 +150,11 @@ definitions:
             description: A unique identifier for the event
           "@type":
             type: string
-            const: https://ns.adobe.com/xdm/common/event/updated
+            const: xdmUpdated
             description: The XDM event type.
           "activitystreams:objectType":
             type: string
-            const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+            const: https://ns.adobe.com/experience/cloudmanager/pipeline-execution
             description: The object type.
           "activitystreams:published":
             type: string
@@ -174,7 +174,7 @@ definitions:
         description: The identifier of the pipeline execution. Will always be a URL to the execution endpoint.
       "@type":
         type: string
-        const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/PipelineExecution
+        const: https://ns.adobe.com/experience/cloudmanager/pipeline-execution
 
   Pipeline Execution Step State:
     type: object
@@ -184,7 +184,7 @@ definitions:
         description: The identifier of the pipeline execution. Will always be a URL to the step state endpoint.
       "@type":
         type: string
-        const: https://cloudmanager.adobe.io/api/swagger.json#!/definitions/StepState
+        const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
 
   Organization:
     type: object
