@@ -17,14 +17,14 @@ Now you're ready to write the webhook script itself. Create a new file named `in
 The webhook script itself has four main parts. The first part is including the dependencies, loading the `.env` file, and setting up the Express application:
 
 ```javascript
-const express    = require('express'),
-      bodyParser = require('body-parser');
+const express = require('express')
+const bodyParser = require('body-parser')
 
-require('dotenv').config();
+require('dotenv').config()
 
-const app = express();
+const app = express()
 
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 ```
 
 The second and third parts are the Express _routes_. These are JavaScript functions that handle specific request patterns. An Adobe I/O webhook must handle two different types of requests.
@@ -38,31 +38,31 @@ The challenge handler looks like this:
 
 ```javascript
 app.get('/webhook', (req, res) => {
-  if (req.query["challenge"]){
-    res.send(req.query['challenge']);
+  if (req.query['challenge']) {
+    res.send(req.query['challenge'])
   } else {
-    console.log("No challenge");
-    res.status(400);
+    console.log('No challenge')
+    res.status(400)
   }
-});
+})
 ```
 
 For the POST handler, at this point in the tutorial, it should just log the body and then write something trivial as a response. 
 
 ```javascript
 app.post('/webhook', (req, res) => {
-  console.log(req.body);
-  res.writeHead(200, { 'Content-Type': 'application/text' });
-  res.end("pong");
-});
+  console.log(req.body)
+  res.writeHead(200, { 'Content-Type': 'application/text' })
+  res.end('pong')
+})
 ```
 
 The last part of the script is to start listening for requests. Here, the `PORT` variable specified in the `.env` file is used.
 
 ```javascript
-var listener = app.listen(process.env.PORT, () => {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
+const listener = app.listen(process.env.PORT, () => {
+  console.log(`Your app is listening on port ${listener.address().port}`)
+})
 ```
 
 ### Running the Webhook Script

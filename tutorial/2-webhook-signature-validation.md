@@ -30,21 +30,21 @@ Fully implemented, the `verify` function looks like this:
 
 ```javascript
 app.use(bodyParser.json({
-    verify: (req, res, buf, encoding) => {
-      const signature = req.header("x-adobe-signature");
-      if (signature) {
-        const hmac = crypto.createHmac('sha256', process.env.CLIENT_SECRET);
-        hmac.update(buf);
-        const digest = hmac.digest('base64');
-  
-        if (signature !== digest) {
-          throw new Error('x-adobe-signature HMAC check failed');
-        }
-      } else if (!process.env.DEBUG && req.method === "POST") {
-        throw new Error('x-adobe-signature required');
+  verify: (req, res, buf, encoding) => {
+    const signature = req.header('x-adobe-signature')
+    if (signature) {
+      const hmac = crypto.createHmac('sha256', process.env.CLIENT_SECRET)
+      hmac.update(buf)
+      const digest = hmac.digest('base64')
+
+      if (signature !== digest) {
+        throw new Error('x-adobe-signature HMAC check failed')
       }
+    } else if (!process.env.DEBUG && req.method === 'POST') {
+      throw new Error('x-adobe-signature required')
     }
-  }));
+  }
+}))
 ```
 
 ### Updating the Webhook
@@ -52,7 +52,7 @@ app.use(bodyParser.json({
 To update your webhook script, just replace the line
 
 ```javascript
-app.use(bodyParser.json());
+app.use(bodyParser.json())
 ```
 
 with the block above. If you are running the script locally, you'll need to stop and restart the node process. You don't need to restart ngrok. In fact, if you do restart ngrok, the URL will likely change and you'll need to go back into the <a href="https://console.adobe.io/integrations" target="_new">Adobe I/O Console</a> and update the Webhook URL.

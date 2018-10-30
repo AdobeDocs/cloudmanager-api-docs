@@ -8,19 +8,19 @@ Replace the `app.post` block with this code:
 
 ```javascript
 app.post('/webhook', (req, res) => {
-  res.writeHead(200, { 'Content-Type': 'application/text' });
-  res.end("pong");
+  res.writeHead(200, { 'Content-Type': 'application/text' })
+  res.end('pong')
 
-  const STARTED = "https://ns.adobe.com/experience/cloudmanager/event/started";
-  const EXECUTION = "https://ns.adobe.com/experience/cloudmanager/pipeline-execution";
+  const STARTED = 'https://ns.adobe.com/experience/cloudmanager/event/started'
+  const EXECUTION = 'https://ns.adobe.com/experience/cloudmanager/pipeline-execution'
 
-  const event = req.body.event;
+  const event = req.body.event
 
-  if (STARTED === event["@type"] &&
-       EXECUTION === event["xdmEventEnvelope:objectType"]) {
-    console.log("received execution start event");
+  if (STARTED === event['@type'] &&
+       EXECUTION === event['xdmEventEnvelope:objectType']) {
+    console.log('received execution start event')
   }
-});
+})
 ```
 Now when a Pipeline Execution Started event is received, the message `received execution start event` will be logged.
 
