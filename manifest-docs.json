@@ -51,6 +51,10 @@
                 {
                     "path": "AdobeDocs/cloudmanager-api-docs/master/understanding-metric-data.md",
                     "title": "Understanding Metric Data"
+                },
+                {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/advancing-and-cancelling-steps.md",
+                    "title": "Advancing and Cancelling Steps"
                 }
             ],
             "title": "Using Cloud Manager API"

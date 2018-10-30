@@ -530,6 +530,11 @@ paths:
           description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
           required: true
           type: string
+        - in: body
+          name: body
+          description: Input for advance. See documentation for details.
+          required: true
+          type: object
       responses:
         '202':
           description: Successful resume of pipeline execution
@@ -603,6 +608,11 @@ paths:
           description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
           required: true
           type: string
+        - in: body
+          name: body
+          description: Input for cancel. See documentation for details.
+          required: true
+          type: object
       responses:
         '202':
           description: Successful cancel of pipeline execution
