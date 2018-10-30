@@ -105,7 +105,7 @@ definitions:
           "activitystreams:to":
             $ref: '#/definitions/Organization'
           "activitystreams:object":
-            $ref: '#/definitions/Pipeline Step State'
+            $ref: '#/definitions/Pipeline Execution Step State'
 
   Pipeline Execution Step End Event:
     type: object
