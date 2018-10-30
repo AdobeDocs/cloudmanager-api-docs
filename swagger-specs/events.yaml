@@ -47,7 +47,7 @@ definitions:
           "activitystreams:actor":
             $ref: '#/definitions/User'
           "activitystreams:object":
-            $ref: '#/definitions/Pipeline Execution Object'
+            $ref: '#/definitions/Pipeline Execution'
 
   Pipeline Execution Step Start Event:
     type: object
@@ -76,7 +76,7 @@ definitions:
           "activitystreams:to":
             $ref: '#/definitions/Organization'
           "activitystreams:object":
-            $ref: '#/definitions/Pipeline Step State Object'
+            $ref: '#/definitions/Pipeline Execution Step State'
 
   Pipeline Execution Step Waiting Event:
     type: object
@@ -105,7 +105,7 @@ definitions:
           "activitystreams:to":
             $ref: '#/definitions/Organization'
           "activitystreams:object":
-            $ref: '#/definitions/Pipeline Step State Object'
+            $ref: '#/definitions/Pipeline Step State'
 
   Pipeline Execution Step End Event:
     type: object
@@ -134,7 +134,7 @@ definitions:
           "activitystreams:to":
             $ref: '#/definitions/Organization'
           "activitystreams:object":
-            $ref: '#/definitions/Pipeline Step State Object'
+            $ref: '#/definitions/Pipeline Execution Step State'
 
   Pipeline Execution End Event:
     type: object
@@ -163,10 +163,10 @@ definitions:
           "activitystreams:to":
             $ref: '#/definitions/Organization'
           "activitystreams:object":
-            $ref: '#/definitions/Pipeline Execution Object'
+            $ref: '#/definitions/Pipeline Execution'
 
 
-  Pipeline Execution Object:
+  Pipeline Execution:
     type: object
     properties:
       "@id":
