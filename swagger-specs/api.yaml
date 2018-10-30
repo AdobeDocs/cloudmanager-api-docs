@@ -326,6 +326,12 @@ paths:
           description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
           required: true
           type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+          const: application/json
       responses:
         '201':
           description: Successful started pipeline execution
@@ -530,6 +536,12 @@ paths:
           description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
           required: true
           type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+          const: application/json
         - in: body
           name: body
           description: Input for advance. See documentation for details.
@@ -608,6 +620,12 @@ paths:
           description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
           required: true
           type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+          const: application/json
         - in: body
           name: body
           description: Input for cancel. See documentation for details.
