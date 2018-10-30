@@ -23,7 +23,7 @@ definitions:
     properties:
       event_id:
         type: string
-        description: Unique identifier for the event. Also contained in the x-adobe-event-id header.
+        description: Unique identifier for the event.
       event:
         type: object
         properties:
@@ -54,7 +54,7 @@ definitions:
     properties:
       event_id:
         type: string
-        description: Unique identifier for the event. Also contained in the x-adobe-event-id header.
+        description: Unique identifier for the event.
       event:
         type: object
         properties:
@@ -83,7 +83,7 @@ definitions:
     properties:
       event_id:
         type: string
-        description: Unique identifier for the event. Also contained in the x-adobe-event-id header.
+        description: Unique identifier for the event.
       event:
         type: object
         properties:
@@ -112,7 +112,7 @@ definitions:
     properties:
       event_id:
         type: string
-        description: Unique identifier for the event. Also contained in the x-adobe-event-id header.
+        description: Unique identifier for the event.
       event:
         type: object
         properties:
@@ -141,7 +141,7 @@ definitions:
     properties:
       event_id:
         type: string
-        description: Unique identifier for the event. Also contained in the x-adobe-event-id header.
+        description: Unique identifier for the event.
       event:
         type: object
         properties:
