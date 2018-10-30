@@ -1,14 +1,53 @@
 ## Receiving Events
 
-When Cloud Manager emits an event, all webhooks configured for that event will be called. As it is possible to reuse the same webhook for multiple events and even multiple events from different providers, two HTTP headers can be used to differentiate events. The `x-adobe-provider` header will be `cloudmanager` for Cloud Manager events. The type of event is contained in the `x-adobe-event-code` header.
+When Cloud Manager emits an event, all webhooks configured for that event will be called. As it is possible to reuse the same webhook for multiple events and even multiple events from different providers, webhooks should inspect the event payload in order to determine the nature of the event before handling it. This can be done by using the `@type` and `xdmEventEnvelope:objectType` values. The `@type` value identifies the verb, i.e. the thing that happened, whereas the `xdmEventEnvelope:objectType` value identifies the noun, i.e. what type the thing that happened happened to.
 
-| Event Type                      | `x-adobe-event-code` Header       |
-|---------------------------------|-----------------------------------|
-| Pipeline Execution Started      | `pipeline_execution_start`        |
-| Pipeline Execution Step Started | `pipeline_execution_step_start`   |
-| Pipeline Execution Step Waiting | `pipeline_execution_step_waiting` |
-| Pipeline Execution Step Ended   | `pipeline_execution_step_end`     |
-| Pipeline Execution Ended        | `pipeline_execution_end`          |
+### Event Types
+
+#### Pipeline Execution Started
+
+<dl class="event-description">
+  <dt><code>@type</code></dt>
+  <dd><code>https://ns.adobe.com/experience/cloudmanager/event/started</code></dd>
+  <dt><code>xdmEventEnvelope:objectType</code></dt>
+  <dd><code>https://ns.adobe.com/experience/cloudmanager/pipeline-execution</code></dd>
+</dl>
+
+#### Pipeline Execution Step Started
+
+<dl class="event-description">
+  <dt><code>@type</code></dt>
+  <dd><code>https://ns.adobe.com/experience/cloudmanager/event/started</code></dd>
+  <dt><code>xdmEventEnvelope:objectType</code></dt>
+  <dd><code>https://ns.adobe.com/experience/cloudmanager/execution-step-state</code></dd>
+</dl>
+
+#### Pipeline Execution Step Waiting
+
+<dl class="event-description">
+  <dt><code>@type</code></dt>
+  <dd><code>https://ns.adobe.com/experience/cloudmanager/event/waiting</code></dd>
+  <dt><code>xdmEventEnvelope:objectType</code></dt>
+  <dd><code>https://ns.adobe.com/experience/cloudmanager/execution-step-state</code></dd>
+</dl>
+
+#### Pipeline Execution Step Ended
+
+<dl class="event-description">
+  <dt><code>@type</code></dt>
+  <dd><code>https://ns.adobe.com/experience/cloudmanager/event/ended</code></dd>
+  <dt><code>xdmEventEnvelope:objectType</code></dt>
+  <dd><code>https://ns.adobe.com/experience/cloudmanager/execution-step-state</code></dd>
+</dl>
+
+#### Pipeline Execution Ended
+
+<dl class="event-description">
+  <dt><code>@type</code></dt>
+  <dd><code>https://ns.adobe.com/experience/cloudmanager/event/ended</code></dd>
+  <dt><code>xdmEventEnvelope:objectType</code></dt>
+  <dd><code>https://ns.adobe.com/experience/cloudmanager/pipeline-execution</code></dd>
+</dl>
 
 The body of the requests received by the webhook will vary based on the event type. The [API Reference](swagger-specs/events.yaml) details the schema for each event body.
 
@@ -41,3 +80,20 @@ With a few exceptions, all steps will emit _start_ and _end_ events. The _waitin
 ### Validating Events
 
 Webhooks used in Adobe I/O must be accessible from the public internet. As a result, it is a best practice to use the `x-adobe-signature` header to validate that the event did, in fact, originate from Adobe I/O. Information on this header can be found in the Authenticating events section of the [Adobe I/O Events Webhooks Introduction](../../../../adobeio/adobeio-documentation/master/events/intro/webhook_docs_intro.md).
+
+<style type="text/css">
+#kirbyMainContent .hljs .hljs-function,
+#kirbyMainContent .hljs .hljs-params {
+    color: #333;
+}
+.event-description {
+    margin-left: 0.5em;
+}
+.event-description dd {
+    margin-left: 1.5em;
+}
+.event-description dd:before {
+    content: "\2022";
+    padding-right: 0.25em;
+}
+</style>

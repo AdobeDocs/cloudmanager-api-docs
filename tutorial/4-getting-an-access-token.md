@@ -36,19 +36,19 @@ As the code to obtain an access token is fairly complicated, it makes sense to o
 
 ```javascript
 async function getAccessToken() {
-  const EXPIRATION = 24*60*60; // 24 hours
-
+  const EXPIRATION = 60*60; // 1 hour
+  
   const header = {
-      "alg" : "RS256",
-      "typ" : "JWT"
+    "alg" : "RS256",
+    "typ" : "JWT"
   };
 
   const payload = {
-      "exp" : Math.round(new Date().getTime() / 1000) + EXPIRATION,
-      "iss" : process.env.ORGANIZATION_ID,
-      "sub" : process.env.TECHNICAL_ACCOUNT_ID,
-      "aud" : `https://$ims-na1.adobelogin.com/c/${process.env.API_KEY}`,
-      "https://ims-na1.adobelogin.com/s/ent_cloudmgr_sdk" : true
+    "exp" : Math.round(new Date().getTime() / 1000) + EXPIRATION,
+    "iss" : process.env.ORGANIZATION_ID,
+    "sub" : process.env.TECHNICAL_ACCOUNT_ID,
+    "aud" : `https://ims-na1.adobelogin.com/c/${process.env.API_KEY}`,
+    "https://ims-na1.adobelogin.com/s/ent_cloudmgr_sdk" : true
   };
 
   const jwtToken = jsrsasign.jws.JWS.sign("RS256",
@@ -57,12 +57,12 @@ async function getAccessToken() {
                                           process.env.PRIVATE_KEY);
 
   const response = await fetch("https://ims-na1.adobelogin.com/ims/exchange/jwt/", {
-      method: "POST",
-      body: new URLSearchParams({
-          client_id: process.env.API_KEY,
-          client_secret: process.env.CLIENT_SECRET,
-          jwt_token: jwtToken
-      })
+    method: "POST",
+    body: new URLSearchParams({
+        client_id: process.env.API_KEY,
+        client_secret: process.env.CLIENT_SECRET,
+        jwt_token: jwtToken
+    })
   });
 
   const json = await response.json();
@@ -76,7 +76,8 @@ async function getAccessToken() {
 The access token is an asynchronous function so it returns a `Promise`. So logging of the access token (which is all we're doing in this step) has to be done in a closure invoked when the Promise is resolved:
 
 ```javascript
-  if (req.header("x-adobe-event-code") === "pipeline_execution_start") {
+  if (STARTED === event["@type"] &&
+       EXECUTION === event["xdmEventEnvelope:objectType"]) {
     console.log("received execution start event");
     getAccessToken().then(accessToken => {
       console.log(accessToken);

@@ -32,7 +32,7 @@ definitions:
             description: A unique identifier for the event
           "@type":
             type: string
-            const: xdmCreated
+            const: https://ns.adobe.com/experience/cloudmanager/event/started
             description: The XDM event type.
           "activitystreams:objectType":
             type: string
@@ -63,7 +63,7 @@ definitions:
             description: A unique identifier for the event
           "@type":
             type: string
-            const: xdmUpdated
+            const: https://ns.adobe.com/experience/cloudmanager/event/started
             description: The XDM event type.
           "activitystreams:objectType":
             type: string
@@ -92,7 +92,7 @@ definitions:
             description: A unique identifier for the event
           "@type":
             type: string
-            const: xdmUpdated
+            const: https://ns.adobe.com/experience/cloudmanager/event/waiting
             description: The XDM event type.
           "activitystreams:objectType":
             type: string
@@ -121,7 +121,7 @@ definitions:
             description: A unique identifier for the event
           "@type":
             type: string
-            const: xdmUpdated
+            const: https://ns.adobe.com/experience/cloudmanager/event/ended
             description: The XDM event type.
           "activitystreams:objectType":
             type: string
@@ -150,7 +150,7 @@ definitions:
             description: A unique identifier for the event
           "@type":
             type: string
-            const: xdmUpdated
+            const: https://ns.adobe.com/experience/cloudmanager/event/ended
             description: The XDM event type.
           "activitystreams:objectType":
             type: string

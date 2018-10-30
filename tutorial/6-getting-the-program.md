@@ -50,18 +50,18 @@ The updated `getExecution` function looks like this:
 
 ```javascript
 async function getExecution(executionUrl) {
-    const accessToken = await getAccessToken();
+  const accessToken = await getAccessToken();
 
-    const execution = await makeApiCall(accessToken, executionUrl, "GET");
+  const execution = await makeApiCall(accessToken, executionUrl, "GET");
 
-    const programUrl = new URL(getLink(execution,
-                                       "http://ns.adobe.com/adobecloud/rel/program"),
-                                       executionUrl);
-    const program = await makeApiCall(accessToken, programUrl);
+  const programUrl = new URL(getLink(execution,
+                                     "http://ns.adobe.com/adobecloud/rel/program"),
+                                     executionUrl);
+  const program = await makeApiCall(accessToken, programUrl);
 
-    execution.program = program;
+  execution.program = program;
 
-    return execution;
+  return execution;
 }
 ```
 
@@ -70,9 +70,13 @@ async function getExecution(executionUrl) {
 Now that `getExecution` returns the Program information as part of the `execution` object, we can easily change the log message to output the program name instead of the execution id.
 
 ```javascript
-  if (req.header("x-adobe-event-code") === "pipeline_execution_start") {
+  if (STARTED === event["@type"] &&
+       EXECUTION === event["xdmEventEnvelope:objectType"]) {
     console.log("received execution start event");
-    getExecution(req.body["event"]["activitystreams:object"]["@id"]).then(execution => {
+
+    const executionUrl = event["activitystreams:object"]["@id"];
+
+    getExecution(executionUrl).then(execution => {
       console.log(`Execution for ${execution.program.name} started`);
     });
   }

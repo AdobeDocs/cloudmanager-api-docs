@@ -16,16 +16,16 @@ The function then returns the response body as a JavaScript object.
 
 ```javascript
 async function makeApiCall(accessToken, url, method) {
-    const response = await fetch(url, {
-        "method": method,
-        "headers": {
-            "x-gw-ims-org-id": process.env.ORGANIZATION_ID,
-            "x-api-key": process.env.API_KEY,
-            "Authorization": `Bearer ${accessToken}`
-        }
-    });
+  const response = await fetch(url, {
+    "method": method,
+    "headers": {
+      "x-gw-ims-org-id": process.env.ORGANIZATION_ID,
+      "x-api-key": process.env.API_KEY,
+      "Authorization": `Bearer ${accessToken}`
+    }
+  });
 
-    return await response.json();
+  return await response.json();
 }
 ```
 
@@ -35,9 +35,9 @@ With the generic function in place, the function to get an execution is pretty s
 
 ```javascript
 async function getExecution(executionUrl) {
-    const accessToken = await getAccessToken();
+  const accessToken = await getAccessToken();
 
-    return await makeApiCall(accessToken, executionUrl, "GET");
+  return await makeApiCall(accessToken, executionUrl, "GET");
 }
 ```
 
@@ -46,9 +46,13 @@ async function getExecution(executionUrl) {
 Finally, we can call the `getExecution` function with the URL contained in the event payload. There's a variety of information in the execution response (take a look at the [API Reference](swagger-specs/api.yaml) for all the details), but for now let's just log the execution id.
 
 ```javascript
-  if (req.header("x-adobe-event-code") === "pipeline_execution_start") {
+  if (STARTED === event["@type"] &&
+       EXECUTION === event["xdmEventEnvelope:objectType"]) {
     console.log("received execution start event");
-    getExecution(req.body["event"]["activitystreams:object"]["@id"]).then(execution => {
+
+    const executionUrl = event["activitystreams:object"]["@id"];
+
+    getExecution(executionUrl).then(execution => {
       console.log(`Execution ${execution.id} started`);
     });
   }

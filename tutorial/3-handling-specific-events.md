@@ -1,8 +1,6 @@
 ## Tutorial Step 3 - Handling Specific Events
 
-As seen in [Step 1](1-a-basic-webhook.md), webhooks can be registered for one or more events. Depending on the type of integration you are actually building with Cloud Manager, you will end up with a single webhook script which can handle multiple events in different ways. The event type is passed to the webhook in the `x-adobe-event-code` Header. A full list can be found on the [Receiving Events](../receiving-events.md) page. For this step in the tutorial, you're going to add a simple log statement when event being received is a Pipeline Execution Started event.
-
-> It is also possible that you will have a single webhook which handles events from multiple providers. For these cases, you can look at the `x-adobe-provider` header.
+As seen in [Step 1](1-a-basic-webhook.md), webhooks can be registered for one or more events. Depending on the type of integration you are actually building with Cloud Manager, you will end up with a single webhook script which can handle multiple events in different ways. The event can be identified by using the combination of the `@type` and `xdmEventEnvelope:objectType` values. A full list can be found on the [Receiving Events](../receiving-events.md) page. For this step in the tutorial, you're going to add a simple log statement when event being received is a Pipeline Execution Started event.
 
 ### Updating the Webhook
 
@@ -13,7 +11,13 @@ app.post('/webhook', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'application/text' });
   res.end("pong");
 
-  if (req.header("x-adobe-event-code") === "pipeline_execution_start") {
+  const STARTED = "https://ns.adobe.com/experience/cloudmanager/event/started";
+  const EXECUTION = "https://ns.adobe.com/experience/cloudmanager/pipeline-execution";
+
+  const event = req.body.event;
+
+  if (STARTED === event["@type"] &&
+       EXECUTION === event["xdmEventEnvelope:objectType"]) {
     console.log("received execution start event");
   }
 });

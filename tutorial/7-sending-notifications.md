@@ -16,22 +16,26 @@ Sending a Slack notification can be done with just a simple JSON object containi
 
 ```javascript
 function notifySlack(message) {
-    fetch(process.env.SLACK_WEBHOOK, {
-        "method": "POST",
-        "headers": { 'Content-Type': 'application/json' },
-        "body": JSON.stringify({
-            "text" : message
-        })
-    });
+  fetch(process.env.SLACK_WEBHOOK, {
+    "method": "POST",
+    "headers": { 'Content-Type': 'application/json' },
+    "body": JSON.stringify({
+        "text" : message
+    })
+  });
 }
 ```
 
 And the invoke this function instead of logging:
 
 ```javascript
-  if (req.header("x-adobe-event-code") === "pipeline_execution_start") {
+  if (STARTED === event["@type"] &&
+       EXECUTION === event["xdmEventEnvelope:objectType"]) {
     console.log("received execution start event");
-    getExecution(req.body["event"]["activitystreams:object"]["@id"]).then(execution => {
+
+    const executionUrl = event["activitystreams:object"]["@id"];
+
+    getExecution(executionUrl).then(execution => {
       notifySlack(`Execution for ${execution.program.name} started`);
     });
   }
@@ -54,17 +58,17 @@ Sending a Microsoft Teams notification can be as simple as Slack -- just a singl
 
 ```javascript
 function notifyTeams(message) {
-    fetch(process.env.TEAMS_WEBHOOK, {
-        "method": "POST",
-        "headers": { 'Content-Type': 'application/json' },
-        "body": JSON.stringify({
-            "@context": "https://schema.org/extensions",
-            "@type": "MessageCard",
-            "themeColor": "0072C6",
-            "title": "Update from Cloud Manager",
-            "text": message
-        })
-    });
+  fetch(process.env.TEAMS_WEBHOOK, {
+    "method": "POST",
+    "headers": { 'Content-Type': 'application/json' },
+    "body": JSON.stringify({
+      "@context": "https://schema.org/extensions",
+      "@type": "MessageCard",
+      "themeColor": "0072C6",
+      "title": "Update from Cloud Manager",
+      "text": message
+    })
+  });
 }
 ```
 
@@ -73,9 +77,13 @@ function notifyTeams(message) {
 And then invoke this function:
 
 ```javascript
-  if (req.header("x-adobe-event-code") === "pipeline_execution_start") {
+  if (STARTED === event["@type"] &&
+       EXECUTION === event["xdmEventEnvelope:objectType"]) {
     console.log("received execution start event");
-    getExecution(req.body["event"]["activitystreams:object"]["@id"]).then(execution => {
+
+    const executionUrl = event["activitystreams:object"]["@id"];
+
+    getExecution(executionUrl).then(execution => {
       notifyTeams(`Execution for ${execution.program.name} started`);
     });
   }
