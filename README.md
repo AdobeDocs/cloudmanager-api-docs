@@ -6,8 +6,6 @@ The Cloud Manager API enables Cloud Manager customers to interact with the same 
 
 General information on Cloud Manager can be found in the [Product Documentation]( https://www.adobe.com/go/aem_cloud_mgr_userguide_en).
 
-> This API (and documentation) is in **draft** form.
-
 ## Sample Use Cases
 
 There are a variety of use cases enabled with this API, including:
