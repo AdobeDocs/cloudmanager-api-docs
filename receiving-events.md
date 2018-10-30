@@ -1,6 +1,6 @@
 ## Receiving Events
 
-When Cloud Manager emits an event, all webhooks configured for that event will be called. As it is possible to reuse the same webhook for multiple events and even multiple events from different providers, webhooks should inspect the event payload in order to determine the nature of the event before handling it. This can be done by using the `@type` and `xdmEventEnvelope:objectType` values. The `@type` value identifies the verb, i.e. the thing that happened, whereas the `xdmEventEnvelope:objectType` value identifies the noun, i.e. what type the thing that happened happened to.
+When Cloud Manager emits an event, all webhooks configured for that event will be called. As it is possible to reuse the same webhook for multiple events and even multiple events from different providers, webhooks should inspect the event payload in order to determine the nature of the event before handling it. This can be done by using the `@type` and `xdmEventEnvelope:objectType` values. The `@type` value identifies the verb, i.e. the thing that happened, whereas the `xdmEventEnvelope:objectType` value identifies the noun, i.e. what type of thing the thing that happened happened to.
 
 ### Event Types
 
