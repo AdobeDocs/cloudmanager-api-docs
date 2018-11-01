@@ -2,7 +2,7 @@
 
 By using Adobe I/O Events, Cloud Manager can send external applications notifications when key events occur. This allows customers to connect existing and new external applications which respond to events emitted by the Cloud Manager CI/CD pipeline.
 
-To work with the Cloud Manager Events on the Adobe I/O Console, you need to have System Admin rights for your organization. When you receive notification of these rights, click the **Get Started** button in the message to access services.
+To work with the Cloud Manager Events on the Adobe I/O Console, you need to have the System Administrator role for your organization. When you receive notification of these rights, click the **Get Started** button in the message to access services.
 
 Adobe I/O Events emitted by Cloud Manager are sent to **webhooks** hosted either in on-premise infrastucture, specialized webhook hosting providers, [Adobe I/O Runtime](https://www.adobe.io/apis/cloudplatform/runtime.html), or even your AEM instances managed by Adobe Managed Services.
 
