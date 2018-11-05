@@ -6,6 +6,14 @@ If you use Postman, there is a Cloud Manager-specific collection which can be im
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/3ab610ab110a6a5fd18b#?env%5BCloud%20Manager%20Public%20API%5D=W3siZGVzY3JpcHRpb24iOnsiY29udGVudCI6IiIsInR5cGUiOiJ0ZXh0L3BsYWluIn0sInZhbHVlIjoiIiwia2V5IjoiYXBpX2tleSIsImVuYWJsZWQiOnRydWV9LHsiZGVzY3JpcHRpb24iOnsiY29udGVudCI6IiIsInR5cGUiOiJ0ZXh0L3BsYWluIn0sInZhbHVlIjoiIiwia2V5Ijoib3JnYW5pemF0aW9uX2lkIiwiZW5hYmxlZCI6dHJ1ZX0seyJkZXNjcmlwdGlvbiI6eyJjb250ZW50IjoiIiwidHlwZSI6InRleHQvcGxhaW4ifSwidmFsdWUiOiIiLCJrZXkiOiJ0ZWNobmljYWxfYWNjb3VudF9pZCIsImVuYWJsZWQiOnRydWV9LHsiZGVzY3JpcHRpb24iOnsiY29udGVudCI6IiIsInR5cGUiOiJ0ZXh0L3BsYWluIn0sInZhbHVlIjoiIiwia2V5IjoicHJpdmF0ZV9rZXkiLCJlbmFibGVkIjp0cnVlfSx7ImRlc2NyaXB0aW9uIjp7ImNvbnRlbnQiOiIiLCJ0eXBlIjoidGV4dC9wbGFpbiJ9LCJ2YWx1ZSI6IiIsImtleSI6ImNsaWVudF9zZWNyZXQiLCJlbmFibGVkIjp0cnVlfSx7InZhbHVlIjoiIiwia2V5IjoiYWNjZXNzX3Rva2VuIiwiZW5hYmxlZCI6dHJ1ZX0seyJrZXkiOiJwcm9ncmFtX2lkIiwidmFsdWUiOiIiLCJkZXNjcmlwdGlvbiI6IiIsImVuYWJsZWQiOnRydWV9XQ==)
 
+### Collection Variables
+
+This collection defines a number of variables which are used in the contained requests. In general, you do not need to modify these variables; if you copy the request definitions from this collection to another collection, you should be sure to set these variables.
+
+* `host_name` - The Cloud Manager API host name, `cloudmanager.adobe.io`.
+* `ims_endpoint` - The host name for the Adobe Identity Management System (IMS), `ims-na1.adobelogin.com`.
+* `cloudmanager_claim` - The access claim used in the JWT token, `https://ims-na1.adobelogin.com/s/ent_cloudmgr_sdk`.
+
 ### Configuration
 
 The requests in this collection depend upon a set of Postman environment variables. After you click the button above, a new environment will be created named `Cloud Manager Public API` which has the necessary variables defined. First, select this environment from the environment drop-down list.
