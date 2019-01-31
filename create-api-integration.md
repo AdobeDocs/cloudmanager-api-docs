@@ -20,10 +20,10 @@ Once you've generated your certificate, to create an API Integration:
 
 7. Upload your certificate file.
 
-8. If the integration needs access based on a [specific role](https://www.adobe.com/go/aem_cloud_mrg_usersroles_en), select the role from the dropdown list:
+8. Select one of the product profiles to assign the integration to a [specific Cloud Manager role](https://www.adobe.com/go/aem_cloud_mrg_usersroles_en).
 
-![Select Role Dropdown](img/integration-selectrole.png)
-> At present, you can only select this role when first creating the integration. If you need a different role, the integration must be deleted and recreated.
+
+![Select Product Profile](img/integration-select-product-profile.png)
 
 9. Click `Create Integration`.
 
