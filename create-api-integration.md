@@ -1,6 +1,8 @@
 ## Creating an API Integration
 
-To work with the Cloud Manager API on the Adobe I/O Console, you need to have the System Administrator role for your organization. When you receive notification of this role, click the **Get Started** button in the message to access services.
+To work with the Cloud Manager API on the Adobe I/O Console, you need to either the System Administrator role or be an assigned API Developer for your organization. Click [here](http://www.adobe.com/go/aac_api_prod_learn) to learn more about the API Developer role.
+
+When you receive notification of this role, click the **Get Started** button in the message to access services.
 
 All requests to the Cloud Manager API must be authenticated using an access token retrieved using a JSON Web Token (JWT). The [Adobe I/O JWT Quickstart](https://www.adobe.io/authentication/auth-methods.html#!adobeio/adobeio-documentation/master/auth/JWTAuthenticationQuickStart.md) provides a guide to creating the certificate files necessary to set up the integration as well as instructions for how to generate your first access token. The [Creating a JSON Web Token](https://www.adobe.io/apis/cloudplatform/console/authentication/createjwt.html) page has more detailed reference information on the specific content of the JWT.
 
@@ -20,10 +22,11 @@ Once you've generated your certificate, to create an API Integration:
 
 7. Upload your certificate file.
 
-8. Select one of the product profiles to assign the integration to a [specific Cloud Manager role](https://www.adobe.com/go/aem_cloud_mrg_usersroles_en).
+8. Select one of the Product Profiles to assign the integration to a [specific Cloud Manager role](https://www.adobe.com/go/aem_cloud_mrg_usersroles_en).
 
 
 ![Select Product Profile](img/integration-select-product-profile.png)
+> If you are an API Developer in the organization, you may be restricted as to which Product Profiles you can select here.
 
 9. Click `Create Integration`.
 
