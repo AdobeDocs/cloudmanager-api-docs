@@ -6,6 +6,8 @@ The Cloud Manager API enables Cloud Manager customers to interact with the same 
 
 General information on Cloud Manager can be found in the [Product Documentation]( https://www.adobe.com/go/aem_cloud_mgr_userguide_en).
 
+The links in this documentation will guide you through getting started with the Cloud Manager API. There is also a complete [API Reference](swagger-specs/api.yaml) which describes all of the individual endpoints and requests which are available for usage.
+
 ## Sample Use Cases
 
 There are a variety of use cases enabled with this API, including:
