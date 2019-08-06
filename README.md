@@ -14,7 +14,7 @@ There are a variety of use cases enabled with this API, including:
 
 * Starting the Cloud Manager CI/CD pipeline from an external system.
 * Executing additional tests between the standard Cloud Manager performance tests and the ultimate production deployment.
-* Triggering additional activities after the production deployment is complete, e.g. CDN cache invalidation.
+* Triggering additional activities after the a pipeline execution is complete or a specific step has been completed, e.g. CDN cache invalidation once the production deployment is finished.
 
 ### Contributing
 
