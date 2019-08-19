@@ -36,7 +36,7 @@ To override important failures in the Code Quality, Security Test, and Performan
 
 #### Go-Live Approval
 
-The body for the Go-Live Approval step simply passes `approved` as `true`:
+The body for the Go-Live Approval step passes `approved` as `true`:
 
 ```javascript
 {
@@ -63,11 +63,21 @@ The second form is where the deployment should be done immediately. In this case
 }
 ```
 
+#### Resume Paused Deployment
+
+The body to resume a paused deployment step step passes `resume` as `true`:
+
+```javascript
+{
+    "resume":true
+}
+```
+
 ### Cancel Body Definitions
 
 #### Reject Code Quality, Security Test, Performance Test Results
 
-The body to reject important failures for one of these steps simply passes `override` as `false`:
+The body to reject important failures for one of these steps passes `override` as `false`:
 
 ```javascript
 {
@@ -79,7 +89,7 @@ The body to reject important failures for one of these steps simply passes `over
 
 #### Cancel Build, Security Test, Performance Test, and Schedule Steps
 
-The body to cancel one of these running steps simply passes `cancel` as `true`:
+The body to cancel one of these running steps passes `cancel` as `true`:
 
 ```javascript
 {
@@ -89,10 +99,21 @@ The body to cancel one of these running steps simply passes `cancel` as `true`:
 
 #### Reject Go-Live Approval
 
-The body to reject a Go-Live Approval step simply passes `approved` as `false`:
+The body to reject a Go-Live Approval step passes `approved` as `false`:
 
 ```javascript
 {
     "approved":false
 }
 ```
+
+#### Stop Paused Deployment
+
+The body to stop a paused deployment step step passes `resume` as `false`:
+
+```javascript
+{
+    "resume":false
+}
+```
+
