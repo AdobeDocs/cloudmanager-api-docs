@@ -65,7 +65,7 @@ The second form is where the deployment should be done immediately. In this case
 
 #### Resume Paused Deployment
 
-The body to resume a paused deployment step step passes `resume` as `true`:
+The body to resume a paused deployment step passes `resume` as `true`:
 
 ```javascript
 {
@@ -109,7 +109,7 @@ The body to reject a Go-Live Approval step passes `approved` as `false`:
 
 #### Stop Paused Deployment
 
-The body to stop a paused deployment step step passes `resume` as `false`:
+The body to stop a paused deployment step passes `resume` as `false`:
 
 ```javascript
 {
