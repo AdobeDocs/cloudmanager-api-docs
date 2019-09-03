@@ -1120,7 +1120,6 @@ definitions:
           - CANCELLED
           - FINISHED
           - ERROR
-          - WAITING_FOR_INPUT
           - FAILED
       trigger:
         type: string
