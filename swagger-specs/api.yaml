@@ -1,12 +1,9 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
-  version: "1.0.0"
+  version: 1.0.0
   title: Cloud Manager API
-
 host: cloudmanager.adobe.io
-
 basePath: /api
-
 schemes:
   - https
 consumes:
@@ -33,7 +30,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -64,7 +61,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /program/{programId}:
+  '/program/{programId}':
     get:
       tags:
         - Programs
@@ -84,7 +81,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -94,7 +91,7 @@ paths:
           type: string
       responses:
         '200':
-          description: successful operation
+          description: Successful retrieval of program
           schema:
             $ref: '#/definitions/Program'
         '400':
@@ -104,13 +101,11 @@ paths:
         '403':
           description: The requester is not authorized to access the resource.
         '404':
-          description: Program not found.
+          description: Program not found
         '405':
           description: Client sent a request using a HTTP method that the server doesn't support.
         '406':
           description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '409':
-          description: Program was already modified.
         '500':
           description: This is an indicator of a server-side error.
         '502':
@@ -119,7 +114,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /program/{programId}/pipelines:
+  '/program/{programId}/pipelines':
     get:
       tags:
         - Pipelines
@@ -139,7 +134,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -158,14 +153,10 @@ paths:
           description: The request has not been applied because it lacks valid authentication credentials for the target resource.
         '403':
           description: The requester is not authorized to access the resource.
-        '404':
-          description: Unknown program
         '405':
           description: Client sent a request using a HTTP method that the server doesn't support.
         '406':
           description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
         '500':
           description: This is an indicator of a server-side error.
         '502':
@@ -174,7 +165,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /program/{programId}/pipeline/{pipelineId}:
+  '/program/{programId}/pipeline/{pipelineId}':
     get:
       tags:
         - Pipelines
@@ -199,7 +190,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -209,7 +200,7 @@ paths:
           type: string
       responses:
         '200':
-          description: successful operation
+          description: Successful retrieval of pipeline
           schema:
             $ref: '#/definitions/Pipeline'
         '400':
@@ -224,8 +215,6 @@ paths:
           description: Client sent a request using a HTTP method that the server doesn't support.
         '406':
           description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '422':
-          description: Client sent a correct request that contained invalid values for one or more parameters.
         '500':
           description: This is an indicator of a server-side error.
         '502':
@@ -234,7 +223,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /program/{programId}/pipeline/{pipelineId}/execution:
+  '/program/{programId}/pipeline/{pipelineId}/execution':
     get:
       tags:
         - Pipeline Execution
@@ -259,7 +248,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -271,7 +260,7 @@ paths:
         '200':
           description: Successful retrieval of current execution
           schema:
-            $ref: '#/definitions/Pipeline Execution'
+            $ref: '#/definitions/PipelineExecution'
         '400':
           description: The request is malformed.
         '401':
@@ -318,7 +307,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -336,7 +325,7 @@ paths:
         '201':
           description: Successful started pipeline execution
         '400':
-          description: The request is malformed.
+          description: Request conflicts with the expected state of pipeline
         '401':
           description: The request has not been applied because it lacks valid authentication credentials for the target resource.
         '403':
@@ -359,7 +348,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /program/{programId}/pipeline/{pipelineId}/execution/{executionId}:
+  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}':
     get:
       tags:
         - Pipeline Execution
@@ -389,7 +378,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -401,7 +390,7 @@ paths:
         '200':
           description: Successful retrieval of execution
           schema:
-            $ref: '#/definitions/Pipeline Execution'
+            $ref: '#/definitions/PipelineExecution'
         '400':
           description: The request is malformed.
         '401':
@@ -424,77 +413,13 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}:
+  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}':
     get:
       tags:
         - Pipeline Execution
       summary: Get step state
       description: ''
       operationId: stepState
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: programId
-          in: path
-          description: Identifier of the program.
-          required: true
-          type: string
-        - name: pipelineId
-          in: path
-          description: Identifier of the pipeline
-          required: true
-          type: string
-        - name: executionId
-          in: path
-          description: Identifier of the execution
-          required: true
-          type: string
-        - name: phaseId
-          in: path
-          description: Identifier of the phase
-          required: true
-          type: string
-        - name: stepId
-          in: path
-          description: Identifier of the step
-          required: true
-          type: string
-      responses:
-        '200':
-          description: Successful retrieval of step state
-          schema:
-            $ref: '#/definitions/Pipeline Execution Step State'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: Missing permission for user to read step
-        '404':
-          description: Pipeline execution does not exists
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '409':
-          description: The resource was modified before the call. Client should reload and try again
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance:
-    put:
-      tags:
-        - Pipeline Execution
-      summary: Advance
-      description: 'Post to this url in order to advance the current pipeline execution, if paused and waiting for user interaction. Link is present in output only in that case.'
-      operationId: advancePipelineExecution
       parameters:
         - name: programId
           in: path
@@ -528,7 +453,87 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of step state
+          schema:
+            $ref: '#/definitions/Pipeline Execution Step State'
+        '400':
+          description: The request is malformed.
+        '401':
+          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
+        '403':
+          description: Missing permission for user to read step
+        '404':
+          description: Pipeline execution does not exist
+        '405':
+          description: Client sent a request using a HTTP method that the server doesn't support.
+        '406':
+          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+        '409':
+          description: The resource was modified before the call. Client should reload and try again
+        '500':
+          description: This is an indicator of a server-side error.
+        '502':
+          description: This is an indicator that the back-end service did not send a valid response.
+        '503':
+          description: This is an indicator of a potential server overload.
+        '504':
+          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance':
+    put:
+      tags:
+        - Pipeline Execution
+      summary: Advance
+      description: 'Post to this url in order to advance the current pipeline execution, if paused and waiting for user interaction. Link is present in output only in that case. The input depends on the actual reason for which the pipeline execution stopped.'
+      operationId: advancePipelineExecution
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program.
+          required: true
+          type: string
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: string
+        - name: executionId
+          in: path
+          description: Identifier of the execution
+          required: true
+          type: string
+        - name: phaseId
+          in: path
+          description: Identifier of the phase
+          required: true
+          type: string
+        - name: stepId
+          in: path
+          description: Identifier of the step
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Input for advance. See documentation for details.
+          required: true
+          type: object
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -542,11 +547,6 @@ paths:
           required: true
           type: string
           const: application/json
-        - in: body
-          name: body
-          description: Input for advance. See documentation for details.
-          required: true
-          type: object
       responses:
         '202':
           description: Successful resume of pipeline execution
@@ -572,7 +572,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel:
+  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel':
     put:
       tags:
         - Pipeline Execution
@@ -605,6 +605,11 @@ paths:
           description: Identifier of the step
           required: true
           type: string
+        - in: body
+          name: body
+          description: Input for advance. See documentation for details.
+          required: true
+          type: object
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -612,7 +617,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -626,11 +631,6 @@ paths:
           required: true
           type: string
           const: application/json
-        - in: body
-          name: body
-          description: Input for cancel. See documentation for details.
-          required: true
-          type: object
       responses:
         '202':
           description: Successful cancel of pipeline execution
@@ -656,11 +656,11 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/logs:
+  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/logs':
     get:
       tags:
         - Pipeline Execution
-      summary: GetLogs
+      summary: Get logs
       description: Get the logs associated with a step.
       operationId: getStepLogs
       parameters:
@@ -689,6 +689,11 @@ paths:
           description: Identifier of the step
           required: true
           type: string
+        - name: Accept
+          in: header
+          required: false
+          type: string
+          description: 'Specify application/json in this header to receive a JSON response. Otherwise, a 307 response code will be returned with a Location header.'
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -696,7 +701,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -704,22 +709,9 @@ paths:
           description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
           required: true
           type: string
-        - name: Accept
-          in: header
-          description: Specify application/json in this header to receive a JSON response. Otherwise, a 307 response code will be returned with a Location header.
-          required: false
-          type: string
       responses:
         '200':
-          description: Successful retrieval of logs (if application/json is specified in the Accept header)
-          schema:
-            type: object
-            properties:
-              redirect:
-                type: string
-                description: A signed URL for the step logs.
-        '307':
-          description: Successful retrieval of logs (if application/json is not specified in the Accept header). Log location will be contained in the Location header.
+          description: Successful retrieval of logs
         '400':
           description: The request is malformed.
         '401':
@@ -727,7 +719,7 @@ paths:
         '403':
           description: Missing permission for user to read logs
         '404':
-          description: Pipeline execution does not exists
+          description: Pipeline execution does not exist
         '405':
           description: Client sent a request using a HTTP method that the server doesn't support.
         '406':
@@ -742,11 +734,11 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/metrics:
+  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/metrics':
     get:
       tags:
         - Pipeline Execution
-      summary: Get step metric results.
+      summary: Get step metrics
       description: ''
       operationId: stepMetric
       parameters:
@@ -782,7 +774,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -802,7 +794,7 @@ paths:
         '403':
           description: Missing permission for user to read metrics
         '404':
-          description: Pipeline execution does not exists
+          description: Pipeline execution does not exist
         '405':
           description: Client sent a request using a HTTP method that the server doesn't support.
         '406':
@@ -817,17 +809,17 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /program/{programId}/pipeline/{pipelineId}/executions:
+  '/program/{programId}/pipeline/{pipelineId}/executions':
     get:
       tags:
         - Pipeline Execution
       summary: List Executions
-      description: Returns the history of pipeline executions
+      description: Returns the history of pipeline executions in a newest to oldest order
       operationId: getExecutions
       parameters:
         - name: programId
           in: path
-          description: Identifier of the programId.
+          description: Identifier of the program.
           required: true
           type: string
         - name: pipelineId
@@ -835,6 +827,17 @@ paths:
           description: Identifier of the pipeline
           required: true
           type: string
+        - name: start
+          in: query
+          description: Pagination start parameter
+          required: false
+          type: string
+        - name: limit
+          in: query
+          description: Pagination limit parameter
+          required: false
+          type: integer
+          format: int32
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -842,7 +845,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: Bearer [token] - An access token for the technical account created through integration with Adobe IO
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
           required: true
           type: string
         - name: x-api-key
@@ -854,15 +857,15 @@ paths:
         '200':
           description: Successful retrieval of execution history
           schema:
-            $ref: '#/definitions/Pipeline Execution List'
+            $ref: '#/definitions/PipelineExecutionListRepresentation'
         '400':
           description: The request is malformed.
         '401':
           description: The request has not been applied because it lacks valid authentication credentials for the target resource.
         '403':
-          description: The requester is not authorized to access the resource.
+          description: Missing permission for user to read executions
         '404':
-          description: Program does not exists
+          description: Pipeline does not exist
         '405':
           description: Client sent a request using a HTTP method that the server doesn't support.
         '406':
@@ -877,9 +880,6 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  /swagger:
-    x-swagger-pipe: swagger_raw
-# complex objects have schema definitions
 definitions:
   Program List:
     type: object
@@ -899,16 +899,21 @@ definitions:
         type: object
         readOnly: true
         properties:
+          next:
+            $ref: '#/definitions/HalLink'
+          prev:
+            $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
   Embedded Program:
     type: object
     required:
+      - enabled
       - name
     properties:
       id:
         type: string
-        example: 14
+        example: '14'
         description: Identifier of the program. Unique within the space.
         readOnly: true
       name:
@@ -919,7 +924,6 @@ definitions:
         type: boolean
         description: Whether this Program has been enabled for Cloud Manager usage
         readOnly: true
-        default: false
       tenantId:
         type: string
         example: acmeCorp
@@ -939,38 +943,32 @@ definitions:
     properties:
       id:
         type: string
-        example: 14
+        example: '14'
         description: Identifier of the program. Unique within the space.
         readOnly: true
       name:
         type: string
         example: AcmeCorp Main Site
         description: Name of the program
-      description:
-        type: string
-        example: This is our primary site
-        description: Description of the program
+        minLength: 0
+        maxLength: 255
       enabled:
         type: boolean
         description: Whether this Program has been enabled for Cloud Manager usage
-        readOnly: true
-        default: false
+      tenantId:
+        type: string
+        example: acmeCorp
+        description: Tenant Id
       imsOrgId:
         type: string
         example: 6522A55453334E247F120101@AdobeOrg
         description: Organisation Id
-        readOnly: true
-      tenantId:
-        type: string
-        example: acmecorp
-        description: Tenant Id
-        readOnly: true
       _links:
         type: object
         readOnly: true
         properties:
           'http://ns.adobe.com/adobecloud/rel/pipelines':
-            description: Pipelines defined in the Program
+            description: Pipelines defined in the program
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
@@ -982,7 +980,6 @@ definitions:
         type: string
       templated:
         type: boolean
-        default: false
       type:
         type: string
       deprecation:
@@ -1002,14 +999,12 @@ definitions:
     properties:
       id:
         type: string
-        example: 29
+        example: '29'
         description: Identifier of the pipeline. Unique within the program.
-        readOnly: true
       programId:
         type: string
-        example: 14
+        example: '14'
         description: Identifier of the program. Unique within the space.
-        readOnly: true
       name:
         type: string
         example: AcmeCorp Main Pipeline
@@ -1017,19 +1012,15 @@ definitions:
       trigger:
         type: string
         example: MANUAL
-        description: 'How should the execution be triggered. ON_COMMIT: each time a PR is available and the Pipeline is idle then a execution is triggered. MANUAL: triggerd through UI or API. SCHEDULE: recurring schedule'
+        description: 'How should the execution be triggered. ON_COMMIT: each time a PR is available and the Pipeline is idle then a execution is triggered. MANUAL: triggerd through UI or API. SCHEDULE: recurring schedule (not yet implemented}'
         enum:
           - ON_COMMIT
           - MANUAL
           - SCHEDULE
-      triggerSchedule:
-        type: string
-        example: '0 0 16 ? * MON-FRI *'
-        description: 'If executions are triggered on a schedule, a cron expression.'
       status:
         type: string
+        example: 'RUNNING,FAILED'
         description: Pipeline status
-        readOnly: true
         enum:
           - IDLE
           - BUSY
@@ -1065,7 +1056,7 @@ definitions:
             description: Current pipeline execution if any
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/executions':
-            description: Execution history
+            description: Run history
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
@@ -1088,9 +1079,13 @@ definitions:
         type: object
         readOnly: true
         properties:
+          next:
+            $ref: '#/definitions/HalLink'
+          prev:
+            $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
-  Pipeline Execution:
+  PipelineExecution:
     type: object
     properties:
       id:
@@ -1098,21 +1093,24 @@ definitions:
         description: Pipeline execution identifier
       programId:
         type: string
-        example: 14
+        example: '14'
         description: Identifier of the program. Unique within the space.
+        readOnly: true
       pipelineId:
         type: string
-        description: Identifier of the pipeline
+        example: '10'
+        description: Identifier of the pipeline. Unique within the space.
+        readOnly: true
       artifactsVersion:
         type: string
         description: Version of the artifacts generated during this execution
       user:
         type: string
         example: 0123456789ABCDE@AdobeID
-        description: Adobe ID of the user who started the pipeline. Empty for auto triggered executions
+        description: AdobeID who started the pipeline. Empty for auto triggered builds
       status:
         type: string
-        description: Status of the pipeline
+        description: Status of the execution
         enum:
           - NOT_STARTED
           - RUNNING
@@ -1123,8 +1121,7 @@ definitions:
           - FAILED
       trigger:
         type: string
-        example: MANUAL
-        description: 'How the execution was triggered.'
+        description: How the execution was triggered.
         enum:
           - ON_COMMIT
           - MANUAL
@@ -1143,6 +1140,7 @@ definitions:
         description: Date the execution reached a final state
       _embedded:
         type: object
+        readOnly: true
         properties:
           stepStates:
             type: array
@@ -1153,12 +1151,14 @@ definitions:
         readOnly: true
         properties:
           'http://ns.adobe.com/adobecloud/rel/program':
+            description: Get the program of the execution
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/pipeline':
+            description: Get the pipeline of the execution
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
-    description: Describes a pipeline execution
+    description: Wraps a pipeline execution
   Pipeline Execution Step State:
     type: object
     properties:
@@ -1221,14 +1221,14 @@ definitions:
           'http://ns.adobe.com/adobecloud/rel/pipeline':
             description: Get the pipeline of the execution
             $ref: '#/definitions/HalLink'
-          "http://ns.adobe.com/adobecloud/rel/pipeline/logs":
+          'http://ns.adobe.com/adobecloud/rel/pipeline/logs':
             $ref: '#/definitions/HalLink'
-          "http://ns.adobe.com/adobecloud/rel/pipeline/metrics":
+          'http://ns.adobe.com/adobecloud/rel/pipeline/metrics':
             $ref: '#/definitions/HalLink'
-          "http://ns.adobe.com/adobecloud/rel/pipeline/advance":
+          'http://ns.adobe.com/adobecloud/rel/pipeline/advance':
             description: 'Post to this link in order to advance the pipeline, if paused and waiting for user interaction. Link is present in output only in that case.'
             $ref: '#/definitions/HalLink'
-          "http://ns.adobe.com/adobecloud/rel/pipeline/cancel":
+          'http://ns.adobe.com/adobecloud/rel/pipeline/cancel':
             description: Post to this link in order to cancel the pipeline. Link is present in output only in that case.
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/program':
@@ -1237,37 +1237,35 @@ definitions:
           self:
             $ref: '#/definitions/HalLink'
     description: Describes the status of a particular pipeline execution step for display purposes
-  Pipeline Execution List:
+  PipelineExecutionListRepresentation:
     type: object
     properties:
       _totalNumberOfItems:
         type: integer
         format: int32
+      _page:
+        $ref: '#/definitions/RequestedPageDetails'
       _embedded:
         type: object
+        readOnly: true
         properties:
           executions:
             type: array
             items:
-              $ref: '#/definitions/Pipeline Execution'
-      _page:
+              $ref: '#/definitions/PipelineExecution'
+      _links:
         type: object
+        readOnly: true
         properties:
-          limit:
-            type: integer
-            format: int32
           next:
-            type: integer
-            format: int32
+            $ref: '#/definitions/HalLink'
+          page:
+            $ref: '#/definitions/HalLink'
           prev:
-            type: integer
-            format: int32
-      next:
-        $ref: '#/definitions/HalLink'
-      page:
-        $ref: '#/definitions/HalLink'
-      prev:
-        $ref: '#/definitions/HalLink'
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+    description: List of pipeline executions
   Pipeline Step Metrics:
     type: object
     properties:
@@ -1293,11 +1291,9 @@ definitions:
       passed:
         type: boolean
         description: Whether metric is considered passed
-        default: false
       override:
         type: boolean
         description: Whether user override the failed metric
-        default: false
       actualValue:
         type: string
         description: Expected value for the metric
@@ -1318,3 +1314,24 @@ definitions:
         type: string
         description: KPI identifier
     description: Describes a __Metric__
+  RequestedPageDetails:
+    type: object
+    properties:
+      limit:
+        type: integer
+        format: int32
+      orderBy:
+        type: string
+      property:
+        type: array
+        items:
+          type: string
+      type:
+        type: string
+      next:
+        type: integer
+        format: int32
+      prev:
+        type: integer
+        format: int32
+    description: Filtering and sorting page details
