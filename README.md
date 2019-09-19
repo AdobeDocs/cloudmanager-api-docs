@@ -15,10 +15,10 @@ There are a variety of use cases enabled with this API, including:
 * Starting the Cloud Manager CI/CD pipeline from an external system.
 * Executing additional tests between the standard Cloud Manager performance tests and the ultimate production deployment.
 * Triggering additional activities after the a pipeline execution is complete or a specific step has been completed, for example
- - CDN cache invalidation once the production deployment is finished.
- - Deploying related applications to non-Managed Services systems.
- - Notifying on other channels (e.g. Slack, Microsoft Teams).
- - Creating issue reports in bug tracking systems (e.g. Atlassian JIRA) on pipeline failures
+    - CDN cache invalidation once the production deployment is finished.
+    - Deploying related applications to non-Managed Services systems.
+    - Notifying on other channels (e.g. Slack, Microsoft Teams).
+    - Creating issue reports in bug tracking systems (e.g. Atlassian JIRA) on pipeline failures
 
 ### Contributing
 
