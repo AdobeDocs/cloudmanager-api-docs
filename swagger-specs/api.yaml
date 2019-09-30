@@ -3,7 +3,6 @@ info:
   version: 1.0.0
   title: Cloud Manager API
 host: cloudmanager.adobe.io
-basePath: /api
 schemes:
   - https
 consumes:
@@ -16,7 +15,7 @@ tags:
   - name: Pipeline Execution
   - name: Environments
 paths:
-  /programs:
+  /api/programs:
     get:
       tags:
         - Programs
@@ -62,7 +61,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}':
+  '/api/program/{programId}':
     get:
       tags:
         - Programs
@@ -115,7 +114,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/pipelines':
+  '/api/program/{programId}/pipelines':
     get:
       tags:
         - Pipelines
@@ -166,7 +165,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/pipeline/{pipelineId}':
+  '/api/program/{programId}/pipeline/{pipelineId}':
     get:
       tags:
         - Pipelines
@@ -224,7 +223,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/pipeline/{pipelineId}/execution':
+  '/api/program/{programId}/pipeline/{pipelineId}/execution':
     get:
       tags:
         - Pipeline Execution
@@ -349,7 +348,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}':
+  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}':
     get:
       tags:
         - Pipeline Execution
@@ -414,7 +413,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}':
+  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}':
     get:
       tags:
         - Pipeline Execution
@@ -489,7 +488,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance':
+  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance':
     put:
       tags:
         - Pipeline Execution
@@ -573,7 +572,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel':
+  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel':
     put:
       tags:
         - Pipeline Execution
@@ -657,7 +656,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/logs':
+  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/logs':
     get:
       tags:
         - Pipeline Execution
@@ -735,7 +734,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/metrics':
+  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/metrics':
     get:
       tags:
         - Pipeline Execution
@@ -810,7 +809,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/pipeline/{pipelineId}/executions':
+  '/api/program/{programId}/pipeline/{pipelineId}/executions':
     get:
       tags:
         - Pipeline Execution
@@ -881,7 +880,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/environments':
+  '/api/program/{programId}/environments':
     get:
       tags:
         - Environments
@@ -943,7 +942,7 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
-  '/program/{programId}/environment/{environmentId}':
+  '/api/program/{programId}/environment/{environmentId}':
     get:
       tags:
         - Environments
