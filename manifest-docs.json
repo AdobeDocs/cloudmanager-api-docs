@@ -53,6 +53,10 @@
                     "title": "Understanding Metric Data"
                 },
                 {
+                    "path": "AdobeDocs/cloudmanager-api-docs/master/editing-and-deleting-pipelines.md",
+                    "title": "Editing and Deleting Pipelines"
+                },
+                {
                     "path": "AdobeDocs/cloudmanager-api-docs/master/advancing-and-cancelling-steps.md",
                     "title": "Advancing and Cancelling Steps"
                 }
