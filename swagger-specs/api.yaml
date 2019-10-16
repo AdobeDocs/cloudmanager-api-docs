@@ -150,6 +150,44 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/Repository List'
+  '/api/program/{programId}/repository/{repositoryId}':
+    get:
+      tags:
+        - Repositories
+      summary: Get Repository
+      description: Returns an repository by its id
+      operationId: getRepository
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: repositoryId
+          in: path
+          description: Identifier of the repository
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Repository'
   '/api/program/{programId}/repository/{repositoryId}/branches':
     get:
       tags:
