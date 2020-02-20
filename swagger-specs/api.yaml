@@ -17,6 +17,7 @@ tags:
   - name: Pipelines
   - name: Pipeline Execution
   - name: Environments
+  - name: Environment Variables
 paths:
   /api/programs:
     get:
@@ -1456,6 +1457,137 @@ paths:
           description: This is an indicator of a potential server overload.
         '504':
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+  '/api/program/{programId}/environment/{environmentId}/variables':
+    get:
+      tags:
+        - Environment Variables
+      summary: List User Environment Variables
+      description: List the user defined variables for an environment
+      operationId: getEnvironmentVariables
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+          x-example: '2351'
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+          x-example: '128'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of environment variables
+          schema:
+            $ref: '#/definitions/Variable List'
+        '400':
+          description: The request is malformed.
+        '401':
+          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
+        '403':
+          description: The requester is not authorized to access the resource.
+        '404':
+          description: Environment not found
+        '405':
+          description: Client sent a request using a HTTP method that the server doesn't support.
+        '406':
+          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+        '500':
+          description: This is an indicator of a server-side error.
+        '502':
+          description: This is an indicator that the back-end service did not send a valid response.
+        '503':
+          description: This is an indicator of a potential server overload.
+        '504':
+          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+    patch:
+      tags:
+        - Environment Variables
+      summary: Patch User Environment Variables
+      description: 'Modify multiple environment variables. To delete a variable, include it with an empty value.'
+      operationId: patchEnvironmentVariables
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: List of variables
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Variable'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+          const: application/json
+      responses:
+        '200':
+          description: Successful update of environment variables
+          schema:
+            $ref: '#/definitions/Variable List'
+        '400':
+          description: The request is malformed.
+        '401':
+          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
+        '403':
+          description: The requester is not authorized to access the resource.
+        '404':
+          description: Environment not found
+        '405':
+          description: Client sent a request using a HTTP method that the server doesn't support.
+        '406':
+          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+        '500':
+          description: This is an indicator of a server-side error.
+        '502':
+          description: This is an indicator that the back-end service did not send a valid response.
+        '503':
+          description: This is an indicator of a potential server overload.
+        '504':
+          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
 definitions:
   Program List:
     type: object
@@ -2008,6 +2140,9 @@ definitions:
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/logs':
             $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/variables':
+            description: Custom environment variables
+            $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
     description: 'An Environment that '
@@ -2251,3 +2386,56 @@ definitions:
             items:
               $ref: '#/definitions/EnvironmentLog'
     description: Logs of an Environment
+  Variable:
+    type: object
+    properties:
+      name:
+        type: string
+        example: MY_VAR1
+        description: 'Name of the variable. Of a-z, A-Z, _ and 0-9. Cannot begin with a number.'
+        minLength: 2
+        maxLength: 100
+        pattern: '[a-zA-Z_][a-zA-Z_0-9.]*'
+      value:
+        type: string
+        example: myValue
+        description: 'Value of the variable. Read-Write for non-secrets, write-only for secrets.'
+        minLength: 0
+        maxLength: 2048
+      type:
+        type: string
+        example: string
+        description: Type of the variable. Default `string` if missing. Cannot be changed after creation.
+        enum:
+          - string
+          - secretString
+    description: A named value than can be set on an Environment
+  Variable List:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+        example: 1
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          variables:
+            type: array
+            example: '[{ ''name'':''variable1Name'', ''value'':''variable1Value''}, { ''name'':''variable2Name'', ''type'':''secretString'', ''value'':''variable2SecretValue''}]'
+            description: Variables set on environment
+            items:
+              $ref: '#/definitions/Variable'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/environment':
+            description: The environment holding the variables
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/program':
+            description: The Program
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
