@@ -46,7 +46,7 @@ paths:
         '200':
           description: successful operation
           schema:
-            $ref: '#/definitions/Program List'
+            $ref: '#/definitions/Program%20List'
         '400':
           description: The request is malformed.
         '401':
@@ -150,7 +150,7 @@ paths:
         '200':
           description: successful operation
           schema:
-            $ref: '#/definitions/Repository List'
+            $ref: '#/definitions/Repository%20List'
   '/api/program/{programId}/repository/{repositoryId}':
     get:
       tags:
@@ -226,7 +226,7 @@ paths:
         '200':
           description: Successful retrieval of the list of repository branches
           schema:
-            $ref: '#/definitions/Branch List'
+            $ref: '#/definitions/Branch%20List'
   '/api/program/{programId}/pipelines':
     get:
       tags:
@@ -259,7 +259,7 @@ paths:
         '200':
           description: successful operation
           schema:
-            $ref: '#/definitions/Pipeline List'
+            $ref: '#/definitions/Pipeline%20List'
         '400':
           description: The request is malformed.
         '401':
@@ -430,7 +430,6 @@ paths:
           description: Must always be application/json
           required: true
           type: string
-          const: application/json
       responses:
         '200':
           description: successful operation
@@ -551,7 +550,6 @@ paths:
           description: Must always be application/json
           required: true
           type: string
-          const: application/json
       responses:
         '201':
           description: Successful started pipeline execution
@@ -696,7 +694,7 @@ paths:
         '200':
           description: Successful retrieval of step state
           schema:
-            $ref: '#/definitions/Pipeline Execution Step State'
+            $ref: '#/definitions/Pipeline%20Execution%20Step%20State'
         '400':
           description: The request is malformed.
         '401':
@@ -756,7 +754,8 @@ paths:
           name: body
           description: Input for advance. See documentation for details.
           required: true
-          type: object
+          schema:
+            type: object
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -777,7 +776,6 @@ paths:
           description: Must always be application/json
           required: true
           type: string
-          const: application/json
       responses:
         '202':
           description: Successful resume of pipeline execution
@@ -840,7 +838,8 @@ paths:
           name: body
           description: Input for advance. See documentation for details.
           required: true
-          type: object
+          schema:
+            type: object
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -861,7 +860,6 @@ paths:
           description: Must always be application/json
           required: true
           type: string
-          const: application/json
       responses:
         '202':
           description: Successful cancel of pipeline execution
@@ -1022,7 +1020,7 @@ paths:
         '200':
           description: Successful retrieval of metrics
           schema:
-            $ref: '#/definitions/Pipeline Step Metrics'
+            $ref: '#/definitions/Pipeline%20Step%20Metrics'
         '400':
           description: The request is malformed.
         '401':
@@ -1157,7 +1155,7 @@ paths:
         '200':
           description: Successful retrieval of environment list
           schema:
-            $ref: '#/definitions/Environment List'
+            $ref: '#/definitions/Environment%20List'
         '400':
           description: The request is malformed.
         '401':
@@ -1408,10 +1406,6 @@ paths:
           description: date for which log is required
           required: true
           type: string
-        - name: Accept
-          in: header
-          required: false
-          type: string
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1496,7 +1490,7 @@ paths:
         '200':
           description: Successful retrieval of environment variables
           schema:
-            $ref: '#/definitions/Variable List'
+            $ref: '#/definitions/Variable%20List'
         '400':
           description: The request is malformed.
         '401':
@@ -1562,12 +1556,11 @@ paths:
           description: Must always be application/json
           required: true
           type: string
-          const: application/json
       responses:
         '200':
           description: Successful update of environment variables
           schema:
-            $ref: '#/definitions/Variable List'
+            $ref: '#/definitions/Variable%20List'
         '400':
           description: The request is malformed.
         '401':
@@ -1602,7 +1595,7 @@ definitions:
           programs:
             type: array
             items:
-              $ref: '#/definitions/Embedded Program'
+              $ref: '#/definitions/Embedded%20Program'
       _links:
         type: object
         readOnly: true
@@ -1616,7 +1609,6 @@ definitions:
   Embedded Program:
     type: object
     required:
-      - enabled
       - name
     properties:
       id:
@@ -1764,7 +1756,7 @@ definitions:
         type: array
         description: Pipeline phases in execution order
         items:
-          $ref: '#/definitions/Pipeline Phase'
+          $ref: '#/definitions/Pipeline%20Phase'
         maxItems: 100
         minItems: 1
       _links:
@@ -1898,7 +1890,7 @@ definitions:
           stepStates:
             type: array
             items:
-              $ref: '#/definitions/Pipeline Execution Step State'
+              $ref: '#/definitions/Pipeline%20Execution%20Step%20State'
       _links:
         type: object
         readOnly: true
