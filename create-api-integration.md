@@ -2,6 +2,8 @@
 
 To work with the Cloud Manager API on the Adobe I/O Console, you need to either the System Administrator role or be an assigned API Developer for your organization. Click [here](http://www.adobe.com/go/aac_api_prod_learn) to learn more about the API Developer role.
 
+> Note that the API Developer role required to create integrations in the Adobe I/O console is unrelated to the Developer role within Cloud Manager (i.e. the "Developer - Cloud Manager" or "Developer - Cloud Service" product profile). The former is assigned to a user who is permitted to create integrations in the Adobe I/O console. The latter is assigned to a user who has development rights _within_ Cloud Manager itself. Granting one of these does not grant the other.
+
 When you receive notification of this role, click the **Get Started** button in the message to access services.
 
 All requests to the Cloud Manager API must be authenticated using an access token retrieved using a JSON Web Token (JWT). The [Adobe I/O JWT Documentation](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md) provides a guide to creating the certificate files necessary to set up the integration as well as instructions for how to generate your first access token.
