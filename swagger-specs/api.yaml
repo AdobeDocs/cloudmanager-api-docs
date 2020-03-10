@@ -1536,7 +1536,7 @@ paths:
           type: string
         - in: body
           name: body
-          description: List of variables
+          description: 'The list of variables to add, modify, or remove. It is not necessary to send variables here which are not changing.'
           required: true
           schema:
             type: array
