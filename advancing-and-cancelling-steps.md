@@ -73,6 +73,18 @@ The body to resume a paused deployment step passes `resume` as `true`:
 }
 ```
 
+#### Stop Paused Deployment
+
+The body to stop a paused deployment step passes `resume` as `false`:
+
+```javascript
+{
+    "resume":false
+}
+```
+
+> Note that even though stopping a paused deployment causes the pipeline to end, it **must** be sent to the advance endpoint.
+
 ### Cancel Body Definitions
 
 #### Reject Code Quality, Security Test, Performance Test Results
@@ -104,16 +116,6 @@ The body to reject a Go-Live Approval step passes `approved` as `false`:
 ```javascript
 {
     "approved":false
-}
-```
-
-#### Stop Paused Deployment
-
-The body to stop a paused deployment step passes `resume` as `false`:
-
-```javascript
-{
-    "resume":false
 }
 ```
 
