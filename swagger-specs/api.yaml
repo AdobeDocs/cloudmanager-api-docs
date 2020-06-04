@@ -17,7 +17,7 @@ tags:
   - name: Pipelines
   - name: Pipeline Execution
   - name: Environments
-  - name: Environment Variables
+  - name: Variables
 paths:
   /api/programs:
     get:
@@ -47,24 +47,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/Program List'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}':
     get:
       tags:
@@ -98,26 +80,50 @@ paths:
           description: Successful retrieval of program
           schema:
             $ref: '#/definitions/Program'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
         '404':
           description: Program not found
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+    delete:
+      tags:
+        - Programs
+      summary: Delete Program
+      description: Delete an program
+      operationId: deleteProgram
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Program'
+        '202':
+          description: Delete was successful.
+          schema:
+            $ref: '#/definitions/Program'
+        '403':
+          description: Forbidden.
+        '404':
+          description: Program not found.
+        '412':
+          description: Deletion not supported
   '/api/program/{programId}/repositories':
     get:
       tags:
@@ -260,24 +266,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/Pipeline List'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/pipeline/{pipelineId}':
     get:
       tags:
@@ -316,26 +304,8 @@ paths:
           description: Successful retrieval of pipeline
           schema:
             $ref: '#/definitions/Pipeline'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
         '404':
           description: Pipeline not found
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
     delete:
       tags:
         - Pipelines
@@ -369,24 +339,8 @@ paths:
           required: true
           type: string
       responses:
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+        default:
+          description: successful operation
     patch:
       tags:
         - Pipelines
@@ -436,24 +390,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/Pipeline'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/pipeline/{pipelineId}/execution':
     get:
       tags:
@@ -492,28 +428,8 @@ paths:
           description: Successful retrieval of current execution
           schema:
             $ref: '#/definitions/PipelineExecution'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
         '404':
           description: No pipeline execution exits or unknown pipeline or program
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '409':
-          description: The resource was modified before the call. Client should reload and try again
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
     put:
       tags:
         - Pipeline Execution
@@ -557,28 +473,10 @@ paths:
           description: Successful started pipeline execution
         '400':
           description: Request conflicts with the expected state of pipeline
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
         '404':
           description: No pipeline execution exits or unknown pipeline or application
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '409':
-          description: The resource was modified before the call. Client should reload and try again
         '412':
-          description: Pipeline is busy
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+          description: 'Cannot start execution: programId={programId}, pipelineId={pipelineId} currentExecutionId={executionId}, reason=''Execution already in progress.'
   '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}':
     get:
       tags:
@@ -622,28 +520,8 @@ paths:
           description: Successful retrieval of execution
           schema:
             $ref: '#/definitions/PipelineExecution'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
         '404':
           description: No pipeline execution exits or unknown pipeline or application
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '409':
-          description: The resource was modified before the call. Client should reload and try again
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}':
     get:
       tags:
@@ -697,28 +575,10 @@ paths:
           description: Successful retrieval of step state
           schema:
             $ref: '#/definitions/Pipeline Execution Step State'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
         '403':
           description: Missing permission for user to read step
         '404':
           description: Pipeline execution does not exist
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '409':
-          description: The resource was modified before the call. Client should reload and try again
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance':
     put:
       tags:
@@ -781,28 +641,10 @@ paths:
       responses:
         '202':
           description: Successful resume of pipeline execution
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
         '403':
           description: Missing permission for user to advance the pipeline execution
         '404':
           description: No pipeline execution exits or unknown pipeline or program
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '409':
-          description: The resource was modified before the call. Client should reload and try again
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel':
     put:
       tags:
@@ -865,28 +707,10 @@ paths:
       responses:
         '202':
           description: Successful cancel of pipeline execution
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
         '403':
           description: Missing permission for user to cancel the current pipeline execution
         '404':
           description: No pipeline execution exits or unknown pipeline or program
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '409':
-          description: The resource was modified before the call. Client should reload and try again
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/logs':
     get:
       tags:
@@ -948,28 +772,10 @@ paths:
       responses:
         '200':
           description: Successful retrieval of logs
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
         '403':
           description: Missing permission for user to read logs
         '404':
           description: Pipeline execution does not exist
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '409':
-          description: The resource was modified before the call. Client should reload and try again
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/metrics':
     get:
       tags:
@@ -1023,28 +829,10 @@ paths:
           description: Successful retrieval of metrics
           schema:
             $ref: '#/definitions/Pipeline Step Metrics'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
         '403':
           description: Missing permission for user to read metrics
         '404':
           description: Pipeline execution does not exist
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '409':
-          description: The resource was modified before the call. Client should reload and try again
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/pipeline/{pipelineId}/executions':
     get:
       tags:
@@ -1094,28 +882,10 @@ paths:
           description: Successful retrieval of execution history
           schema:
             $ref: '#/definitions/PipelineExecutionListRepresentation'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
         '403':
           description: Missing permission for user to read executions
         '404':
           description: Pipeline does not exist
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '409':
-          description: The resource was modified before the call. Client should reload and try again
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/environments':
     get:
       tags:
@@ -1158,26 +928,8 @@ paths:
           description: Successful retrieval of environment list
           schema:
             $ref: '#/definitions/Environment List'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
         '404':
           description: Program not found
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/environment/{environmentId}':
     get:
       tags:
@@ -1216,24 +968,6 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/Environment'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
     delete:
       tags:
         - Environments
@@ -1275,24 +1009,8 @@ paths:
           description: Environment deletion in progress
           schema:
             $ref: '#/definitions/BadRequestError'
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
         '404':
           description: Environment not found
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/environment/{environmentId}/logs':
     get:
       tags:
@@ -1357,24 +1075,8 @@ paths:
           description: invalid parameters
           schema:
             $ref: '#/definitions/BadRequestError'
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
         '404':
           description: Environment not found
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/environment/{environmentId}/logs/download':
     get:
       tags:
@@ -1439,28 +1141,12 @@ paths:
           description: invalid parameters
           schema:
             $ref: '#/definitions/BadRequestError'
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
         '404':
           description: Environment not found
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   '/api/program/{programId}/environment/{environmentId}/variables':
     get:
       tags:
-        - Environment Variables
+        - Variables
       summary: List User Environment Variables
       description: List the user defined variables for an environment
       operationId: getEnvironmentVariables
@@ -1497,29 +1183,11 @@ paths:
           description: Successful retrieval of environment variables
           schema:
             $ref: '#/definitions/Variable List'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
         '404':
           description: Environment not found
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
     patch:
       tags:
-        - Environment Variables
+        - Variables
       summary: Patch User Environment Variables
       description: 'Modify multiple environment variables. To delete a variable, include it with an empty value.'
       operationId: patchEnvironmentVariables
@@ -1568,26 +1236,8 @@ paths:
           description: Successful update of environment variables
           schema:
             $ref: '#/definitions/Variable List'
-        '400':
-          description: The request is malformed.
-        '401':
-          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
-          description: The requester is not authorized to access the resource.
         '404':
           description: Environment not found
-        '405':
-          description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
-          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
-          description: This is an indicator of a server-side error.
-        '502':
-          description: This is an indicator that the back-end service did not send a valid response.
-        '503':
-          description: This is an indicator of a potential server overload.
-        '504':
-          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
 definitions:
   Program List:
     type: object
@@ -1632,17 +1282,12 @@ definitions:
         type: boolean
         description: Whether this Program has been enabled for Cloud Manager usage
         readOnly: true
+        default: false
       tenantId:
         type: string
         example: acmeCorp
         description: Tenant Id
         readOnly: true
-      _links:
-        type: object
-        readOnly: true
-        properties:
-          self:
-            $ref: '#/definitions/HalLink'
     description: Describes an __Embedded Program__
   Program:
     type: object
@@ -1653,16 +1298,16 @@ definitions:
         type: string
         example: '14'
         description: Identifier of the program. Unique within the space.
-        readOnly: true
       name:
         type: string
         example: AcmeCorp Main Site
         description: Name of the program
         minLength: 0
-        maxLength: 255
+        maxLength: 64
       enabled:
         type: boolean
         description: Whether this Program has been enabled for Cloud Manager usage
+        default: false
       tenantId:
         type: string
         example: acmeCorp
@@ -1694,6 +1339,7 @@ definitions:
         type: string
       templated:
         type: boolean
+        default: false
       type:
         type: string
       deprecation:
@@ -2047,9 +1693,11 @@ definitions:
       passed:
         type: boolean
         description: Whether metric is considered passed
+        default: false
       override:
         type: boolean
         description: Whether user override the failed metric
+        default: false
       actualValue:
         type: string
         description: Expected value for the metric
@@ -2100,12 +1748,10 @@ definitions:
       id:
         type: string
         description: id
-        readOnly: true
       programId:
         type: string
         example: '14'
         description: Identifier of the program. Unique within the space.
-        readOnly: true
       name:
         type: string
         example: AcmeCorp Dev1 Environment
@@ -2251,6 +1897,9 @@ definitions:
   RequestedPageDetails:
     type: object
     properties:
+      start:
+        type: integer
+        format: int32
       limit:
         type: integer
         format: int32
