@@ -10,29 +10,27 @@ All requests to the Cloud Manager API must be authenticated using an access toke
 
 Once you've generated your certificate, to create an API Integration:
 
-1. Navigate to the following URL: [https://console.adobe.io/integrations](https://console.adobe.io/integrations).
+1. Navigate to the following URL: [https://console.adobe.io/](https://console.adobe.io/).
 
-2. Click the `New integration` button.
+2. Click the `Create new project` button or select an existing project.
 
-3. Select the `Access an API` option and then click `Continue`.
+3. (Optional) Click the `Edit project` button and give your project a title and description.
 
-4. Under the Experience Cloud section select `Cloud Manager` and then click `Continue`.
+4. Click the `Add to Project` button and select `API` from the drop-down menu.
 
-5. Select `New integration` and then click `Continue`.
+5. Under the Experience Cloud section select `Cloud Manager` and then click `Next`.
 
-6. Fill out the name and description.
+6. Generate or Upload a key pair. Click either `Generate keypair` or `Next`.
 
-7. Upload your certificate file.
-
-8. Select one of the Product Profiles to assign the integration to a [specific Cloud Manager role](https://www.adobe.com/go/aem_cloud_mrg_usersroles_en).
+7. Select one of the Product Profiles to assign the integration to a [specific Cloud Manager role](https://www.adobe.com/go/aem_cloud_mrg_usersroles_en).
 
 
 ![Select Product Profile](img/integration-select-product-profile.png)
 > If you are an API Developer in the organization, you may be restricted as to which Product Profiles you can select here.
 
-9. Click `Create Integration`.
+9. Click `Save configured API`.
 
-Your client is now created. Notice your client has an `API Key (Client ID)` and an `Organization ID`. You'll need these when making API calls. You will also need the `Technical Account ID` and `Client Secret` values to obtain an Access Token.
+Your client is now created. Notice your client has an `Client ID` (sometimes referred to as an API Key) and an `Organization ID`. You'll need these when making API calls. You will also need the `Technical Account ID` and `Client Secret` values to obtain an Access Token.
 
 <style type="text/css">
 #kirbyMainContent p img {

@@ -10,44 +10,22 @@ The [Getting Started with Adobe I/O Events](https://www.adobe.io/apis/cloudplatf
 
 Once your webhook is up and running and you have your certificate, to create an Event Integration:
 
-1. Navigate to the following URL: [https://console.adobe.io/integrations](https://console.adobe.io/integrations).
+1. Navigate to the following URL: [https://console.adobe.io/](https://console.adobe.io/).
 
-2. Click the `New integration` button.
+2. Click the `Create new project` button or select an existing project.
 
-3. Select the `Receive near-real time events` option and then click `Continue`.
+3. (Optional) Click the `Edit project` button and give your project a title and description.
 
-4. Under the Experience Cloud section select `Cloud Manager` and then click `Continue`.
+4. Click the `Add to Project` button and select `Event` from the drop-down menu.
 
-5. Select `New integration` and then click `Continue`.
+5. Under the Experience Cloud section select `Cloud Manager` and then click `Next`.
 
-6. Fill out the name and description.
-
-7. Upload your certificate file.
-
-8. Click `Add Event Registration`.
-
-9. Fill out the name, URL and description for the webhook.
-
-10. Select the events you want to receive on the webhook.
-
-11. Click `Save`.
-
-12. Click `Create Integration`.
-
-Alternatively, you can reuse an existing API Integration and add Event support to it. To do this:
-
-1. Navigate to the following URL: [https://console.adobe.io/integrations](https://console.adobe.io/integrations).
-
-2. Select the existing Integration.
-
-3. Click on the Events tab.
-
-4. In the `Add New Event Provider` section, select `Cloud Manager`.
-
-5. Click `Add Event Registration`.
-
-6. Fill out the name, URL and description for the webhook.
+6. For a new project, generate or Upload a key pair. Click either `Generate keypair` or `Next`.
 
 7. Select the events you want to receive on the webhook.
 
-8. Click `Save`.
+8. Fill out the name and description.
+
+9. Provide the webhook URL or, if Adobe I/O Runtime is available, select the Runtime action.
+
+10. Click `Save configured events`.
