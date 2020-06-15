@@ -384,7 +384,6 @@ paths:
           description: Must always be application/json
           required: true
           type: string
-          const: application/json
       responses:
         '200':
           description: successful operation
@@ -467,7 +466,6 @@ paths:
           description: Must always be application/json
           required: true
           type: string
-          const: application/json
       responses:
         '201':
           description: Successful started pipeline execution
@@ -638,7 +636,6 @@ paths:
           description: Must always be application/json
           required: true
           type: string
-          const: application/json
       responses:
         '202':
           description: Successful resume of pipeline execution
@@ -705,7 +702,6 @@ paths:
           description: Must always be application/json
           required: true
           type: string
-          const: application/json
       responses:
         '202':
           description: Successful cancel of pipeline execution
@@ -1228,7 +1224,6 @@ paths:
           description: Must always be application/json
           required: true
           type: string
-          const: application/json
       responses:
         '200':
           description: Successful update of environment variables
@@ -1263,9 +1258,6 @@ definitions:
             $ref: '#/definitions/HalLink'
   Embedded Program:
     type: object
-    required:
-      - enabled
-      - name
     properties:
       id:
         type: string
@@ -1276,6 +1268,7 @@ definitions:
         type: string
         example: AcmeCorp Main Site
         description: Name of the program
+        readOnly: true
       enabled:
         type: boolean
         description: Whether this Program has been enabled for Cloud Manager usage
