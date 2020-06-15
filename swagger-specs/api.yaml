@@ -1110,10 +1110,6 @@ paths:
           description: date for which log is required
           required: true
           type: string
-        - name: Accept
-          in: header
-          required: false
-          type: string
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
