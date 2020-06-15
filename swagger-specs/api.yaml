@@ -1528,6 +1528,7 @@ definitions:
           - ON_COMMIT
           - MANUAL
           - SCHEDULE
+          - PUSH_UPGRADES
       createdAt:
         type: string
         format: date-time
