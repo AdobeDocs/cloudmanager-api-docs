@@ -1142,7 +1142,7 @@ paths:
       tags:
         - Variables
       summary: List User Environment Variables
-      description: List the user defined variables for an environment
+      description: List the user defined variables for an environment (Cloud Service only).
       operationId: getEnvironmentVariables
       parameters:
         - name: programId
@@ -1183,7 +1183,7 @@ paths:
       tags:
         - Variables
       summary: Patch User Environment Variables
-      description: 'Modify multiple environment variables. To delete a variable, include it with an empty value.'
+      description: 'Modify multiple environment variables (Cloud Service only). To delete a variable, include it with an empty value.'
       operationId: patchEnvironmentVariables
       parameters:
         - name: programId
