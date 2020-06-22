@@ -15,7 +15,7 @@ Node.js's standard `crypto` module supports all of the cryptographic functions n
 ```javascript
 const express    = require('express'),
       bodyParser = require('body-parser'),
-      crypto     = require("crypto');
+      crypto     = require('crypto');
 ```
 
 ### Writing the `verify` function
