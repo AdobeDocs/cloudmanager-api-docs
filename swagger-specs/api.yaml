@@ -1231,6 +1231,100 @@ paths:
             $ref: '#/definitions/Variable%20List'
         '404':
           description: Environment not found
+  '/api/program/{programId}/pipeline/{pipelineId}/variables':
+    get:
+      tags:
+        - Variables
+      summary: List User Pipeline Variables
+      description: List the user defined variables for an pipeline.
+      operationId: getPipelineVariables
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+          x-example: '2351'
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: string
+          x-example: '128'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of pipeline variables
+          schema:
+            $ref: '#/definitions/Variable%20List'
+        '404':
+          description: Pipeline not found
+    patch:
+      tags:
+        - Variables
+      summary: Patch User Pipeline Variables
+      description: 'Modify multiple pipeline variables. To delete a variable, include it with an empty value.'
+      operationId: patchPipelineVariables
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: 'The list of variables to add, modify, or remove. It is not necessary to send variables here which are not changing.'
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Variable'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful update of pipeline variables
+          schema:
+            $ref: '#/definitions/Variable%20List'
+        '404':
+          description: Pipeline not found
 definitions:
   Program List:
     type: object
@@ -1416,6 +1510,9 @@ definitions:
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/executions':
             description: Run history
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/variables':
+            description: Custom pipeline variables
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/rollbackLastSuccessfulExecution':
             description: Start a CI/CD rollback execution
