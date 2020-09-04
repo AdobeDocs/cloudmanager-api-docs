@@ -61,7 +61,12 @@ Each pipeline step has an assigned `action` which indicates the type of step. Ne
 | `build`                          | Build and Unit Testing                |
 | `codeQuality`                    | Code Quality Testing                  |
 | `securityTest`                   | Security Testing                      |
-| `loadTest`                       | Sites Performance Testing             |
+| `loadTest`                       | Sites Performance Testing Execution   |
+| `assetsTest`                     | Assets Performance Testing Execution  |
+| `reportPerformanceTest`          | Assets Performance Testing Execution  |
+| `productTest`                    | Product Functional Tests              |
+| `functionalTest`                 | Custom Functional Tests               |
+| `contentAudit`                   | Experience Audit (fka Content Audit)  |
 | `approval`                       | Go-Live Approval                      |
 | `schedule`                       | Production Deployment Scheduling      |
 | `managed`                        | CSE Oversight                         |

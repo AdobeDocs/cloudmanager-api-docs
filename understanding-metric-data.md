@@ -1,6 +1,6 @@
 ## Understanding Metric Data
 
-The Metric endpoint returns the measured results for each of the Cloud Manager quality gates: Code Quality, Security, and Performance. Each metric is represented with a JSON object containing the severity, the expected value, the actual value, the result, the comparator used to generate the result, and the metric name.
+The Metric endpoint returns the measured results for each of the Cloud Manager quality gates: Code Quality, Security, Performance, and Experience Audit. Each metric is represented with a JSON object containing the severity, the expected value, the actual value, the result, the comparator used to generate the result, and the metric name.
 
 For example, if you look at the code quality metrics, you will see an object like this:
 
@@ -71,3 +71,13 @@ The `kpi` value is a _technical_ value which will generally need to be translate
 | `disk_bandwidth_util`      | Disk Bandwidth Utilization                    |
 | `network_bandwidth_util`   | Network Bandwidth Utilization                 |
 | `requests_per_minute`      | Requests Per Minute                           |
+
+### Experience Audit
+
+| Technical Name             | Display Name                                  |
+|----------------------------|-----------------------------------------------|
+| `performance`              | Performance Score                             |
+| `best-practices`           | Best Practices Score                          |
+| `accessibility`            | Accessibility Score                           |
+| `seo`                      | SEO Score                                     |
+| `pwa`                      | PWA Score (not displayed)                     |
