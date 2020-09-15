@@ -20,7 +20,7 @@ Interactions with the Cloud Manager API using the service account are permitted 
 
 > Which profiles are listed here depends on the user -- if this was done using the `developer@myco.com` user created above, **only** the `Cloud Manager - Deployment Manager` product profile would be displayed.
 
-Which product profile(s) to select depends upon the specific requirements for the project and what APIs will be accessed. In general terms, if only read (`GET`) access is required, the Developer product profile will be sufficient. Guidance for projects which require write (`PUT`, `DELETE`, `PATCH`):
+Which product profile(s) to select depends upon the specific requirements for the project and what APIs will be accessed. In general terms, if only read (`GET`) access is required, the Developer product profile will be sufficient. Guidance for projects which require write (`PUT`, `DELETE`, `PATCH`) access:
 
 | Operation                   | Method | Path                                                                                                         | Product Profile(s)                         |
 |-----------------------------|--------|--------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
