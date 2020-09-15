@@ -26,74 +26,65 @@ Which product profile(s) to select depends upon the specific requirements for th
     <thead>
         <tr>
             <th>Operation</th>
-            <th>Method</th>
             <th>Product Profile(s)</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td><code class=" language-undefined">startPipeline</code></td>
-            <td><code class=" language-undefined">PUT</code></td>
             <td>Business Owner, Deployment Manager, Program Manager</td>
         </tr>
         <tr>
-            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/pipeline/{pipelineId}/execution</code></td>
+            <td colspan="2"><code class=" language-undefined">PUT /api/program/{programId}/pipeline/{pipelineId}/execution</code></td>
         </tr>
         <tr>
             <td><code class=" language-undefined">advancePipelineExecution</code></td>
-            <td><code class=" language-undefined">PUT</code></td>
             <td>Business Owner, Deployment Manager, Program Manager</td>
         </tr>
         <tr>
-            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance</code></td>
+            <td colspan="2"><code class=" language-undefined">PUT /api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance</code></td>
         </tr>
         <tr>
             <td><code class=" language-undefined">cancelPipelineExecutionStep</code></td>
-            <td><code class=" language-undefined">PUT</code></td>
             <td>Business Owner, Deployment Manager, Program Manager</td>
         </tr>
         <tr>
-            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel</code></td>
+            <td colspan="2"><code class=" language-undefined">PUT /api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel</code></td>
         </tr>
         <tr>
             <td><code class=" language-undefined">deleteEnvironment</code></td>
-            <td><code class=" language-undefined">DELETE</code></td>
             <td>Business Owner, Deployment Manager</td>
         </tr>
         <tr>
-            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/environment/{environmentId}</code></td>
+            <td colspan="2"><code class=" language-undefined">DELETE /api/program/{programId}/environment/{environmentId}</code></td>
         </tr>
         <tr>
             <td><code class=" language-undefined">deleteProgram</code></td>
-            <td><code class=" language-undefined">DELETE</code></td>
             <td>Business Owner, Deployment Manager</td>
         </tr>
         <tr>
-            <td colspan="3"><code class=" language-undefined">/api/program/{programId}</code></td>
+            <td colspan="2"><code class=" language-undefined">DELETE /api/program/{programId}</code></td>
         </tr>
         <tr>
             <td><code class=" language-undefined">deletePipeline</code></td>
-            <td><code class=" language-undefined">DELETE</code></td>
             <td>Deployment Manager</td>
         </tr>
         <tr>
-            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/pipeline/{pipelineId}</code></td>
+            <td colspan="2"><code class=" language-undefined">DELETE /api/program/{programId}/pipeline/{pipelineId}</code></td>
         </tr>
         <tr>
             <td><code class=" language-undefined">patchEnvironmentVariables</code></td>
-            <td><code class=" language-undefined">PATCH</code></td>
             <td>Deployment Manager</td>
         </tr>
         <tr>
-            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/environment/{environmentId}/variables</code></td>
+            <td colspan="2"><code class=" language-undefined">PATCH /api/program/{programId}/environment/{environmentId}/variables</code></td>
         </tr>
         <tr>
             <td><code class=" language-undefined">patchPipelineVariables</code></td>
-            <td><code class=" language-undefined">PATCH</code></td>
             <td>Deployment Manager</td>
         </tr>
         <tr>
-            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/pipeline/{pipelineId}/variables</code></td>
+            <td colspan="2"><code class=" language-undefined">PATCH /api/program/{programId}/pipeline/{pipelineId}/variables</code></td>
         </tr>
     </tbody>
 </table>
@@ -111,8 +102,5 @@ Which product profile(s) to select depends upon the specific requirements for th
 }
 .mdbook table tr:nth-child(2n) {
     background-color: inherit;
-}
-.mdbook table tr:nth-child(4n) {
-    background-color: #f6f8fa;
 }
 </style>
