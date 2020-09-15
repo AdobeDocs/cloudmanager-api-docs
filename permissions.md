@@ -20,7 +20,7 @@ Interactions with the Cloud Manager API using the service account are permitted 
 
 > Which profiles are listed here depends on the user -- if this was done using the `developer@myco.com` user created above, **only** the `Cloud Manager - Deployment Manager` product profile would be displayed.
 
-Which product profile(s) to select depends upon the specific requirements for the project and what APIs will be accessed. In general terms, if only read (`GET`) access is required, the Developer product profile will be sufficient. Guidance for projects which require write (`PUT`, `DELETE`, `PATCH`) access:
+Which product profile(s) to select depends upon the specific requirements for the project and what APIs will be accessed. With one exception (listed below), if only read (`GET`) access is required, the Developer product profile will be sufficient. Guidance for projects which require write (`PUT`, `DELETE`, `PATCH`) access:
 
 <table>
     <thead>
@@ -31,65 +31,70 @@ Which product profile(s) to select depends upon the specific requirements for th
     </thead>
     <tbody>
         <tr>
-            <td class="column--operation"><code class=" language-undefined">startPipeline</code></td>
+            <td class="column--operation"><code>startPipeline</code></td>
             <td>Business Owner, Deployment Manager, Program Manager</td>
         </tr>
         <tr>
-            <td colspan="2" class="column--uri"><code class=" language-undefined">PUT /api/program/{programId}/pipeline/{pipelineId}/execution</code></td>
+            <td colspan="2" class="column--uri"><code>PUT /api/program/{programId}/pipeline/{pipelineId}/execution</code></td>
         </tr>
         <tr>
-            <td><code class=" language-undefined">advancePipelineExecution</code></td>
+            <td><code>advancePipelineExecution</code></td>
             <td>Business Owner, Deployment Manager, Program Manager</td>
         </tr>
         <tr>
-            <td colspan="2" class="column--uri"><code class=" language-undefined">PUT /api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance</code></td>
+            <td colspan="2" class="column--uri"><code>PUT /api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance</code></td>
         </tr>
         <tr>
-            <td><code class=" language-undefined">cancelPipelineExecutionStep</code></td>
+            <td><code>cancelPipelineExecutionStep</code></td>
             <td>Business Owner, Deployment Manager, Program Manager</td>
         </tr>
         <tr>
-            <td colspan="2" class="column--uri"><code class=" language-undefined">PUT /api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel</code></td>
+            <td colspan="2" class="column--uri"><code>PUT /api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel</code></td>
         </tr>
         <tr>
-            <td><code class=" language-undefined">deleteEnvironment</code></td>
+            <td><code>deleteEnvironment</code></td>
             <td>Business Owner, Deployment Manager</td>
         </tr>
         <tr>
-            <td colspan="2" class="column--uri"><code class=" language-undefined">DELETE /api/program/{programId}/environment/{environmentId}</code></td>
+            <td colspan="2" class="column--uri"><code>DELETE /api/program/{programId}/environment/{environmentId}</code></td>
         </tr>
         <tr>
-            <td><code class=" language-undefined">deleteProgram</code></td>
+            <td><code>deleteProgram</code></td>
             <td>Business Owner, Deployment Manager</td>
         </tr>
         <tr>
-            <td colspan="2" class="column--uri"><code class=" language-undefined">DELETE /api/program/{programId}</code></td>
+            <td colspan="2" class="column--uri"><code>DELETE /api/program/{programId}</code></td>
         </tr>
         <tr>
-            <td><code class=" language-undefined">deletePipeline</code></td>
+            <td><code>deletePipeline</code></td>
             <td>Deployment Manager</td>
         </tr>
         <tr>
-            <td colspan="2" class="column--uri"><code class=" language-undefined">DELETE /api/program/{programId}/pipeline/{pipelineId}</code></td>
+            <td colspan="2" class="column--uri"><code>DELETE /api/program/{programId}/pipeline/{pipelineId}</code></td>
         </tr>
         <tr>
-            <td><code class=" language-undefined">patchEnvironmentVariables</code></td>
+            <td><code>patchEnvironmentVariables</code></td>
             <td>Deployment Manager</td>
         </tr>
         <tr>
-            <td colspan="2" class="column--uri"><code class=" language-undefined">PATCH /api/program/{programId}/environment/{environmentId}/variables</code></td>
+            <td colspan="2" class="column--uri"><code>PATCH /api/program/{programId}/environment/{environmentId}/variables</code></td>
         </tr>
         <tr>
-            <td><code class=" language-undefined">patchPipelineVariables</code></td>
+            <td><code>patchPipelineVariables</code></td>
             <td>Deployment Manager</td>
         </tr>
         <tr>
-            <td colspan="2" class="column--uri"><code class=" language-undefined">PATCH /api/program/{programId}/pipeline/{pipelineId}/variables</code></td>
+            <td colspan="2" class="column--uri"><code>PATCH /api/program/{programId}/pipeline/{pipelineId}/variables</code></td>
+        </tr>
+        <tr>
+            <td><code>getPipelineVariables</code></td>
+            <td>Deployment Manager</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="column--uri"><code>GET /api/program/{programId}/pipeline/{pipelineId}/variables</code></td>
         </tr>
     </tbody>
 </table>
-
-> One exception case where read access requires a specific product profile is _reading_ pipeline variables. This requires the Deployment Manager role.
 
 <style type="text/css">
 #kirbyMainContent p img {
@@ -100,13 +105,13 @@ Which product profile(s) to select depends upon the specific requirements for th
   background-color: rgb(240, 240, 240);
   margin-left: 1em;
 }
-.mdbook table tr:nth-child(2n) {
+#kirbyMainContent table tr:nth-child(2n) {
     background-color: inherit;
 }
-.column--operation {
+#kirbyMainContent .column--operation {
     width: 18em;
 }
-.column--uri code {
+#kirbyMainContent .column--uri code {
     font-size: 60%;
 }
 </style>
