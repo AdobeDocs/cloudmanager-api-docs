@@ -22,16 +22,81 @@ Interactions with the Cloud Manager API using the service account are permitted 
 
 Which product profile(s) to select depends upon the specific requirements for the project and what APIs will be accessed. In general terms, if only read (`GET`) access is required, the Developer product profile will be sufficient. Guidance for projects which require write (`PUT`, `DELETE`, `PATCH`) access:
 
-| Operation                   | Method | Path                                                                                                         | Product Profile(s)                         |
-|-----------------------------|--------|--------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
-| `startPipeline`               | `PUT`    | `/api/program/{programId}/pipeline/{pipelineId}/execution`                                                     | Business Owner, Deployment Manager, Program Manager |
-| `advancePipelineExecution`    | `PUT`    | `/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance` | Business Owner, Deployment Manager, Program Manager |
-| `cancelPipelineExecutionStep` | `PUT`    | `/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel`  | Business Owner, Deployment Manager, Program Manager |
-| `deleteEnvironment`           | `DELETE` | `/api/program/{programId}/environment/{environmentId}`                                                         | Business Owner, Deployment Manager                  |
-| `deleteProgram`               | `DELETE` | `/api/program/{programId}`                                                                                     | Business Owner, Deployment Manager                  |
-| `deletePipeline`              | `DELETE` | `/api/program/{programId}/pipeline/{pipelineId}`                                                               | Deployment Manager                                  |
-| `patchEnvironmentVariables`   | `PATCH`  | `/api/program/{programId}/environment/{environmentId}/variables`                                               | Deployment Manager                                  |
-| `patchPipelineVariables`      | `PATCH`  | `/api/program/{programId}/pipeline/{pipelineId}/variables`                                                     | Deployment Manager                                  |
+<table>
+    <thead>
+        <tr>
+            <th>Operation</th>
+            <th>Method</th>
+            <th>Product Profile(s)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><code class=" language-undefined">startPipeline</code></td>
+            <td><code class=" language-undefined">PUT</code></td>
+            <td>Business Owner, Deployment Manager, Program Manager</td>
+        </tr>
+        <tr>
+            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/pipeline/{pipelineId}/execution</code></td>
+        </tr>
+        <tr>
+            <td><code class=" language-undefined">advancePipelineExecution</code></td>
+            <td><code class=" language-undefined">PUT</code></td>
+            <td>Business Owner, Deployment Manager, Program Manager</td>
+        </tr>
+        <tr>
+            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance</code></td>
+        </tr>
+        <tr>
+            <td><code class=" language-undefined">cancelPipelineExecutionStep</code></td>
+            <td><code class=" language-undefined">PUT</code></td>
+            <td>Business Owner, Deployment Manager, Program Manager</td>
+        </tr>
+        <tr>
+            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel</code></td>
+        </tr>
+        <tr>
+            <td><code class=" language-undefined">deleteEnvironment</code></td>
+            <td><code class=" language-undefined">DELETE</code></td>
+            <td>Business Owner, Deployment Manager</td>
+        </tr>
+        <tr>
+            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/environment/{environmentId}</code></td>
+        </tr>
+        <tr>
+            <td><code class=" language-undefined">deleteProgram</code></td>
+            <td><code class=" language-undefined">DELETE</code></td>
+            <td>Business Owner, Deployment Manager</td>
+        </tr>
+        <tr>
+            <td colspan="3"><code class=" language-undefined">/api/program/{programId}</code></td>
+        </tr>
+        <tr>
+            <td><code class=" language-undefined">deletePipeline</code></td>
+            <td><code class=" language-undefined">DELETE</code></td>
+            <td>Deployment Manager</td>
+        </tr>
+        <tr>
+            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/pipeline/{pipelineId}</code></td>
+        </tr>
+        <tr>
+            <td><code class=" language-undefined">patchEnvironmentVariables</code></td>
+            <td><code class=" language-undefined">PATCH</code></td>
+            <td>Deployment Manager</td>
+        </tr>
+        <tr>
+            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/environment/{environmentId}/variables</code></td>
+        </tr>
+        <tr>
+            <td><code class=" language-undefined">patchPipelineVariables</code></td>
+            <td><code class=" language-undefined">PATCH</code></td>
+            <td>Deployment Manager</td>
+        </tr>
+        <tr>
+            <td colspan="3"><code class=" language-undefined">/api/program/{programId}/pipeline/{pipelineId}/variables</code></td>
+        </tr>
+    </tbody>
+</table>
 
 > One exception case where read access requires a specific product profile is _reading_ pipeline variables. This requires the Deployment Manager role.
 
@@ -43,5 +108,11 @@ Which product profile(s) to select depends upon the specific requirements for th
 #kirbyMainContent blockquote {
   background-color: rgb(240, 240, 240);
   margin-left: 1em;
+}
+.mdbook table tr:nth-child(2n) {
+    background-color: inherit;
+}
+.mdbook table tr:nth-child(4n) {
+    background-color: #f6f8fa;
 }
 </style>
