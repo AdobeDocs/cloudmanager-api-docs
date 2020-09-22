@@ -2146,7 +2146,7 @@ definitions:
       type:
         type: string
         example: string
-        description: Type of the variable. Default `string` if missing. Cannot be changed after creation.
+        description: Type of the variable. Default `string` if missing. `secretString` variables are encrypted at rest. Cannot be changed after creation.
         enum:
           - string
           - secretString
