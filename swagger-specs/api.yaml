@@ -2156,7 +2156,7 @@ definitions:
         enum:
           - string
           - secretString
-    description: A named value than can be set on an Environment
+    description: A named value than can be set on an Environment or Pipeline
   Variable List:
     type: object
     properties:
