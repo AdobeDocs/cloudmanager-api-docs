@@ -13,9 +13,9 @@ The `x-adobe-signature` header value is generated using the Client Secret value,
 Node.js's standard `crypto` module supports all of the cryptographic functions needed for this. It just needs to be added to the top of the script:
 
 ```javascript
-const express    = require('express'),
-      bodyParser = require('body-parser'),
-      crypto     = require('crypto');
+const express = require("express"),
+  bodyParser = require("body-parser"),
+  crypto = require("crypto");
 ```
 
 ### Writing the `verify` function
@@ -29,22 +29,24 @@ We also need to handle the case where the header isn't provided, so an `Error` s
 Fully implemented, the `verify` function looks like this:
 
 ```javascript
-app.use(bodyParser.json({
-  verify: (req, res, buf, encoding) => {
-    const signature = req.header('x-adobe-signature')
-    if (signature) {
-      const hmac = crypto.createHmac('sha256', process.env.CLIENT_SECRET)
-      hmac.update(buf)
-      const digest = hmac.digest('base64')
+app.use(
+  bodyParser.json({
+    verify: (req, res, buf, encoding) => {
+      const signature = req.header("x-adobe-signature");
+      if (signature) {
+        const hmac = crypto.createHmac("sha256", process.env.CLIENT_SECRET);
+        hmac.update(buf);
+        const digest = hmac.digest("base64");
 
-      if (signature !== digest) {
-        throw new Error('x-adobe-signature HMAC check failed')
+        if (signature !== digest) {
+          throw new Error("x-adobe-signature HMAC check failed");
+        }
+      } else if (!process.env.DEBUG && req.method === "POST") {
+        throw new Error("x-adobe-signature required");
       }
-    } else if (!process.env.DEBUG && req.method === 'POST') {
-      throw new Error('x-adobe-signature required')
-    }
-  }
-}))
+    },
+  })
+);
 ```
 
 ### Updating the Webhook
@@ -52,7 +54,7 @@ app.use(bodyParser.json({
 To update your webhook script, just replace the line
 
 ```javascript
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 ```
 
 with the block above. If you are running the script locally, you'll need to stop and restart the node process. You don't need to restart ngrok. In fact, if you do restart ngrok, the URL will likely change and you'll need to go back into the <a href="https://console.adobe.io/integrations" target="_new">Adobe I/O Console</a> and update the Webhook URL.
@@ -61,7 +63,7 @@ If you are running the script through Glitch, Glitch will restart automatically.
 
 <!-- Remix Button -->
 <a href="https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step2" target="_new">
-  <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button">
+  <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button"/>
 </a>
 
 #### Next Step

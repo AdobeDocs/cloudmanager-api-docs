@@ -15,30 +15,32 @@ Documentation to create a webhook URL for Slack can be found <a href="https://ap
 Sending a Slack notification can be done with just a simple JSON object containing a `text` property. Let's create a new function which sends such an object to the webhook. To make the webhook easy to chnage, add a new variable to your `.env` file named `SLACK_WEBHOOK` and create this function:
 
 ```javascript
-function notifySlack (message) {
+function notifySlack(message) {
   fetch(process.env.SLACK_WEBHOOK, {
-    'method': 'POST',
-    'headers': { 'Content-Type': 'application/json' },
-    'body': JSON.stringify({
-      'text': message
-    })
-  })
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      text: message,
+    }),
+  });
 }
 ```
 
 And the invoke this function instead of logging:
 
 ```javascript
-  if (STARTED === event['@type'] &&
-       EXECUTION === event['xdmEventEnvelope:objectType']) {
-    console.log('received execution start event')
+if (
+  STARTED === event["@type"] &&
+  EXECUTION === event["xdmEventEnvelope:objectType"]
+) {
+  console.log("received execution start event");
 
-    const executionUrl = event['activitystreams:object']['@id']
+  const executionUrl = event["activitystreams:object"]["@id"];
 
-    getExecution(executionUrl).then(execution => {
-      notifySlack(`Execution for ${execution.program.name} started`)
-    })
-  }
+  getExecution(executionUrl).then((execution) => {
+    notifySlack(`Execution for ${execution.program.name} started`);
+  });
+}
 ```
 
 This will produce a Slack message which looks like this:
@@ -49,7 +51,7 @@ This will produce a Slack message which looks like this:
 
 <!-- Remix Button -->
 <a href="https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step7-slack" target="_new">
-  <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button">
+  <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button"/>
 </a>
 
 #### Notifying Microsoft Teams
@@ -57,18 +59,18 @@ This will produce a Slack message which looks like this:
 Sending a Microsoft Teams notification can be as simple as Slack -- just a single `text` property. But Teams also supports some slightly fancier formatting options -- notifications can have a title and banner color, among other options. As with the Slack webhook, you should put the webhook URL in your `.env` file in a variable named `TEAMS_WEBHOOK`.
 
 ```javascript
-function notifyTeams (message) {
+function notifyTeams(message) {
   fetch(process.env.TEAMS_WEBHOOK, {
-    'method': 'POST',
-    'headers': { 'Content-Type': 'application/json' },
-    'body': JSON.stringify({
-      '@context': 'https://schema.org/extensions',
-      '@type': 'MessageCard',
-      'themeColor': '0072C6',
-      'title': 'Update from Cloud Manager',
-      'text': message
-    })
-  })
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      "@context": "https://schema.org/extensions",
+      "@type": "MessageCard",
+      themeColor: "0072C6",
+      title: "Update from Cloud Manager",
+      text: message,
+    }),
+  });
 }
 ```
 
@@ -77,16 +79,18 @@ function notifyTeams (message) {
 And then invoke this function:
 
 ```javascript
-  if (STARTED === event['@type'] &&
-       EXECUTION === event['xdmEventEnvelope:objectType']) {
-    console.log('received execution start event')
+if (
+  STARTED === event["@type"] &&
+  EXECUTION === event["xdmEventEnvelope:objectType"]
+) {
+  console.log("received execution start event");
 
-    const executionUrl = event['activitystreams:object']['@id']
+  const executionUrl = event["activitystreams:object"]["@id"];
 
-    getExecution(executionUrl).then(execution => {
-      notifyTeams(`Execution for ${execution.program.name} started`)
-    })
-  }
+  getExecution(executionUrl).then((execution) => {
+    notifyTeams(`Execution for ${execution.program.name} started`);
+  });
+}
 ```
 
 This will produce a Microsoft Teams message which looks like this:
@@ -95,12 +99,5 @@ This will produce a Microsoft Teams message which looks like this:
 
 <!-- Remix Button -->
 <a href="https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step7-msteams" target="_new">
-  <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button">
+  <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button"/>
 </a>
-
-<style type="text/css">
-#kirbyMainContent .hljs .hljs-function,
-#kirbyMainContent .hljs .hljs-params {
-    color: #333;
-}
-</style>
