@@ -1458,11 +1458,10 @@ definitions:
       trigger:
         type: string
         example: MANUAL
-        description: 'How should the execution be triggered. ON_COMMIT: each time a PR is available and the Pipeline is idle then a execution is triggered. MANUAL: triggerd through UI or API. SCHEDULE: recurring schedule (not yet implemented}'
+        description: 'How should the execution be triggered. ON_COMMIT: each time one or more commits are pushed and the Pipeline is idle then a execution is triggered. MANUAL: triggerd through UI or API.'
         enum:
           - ON_COMMIT
           - MANUAL
-          - SCHEDULE
       status:
         type: string
         example: 'RUNNING,FAILED'
@@ -1615,7 +1614,6 @@ definitions:
         enum:
           - ON_COMMIT
           - MANUAL
-          - SCHEDULE
           - PUSH_UPGRADES
       createdAt:
         type: string
