@@ -21,13 +21,13 @@ If you are running the webhook in Glitch, you'll need to edit the `package.json`
 The header of the script also needs to be updated to include these new dependencies, along with the `URLSearchParams` class:
 
 ```javascript
-const express = require('express')
-const bodyParser = require('body-parser')
-const crypto = require('crypto')
-const jsrsasign = require('jsrsasign')
-const fetch = require('node-fetch')
+const express = require("express");
+const bodyParser = require("body-parser");
+const crypto = require("crypto");
+const jsrsasign = require("jsrsasign");
+const fetch = require("node-fetch");
 
-const { URLSearchParams } = require('url')
+const { URLSearchParams } = require("url");
 ```
 
 ### Writing the `getAccessToken` Function
@@ -35,36 +35,44 @@ const { URLSearchParams } = require('url')
 As the code to obtain an access token is fairly complicated, it makes sense to organize it into a separate function. The function has three parts. First, it generates the JWT payload, then the signed token is created, and then the exchange is done. Finally, the function returns the access token.
 
 ```javascript
-async function getAccessToken () {
-  const EXPIRATION = 60 * 60 // 1 hour
+async function getAccessToken() {
+  const EXPIRATION = 60 * 60; // 1 hour
 
   const header = {
-    'alg': 'RS256',
-    'typ': 'JWT'
-  }
+    alg: "RS256",
+    typ: "JWT",
+  };
 
   const payload = {
-    'exp': Math.round(new Date().getTime() / 1000) + EXPIRATION,
-    'iss': process.env.ORGANIZATION_ID,
-    'sub': process.env.TECHNICAL_ACCOUNT_ID,
-    'aud': `https://ims-na1.adobelogin.com/c/${process.env.API_KEY}`,
-    'https://ims-na1.adobelogin.com/s/ent_cloudmgr_sdk': true
-  }
+    exp: Math.round(new Date().getTime() / 1000) + EXPIRATION,
+    iss: process.env.ORGANIZATION_ID,
+    sub: process.env.TECHNICAL_ACCOUNT_ID,
+    aud: `https://ims-na1.adobelogin.com/c/${process.env.API_KEY}`,
+    "https://ims-na1.adobelogin.com/s/ent_cloudmgr_sdk": true,
+  };
 
-  const jwtToken = jsrsasign.jws.JWS.sign('RS256', JSON.stringify(header), JSON.stringify(payload), process.env.PRIVATE_KEY)
+  const jwtToken = jsrsasign.jws.JWS.sign(
+    "RS256",
+    JSON.stringify(header),
+    JSON.stringify(payload),
+    process.env.PRIVATE_KEY
+  );
 
-  const response = await fetch('https://ims-na1.adobelogin.com/ims/exchange/jwt', {
-    method: 'POST',
-    body: new URLSearchParams({
-      client_id: process.env.API_KEY,
-      client_secret: process.env.CLIENT_SECRET,
-      jwt_token: jwtToken
-    })
-  })
+  const response = await fetch(
+    "https://ims-na1.adobelogin.com/ims/exchange/jwt",
+    {
+      method: "POST",
+      body: new URLSearchParams({
+        client_id: process.env.API_KEY,
+        client_secret: process.env.CLIENT_SECRET,
+        jwt_token: jwtToken,
+      }),
+    }
+  );
 
-  const json = await response.json()
+  const json = await response.json();
 
-  return json['access_token']
+  return json["access_token"];
 }
 ```
 
@@ -73,13 +81,15 @@ async function getAccessToken () {
 The access token is an asynchronous function so it returns a `Promise`. So logging of the access token (which is all we're doing in this step) has to be done in a closure invoked when the Promise is resolved:
 
 ```javascript
-  if (STARTED === event['@type'] &&
-       EXECUTION === event['xdmEventEnvelope:objectType']) {
-    console.log('received execution start event')
-    getAccessToken().then(accessToken => {
-      console.log(accessToken)
-    })
-  }
+if (
+  STARTED === event["@type"] &&
+  EXECUTION === event["xdmEventEnvelope:objectType"]
+) {
+  console.log("received execution start event");
+  getAccessToken().then((accessToken) => {
+    console.log(accessToken);
+  });
+}
 ```
 
 ### Running the Updated Webhook
@@ -90,7 +100,7 @@ If you are running the script through Glitch, Glitch will restart automatically.
 
 <!-- Remix Button -->
 <a href="https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step4" target="_new">
-  <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button">
+  <img src="../img/glitch.png" alt="Remix in Glitch" id="glitch-button"/>
 </a>
 
 #### Next Step
