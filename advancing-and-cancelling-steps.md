@@ -22,11 +22,11 @@ To override important failures in the Code Quality, Security Test, and Performan
     "metrics": [
         {
             "kpi":"coverage",
-            "overridden":true
+            "override":true
         },
         {
             "kpi":"sqale_rating",
-            "overridden":true
+            "override":true
         }
     ]
 }
