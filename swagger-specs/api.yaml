@@ -46,7 +46,7 @@ paths:
         '200':
           description: successful operation
           schema:
-            $ref: '#/definitions/Program%20List'
+            $ref: '#/definitions/ProgramList'
   '/api/program/{programId}':
     get:
       tags:
@@ -156,7 +156,7 @@ paths:
         '200':
           description: successful operation
           schema:
-            $ref: '#/definitions/Repository%20List'
+            $ref: '#/definitions/RepositoryList'
   '/api/program/{programId}/repository/{repositoryId}':
     get:
       tags:
@@ -232,7 +232,7 @@ paths:
         '200':
           description: Successful retrieval of the list of repository branches
           schema:
-            $ref: '#/definitions/Branch%20List'
+            $ref: '#/definitions/BranchList'
   '/api/program/{programId}/pipelines':
     get:
       tags:
@@ -265,7 +265,7 @@ paths:
         '200':
           description: successful operation
           schema:
-            $ref: '#/definitions/Pipeline%20List'
+            $ref: '#/definitions/PipelineList'
   '/api/program/{programId}/pipeline/{pipelineId}':
     get:
       tags:
@@ -572,7 +572,7 @@ paths:
         '200':
           description: Successful retrieval of step state
           schema:
-            $ref: '#/definitions/Pipeline%20Execution%20Step%20State'
+            $ref: '#/definitions/PipelineExecutionStepState'
         '403':
           description: Missing permission for user to read step
         '404':
@@ -826,7 +826,7 @@ paths:
         '200':
           description: Successful retrieval of metrics
           schema:
-            $ref: '#/definitions/Pipeline%20Step%20Metrics'
+            $ref: '#/definitions/PipelineStepMetrics'
         '403':
           description: Missing permission for user to read metrics
         '404':
@@ -925,7 +925,7 @@ paths:
         '200':
           description: Successful retrieval of environment list
           schema:
-            $ref: '#/definitions/Environment%20List'
+            $ref: '#/definitions/EnvironmentList'
         '404':
           description: Program not found
   '/api/program/{programId}/environment/{environmentId}':
@@ -1176,7 +1176,7 @@ paths:
         '200':
           description: Successful retrieval of environment variables
           schema:
-            $ref: '#/definitions/Variable%20List'
+            $ref: '#/definitions/VariableList'
         '404':
           description: Environment not found
     patch:
@@ -1228,7 +1228,7 @@ paths:
         '200':
           description: Successful update of environment variables
           schema:
-            $ref: '#/definitions/Variable%20List'
+            $ref: '#/definitions/VariableList'
         '404':
           description: Environment not found
   '/api/program/{programId}/pipeline/{pipelineId}/variables':
@@ -1270,7 +1270,7 @@ paths:
         '200':
           description: Successful retrieval of pipeline variables
           schema:
-            $ref: '#/definitions/Variable%20List'
+            $ref: '#/definitions/VariableList'
         '404':
           description: Pipeline not found
     patch:
@@ -1322,11 +1322,11 @@ paths:
         '200':
           description: Successful update of pipeline variables
           schema:
-            $ref: '#/definitions/Variable%20List'
+            $ref: '#/definitions/VariableList'
         '404':
           description: Pipeline not found
 definitions:
-  Program List:
+  ProgramList:
     type: object
     properties:
       _totalNumberOfItems:
@@ -1339,7 +1339,7 @@ definitions:
           programs:
             type: array
             items:
-              $ref: '#/definitions/Embedded%20Program'
+              $ref: '#/definitions/EmbeddedProgram'
       _links:
         type: object
         readOnly: true
@@ -1350,7 +1350,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
-  Embedded Program:
+  EmbeddedProgram:
     type: object
     properties:
       id:
@@ -1494,7 +1494,7 @@ definitions:
         type: array
         description: Pipeline phases in execution order
         items:
-          $ref: '#/definitions/Pipeline%20Phase'
+          $ref: '#/definitions/PipelinePhase'
         maxItems: 100
         minItems: 1
       _links:
@@ -1519,7 +1519,7 @@ definitions:
           self:
             $ref: '#/definitions/HalLink'
     description: A representation of a CI/CD Pipeline
-  Pipeline Phase:
+  PipelinePhase:
     type: object
     required:
       - type
@@ -1550,7 +1550,7 @@ definitions:
         type: string
         description: Identifier of the target environment. Mandatory if type=DEPLOY
     description: Describes a phase of a pipeline
-  Pipeline List:
+  PipelineList:
     type: object
     properties:
       _totalNumberOfItems:
@@ -1634,7 +1634,7 @@ definitions:
           stepStates:
             type: array
             items:
-              $ref: '#/definitions/Pipeline%20Execution%20Step%20State'
+              $ref: '#/definitions/PipelineExecutionStepState'
       _links:
         type: object
         readOnly: true
@@ -1648,7 +1648,7 @@ definitions:
           self:
             $ref: '#/definitions/HalLink'
     description: A representation of an execution of a CI/CD Pipeline.
-  Pipeline Execution Step State:
+  PipelineExecutionStepState:
     type: object
     properties:
       id:
@@ -1755,7 +1755,7 @@ definitions:
           self:
             $ref: '#/definitions/HalLink'
     description: List of pipeline executions
-  Pipeline Step Metrics:
+  PipelineStepMetrics:
     type: object
     properties:
       metrics:
@@ -1805,7 +1805,7 @@ definitions:
         type: string
         description: KPI identifier
     description: A representation of a specific metric generated by a CI/CD Pipeline step.
-  Environment List:
+  EnvironmentList:
     type: object
     properties:
       _totalNumberOfItems:
@@ -1912,7 +1912,7 @@ definitions:
           self:
             $ref: '#/definitions/HalLink'
     description: A sourcecode repository
-  Repository List:
+  RepositoryList:
     type: object
     properties:
       _totalNumberOfItems:
@@ -1963,7 +1963,7 @@ definitions:
             description: Repository
             $ref: '#/definitions/HalLink'
     description: Represents a Git Branch
-  Branch List:
+  BranchList:
     type: object
     properties:
       _totalNumberOfItems:
@@ -2155,7 +2155,7 @@ definitions:
           - string
           - secretString
     description: A named value than can be set on an Environment or Pipeline
-  Variable List:
+  VariableList:
     type: object
     properties:
       _totalNumberOfItems:
@@ -2178,6 +2178,9 @@ definitions:
         properties:
           'http://ns.adobe.com/adobecloud/rel/environment':
             description: The environment holding the variables
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/pipeline':
+            description: The pipeline holding the variables
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/program':
             description: The Program
