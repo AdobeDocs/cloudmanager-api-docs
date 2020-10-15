@@ -1292,7 +1292,7 @@ paths:
           type: string
         - in: body
           name: body
-          description: 'The list of variables to add, modify, or remove. It is not necessary to send variables here which are not changing. The length of secret variables should be less than 500 characters.'
+          description: 'The list of variables to add, modify, or remove. It is not necessary to send variables here which are not changing. The length of secret values must be less than 500 characters.'
           required: true
           schema:
             type: array
