@@ -1373,6 +1373,12 @@ definitions:
         example: acmeCorp
         description: Tenant Id
         readOnly: true
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          self:
+            $ref: '#/definitions/HalLink'
     description: A lightweight representation of a Program
   Program:
     type: object
