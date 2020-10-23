@@ -774,6 +774,8 @@ paths:
       responses:
         '200':
           description: Successful retrieval of logs
+          schema:
+            $ref: '#/definitions/Redirect'
         '403':
           description: Missing permission for user to read logs
         '404':
@@ -2209,3 +2211,11 @@ definitions:
       name:
         type: string
         description: 'Name of the log for service in environment. Example: aemerror'
+  Redirect:
+    type: object
+    required:
+      - redirect
+    properties:
+      redirect:
+        type: string
+        description: 'The url to redirect to.'
