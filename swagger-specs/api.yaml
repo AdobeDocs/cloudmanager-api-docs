@@ -1137,6 +1137,8 @@ paths:
       responses:
         '200':
           description: Successful retrieval of logs
+          schema:
+            $ref: '#/definitions/Redirect'
         '400':
           description: invalid parameters
           schema:
@@ -2218,4 +2220,4 @@ definitions:
     properties:
       redirect:
         type: string
-        description: 'The url to redirect to.'
+        description: The url to redirect to.
