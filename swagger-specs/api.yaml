@@ -859,7 +859,8 @@ paths:
           in: query
           description: Pagination start parameter
           required: false
-          type: string
+          type: integer
+          format: int32
         - name: limit
           in: query
           description: Pagination limit parameter
