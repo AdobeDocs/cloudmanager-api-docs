@@ -1523,6 +1523,9 @@ definitions:
           'http://ns.adobe.com/adobecloud/rel/execution':
             description: Current pipeline execution if any
             $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/execution/id':
+            description: Get pipeline execution by id
+            $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/executions':
             description: Run history
             $ref: '#/definitions/HalLink'
