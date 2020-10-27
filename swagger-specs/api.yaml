@@ -1116,6 +1116,7 @@ paths:
           description: date for which log is required
           required: true
           type: string
+          format: date
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2092,6 +2093,7 @@ definitions:
         description: Name of the Log
       date:
         type: string
+        format: date
         example: '2019-04-05'
         description: date of the Log
       programId:
