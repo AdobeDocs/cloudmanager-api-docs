@@ -1689,6 +1689,9 @@ definitions:
       environment:
         type: string
         description: Target environment
+      environmentId:
+        type: string
+        description: Target environment id
       environmentType:
         type: string
         description: Target environment type
