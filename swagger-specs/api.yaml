@@ -469,12 +469,12 @@ paths:
       responses:
         '201':
           description: Successfully started pipeline execution
+          schema:
+            $ref: '#/definitions/PipelineExecution'
           headers:
             location:
               type: string
               description: The URL of the new execution
-            schema:
-              $ref: '#/definitions/PipelineExecution'
         '400':
           description: Request conflicts with the expected state of pipeline
         '404':
