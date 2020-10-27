@@ -1888,7 +1888,7 @@ definitions:
         readOnly: true
         properties:
           'http://ns.adobe.com/adobecloud/rel/program':
-            description: The Application this environment belongs to.
+            description: The Program this environment belongs to.
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/pipeline':
             description: 'The Pipeline this environment is assigned to, if any'
