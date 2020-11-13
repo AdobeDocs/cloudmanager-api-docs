@@ -103,6 +103,11 @@
                 }
             ],
             "title": "Cloud Manager API Tutorial"
-        }
+        },
+        {
+            "pages": [],
+            "path": "AdobeDocs/cloudmanager-api-docs/master/cli-and-sdks.md",
+            "title": "CLI and SDKs"
+          }
     ]
     }
