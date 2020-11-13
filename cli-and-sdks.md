@@ -31,6 +31,6 @@ const programs = await client.listPrograms()
 The [Cloud Manager Java SDK](https://github.com/adobe/aio-lib-java-cloudmanager) provides a Java interface on top of the Cloud Manager API and enables integration in JVM-based applications.
 
 ```java
-CloudManagerApi api = CloudManagerApiImpl("orgId", "x-api-key", "valid auth token");
+CloudManagerApi api = new CloudManagerApiImpl("orgId", "x-api-key", "valid auth token");
 List<EmbeddedProgram> client.listPrograms();
 ```
