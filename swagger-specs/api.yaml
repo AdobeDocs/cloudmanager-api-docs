@@ -18,6 +18,10 @@ tags:
   - name: Pipeline Execution
   - name: Environments
   - name: Variables
+  - name: IP Allowlist
+  - name: IP Allowlist Binding
+  - name: Domain Names
+  - name: SSLCertificates
 paths:
   /api/programs:
     get:
@@ -1336,6 +1340,968 @@ paths:
             $ref: '#/definitions/VariableList'
         '404':
           description: Pipeline not found
+  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}':
+    get:
+      tags:
+        - IP Allowlist
+      summary: Get IP Allowlist
+      description: Returns an IP Allowlist based on program and id
+      operationId: getIPAllowlist
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: ipAllowlistId
+          in: path
+          description: Identifier of the IP Allowlist
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of IP Allowlist
+          schema:
+            $ref: '#/definitions/IPAllowedList'
+        '404':
+          description: Resource not found
+    put:
+      tags:
+        - IP Allowlist
+      summary: Update IP Allowlist
+      description: Updates an IP Allowlist for the program with specified values
+      operationId: updateIPAllowlist
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: ipAllowlistId
+          in: path
+          description: Identifier of the IP Allowlist
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: IP Allowlist
+          required: true
+          schema:
+            $ref: '#/definitions/IPAllowedList'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: IP Allowlist updated
+          schema:
+            $ref: '#/definitions/IPAllowedList'
+        '400':
+          description: The request is malformed.
+        '404':
+          description: Resource not found
+    delete:
+      tags:
+        - IP Allowlist
+      summary: Delete IP Allowlist
+      description: Deletes the IP Allowlist for the program
+      operationId: deleteIPAllowlist
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: ipAllowlistId
+          in: path
+          description: Identifier of the IP Allowlist
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '202':
+          description: Delete was successful
+          schema:
+            $ref: '#/definitions/IPAllowedList'
+        '404':
+          description: Resource not found
+  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowListBindingId}':
+    delete:
+      tags:
+        - IP Allowlist Binding
+      summary: Delete IP Allowlist binding
+      description: Deletes the IP Allowlist binding for the program and IP Allowlist id
+      operationId: deleteIPAllowlistBinding
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: ipAllowlistId
+          in: path
+          description: Identifier of the IP Allowlist
+          required: true
+          type: string
+        - name: ipAllowListBindingId
+          in: path
+          description: Identifier of the IP Allowlist binding
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '202':
+          description: Delete was successful
+          schema:
+            $ref: '#/definitions/IPAllowedListBinding'
+        '404':
+          description: IP Allowlist not found
+  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowListBindingId}/retry':
+    put:
+      tags:
+        - IP Allowlist Binding
+      summary: Retry IP Allowlist binding action
+      description: Retry the IP Allowlist binding action for the program and IP Allowlist id
+      operationId: retryIPAllowlistBinding
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: ipAllowlistId
+          in: path
+          description: Identifier of the IP Allowlist
+          required: true
+          type: string
+        - name: ipAllowListBindingId
+          in: path
+          description: Identifier of the IP Allowlist binding
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '202':
+          description: Retry operation was successful
+          schema:
+            $ref: '#/definitions/IPAllowedListBinding'
+        '404':
+          description: IP Allowlist not found
+  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}':
+    get:
+      tags:
+        - IP Allowlist Binding
+      summary: Get IP Allowlist binding
+      description: Returns an IP Allowlist binding based on program and IP allowlist id
+      operationId: getIPAllowlistBinding
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: ipAllowlistId
+          in: path
+          description: Identifier of the IP Allowlist
+          required: true
+          type: string
+        - name: ipAllowlistBindingId
+          in: path
+          description: Identifier of the IP Allowlist Binding
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of IP Allowlist
+          schema:
+            $ref: '#/definitions/IPAllowedListBinding'
+        '404':
+          description: IP Allowlist not found
+  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}/bindings':
+    get:
+      tags:
+        - IP Allowlist Binding
+      summary: Lists IP Allowlist bindings
+      description: Returns all IP Allowlists bindings for an IpAllowList of a program
+      operationId: getIPAllowlistBindings
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: ipAllowlistId
+          in: path
+          description: Identifier of the IP Allowlist
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The list of IP Allowlists assigned to the program
+          schema:
+            $ref: '#/definitions/IPAllowlistBindingsList'
+        '404':
+          description: IP Allowlist not found
+    post:
+      tags:
+        - IP Allowlist Binding
+      summary: Creates an IP Allowlist binding
+      description: Creates an IP Allowlist binding to an environment for a specific tier
+      operationId: createIPAllowlistBinding
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: ipAllowlistId
+          in: path
+          description: Identifier of the IP Allowlist
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: IP Allowlist binding
+          required: true
+          schema:
+            $ref: '#/definitions/IPAllowedListBinding'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/IPAllowedListBinding'
+        '201':
+          description: IP Allowlist binding created
+          schema:
+            $ref: '#/definitions/IPAllowedListBinding'
+        '400':
+          description: The request is malformed.
+        '404':
+          description: Environment not found
+        '412':
+          description: Creating IP Allowlists for non cloud programs is not supported
+  '/api/program/{programId}/ipAllowlists':
+    get:
+      tags:
+        - IP Allowlist
+      summary: Lists IP Allowlists
+      description: Returns all IP Allowlists that are defined for this program
+      operationId: getProgramIPAllowlists
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: The list of IP Allowlists assigned to the program
+          schema:
+            $ref: '#/definitions/IPAllowlistList'
+        '404':
+          description: Program not found
+    post:
+      tags:
+        - IP Allowlist
+      summary: Creates an IP Allowlist
+      description: Creates an IP Allowlist for the program with specified values
+      operationId: createIPAllowlist
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: IP Allowlist
+          required: true
+          schema:
+            $ref: '#/definitions/IPAllowedList'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/IPAllowedList'
+        '201':
+          description: IP Allowlist created
+          schema:
+            $ref: '#/definitions/IPAllowedList'
+        '400':
+          description: The request is malformed.
+        '404':
+          description: Program not found
+        '412':
+          description: Creating IP Allowlists for non cloud programs is not supported
+  '/api/program/{programId}/domainNames':
+    get:
+      tags:
+        - Domain Names
+      summary: List Domain Names
+      description: Lists all domain names in an program
+      operationId: getDomainNames
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DomainNameList'
+    post:
+      tags:
+        - Domain Names
+      summary: Create a Domain name
+      description: Create a new Domain name for an Environment
+      operationId: createEnvironmentDomainName
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Domain Name
+          required: true
+          schema:
+            $ref: '#/definitions/DomainName'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DomainName'
+        '201':
+          description: Domain name created
+          schema:
+            $ref: '#/definitions/DomainName'
+        '404':
+          description: Resource not found
+  '/api/program/{programId}/domainName/{domainNameId}':
+    get:
+      tags:
+        - Domain Names
+      summary: Get Domain Name
+      description: Returns a domain name by its id
+      operationId: getEnvironmentDomainName
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: domainNameId
+          in: path
+          description: Domain Name id
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DomainName'
+    put:
+      tags:
+        - Domain Names
+      summary: Update Domain Name
+      description: Updates a domain name by its id.
+      operationId: updateEnvironmentDomainName
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: domainNameId
+          in: path
+          description: Identifier of the domain name
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Updated domain name
+          required: true
+          schema:
+            $ref: '#/definitions/DomainName'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DomainName'
+        '202':
+          description: Updating domain name
+          schema:
+            $ref: '#/definitions/DomainName'
+        '404':
+          description: Resource not found
+    delete:
+      tags:
+        - Domain Names
+      summary: Delete Domain Name
+      description: Deletes a domain name by its id
+      operationId: deleteEnvironmentDomainName
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: domainNameId
+          in: path
+          description: Identifier of the Domain Name
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '202':
+          description: Deleting domain Name
+          schema:
+            $ref: '#/definitions/DomainName'
+        '404':
+          description: Resource not found
+  '/api/program/{programId}/domainName/{domainNameId}/deploy':
+    post:
+      tags:
+        - Domain Names
+      summary: Verify and deploy a Domain name
+      description: Verify and deploy a Domain name
+      operationId: deployDomainName
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: domainNameId
+          in: path
+          description: Domain Name id
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Domain name verified
+          schema:
+            $ref: '#/definitions/DomainName'
+        '404':
+          description: Resource not found
+  '/api/program/{programId}/domainName/{domainNameId}/verify':
+    post:
+      tags:
+        - Domain Names
+      summary: Makes a DNS resolution
+      description: Make a DNS resolution
+      operationId: verifyDomainName
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: domainNameId
+          in: path
+          description: Identifier of the domain name
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DomainName'
+        '202':
+          description: Domain name is being verified
+          schema:
+            $ref: '#/definitions/DomainName'
+        '404':
+          description: Resource not found
+  '/api/program/{programId}/domainNames/validate':
+    post:
+      tags:
+        - Domain Names
+      summary: Validate an Domain name
+      description: Validate a new Domain name
+      operationId: validateDomainName
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Domain name to be validated
+          required: true
+          schema:
+            $ref: '#/definitions/DomainName'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Domain name successfully validated
+          schema:
+            $ref: '#/definitions/DomainName'
+        '404':
+          description: Resource not found
+  '/api/program/{programId}/certificate/{certificateId}':
+    get:
+      tags:
+        - SSLCertificates
+      summary: Get SSL Certificate
+      description: Returns an SSL Certificate by its id
+      operationId: getCertificate
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: certificateId
+          in: path
+          description: Identifier of the certificate
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SslCertificate'
+    put:
+      tags:
+        - SSLCertificates
+      summary: Update SSL Certificate
+      description: Update a certificate.
+      operationId: updateCertificate
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: certificateId
+          in: path
+          description: Identifier of the certificate
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Updated certificate
+          required: true
+          schema:
+            $ref: '#/definitions/SslCertificate'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Certificate updated
+          schema:
+            $ref: '#/definitions/SslCertificate'
+        '404':
+          description: Resource not found
+    delete:
+      tags:
+        - SSLCertificates
+      summary: Delete SSL Certificate
+      description: Delete an SSL Certificate.
+      operationId: deleteCertificate
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: certificateId
+          in: path
+          description: Identifier of the certificate
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Certificate deleted
+          schema:
+            $ref: '#/definitions/SslCertificate'
+        '404':
+          description: Resource not found
+  '/api/program/{programId}/certificates':
+    get:
+      tags:
+        - SSLCertificates
+      summary: List certificates
+      description: Lists all certificates in a program
+      operationId: getCertificates
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: domain
+          in: query
+          description: Domain name used for filtering the certificates
+          required: false
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of certificates list
+          schema:
+            $ref: '#/definitions/CertificatesList'
+        '404':
+          description: Program not found
 definitions:
   ProgramList:
     type: object
@@ -1343,6 +2309,8 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+      _page:
+        $ref: '#/definitions/RequestedPageDetails'
       _embedded:
         type: object
         readOnly: true
@@ -1356,6 +2324,8 @@ definitions:
         readOnly: true
         properties:
           next:
+            $ref: '#/definitions/HalLink'
+          page:
             $ref: '#/definitions/HalLink'
           prev:
             $ref: '#/definitions/HalLink'
@@ -1430,6 +2400,14 @@ definitions:
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/repositories':
             description: The repositories linked to this program.
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/ipAllowlists':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/certificates':
+            description: The SSL certificates linked to this program.
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/domainNames':
+            description: The domain names linked to this program.
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
@@ -2223,6 +3201,365 @@ definitions:
       name:
         type: string
         description: 'Name of the log for service in environment. Example: aemerror'
+  IPAllowedListBinding:
+    type: object
+    required:
+      - environmentId
+    properties:
+      id:
+        type: string
+        example: '14'
+        description: Identifier of the IP Allowed List Binding to an Environment
+      tier:
+        type: string
+        example: publish
+        description: Tier of the environment.
+        enum:
+          - author
+          - publish
+      status:
+        type: string
+        example: NOT_STARTED
+        description: Status of the binding.
+        enum:
+          - failed
+          - delete_failed
+          - running
+          - deleting
+          - completed
+          - deleted
+          - not_started
+      programId:
+        type: string
+        example: '22'
+        description: Identifier of the program.
+      ipAllowListId:
+        type: string
+        example: '17'
+        description: Identifier of the IP allow list.
+      environmentId:
+        type: string
+        example: '5'
+        description: Identifier of the environment.
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/program':
+            description: The Application this environment belongs to.
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/ipAllowList':
+            description: IpAllowList to be binded to the environment.
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+    description: Describes an __IP Allowed List Binding__
+  IPAllowedList:
+    type: object
+    required:
+      - ipCidrSet
+      - name
+    properties:
+      id:
+        type: string
+        example: '14'
+        description: Identifier of the IP Allowed List
+      name:
+        type: string
+        example: NewYork Office
+        description: Name of the IP Allowed List
+        minLength: 1
+        maxLength: 64
+      ipCidrSet:
+        type: array
+        example: '["11.22.33.44/28", "99.88.77.66/32"]'
+        description: IP CIDR Set
+        uniqueItems: true
+        items:
+          type: string
+        maxItems: 25
+        minItems: 1
+      programId:
+        type: string
+        example: '22'
+        description: Identifier of the program.
+      bindings:
+        type: array
+        description: IP Allowlist bindings
+        items:
+          $ref: '#/definitions/IPAllowedListBinding'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/ipAllowlistBindings':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/program':
+            description: The Application this environment belongs to.
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+    description: Describes an __IP Allowed List__
+  IPAllowlistBindingsList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          ipAllowlistBindings:
+            type: array
+            items:
+              $ref: '#/definitions/IPAllowedListBinding'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+          prev:
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+  IPAllowlistList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          ipAllowlists:
+            type: array
+            items:
+              $ref: '#/definitions/IPAllowedList'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+          prev:
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+  DomainNameTargetRepresentation:
+    type: object
+    properties:
+      target:
+        type: string
+        description: IP or domain name which the domain name points to.
+      detected:
+        type: boolean
+        description: Flag that shows if the target was detected or not.
+        default: false
+  DomainName:
+    type: object
+    required:
+      - certificateId
+    properties:
+      id:
+        type: integer
+        format: int64
+        description: id
+      name:
+        type: string
+        example: customer.domain.com
+        description: Name of the domain name
+      status:
+        type: string
+        example: ready
+        description: Status of the domain name
+        enum:
+          - not_verified
+          - pending_deployment
+          - deployment_failed
+          - deployed
+          - pending_readiness_check
+          - ready
+          - deleting
+          - deleted
+          - delete_failed
+      type:
+        type: string
+        example: CNAME
+        description: Type of the domain name record
+        enum:
+          - A
+          - CNAME
+      dnsResolution:
+        type: array
+        description: Pointing IPs/domain name
+        items:
+          $ref: '#/definitions/DomainNameTargetRepresentation'
+      dnsTxtRecord:
+        type: string
+        example: adobe-aem-verification=www.adobe.com/1/2/ab-cd-ef
+        description: DNS TXT record
+      dnsZone:
+        type: string
+        example: adobe.com.
+        description: Name of the DNS zone
+      environmentId:
+        type: integer
+        format: int64
+        description: environmentId
+      environmentName:
+        type: string
+        example: customerEnvironmentName
+        description: Environment name
+      certificateId:
+        type: integer
+        format: int64
+        description: certificateId
+      certificateName:
+        type: string
+        example: My certificate
+        description: SSL Certificate name
+      certificateExpireAt:
+        type: string
+        format: date-time
+        description: SSL Certificate expiration date
+      createdAt:
+        type: string
+        format: date-time
+        description: Create date
+      updatedAt:
+        type: string
+        format: date-time
+        description: Update date
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/domainName/certificates':
+            description: SSL certificates in program
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/domainName/deploy':
+            description: Trigger DNS TXT record verification and start CDN deployment
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/domainName/verify':
+            description: Trigger DNS route verification of the domain name
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/environment':
+            description: The environment holding the domain name
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/program':
+            description: The Application this domain name belongs to.
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+    description: A Domain Name representation
+  DomainNameList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          domainNames:
+            type: array
+            items:
+              $ref: '#/definitions/DomainName'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+          prev:
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+  SslCertificate:
+    type: object
+    properties:
+      id:
+        type: string
+        description: id
+      programId:
+        type: string
+        example: '14'
+        description: Identifier of the application. Unique within the space.
+      serialNumber:
+        type: string
+        description: Unique identifier of the certificate at CA level.
+      name:
+        type: string
+        example: Certificate Name Example
+        description: Name of the SSL Certificate.
+      issuer:
+        type: string
+        description: Issuer of the SSL Certificate.
+      expireAt:
+        type: string
+        format: date-time
+        description: Expiration date of the SSL Certificate.
+      commonName:
+        type: string
+        description: Common name of the SSL Certificate.
+      subjectAlternativeNames:
+        type: array
+        description: Subject alternative names of the SSL Certificate.
+        items:
+          type: string
+      attachedDomainNames:
+        type: array
+        description: Attached domain names
+        items:
+          type: string
+      attachedEnvironmentNames:
+        type: array
+        description: Attached environment names
+        items:
+          type: string
+      createdAt:
+        type: string
+        format: date-time
+        description: Date of SSL Certificate submission.
+      updatedAt:
+        type: string
+        format: date-time
+        description: Date of last SSL Certificate update.
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          self:
+            $ref: '#/definitions/HalLink'
+    description: Describes an SSL Certificate
+  CertificatesList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          certificates:
+            type: array
+            items:
+              $ref: '#/definitions/SslCertificate'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+          prev:
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
   Redirect:
     type: object
     required:
