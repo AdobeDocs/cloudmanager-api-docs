@@ -2302,55 +2302,6 @@ paths:
             $ref: '#/definitions/CertificatesList'
         '404':
           description: Program not found
-    post:
-      tags:
-        - SSLCertificates
-      summary: Create SSL Certificate
-      description: Create a new certificate.
-      operationId: createCertificate
-      parameters:
-        - name: programId
-          in: path
-          description: Identifier of the program
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Certificate
-          required: true
-          schema:
-            $ref: '#/definitions/SslCertificate'
-        - name: x-gw-ims-org-id
-          in: header
-          description: IMS organization ID that the request is being made under.
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
-          required: true
-          type: string
-        - name: x-api-key
-          in: header
-          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
-          required: true
-          type: string
-        - name: Content-Type
-          in: header
-          description: Must always be application/json
-          required: true
-          type: string
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            $ref: '#/definitions/SslCertificate'
-        '201':
-          description: Certificate created
-          schema:
-            $ref: '#/definitions/SslCertificate'
-        '404':
-          description: Program not found
 definitions:
   ProgramList:
     type: object
@@ -3558,17 +3509,6 @@ definitions:
       subjectAlternativeNames:
         type: array
         description: Subject alternative names of the SSL Certificate.
-        items:
-          type: string
-      privateKey:
-        description: SSL Certificate vault path to private key
-        $ref: '#/definitions/SecretString'
-      certificate:
-        type: string
-        description: Encrypted content of the SSL Certificate.
-      chain:
-        type: array
-        description: Content of the Chain File.
         items:
           type: string
       attachedDomainNames:
