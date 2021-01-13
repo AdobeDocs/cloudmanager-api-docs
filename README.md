@@ -2,7 +2,7 @@
 
 Cloud Manager, part of the Adobe Managed Cloud Services, enables organizations to self-manage Experience Manager environments in the cloud. Cloud Manager includes a full-featured web user interface at [https://my.cloudmanager.adobe.com/](https://my.cloudmanager.adobe.com/).
 
-The Cloud Manager API enables Cloud Manager customers to interact with the same underlying capabilities exposed through the web UI in a fully programmatic fashion. This allows for integration of the Cloud Manager Continuous Integration / Continuous Delivery pipeline with other systems.
+The Cloud Manager API enables Cloud Manager customers to interact with many of the same underlying capabilities exposed through the web UI in a fully programmatic fashion. This allows for integration of the Cloud Manager Continuous Integration / Continuous Delivery pipeline with other systems.
 
 General information on Cloud Manager can be found in the [Product Documentation]( https://www.adobe.com/go/aem_cloud_mgr_userguide_en).
 
