@@ -1,6 +1,6 @@
 ## Creating an Event Integration
 
-By using Adobe I/O Events, Cloud Manager can send external applications notifications when key events occur. This allows customers to connect existing and new external applications which respond to events emitted by the Cloud Manager CI/CD pipeline.
+By using Adobe I/O Events, Cloud Manager can send external applications notifications when key events occur. This allows customers to connect existing and new external applications which respond to events emitted by Cloud Manager CI/CD pipelines.
 
 To work with the Cloud Manager Events on the Adobe I/O Console, you need to either the System Administrator role or be an assigned API Developer for your organization. Click [here](http://www.adobe.com/go/aac_api_prod_learn) to learn more about the API Developer role.
 
