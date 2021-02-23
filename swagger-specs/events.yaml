@@ -34,7 +34,7 @@ definitions:
             type: string
             const: https://ns.adobe.com/experience/cloudmanager/event/started
             description: The XDM event type.
-          "activitystreams:objectType":
+          "xdmEventEnvelope:objectType":
             type: string
             const: https://ns.adobe.com/experience/cloudmanager/pipeline-execution
             description: The object type.
@@ -65,7 +65,7 @@ definitions:
             type: string
             const: https://ns.adobe.com/experience/cloudmanager/event/started
             description: The XDM event type.
-          "activitystreams:objectType":
+          "xdmEventEnvelope:objectType":
             type: string
             const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
             description: The object type.
@@ -94,7 +94,7 @@ definitions:
             type: string
             const: https://ns.adobe.com/experience/cloudmanager/event/waiting
             description: The XDM event type.
-          "activitystreams:objectType":
+          "xdmEventEnvelope:objectType":
             type: string
             const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
             description: The object type.
@@ -123,7 +123,7 @@ definitions:
             type: string
             const: https://ns.adobe.com/experience/cloudmanager/event/ended
             description: The XDM event type.
-          "activitystreams:objectType":
+          "xdmEventEnvelope:objectType":
             type: string
             const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
             description: The object type.
@@ -152,7 +152,7 @@ definitions:
             type: string
             const: https://ns.adobe.com/experience/cloudmanager/event/ended
             description: The XDM event type.
-          "activitystreams:objectType":
+          "xdmEventEnvelope:objectType":
             type: string
             const: https://ns.adobe.com/experience/cloudmanager/pipeline-execution
             description: The object type.
