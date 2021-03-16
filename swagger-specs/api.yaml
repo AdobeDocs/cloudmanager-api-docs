@@ -484,7 +484,7 @@ paths:
         '404':
           description: No pipeline execution exits or unknown pipeline or application
         '412':
-          description: 'Cannot start execution: programId={programId}, pipelineId={pipelineId} currentExecutionId={executionId}, reason=''Execution already in progress.'
+          description: Pipeline is busy
   '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}':
     get:
       tags:
@@ -1240,10 +1240,8 @@ paths:
           required: true
           type: string
       responses:
-        '200':
-          description: Successful update of environment variables
-          schema:
-            $ref: '#/definitions/VariableList'
+        '204':
+          description: Successful setting of variables
         '404':
           description: Environment not found
   '/api/program/{programId}/pipeline/{pipelineId}/variables':
