@@ -1332,10 +1332,8 @@ paths:
           required: true
           type: string
       responses:
-        '200':
-          description: Successful update of pipeline variables
-          schema:
-            $ref: '#/definitions/VariableList'
+        '204':
+          description: Successful setting of variables
         '404':
           description: Pipeline not found
   '/api/program/{programId}/ipAllowlist/{ipAllowlistId}':
