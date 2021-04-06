@@ -1467,96 +1467,6 @@ paths:
             $ref: '#/definitions/IPAllowedList'
         '404':
           description: Resource not found
-  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowListBindingId}':
-    delete:
-      tags:
-        - IP Allowlist Binding
-      summary: Delete IP Allowlist binding
-      description: Deletes the IP Allowlist binding for the program and IP Allowlist id
-      operationId: deleteIPAllowlistBinding
-      parameters:
-        - name: programId
-          in: path
-          description: Identifier of the program
-          required: true
-          type: string
-        - name: ipAllowlistId
-          in: path
-          description: Identifier of the IP Allowlist
-          required: true
-          type: string
-        - name: ipAllowListBindingId
-          in: path
-          description: Identifier of the IP Allowlist binding
-          required: true
-          type: string
-        - name: x-gw-ims-org-id
-          in: header
-          description: IMS organization ID that the request is being made under.
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
-          required: true
-          type: string
-        - name: x-api-key
-          in: header
-          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
-          required: true
-          type: string
-      responses:
-        '202':
-          description: Delete was successful
-          schema:
-            $ref: '#/definitions/IPAllowedListBinding'
-        '404':
-          description: IP Allowlist not found
-  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowListBindingId}/retry':
-    put:
-      tags:
-        - IP Allowlist Binding
-      summary: Retry IP Allowlist binding action
-      description: Retry the IP Allowlist binding action for the program and IP Allowlist id
-      operationId: retryIPAllowlistBinding
-      parameters:
-        - name: programId
-          in: path
-          description: Identifier of the program
-          required: true
-          type: string
-        - name: ipAllowlistId
-          in: path
-          description: Identifier of the IP Allowlist
-          required: true
-          type: string
-        - name: ipAllowListBindingId
-          in: path
-          description: Identifier of the IP Allowlist binding
-          required: true
-          type: string
-        - name: x-gw-ims-org-id
-          in: header
-          description: IMS organization ID that the request is being made under.
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
-          required: true
-          type: string
-        - name: x-api-key
-          in: header
-          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
-          required: true
-          type: string
-      responses:
-        '202':
-          description: Retry operation was successful
-          schema:
-            $ref: '#/definitions/IPAllowedListBinding'
-        '404':
-          description: IP Allowlist not found
   '/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}':
     get:
       tags:
@@ -1598,6 +1508,95 @@ paths:
       responses:
         '200':
           description: Successful retrieval of IP Allowlist
+          schema:
+            $ref: '#/definitions/IPAllowedListBinding'
+        '404':
+          description: IP Allowlist not found
+    delete:
+      tags:
+        - IP Allowlist Binding
+      summary: Delete IP Allowlist binding
+      description: Deletes the IP Allowlist binding for the program and IP Allowlist id
+      operationId: deleteIPAllowlistBinding
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: ipAllowlistId
+          in: path
+          description: Identifier of the IP Allowlist
+          required: true
+          type: string
+        - name: ipAllowlistBindingId
+          in: path
+          description: Identifier of the IP Allowlist binding
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '202':
+          description: Delete was successful
+          schema:
+            $ref: '#/definitions/IPAllowedListBinding'
+        '404':
+          description: IP Allowlist not found
+  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}/retry':
+    put:
+      tags:
+        - IP Allowlist Binding
+      summary: Retry IP Allowlist binding action
+      description: Retry the IP Allowlist binding action for the program and IP Allowlist id
+      operationId: retryIPAllowlistBinding
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: ipAllowlistId
+          in: path
+          description: Identifier of the IP Allowlist
+          required: true
+          type: string
+        - name: ipAllowlistBindingId
+          in: path
+          description: Identifier of the IP Allowlist binding
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '202':
+          description: Retry operation was successful
           schema:
             $ref: '#/definitions/IPAllowedListBinding'
         '404':
@@ -1801,6 +1800,19 @@ paths:
           description: Identifier of the program
           required: true
           type: string
+        - name: start
+          in: query
+          description: Pagination start parameter
+          required: false
+          type: string
+          default: '0'
+        - name: limit
+          in: query
+          description: Pagination limit parameter
+          required: false
+          type: integer
+          default: 20
+          format: int32
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2899,7 +2911,6 @@ definitions:
           - prod
       availableLogOptions:
         type: array
-        example: custom
         description: List of logs available in the environment
         items:
           $ref: '#/definitions/LogOptionRepresentation'
@@ -3197,6 +3208,10 @@ definitions:
         enum:
           - string
           - secretString
+      service:
+        type: string
+        example: author
+        description: 'Service of the variable. When not provided, the variable applies to all services. Currently only the values ''author'' and ''publish'' are supported. Note - this value is case-sensitive.'
     description: A named value than can be set on an Environment or Pipeline
   VariableList:
     type: object
@@ -3211,7 +3226,7 @@ definitions:
         properties:
           variables:
             type: array
-            example: '[{ ''name'':''variable1Name'', ''value'':''variable1Value''}, { ''name'':''variable2Name'', ''type'':''secretString'', ''value'':''variable2SecretValue''}]'
+            example: '[{ ''name'':''variable1Name'', ''value'':''variable1Value''}, { ''name'':''variable1Name'', ''value'':''variable1Value'', ''service'':''author''}, { ''name'':''variable2Name'', ''type'':''secretString'', ''value'':''variable2SecretValue''}]'
             description: Variables set on environment
             items:
               $ref: '#/definitions/Variable'
@@ -3502,6 +3517,8 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+      _page:
+        $ref: '#/definitions/RequestedPageDetails'
       _embedded:
         type: object
         readOnly: true
@@ -3515,6 +3532,8 @@ definitions:
         readOnly: true
         properties:
           next:
+            $ref: '#/definitions/HalLink'
+          page:
             $ref: '#/definitions/HalLink'
           prev:
             $ref: '#/definitions/HalLink'
