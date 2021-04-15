@@ -10,7 +10,7 @@ To assign a user Developer Access, in the [Adobe Admin Console](https://admincon
 
 ![Set Developer Access Product Profiles](img/add-developer.png)
 
-> It is important to understand that this does **not** enable this user (`developer@myco.com` in this example) to actually log into Cloud Manager or Experience Cloud. This only enables this user to create projects in Adobe I/O Console.
+> It is important to understand that this does **not** enable this user (`developer@myco.com` in this example) to actually log into Cloud Manager, Adobe Experience Manager or any other Experience Cloud product. This only enables this user to create projects in Adobe I/O Console with the Cloud Manager API.
 
 ### Cloud Manager API Permissions
 
