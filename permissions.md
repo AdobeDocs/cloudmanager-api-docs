@@ -46,7 +46,8 @@ Which product profile(s) to select depends upon the specific requirements for th
         </tr>
         <tr>
             <td><code>cancelPipelineExecutionStep</code></td>
-            <td>Business Owner, Deployment Manager, Program Manager</td>
+            <td>Business Owner, Deployment Manager, Program Manager<br/>
+            Note - Program Manager role is limited to cancelling steps with the status of WAITING.</td>
         </tr>
         <tr>
             <td colspan="2" class="column--uri"><code>PUT /api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel</code></td>
