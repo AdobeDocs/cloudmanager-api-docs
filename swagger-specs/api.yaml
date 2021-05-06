@@ -3216,6 +3216,18 @@ definitions:
         type: string
         example: author
         description: 'Service of the variable. When not provided, the variable applies to all services. Currently only the values ''author'' and ''publish'' are supported. Note - this value is case-sensitive.'
+      status:
+        type: string
+        example: ready
+        description: Status of the variable
+        enum:
+          - creating
+          - ready
+          - deleting
+          - deleted
+          - updating
+          - failed
+          - deleted_failed
     description: A named value than can be set on an Environment or Pipeline
   VariableList:
     type: object
