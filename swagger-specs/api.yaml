@@ -2952,6 +2952,10 @@ definitions:
         type: string
         example: Description
         description: description
+      repositoryUrl:
+        type: string
+        example: 'https://git.cloudmanager.adobe.com/weretailprod/we-retail-global'
+        description: Repository Url.
       _links:
         type: object
         readOnly: true
@@ -3198,7 +3202,7 @@ definitions:
       value:
         type: string
         example: myValue
-        description: 'Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted'
+        description: 'Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted.'
         minLength: 0
         maxLength: 2048
       type:
