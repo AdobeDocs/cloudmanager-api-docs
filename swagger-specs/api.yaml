@@ -2512,7 +2512,7 @@ definitions:
           - MANUAL
       status:
         type: string
-        example: 'RUNNING,FAILED'
+        example: IDLE
         description: Pipeline status
         enum:
           - IDLE
