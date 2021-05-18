@@ -60,6 +60,7 @@ Each pipeline step has an assigned `action` which indicates the type of step. Ne
 | `validate`                       | Pipeline and Environment Validation   |
 | `build`                          | Build and Unit Testing                |
 | `codeQuality`                    | Code Quality Testing                  |
+| `buildImage`                     | Build Image from branch source        |
 | `securityTest`                   | Security Testing                      |
 | `loadTest`                       | Sites Performance Testing Execution   |
 | `assetsTest`                     | Assets Performance Testing Execution  |
