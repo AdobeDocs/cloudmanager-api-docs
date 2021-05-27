@@ -2930,6 +2930,9 @@ definitions:
           'http://ns.adobe.com/adobecloud/rel/publish':
             description: Publish URL
             $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/preview':
+            description: Publish URL
+            $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/developerConsole':
             description: Developer Console URL
             $ref: '#/definitions/HalLink'
@@ -3215,7 +3218,7 @@ definitions:
       service:
         type: string
         example: author
-        description: 'Service of the variable. When not provided, the variable applies to all services. Currently only the values ''author'' and ''publish'' are supported. Note - this value is case-sensitive.'
+        description: 'Service of the variable. When not provided, the variable applies to all services. Currently the values ''author'', ''publish'', and ''preview'' are supported. Note - this value is case-sensitive.'
       status:
         type: string
         example: ready
@@ -3289,6 +3292,7 @@ definitions:
         enum:
           - author
           - publish
+          - preview
       status:
         type: string
         example: NOT_STARTED
@@ -3485,6 +3489,13 @@ definitions:
         type: string
         example: customerEnvironmentName
         description: Environment name
+      tier:
+        type: string
+        example: publish
+        description: Tier of the environment.
+        enum:
+          - publish
+          - preview
       certificateId:
         type: integer
         format: int64
