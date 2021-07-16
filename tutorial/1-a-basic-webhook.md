@@ -111,17 +111,21 @@ Alternatively, you can run the webhook script using <a href="https://glitch.com/
 
 ### Registering the Webhook with Adobe I/O
 
-Now that you have your webhook running at a publicly accessible URL, you can register it with Adobe I/O. To do this, open the <a href="https://console.adobe.io/integrations" target="_new">Adobe I/O Console</a> and open the Integration you created in Step 0. Switch to the Events tab.
+Now that you have your webhook running at a publicly accessible URL, you can register it with Adobe I/O. To do this, open the <a href="https://console.adobe.io/projects" target="_new">Adobe I/O Console</a> and open the Project you created in Step 0. Click Add to Project and select Event. Select Cloud Manager and click Next.
 
-![Events Tab](../img/add-event-provider-to-existing-integration.png)
+![Select Event Types](img/event-select-event-types.png)
 
-Select Cloud Manager in the `Add New Event Provider` section and click the `Add event provider` button. Then click the `Add Event Registration` button. Provide a name and description for the webhook and select the events you want to subscribe to. For the purpose of this tutorial, you will need **at least** the Pipeline Execution Started event.
+Select the events you want to subscribe to. For the purpose of this tutorial, you will need **at least** the Pipeline Execution Started event. Click the Next button.
+
+There are three options for receiving events: Journaling, Webhooks, and Runtime actions. For the purpose of this tutorial, select the Webhook option.
 
 If you are using ngrok, the Webhook URL will be the Forwarding address appended with `/webhook`, e.g. `https://e639e8fd.ngrok.io/webhook`. If you are using Glitch, the URL will be the Glitch application name appended with `.glitch.me/webhook`, e.g. `https://enchanted-bathroom.glitch.me/webhook`
 
 ![Event Registration](../img/add-webhook-to-existing-integration.png)
 
-Click the Save button.
+> Ensure that the Single Delivery style is selected. The tutorial code is **not** intended to be used with the Batch style, although you may want to explore this on your own.
+
+Click the Save configured events button.
 
 #### Next Step
 
