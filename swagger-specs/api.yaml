@@ -141,6 +141,19 @@ paths:
           description: Identifier of the program
           required: true
           type: string
+        - name: start
+          in: query
+          description: Pagination start parameter
+          required: false
+          type: string
+          default: '0'
+        - name: limit
+          in: query
+          description: Pagination limit parameter
+          required: false
+          type: integer
+          default: 20
+          format: int32
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -393,6 +406,42 @@ paths:
           description: successful operation
           schema:
             $ref: '#/definitions/Pipeline'
+  '/api/program/{programId}/pipeline/{pipelineId}/cache':
+    delete:
+      tags:
+        - Pipelines
+      summary: Invalidate Cache
+      description: Remove all cached artifacts and resets the cache to an empty state.
+      operationId: invalidateCache
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        default:
+          description: successful operation
   '/api/program/{programId}/pipeline/{pipelineId}/execution':
     get:
       tags:
@@ -2567,6 +2616,9 @@ definitions:
           'http://ns.adobe.com/adobecloud/rel/rollbackLastSuccessfulExecution':
             description: Start a CI/CD rollback execution
             $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/cache':
+            description: Pipeline cache
+            $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
     description: A representation of a CI/CD Pipeline
@@ -2950,7 +3002,7 @@ definitions:
       repo:
         type: string
         example: Adobe-Marketing-Cloud
-        description: Repository name
+        description: Repository name. Once set it cannot be updated
       description:
         type: string
         example: Description
@@ -2978,6 +3030,8 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+      _page:
+        $ref: '#/definitions/RequestedPageDetails'
       _embedded:
         type: object
         readOnly: true
@@ -2991,6 +3045,8 @@ definitions:
         readOnly: true
         properties:
           next:
+            $ref: '#/definitions/HalLink'
+          page:
             $ref: '#/definitions/HalLink'
           prev:
             $ref: '#/definitions/HalLink'
