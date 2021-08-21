@@ -1,0 +1,47 @@
+{
+  "private": true,
+  "name": "cloudmanager-api-docs",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AdobeDocs/cloudmanager-api-docs"
+  },
+  "author": {
+    "name": "Justin Edelson",
+    "url": "https://github.com/justinedelson"
+  },
+  "dependencies": {
+    "@adobe/gatsby-theme-aio": "^3.18.3",
+    "gatsby": "^3.6.0",
+    "gatsby-plugin-client-side-redirect": "^1.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "eslint-config-standard": "16.0.3",
+    "eslint-plugin-import": "2.24.0",
+    "eslint-plugin-jsdoc": "36.0.7",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-promise": "5.1.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-standard": "4.1.0"
+  },
+  "scripts": {
+    "start": "gatsby build && gatsby serve",
+    "start:prefix": "gatsby build --prefix-paths && gatsby serve --prefix-paths",
+    "dev": "gatsby develop",
+    "dev:https": "gatsby develop --https --host localhost.corp.adobe.com --port 9000",
+    "build": "gatsby build",
+    "build:incremental": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "lint": "eslint gatsby-*.js src",
+    "lint-fix": "eslint gatsby-*.js src --fix"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

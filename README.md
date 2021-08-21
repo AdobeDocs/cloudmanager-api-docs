@@ -1,27 +1,22 @@
-# Cloud Manager API Documentation
+# Adobe Cloud Manager API Documentation
 
-Cloud Manager enables organizations to self-manage Adobe Experience Manager environments in the cloud -- both Adobe Managed Services and Adobe Experience Manager Cloud Service. Cloud Manager includes a full-featured web user interface at [https://my.cloudmanager.adobe.com/](https://my.cloudmanager.adobe.com/).
+This projects builds the documentation for the [Cloud Manager API](https://www.adobe.io/apis/experiencecloud/cloud-manager/docs.html) using
+the [Adobe I/O Gatsby Theme](https://github.com/adobe/aio-theme).
 
-The Cloud Manager API enables Cloud Manager customers to interact with many of the same underlying capabilities exposed through the web UI in a fully programmatic fashion. This allows for integration of the Cloud Manager Continuous Integration / Continuous Delivery pipeline with other systems.
+## How to develop
 
-General information on Cloud Manager can be found in the [Product Documentation]( https://www.adobe.com/go/aem_cloud_mgr_userguide_en).
+### Requirements
 
-The links in this documentation will guide you through getting started with the Cloud Manager API. There is also a complete [API Reference](swagger-specs/api.yaml) which describes all of the individual endpoints and requests which are available for usage.
+Node 14.x
 
-## Sample Use Cases
+### Building Locally
 
-There are a variety of use cases enabled with this API, including:
+For local development, simply use :
+```
+$ npm install
+$ npm run dev
+```
 
-* Starting the Cloud Manager CI/CD pipeline from an external system.
-* Executing additional tests between the standard Cloud Manager performance tests and the ultimate production deployment.
-* Triggering additional activities after the a pipeline execution is complete or a specific step has been completed, for example
-    - CDN cache invalidation once the production deployment is finished.
-    - Deploying related applications to non-Managed Services systems.
-    - Notifying on other channels (e.g. Slack, Microsoft Teams).
-    - Creating issue reports in bug tracking systems (e.g. Atlassian JIRA) on pipeline failures
+## Launching a deploy
 
-### Contributing
-
-We encourage you to participate in our open documentation initiative, if you have suggestions, corrections, additions or deletions for this documentation, check out the source from [this github repo](https://github.com/AdobeDocs/cloudmanager-api-docs), create issues, and submit pull requests with your contribution. For more information, refer to the [Contributing](https://github.com/AdobeDocs/cloudmanager-api-docs/blob/master/CONTRIBUTING.md) page.
-
-<!-- OSSRH-61852 -->
+You can deploy using the GitHub actions deploy workflow see [deploy instructions](https://github.com/adobe/aio-theme#deploy-to-azure-storage-static-websites).

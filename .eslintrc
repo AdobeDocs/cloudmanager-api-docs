@@ -1,0 +1,26 @@
+{
+    "extends": ["standard", "plugin:jsdoc/recommended", "plugin:node/recommended", "plugin:react/recommended"],
+    "rules" : {
+        "jsdoc/require-jsdoc": 0,
+        "jsdoc/require-param": 0,
+        "jsdoc/require-returns": 0,
+        "comma-dangle": ["error", {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "always-multiline"
+        }],
+        "node/no-unsupported-features/es-syntax" : ["error", {
+          "ignores": ["modules"]
+        }]
+    },
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "settings": {
+      "jsdoc": {
+        "ignorePrivate": true
+      }
+    }
+}

@@ -1,0 +1,57 @@
+[
+    {
+        "operation": "startPipeline",
+        "profiles": "Business Owner, Deployment Manager, Program Manager",
+        "method": "PUT",
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/execution"
+    },
+    {
+        "operation": "advancePipelineExecution",
+        "profiles": "Business Owner, Deployment Manager, Program Manager",
+        "method": "PUT",
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance"
+    },
+    {
+        "operation": "cancelPipelineExecutionStep",
+        "profiles": "Business Owner, Deployment Manager, Program Manager",
+        "note": "Note - Program Manager role is limited to cancelling steps with the status of WAITING.",
+        "method": "PUT",
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel"
+    },
+    {
+        "operation": "deleteEnvironment",
+        "profiles": "Business Owner, Deployment Manager",
+        "method": "DELETE",
+        "path": "/api/program/{programId}/environment/{environmentId}"
+    },
+    {
+        "operation": "deleteProgram",
+        "profiles": "Business Owner, Deployment Manager",
+        "method": "DELETE",
+        "path": "/api/program/{programId}"
+    },
+    {
+        "operation": "deletePipeline",
+        "profiles": "Deployment Manager",
+        "method": "DELETE",
+        "path": "/api/program/{programId}/pipeline/{pipelineId}"
+    },
+    {
+        "operation": "patchEnvironmentVariables",
+        "profiles": "Deployment Manager",
+        "method": "PATCH",
+        "path": "/api/program/{programId}/environment/{environmentId}/variables"
+    },
+    {
+        "operation": "patchPipelineVariables",
+        "profiles": "Deployment Manager",
+        "method": "PATCH",
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/variables"
+    },
+    {
+        "operation": "getPipelineVariables",
+        "profiles": "Deployment Manager",
+        "method": "GET",
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/variables"
+    }
+]
