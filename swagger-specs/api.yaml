@@ -671,7 +671,7 @@ paths:
           type: string
         - in: body
           name: body
-          description: 'Input for advance. See documentation at https://www.adobe.io/apis/experiencecloud/cloud-manager/docs.html#!AdobeDocs/cloudmanager-api-docs/master/advancing-and-cancelling-steps.md for details.'
+          description: 'Input for advance. See documentation at https://www.adobe.com/go/cmapi-advcan for details.'
           required: true
           schema:
             type: object
@@ -737,7 +737,7 @@ paths:
           type: string
         - in: body
           name: body
-          description: 'Input for cancel. See documentation at https://www.adobe.io/apis/experiencecloud/cloud-manager/docs.html#!AdobeDocs/cloudmanager-api-docs/master/advancing-and-cancelling-steps.md for details.'
+          description: 'Input for cancel. See documentation at https://www.adobe.com/go/cmapi-advcan for details.'
           required: true
           schema:
             type: object
