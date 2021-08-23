@@ -9,7 +9,7 @@ contributors:
 
 In addition to direct HTTP usage of the Cloud Manager API, there are open source tools and libraries built on top of the API which can be used in integration projects. In addition to being directly usable, they are also good examples of how to use the API. More detailed information can be found on each respective project's website.
 
-Note that many of these require that an [API Integration](../guides/create-api-integration.md) to be created in the Adobe I/O Console before use.
+Note that many of these require that an [API Integration](../guides/getting-started/create-api-integration.md) to be created in the Adobe I/O Console before use.
 
 ## Command Line Interface
 

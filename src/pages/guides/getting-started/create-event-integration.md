@@ -13,7 +13,7 @@ To work with the Cloud Manager Events on the Adobe I/O Developer Console, you ne
 
 Adobe I/O Events emitted by Cloud Manager are sent to **webhooks** hosted either in on-premise infrastructure, specialized webhook hosting providers, [Adobe I/O Runtime](https://www.adobe.io/apis/cloudplatform/runtime.html), or even your AEM instances managed by Adobe Managed Services. Alternatively, the [Adobe I/O Journaling API](https://www.adobe.io/apis/experienceplatform/events/docs.html#!adobedocs/adobeio-events/master/api/journaling_api.md) may be used, especially in cases where network security rules prohibit a webhook from being accessible from the public internet.
 
-The [Getting Started with Adobe I/O Events](https://www.adobe.io/apis/cloudplatform/events/documentation.html) guide provides general documentation on how to set up a webhook. As with [API Integrations](create-api-integration.html), a certificate file is needed to set up an Event Integration.
+The [Getting Started with Adobe I/O Events](https://www.adobe.io/apis/cloudplatform/events/documentation.html) guide provides general documentation on how to set up a webhook. As with [API Integrations](create-api-integration.md), a certificate file is needed to set up an Event Integration.
 
 Once your webhook is up and running and you have your certificate, to create an Event Integration:
 

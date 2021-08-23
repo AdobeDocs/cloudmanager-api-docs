@@ -25,7 +25,7 @@ const PermissionsTable = () => {
                     </td>
                 </tr>
                 <tr className="spectrum-Table-row">
-                    <td colSpan="2" className="spectrum-Table-cell" style={{ fontSize: '80%' }}><code>{method} {path}</code></td>
+                    <td colSpan="2" className="spectrum-Table-cell" style={{ fontSize: '70%' }}><code>{method} {path}</code></td>
                 </tr>
             </Fragment>
     )

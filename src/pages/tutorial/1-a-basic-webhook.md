@@ -13,7 +13,7 @@ In the first step of the tutorial, we're going to create an event handler (webho
 
 ## Dependencies
 
-To write the webhook, this tutorial uses <a href="https://expressjs.com/" target="_new">Express</a>, a minimal web framework for Node.js. To automate the parsing of JSON requests, the `body-parser` package is used. Finally, a package named `dotenv` is used to parse and load the `.env` file created in [Step 0](0-setup.md). To install these three packages, run
+To write the webhook, this tutorial uses <a href="https://expressjs.com/" target="_new">Express</a>, a minimal web framework for Node.js. To automate the parsing of JSON requests, the `body-parser` package is used. Finally, a package named `dotenv` is used to parse and load the `.env` file created in the [Overview](/tutorial/index.md). To install these three packages, run
 
 ```bash
 npm install express body-parser dotenv
