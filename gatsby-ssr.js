@@ -16,5 +16,6 @@ import { withPrefix } from 'gatsby'
 export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
     <script src={withPrefix('/accordion.js')} key="accordion"></script>,
+    <script src={withPrefix('/redirections.js')} key="redirections"></script>,
   ])
 }
