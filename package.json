@@ -14,7 +14,6 @@
   "dependencies": {
     "@adobe/gatsby-theme-aio": "^3.18.3",
     "gatsby": "^3.6.0",
-    "gatsby-plugin-client-side-redirect": "^1.1.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"

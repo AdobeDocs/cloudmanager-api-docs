@@ -131,6 +131,6 @@ module.exports = {
       },
     ],
   },
-  plugins: ['@adobe/gatsby-theme-aio', 'gatsby-plugin-client-side-redirect'],
+  plugins: ['@adobe/gatsby-theme-aio'],
   pathPrefix: process.env.PATH_PREFIX || '/experience-cloud/cloud-manager/',
 }
