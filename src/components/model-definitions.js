@@ -11,10 +11,9 @@ governing permissions and limitations under the License.
 */
 
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import data from '../../swagger-specs/events.yaml'
-
-const Events = () => {
+const ModelDefinitions = ({ data, exclusions, defaultOpen }) => {
   const definitions = data.definitions
 
   const renderString = (propertyDef) => {
@@ -23,26 +22,38 @@ const Events = () => {
     return (
         <div>
             <code className="spectrum-Code spectrum-Code--sizeS" style={{ display: 'block' }}><strong>string</strong></code>
+            {description}
             {constantValue
               ? (
-                <code className="spectrum-Code spectrum-Code--sizeS" style={{ display: 'block' }}>const: {constantValue}</code>
+                <span style={{ display: 'block' }}>Constant Value:&nbsp;
+                  <code className="spectrum-Code spectrum-Code--sizeS">{constantValue}</code>
+                </span>
                 )
               : ''}
-            {description}
         </div>
     )
   }
 
   const renderObject = (obj, name) => {
+    let className = 'spectrum-Accordion-item'
+    if (!name || (defaultOpen && defaultOpen.includes(name))) {
+      className += ' is-open'
+    }
+
     return (
-        <div className="spectrum-Accordion-item is-open" role="presentation">
+        <div className={className} role="presentation">
 
             <h3 className="spectrum-Accordion-itemHeading">
             <button className="spectrum-Accordion-itemHeader" type="button" id="spectrum-accordion-item-0-header" aria-controls="spectrum-accordion-item-0-content" aria-expanded="true">
                 {name || 'Schema'}
             </button>
             <svg className="spectrum-Icon spectrum-UIIcon-ChevronRight100 spectrum-Accordion-itemIndicator" focusable="false" aria-hidden="true">
-                <use xlinkHref="#spectrum-css-icon-Chevron100" />
+              <path
+                d="M4.5 13.25a1.094 1.094 0 01-.773-1.868L8.109 7 3.727 2.618A1.094 1.094 0 015.273 1.07l5.157 5.156a1.094 1.094 0 010 1.546L5.273 12.93a1.091 1.091 0 01-.773.321z"
+                className="spectrum-UIIcon--large"></path>
+              <path
+                d="M3 9.95a.875.875 0 01-.615-1.498L5.88 5 2.385 1.547A.875.875 0 013.615.302L7.74 4.377a.876.876 0 010 1.246L3.615 9.698A.872.872 0 013 9.95z"
+                className="spectrum-UIIcon--medium"></path>
             </svg>
             </h3>
 
@@ -85,11 +96,21 @@ const Events = () => {
     }
   }
 
+  const filteredNames = Object.keys(definitions).filter(name => exclusions ? !exclusions.includes(name) : true)
+
   return (
     <div className="spectrum-Accordion" role="region">
-        {Object.keys(definitions).map(name => renderObject(definitions[name], name))}
+        {filteredNames.map(name => renderObject(definitions[name], name))}
     </div>
   )
 }
 
-export default Events
+ModelDefinitions.propTypes = {
+  data: PropTypes.shape({
+    definitions: PropTypes.object.isRequired,
+  }).isRequired,
+  defaultOpen: PropTypes.arrayOf(PropTypes.string),
+  exclusions: PropTypes.arrayOf(PropTypes.string),
+}
+
+export default ModelDefinitions

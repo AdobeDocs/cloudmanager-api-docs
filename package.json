@@ -38,8 +38,8 @@
     "build:incremental": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "lint": "eslint gatsby-*.js src",
-    "lint-fix": "eslint gatsby-*.js src --fix"
+    "lint": "eslint gatsby-*.js src static",
+    "lint-fix": "eslint gatsby-*.js src static --fix"
   },
   "engines": {
     "node": ">=14.0.0"
