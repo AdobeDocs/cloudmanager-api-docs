@@ -56,7 +56,7 @@ When Cloud Manager emits an event, all webhooks configured for that event will b
   <dd><span class="spectrum-Code spectrum-Code--sizeM">https://ns.adobe.com/experience/cloudmanager/pipeline-execution</span></dd>
 </dl>
 
-The body of the requests received by the webhook will vary based on the event type. The [API Reference](swagger-specs/events.yaml) details the schema for each event body.
+The body of the requests received by the webhook will vary based on the event type. The [Reference](../../api/events.md) details the schema for each event body.
 
 ## Step Actions
 
