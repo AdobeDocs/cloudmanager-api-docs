@@ -2,7 +2,6 @@
 title: Tutorial Step 2 - Cloud Manager API
 description: This is step 2 of the Cloud Manager API Tutorial
 contributors:
-  - https://github.com/justinedelson 
   - https://github.com/oostanc 
 ---
 

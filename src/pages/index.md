@@ -1,8 +1,7 @@
 ---
 title: Overview - Cloud Manager API
 description: This is the overview page of the Cloud Manager API
-contributors:
-  - https://github.com/justinedelson 
+ 
 ---
 
 <Hero slots="image, heading, text"/> 

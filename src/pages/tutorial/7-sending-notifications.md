@@ -1,8 +1,7 @@
 ---
 title: Tutorial Step 7 - Cloud Manager API
 description: This is step 7 of the Cloud Manager API Tutorial
-contributors:
-  - https://github.com/justinedelson 
+ 
 ---
 
 ##= Tutorial Step 7 - Sending Notifications

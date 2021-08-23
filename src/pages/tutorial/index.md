@@ -1,8 +1,7 @@
 ---
 title: Tutorial - Cloud Manager API
 description: This is the start of a tutorial for the Cloud Manager API
-contributors:
-  - https://github.com/justinedelson 
+ 
 ---
 
 # Tutorial Introduction

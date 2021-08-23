@@ -1,8 +1,7 @@
 ---
 title: Tutorial Step 5 - Cloud Manager API
 description: This is step 5 of the Cloud Manager API Tutorial
-contributors:
-  - https://github.com/justinedelson 
+ 
 ---
 
 # Tutorial Step 5 - Getting Execution Data

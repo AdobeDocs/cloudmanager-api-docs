@@ -1,8 +1,7 @@
 ---
 title: Advancing and Cancelling Steps - Cloud Manager API
 description: Describes how to advance or cancel steps
-contributors:
-  - https://github.com/justinedelson
+
 ---
 
 # Advancing and Cancelling Steps

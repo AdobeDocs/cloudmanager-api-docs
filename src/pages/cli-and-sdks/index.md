@@ -1,8 +1,7 @@
 ---
 title: CLI and SDKs - Cloud Manager API
 description: Describes the available CLI and SDKs that use the API
-contributors:
-  - https://github.com/justinedelson
+
 ---
 
 # CLI and SDKs

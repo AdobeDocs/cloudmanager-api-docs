@@ -1,8 +1,7 @@
 ---
 title: Tutorial Step 1 - Cloud Manager API
 description: This is step 1 of the Cloud Manager API Tutorial
-contributors:
-  - https://github.com/justinedelson 
+ 
 ---
 
 import Glitch from "../../components/glitch"

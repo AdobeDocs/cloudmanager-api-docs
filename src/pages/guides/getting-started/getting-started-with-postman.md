@@ -1,8 +1,7 @@
 ---
 title: Getting Started with Postman - Cloud Manager API
 description: Describes how to use a pre-configured Postman collection
-contributors:
-  - https://github.com/justinedelson
+
 ---
 
 # Getting Started with Postman

@@ -1,8 +1,7 @@
 ---
 title: Understanding the API - Cloud Manager API
 description: Describes the general structure of the API
-contributors:
-  - https://github.com/justinedelson
+
 ---
 
 # Understanding the API

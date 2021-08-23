@@ -1,8 +1,7 @@
 ---
 title: Tutorial Step 4 - Cloud Manager API
 description: This is step 4 of the Cloud Manager API Tutorial
-contributors:
-  - https://github.com/justinedelson 
+ 
 ---
 
 # Tutorial Step 4 - Obtaining an Access Token

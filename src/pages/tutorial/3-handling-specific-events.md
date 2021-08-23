@@ -1,8 +1,7 @@
 ---
 title: Tutorial Step 3 - Cloud Manager API
 description: This is step 3 of the Cloud Manager API Tutorial
-contributors:
-  - https://github.com/justinedelson 
+ 
 ---
 
 # Tutorial Step 3 - Handling Specific Events

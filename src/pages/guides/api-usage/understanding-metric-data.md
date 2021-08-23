@@ -1,8 +1,7 @@
 ---
 title: Understanding Metric Data  - Cloud Manager API
 description: Describes the structure of metric data in the API
-contributors:
-  - https://github.com/justinedelson
+
 ---
 
 # Understanding Metric Data

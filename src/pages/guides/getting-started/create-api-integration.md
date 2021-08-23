@@ -1,8 +1,7 @@
 ---
 title: Creating an API Integration - Cloud Manager API
 description: Describes how to create an API integration project on Adobe I/O Developer Console
-contributors:
-  - https://github.com/justinedelson
+
 ---
 
 # Creating an API Integration

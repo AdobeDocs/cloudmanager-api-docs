@@ -1,8 +1,7 @@
 ---
 title: Tutorial Step 6 - Cloud Manager API
 description: This is step 6 of the Cloud Manager API Tutorial
-contributors:
-  - https://github.com/justinedelson 
+ 
 ---
 
 # Tutorial Step 6 - Navigating Between API Calls
