@@ -24,7 +24,7 @@ The files used in this tutorial can all be found in GitHub in the repository at 
 
 ## Prerequisites
 
-Before starting the tutorial, you must first set up an integration in the <a href="https://console.adobe.io/integrations" target="_new">Adobe I/O Console</a>. First, follow the instructions on the [Creating an API Integration](../create-api-integration.md) to create an API integration. You'll add the Event Provider integration in a later step.
+Before starting the tutorial, you must first set up an integration in the <a href="https://console.adobe.io/integrations" target="_new">Adobe I/O Console</a>. First, follow the instructions on the [Creating an API Integration](/guides/getting-started/create-api-integration/) to create an API integration. You'll add the Event Provider integration in a later step.
 
 ## Project Initialization
 
