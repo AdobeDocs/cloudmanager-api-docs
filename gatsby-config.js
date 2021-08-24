@@ -30,11 +30,11 @@ module.exports = {
         menu: [{
           title: 'Cloud Manager API',
           description: 'Reference document for the Cloud Manager API',
-          path: '/api/index.md',
+          path: '/reference/api/',
         }, {
           title: 'Event Definitions',
           description: 'Definition of Event Payloads',
-          path: '/api/events.md',
+          path: '/reference/events/',
         }],
       },
       {
@@ -124,10 +124,6 @@ module.exports = {
       {
         title: 'Step 7 - Sending Notifications',
         path: '/tutorial/7-sending-notifications/',
-      },
-      {
-        title: 'CLI and SDKs',
-        path: '/cli-and-sdks/',
       },
     ],
   },

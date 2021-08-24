@@ -25,7 +25,7 @@ Cloud Manager includes a full-featured web user interface at [https://my.cloudma
 
 General information on Cloud Manager can be found in the Product Documentation in the Resources section.
 
-The links in this documentation will guide you through getting started with the Cloud Manager API. There is also a complete [API Reference](api/) which describes all of the individual endpoints and requests which are available for usage.
+The links in this documentation will guide you through getting started with the Cloud Manager API. There is also a complete [API Reference](reference/api/) which describes all of the individual endpoints and requests which are available for usage.
 
 ## Discover 
 
@@ -65,7 +65,7 @@ Walk through a step-by-step tutorial
 
 ### API References
 
-[Complete API Reference](api/) 
+[Complete API Reference](reference/api/) 
 
 See the full API Reference.
 

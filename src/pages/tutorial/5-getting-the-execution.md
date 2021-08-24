@@ -49,7 +49,7 @@ async function getExecution(executionUrl) {
 
 ## Getting the Execution in the Webhook
 
-Finally, we can call the `getExecution` function with the URL contained in the event payload. There's a variety of information in the execution response (take a look at the [API Reference](/api/) for all the details), but for now let's just log the execution id.
+Finally, we can call the `getExecution` function with the URL contained in the event payload. There's a variety of information in the execution response (take a look at the [API Reference](/reference/api/) for all the details), but for now let's just log the execution id.
 
 ```javascript
 if (
