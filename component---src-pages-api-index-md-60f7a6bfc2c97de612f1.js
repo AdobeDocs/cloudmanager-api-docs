@@ -1,2 +1,0 @@
-(self.webpackChunkcloudmanager_api_docs=self.webpackChunkcloudmanager_api_docs||[]).push([[824],{3451:function(n,t,o){"use strict";o.r(t),o.d(t,{_frontmatter:function(){return s},default:function(){return f}});var e=o(2122),r=o(9756),u=(o(5007),o(4983)),a=o(9536),c=["components"],s={},m={_frontmatter:s},p=a.Z;function f(n){var t=n.components,o=(0,r.Z)(n,c);return(0,u.mdx)(p,(0,e.Z)({},m,o,{components:t,mdxType:"MDXLayout"}))}f.isMDXComponent=!0}}]);
-//# sourceMappingURL=component---src-pages-api-index-md-60f7a6bfc2c97de612f1.js.map
