@@ -23,7 +23,6 @@
       .replace('understanding-metric-data.md', 'guides/api-usage/understanding-metric-data.md')
       .replace('editing-and-deleting-pipelines.md', 'guides/api-usage/editing-and-deleting-pipelines.md')
       .replace('advancing-and-cancelling-steps.md', 'guides/api-usage/advancing-and-cancelling-steps.md')
-      .replace('advancing-and-cancelling-steps.md', 'guides/api-usage/advancing-and-cancelling-steps.md')
       .replace('permissions.md', 'guides/getting-started/permissions.md')
       .replace('tutorial/0-setup.md', 'tutorial/')
       .replace('README.md', '')
