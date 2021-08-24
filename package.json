@@ -12,7 +12,7 @@
     "url": "https://github.com/justinedelson"
   },
   "dependencies": {
-    "@adobe/gatsby-theme-aio": "^3.18.3",
+    "@adobe/gatsby-theme-aio": "^3.19.0",
     "gatsby": "^3.6.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.0",
@@ -33,6 +33,7 @@
     "start:prefix": "gatsby build --prefix-paths && gatsby serve --prefix-paths",
     "dev": "gatsby develop",
     "dev:https": "gatsby develop --https --host localhost.corp.adobe.com --port 9000",
+    "dev:debug": "node --nolazy node_modules/.bin/gatsby develop --inspect-brk",
     "build": "gatsby build",
     "build:incremental": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "serve": "gatsby serve",
