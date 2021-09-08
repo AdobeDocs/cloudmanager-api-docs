@@ -11,8 +11,8 @@
  */
 
 (() => {
-  const identifier = '#!AdobeDocs/cloudmanager-api-docs/master/'
-  if (window.location.hash.startsWith(identifier)) {
+  const href = window.location.href
+  if (href.includes('docs.html')) {
     const newLocation = window.location.hash
       .replace('#!AdobeDocs/cloudmanager-api-docs/master/', '')
       .replace('understanding-the-api.md', 'guides/getting-started/understanding-the-api.md')
@@ -29,5 +29,18 @@
       .replace('.md', '/')
 
     window.location.href = decodeURIComponent(window.location.href.split('#')[0].replace('docs.html', newLocation))
+  } else if (href.includes('api-reference.html')) {
+    let newLocation = window.location.hash
+      .replace('#!AdobeDocs/cloudmanager-api-docs/master/', '')
+      .replace('swagger-specs/api.yaml', 'reference/api/')
+      .replace('swagger-specs/events.yaml', 'reference/events/')
+      .replace('README.md', '')
+      .replace('.md', '/')
+
+    if (newLocation.startsWith('#/') || newLocation === '') {
+      newLocation = 'reference/api/'
+    }
+
+    window.location.href = decodeURIComponent(window.location.href.split('#')[0].replace('api-reference.html', newLocation))
   }
 })()
