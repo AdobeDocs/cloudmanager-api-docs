@@ -11,11 +11,15 @@
  */
 
 import React from 'react'
-import { withPrefix } from 'gatsby'
+import { readFileSync } from 'fs'
 
 export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
-    <script src={withPrefix('/accordion.js')} key="accordion"></script>,
-    <script src={withPrefix('/redirections.js')} key="redirections"></script>,
+    <script dangerouslySetInnerHTML= {{
+      __html: `${readFileSync('./files/accordion.js').toString()}`,
+    }} key="accordion"/>,
+<script dangerouslySetInnerHTML= {{
+  __html: `${readFileSync('./files/redirections.js').toString()}`,
+}} key="redirections"/>,
   ])
 }
