@@ -4,6 +4,8 @@ description: This is step 5 of the Cloud Manager API Tutorial
  
 ---
 
+import Glitch from "../../components/glitch"
+
 # Tutorial Step 5 - Getting Execution Data
 
 Now that we have an access token, we can use it to make API calls into Cloud Manager to get more information about the execution (and in the next step the program).

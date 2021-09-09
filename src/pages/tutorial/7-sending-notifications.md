@@ -4,6 +4,8 @@ description: This is step 7 of the Cloud Manager API Tutorial
  
 ---
 
+import Glitch from "../../components/glitch"
+
 # Tutorial Step 7 - Sending Notifications
 
 Congratulations! You've reached the end of the tutorial. This last step actually has nothing to do with Cloud Manager or Adobe I/O. In this step, we're going to take the data retrieved and send a message to either Microsoft Teams or Slack. Or you could do both if you are feeling adventurous.

@@ -4,6 +4,8 @@ description: This is step 4 of the Cloud Manager API Tutorial
  
 ---
 
+import Glitch from "../../components/glitch"
+
 # Tutorial Step 4 - Obtaining an Access Token
 
 The JSON object sent to the webhook is very minimal -- it largely consists of event metadata (e.g. the timestamp of the event) and a URL to either the pipeline execution. In general, the webhook implementation will need to call the Cloud Manager API to get additional information. In the case of this tutorial, the webhook is actually going to make two API calls for more information. That, however, is for the next step...

@@ -4,6 +4,8 @@ description: This is step 6 of the Cloud Manager API Tutorial
  
 ---
 
+import Glitch from "../../components/glitch"
+
 # Tutorial Step 6 - Navigating Between API Calls
 
 While the execution information is interesting, what we actually want to send in the notification sent to Microsoft Teams or Slack is the program name. This isn't in the execution response but has to be requested from a different URL, one following the pattern `/api/program/{programId}`.
