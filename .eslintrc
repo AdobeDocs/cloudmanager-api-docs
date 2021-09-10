@@ -21,6 +21,9 @@
     "settings": {
       "jsdoc": {
         "ignorePrivate": true
+      },
+      "react" : {
+        "version": "detect"
       }
     }
 }
