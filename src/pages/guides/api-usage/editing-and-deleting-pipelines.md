@@ -51,3 +51,15 @@ Specifying a tag is **only** possible using this API, not the Cloud Manager UI.
 ## Deleting Pipelines
 
 Deleting a pipeline can be done by executing a `DELETE` request to the pipeline endpoint.
+
+```
+DELETE https://cloudmanager.adobe.io/api/program/4/pipeline/1
+```
+
+## Invalidating a Pipeline's Cache
+
+Deleting a pipeline can be done by executing a `DELETE` request to the pipeline's cache endpoint, accessible via the `http://ns.adobe.com/adobecloud/rel/cache` HAL Link of the pipeline endpoint.
+
+```
+DELETE https://cloudmanager.adobe.io/api/program/4/pipeline/1/cache
+```
