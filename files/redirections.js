@@ -12,6 +12,9 @@
 
 (() => {
   const href = window.location.href
+  if (window.location.href.includes('github.io')) { // don't do any of this on gh pages
+    return
+  }
   if (href.includes('docs/')) {
     const newLocation = window.location.hash
       .replace('#!AdobeDocs/cloudmanager-api-docs/master/', '')
