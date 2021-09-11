@@ -30,4 +30,6 @@ Interactions with the Cloud Manager API using the service account are permitted 
 
 Which product profile(s) to select depends upon the specific requirements for the project and what APIs will be accessed. With one exception (listed below), if only read (`GET`) access is required, the Developer product profile will be sufficient. Guidance for projects which require write (`PUT`, `DELETE`, `PATCH`) access:
 
+## Detailed Permission Information
+
 <PermissionsTable />
