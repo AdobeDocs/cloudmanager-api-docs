@@ -29,7 +29,7 @@
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-react": "7.25.1",
     "eslint-plugin-standard": "4.1.0",
-    "js-yaml": "3.14.1"
+    "js-yaml": "4.1.0"
   },
   "scripts": {
     "start": "gatsby build && gatsby serve",
