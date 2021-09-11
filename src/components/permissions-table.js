@@ -31,6 +31,8 @@ const PermissionsTable = () => {
     )
   }
 
+  const sorted = [...data].sort((a, b) => a.path.localeCompare(b.path))
+
   return (
     <table className="spectrum-Table" style={{ marginTop: '2em' }}>
         <thead className="spectrum-Table-head">
@@ -40,7 +42,7 @@ const PermissionsTable = () => {
             </tr>
         </thead>
         <tbody className="spectrum-Table-body">
-            {data.map(createRow)}
+            {sorted.map(createRow)}
         </tbody>
     </table>
   )

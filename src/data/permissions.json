@@ -53,5 +53,107 @@
         "profiles": "Deployment Manager",
         "method": "GET",
         "path": "/api/program/{programId}/pipeline/{pipelineId}/variables"
+    },
+    {
+        "operation": "patchPipeline",
+        "profiles": "Deployment Manager",
+        "method": "PATCH",
+        "path": "/api/program/{programId}/pipeline/{pipelineId}"
+    },
+    {
+        "operation": "invalidateCache",
+        "profiles": "Deployment Manager",
+        "method": "DELETE",
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/cache"
+    },
+    {
+        "operation": "updateIPAllowlist",
+        "profiles": "Deployment Manager",
+        "method": "PUT",
+        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}"
+    },
+    {
+        "operation": "deleteIPAllowlist",
+        "profiles": "Deployment Manager",
+        "method": "DELETE",
+        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}"
+    },
+    {
+        "operation": "deleteIPAllowlistBinding",
+        "profiles": "Deployment Manager",
+        "method": "DELETE",
+        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}"
+    },
+    {
+        "operation": "retryIPAllowlistBinding",
+        "profiles": "Deployment Manager",
+        "method": "PUT",
+        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}/retry"
+    },
+    {
+        "operation": "createIPAllowlistBinding",
+        "profiles": "Deployment Manager",
+        "method": "POST",
+        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/bindings"
+    },
+    {
+        "operation": "createIPAllowlist",
+        "profiles": "Deployment Manager",
+        "method": "POST",
+        "path": "/api/program/{programId}/ipAllowlists"
+    },
+    {
+        "operation": "createEnvironmentDomainName",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "POST",
+        "path": "/api/program/{programId}/domainNames"
+    },
+    {
+        "operation": "updateEnvironmentDomainName",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "PUT",
+        "path": "/api/program/{programId}/domainName/{domainNameId}"
+    },
+    {
+        "operation": "deleteEnvironmentDomainName",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "DELETE",
+        "path": "/api/program/{programId}/domainName/{domainNameId}"
+    },
+    {
+        "operation": "deployDomainName",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "POST",
+        "path": "/api/program/{programId}/domainName/{domainNameId}/deploy"
+    },
+    {
+        "operation": "verifyDomainName",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "POST",
+        "path": "/api/program/{programId}/domainName/{domainNameId}/verify"
+    },
+    {
+        "operation": "validateDomainName",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "POST",
+        "path": "/api/program/{programId}/domainNames/validate"
+    },
+    {
+        "operation": "updateCertificate",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "PUT",
+        "path": "/api/program/{programId}/certificate/{certificateId}"
+    },
+    {
+        "operation": "deleteCertificate",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "DELETE",
+        "path": "/api/program/{programId}/certificate/{certificateId}"
+    },
+    {
+        "operation": "createCertificate",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "POST",
+        "path": "/api/program/{programId}/certificates"
     }
 ]

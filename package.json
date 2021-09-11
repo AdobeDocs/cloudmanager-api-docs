@@ -28,7 +28,8 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-react": "7.25.1",
-    "eslint-plugin-standard": "4.1.0"
+    "eslint-plugin-standard": "4.1.0",
+    "js-yaml": "3.14.1"
   },
   "scripts": {
     "start": "gatsby build && gatsby serve",
@@ -36,12 +37,12 @@
     "dev": "gatsby develop",
     "dev:https": "gatsby develop --https --host localhost.corp.adobe.com --port 9000",
     "dev:debug": "node --nolazy node_modules/.bin/gatsby develop --inspect-brk",
-    "build": "gatsby build",
+    "build": "npm run lint && gatsby build",
     "build:incremental": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "lint": "eslint gatsby-*.js src files",
-    "lint-fix": "eslint gatsby-*.js src files --fix"
+    "lint": "eslint gatsby-*.js src files scripts && node scripts/validate-permissions.js",
+    "lint-fix": "eslint gatsby-*.js src files scripts --fix"
   },
   "engines": {
     "node": ">=14.0.0"
