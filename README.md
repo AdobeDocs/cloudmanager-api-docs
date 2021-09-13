@@ -8,13 +8,14 @@ the [Adobe I/O Gatsby Theme](https://github.com/adobe/aio-theme).
 ### Requirements
 
 Node 14.x
+Yarn 1.22.x
 
 ### Building Locally
 
 For local development, simply use :
 ```
-$ npm install
-$ npm run dev
+$ yarn install
+$ yarn dev
 ```
 
 ## Launching a deploy

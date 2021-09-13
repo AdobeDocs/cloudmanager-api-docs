@@ -37,7 +37,7 @@
     "dev": "gatsby develop",
     "dev:https": "gatsby develop --https --host localhost.corp.adobe.com --port 9000",
     "dev:debug": "node --nolazy node_modules/.bin/gatsby develop --inspect-brk",
-    "build": "npm run lint && gatsby build",
+    "build": "yarn run lint && gatsby build",
     "build:incremental": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "serve": "gatsby serve",
     "clean": "gatsby clean",

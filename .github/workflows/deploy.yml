@@ -95,10 +95,10 @@ jobs:
       - name: Clean Cache
         if: needs.set-state.outputs.clean_cache == 'true'
         run: |
-          npm run clean
+          yarn clean
       - name: Build
         run: |
-          npm run build
+          yarn build
         env:
           PREFIX_PATHS: true # equivalent to --prefix-paths flag for 'gatsby build'
           PATH_PREFIX: ${{ needs.set-state.outputs.path_prefix }}
@@ -169,10 +169,10 @@ jobs:
       - name: Clean Cache
         if: needs.set-state.outputs.clean_cache == 'true'
         run: |
-          npm run clean
+          yarn clean
       - name: Build
         run: |
-          npm run build
+          yarn build
         env:
           PREFIX_PATHS: true # equivalent to --prefix-paths flag for 'gatsby build'
           PATH_PREFIX: ${{ needs.set-state.outputs.path_prefix }}
