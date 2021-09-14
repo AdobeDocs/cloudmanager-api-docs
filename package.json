@@ -12,16 +12,25 @@
     "url": "https://github.com/justinedelson"
   },
   "dependencies": {
-    "@adobe/gatsby-theme-aio": "3.20.1",
+    "@adobe/gatsby-theme-aio": "3.20.3",
+    "@emotion/react": "11.4.1",
+    "@spectrum-css/buttongroup": "3.0.3",
+    "@spectrum-css/fieldlabel": "3.0.3",
+    "axios": "0.21.4",
+    "classnames": "2.3.1",
     "gatsby": "3.8.1",
     "gatsby-plugin-static-folders": "1.0.1",
+    "patch-package": "6.4.7",
+    "postinstall-postinstall": "2.1.0",
     "prop-types": "15.7.2",
+    "qs": "6.10.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-safe": "1.3.0",
     "tty-browserify": "0.0.1"
   },
   "devDependencies": {
+    "@emotion/eslint-plugin": "11.2.0",
     "eslint": "7.32.0",
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-import": "2.24.2",
@@ -35,14 +44,17 @@
     "start": "gatsby build && gatsby serve",
     "start:prefix": "gatsby build --prefix-paths && gatsby serve --prefix-paths",
     "dev": "gatsby develop",
-    "dev:https": "gatsby develop --https --host localhost.corp.adobe.com --port 9000",
+    "dev:https": "gatsby develop --https --host localhost.corp.adobe.com --port 443",
+    "dev:https:stage": "gatsby develop --https --host developer-stage.adobe.com --port 443",
+    "dev:https:prod": "gatsby develop --https --host www.adobe.io --port 443",
     "dev:debug": "node --nolazy node_modules/.bin/gatsby develop --inspect-brk",
     "build": "yarn run lint && gatsby build",
     "build:incremental": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "lint": "eslint gatsby-*.js src files scripts && node scripts/validate-permissions.js",
-    "lint-fix": "eslint gatsby-*.js src files scripts --fix"
+    "lint-fix": "eslint gatsby-*.js src files scripts --fix",
+    "postinstall": "patch-package"
   },
   "engines": {
     "node": ">=14.0.0"
