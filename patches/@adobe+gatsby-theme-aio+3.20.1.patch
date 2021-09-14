@@ -1,0 +1,38 @@
+diff --git a/node_modules/@adobe/gatsby-theme-aio/src/components/Code/index.js b/node_modules/@adobe/gatsby-theme-aio/src/components/Code/index.js
+index 9d8ace3..9706712 100644
+--- a/node_modules/@adobe/gatsby-theme-aio/src/components/Code/index.js
++++ b/node_modules/@adobe/gatsby-theme-aio/src/components/Code/index.js
+@@ -42,7 +42,8 @@ const Code = ({ children, className = '', theme }) => {
+   return (
+     <Highlight {...defaultProps} code={children} language={language}>
+       {({ className, tokens, getLineProps, getTokenProps }) => {
+-        const lines = tokens.slice(0, -1);
++        const isEmptyItem = (token) => token && (token.length === 1 && token[0].empty)
++        const lines = isEmptyItem(tokens[tokens.length - 1]) ? tokens.slice(0, -1) : tokens;
+         const isMultiLine = lines.length > 1;
+         const textarea = createRef();
+ 
+@@ -97,7 +98,7 @@ const Code = ({ children, className = '', theme }) => {
+               </span>
+             </div>
+             <pre className={classNames(className, 'spectrum-Code spectrum-Code--sizeM')}>
+-              {tokens.slice(0, -1).map((line, i) => {
++              {lines.map((line, i) => {
+                 const { style: lineStyles, ...lineProps } = getLineProps({ line, key: i });
+ 
+                 return (
+diff --git a/node_modules/@adobe/gatsby-theme-aio/src/components/Picker/index.js b/node_modules/@adobe/gatsby-theme-aio/src/components/Picker/index.js
+index 44cda1f..d73edcd 100644
+--- a/node_modules/@adobe/gatsby-theme-aio/src/components/Picker/index.js
++++ b/node_modules/@adobe/gatsby-theme-aio/src/components/Picker/index.js
+@@ -45,6 +45,10 @@ const Picker = ({ label, isQuiet, items, onChange, ...props }) => {
+     }
+   }, [options]);
+ 
++  useEffect(() => {
++    setOptions(items)
++  }, [items])
++
+   return (
+     <div>
+       <button

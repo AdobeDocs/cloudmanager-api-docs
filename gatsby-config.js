@@ -39,6 +39,10 @@ module.exports = {
           title: 'Event Definitions',
           description: 'Definition of Event Payloads',
           path: '/reference/events/',
+        }, {
+          title: 'Playground',
+          description: 'API Playground (Early Access)',
+          path: '/reference/playground/',
         }],
       },
       {

@@ -13,7 +13,10 @@
         }],
         "node/no-unsupported-features/es-syntax" : ["error", {
           "ignores": ["modules"]
-        }]
+        }],
+        "@emotion/no-vanilla": "error",
+        "@emotion/syntax-preference": ["error", "string"],
+        "@emotion/import-from-emotion": "error"
     },
     "parserOptions": {
       "sourceType": "module"
@@ -25,5 +28,6 @@
       "react" : {
         "version": "detect"
       }
-    }
+    },
+    "plugins": ["@emotion"]
 }
