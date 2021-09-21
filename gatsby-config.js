@@ -32,6 +32,10 @@ module.exports = {
           description: 'Reference document for the Cloud Manager API',
           path: '/reference/api/',
         }, {
+          title: 'Cloud Manager API Models',
+          description: 'Reference document for the model objects Cloud Manager API',
+          path: '/reference/models/',
+        }, {
           title: 'Event Definitions',
           description: 'Definition of Event Payloads',
           path: '/reference/events/',
