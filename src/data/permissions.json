@@ -155,5 +155,29 @@
         "profiles": "Deployment Manager, Business Owner",
         "method": "POST",
         "path": "/api/program/{programId}/certificates"
+    },
+    {
+        "operation": "createNetworkInfrastructure",
+        "profiles": "Business Owner",
+        "method": "POST",
+        "path": "/api/program/{programId}/networkInfrastructures"
+    },
+    {
+        "operation": "updateNetworkInfrastructure",
+        "profiles": "Business Owner",
+        "method": "PUT",
+        "path": "/api/program/{programId}/networkInfrastructure/{networkInfrastructureId}"
+    },
+    {
+        "operation": "enableEnvironmentAdvancedNetworkingConfiguration",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "PUT",
+        "path": "/api/program/{programId}/environment/{environmentId}/advancedNetworking"
+    },
+    {
+        "operation": "disableEnvironmentAdvancedNetworkingConfiguration",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "DELETE",
+        "path": "/api/program/{programId}/environment/{environmentId}/advancedNetworking"
     }
 ]
