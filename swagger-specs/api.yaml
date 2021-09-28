@@ -4201,7 +4201,7 @@ definitions:
     properties:
       name:
         type: string
-        example: VA7
+        example: va7
         description: Region name
       _links:
         type: object
