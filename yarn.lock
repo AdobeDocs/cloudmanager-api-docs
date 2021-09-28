@@ -24,10 +24,10 @@
     globby "^11.0.1"
     graphql-fetch "^1.0.1"
 
-"@adobe/gatsby-theme-aio@3.20.1":
-  version "3.20.1"
-  resolved "https://registry.yarnpkg.com/@adobe/gatsby-theme-aio/-/gatsby-theme-aio-3.20.1.tgz#9678f90f916c07e60a42a442956b9104be37497d"
-  integrity sha512-naiMagmkQYGiqjqMOFbDjjRboY7LnSJhl0u1IepqieTSJtwJnzzbkk5ZOsvZtgotic4VdciWxCQtHJK9kOOhHw==
+"@adobe/gatsby-theme-aio@3.20.3":
+  version "3.20.3"
+  resolved "https://registry.yarnpkg.com/@adobe/gatsby-theme-aio/-/gatsby-theme-aio-3.20.3.tgz#08bd225a0ca1403c966bad89394a20042aaeb5b9"
+  integrity sha512-fQvNmtRvhc5DfGNVrUaJ5hM59bT+1qAvejIDWytsnxYEt1WgbDck72Ogue+01Bd/5l7W42HdS7MlJ0aCeYrB8A==
   dependencies:
     "@adobe/focus-ring-polyfill" "^0.1.5"
     "@adobe/gatsby-source-github-file-contributors" "^0.3.1"

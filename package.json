@@ -12,7 +12,7 @@
     "url": "https://github.com/justinedelson"
   },
   "dependencies": {
-    "@adobe/gatsby-theme-aio": "3.20.1",
+    "@adobe/gatsby-theme-aio": "3.20.3",
     "gatsby": "3.8.1",
     "gatsby-plugin-static-folders": "1.0.1",
     "prop-types": "15.7.2",
