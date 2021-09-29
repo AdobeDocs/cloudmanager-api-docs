@@ -53,6 +53,26 @@ See which permissions are required for using the API.
 
 [All Guides](guides/)
 
+<DiscoverBlock slots="heading, link, text"/>
+
+### Detailed API Information
+
+[Complete API Reference](reference/api/) 
+
+See the full API Reference.
+
+<DiscoverBlock slots="link, text"/>
+
+[Event Definitions](reference/events/) 
+
+See the definitions of events sent from Cloud Manager.
+
+<DiscoverBlock slots="link, text"/>
+
+[API Playground](reference/playground/) 
+
+Make API calls from your browser.
+
 <DiscoverBlock width="100%" slots="heading, link, text"/>
 
 ### Tutorial
@@ -60,14 +80,6 @@ See which permissions are required for using the API.
 [Tutorial](tutorial/) 
 
 Walk through a step-by-step tutorial
-
-<DiscoverBlock width="100%" slots="heading, link, text"/>
-
-### API References
-
-[Complete API Reference](reference/api/) 
-
-See the full API Reference.
 
 <DiscoverBlock width="100%" slots="heading, link, text"/>
 
