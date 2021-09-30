@@ -2826,6 +2826,7 @@ definitions:
         description: The total number of embedded items
       _page:
         $ref: '#/definitions/RequestedPageDetails'
+        description: Details of the requested page of items
       _embedded:
         type: object
         readOnly: true
@@ -2840,10 +2841,13 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           page:
             $ref: '#/definitions/HalLink'
+            description: An arbitrary page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
@@ -2958,6 +2962,7 @@ definitions:
             description: The repositories linked to this program.
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/ipAllowlists':
+            description: The IP allowlists linked to this program.
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/certificates':
             description: The SSL certificates linked to this program.
@@ -2971,7 +2976,7 @@ definitions:
           'http://ns.adobe.com/adobecloud/rel/networkInfrastructures':
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/regions':
-            description: Regions
+            description: The regions available for this program.
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
@@ -3078,7 +3083,7 @@ definitions:
             description: Get pipeline execution by id
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/executions':
-            description: Run history
+            description: Get all historic executions for this pipeline.
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/variables':
             description: Custom pipeline variables
@@ -3145,8 +3150,10 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
@@ -3329,6 +3336,7 @@ definitions:
         description: The total number of embedded items
       _page:
         $ref: '#/definitions/RequestedPageDetails'
+        description: Details of the requested page of items
       _embedded:
         type: object
         readOnly: true
@@ -3343,10 +3351,13 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           page:
             $ref: '#/definitions/HalLink'
+            description: An arbitrary page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
@@ -3422,8 +3433,10 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
@@ -3544,6 +3557,7 @@ definitions:
         description: The total number of embedded items
       _page:
         $ref: '#/definitions/RequestedPageDetails'
+        description: Details of the requested page of items
       _embedded:
         type: object
         readOnly: true
@@ -3558,10 +3572,13 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           page:
             $ref: '#/definitions/HalLink'
+            description: An arbitrary page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
@@ -3613,8 +3630,10 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
@@ -3624,9 +3643,19 @@ definitions:
       start:
         type: integer
         format: int32
+        description: The start index for the current page of results
       limit:
         type: integer
         format: int32
+        description: The item limit for the current page of results
+      next:
+        type: integer
+        format: int32
+        description: The start index for the next page of results
+      prev:
+        type: integer
+        format: int32
+        description: The start index for the previous page of results
       orderBy:
         type: string
       property:
@@ -3635,12 +3664,6 @@ definitions:
           type: string
       type:
         type: string
-      next:
-        type: integer
-        format: int32
-      prev:
-        type: integer
-        format: int32
     description: Filtering and sorting page details
   MissingParameter:
     type: object
@@ -3973,8 +3996,10 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
@@ -3999,8 +4024,10 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
@@ -4128,6 +4155,7 @@ definitions:
         description: The total number of embedded items
       _page:
         $ref: '#/definitions/RequestedPageDetails'
+        description: Details of the requested page of items
       _embedded:
         type: object
         readOnly: true
@@ -4142,10 +4170,13 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           page:
             $ref: '#/definitions/HalLink'
+            description: An arbitrary page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
@@ -4228,11 +4259,32 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
+  Organisation:
+    type: object
+    properties:
+      organizationName:
+        type: string
+        example: adobecloudmanager-acmeCorp
+        description: Name of the git repository organization
+        minLength: 0
+        maxLength: 50
+      status:
+        type: string
+        example: creating
+        description: Status of the organisation on-boarding process
+        enum:
+          - not_started
+          - creating
+          - ready
+          - failed
+    description: Organisation details
   Tenant:
     type: object
     required:
@@ -4255,6 +4307,12 @@ definitions:
         description: IMS Tenant Id
         minLength: 0
         maxLength: 255
+      description:
+        type: string
+        example: Description for acmeCorp
+        description: Description of the tenant
+        minLength: 0
+        maxLength: 255
       status:
         type: string
         example: creating
@@ -4263,6 +4321,9 @@ definitions:
           - creating
           - ready
           - failed
+      organisation:
+        description: Tenant-level git repository organisation
+        $ref: '#/definitions/Organisation'
       _links:
         type: object
         readOnly: true
@@ -4292,8 +4353,10 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
@@ -4333,8 +4396,10 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
@@ -4561,8 +4626,10 @@ definitions:
         properties:
           next:
             $ref: '#/definitions/HalLink'
+            description: The next page of results.
           prev:
             $ref: '#/definitions/HalLink'
+            description: The previous page of results.
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation

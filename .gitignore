@@ -8,3 +8,5 @@ yarn-error.log
 .env
 .env.*
 static
+junit.xml
+coverage
