@@ -32,6 +32,8 @@ const addScript = (url) =>
     document.head.appendChild(script)
   })
 
+const LOCAL_STORGAGE_EARLY_WARNING_DISMISS = 'cmplayground.dismissedEarlyAccessWarning'
+
 const Playground = () => {
   const [ims, setIms] = useState(null)
   const [isLoadingIms, setIsLoadingIms] = useState(true)
@@ -39,6 +41,7 @@ const Playground = () => {
   const [profile, setProfile] = useState(null)
   const [accessToken, setAccessToken] = useState(null)
   const [orgId, setOrgId] = useState(null)
+  const [showEarlyAccessWarning, setShowEarlyAccessWarning] = useState(true)
 
   // Load and initialize IMS
   useEffect(() => {
@@ -67,6 +70,22 @@ const Playground = () => {
       setIsLoadingIms(false)
     }
   }, [])
+
+  useEffect(() => {
+    if (window.localStorage) {
+      if (window.localStorage.getItem(LOCAL_STORGAGE_EARLY_WARNING_DISMISS)) {
+        setShowEarlyAccessWarning(false)
+      }
+    }
+  }, [])
+
+  const dismissEarlyAccessWarning = () => {
+    setShowEarlyAccessWarning(false)
+    if (window.localStorage) {
+      window.localStorage.setItem(LOCAL_STORGAGE_EARLY_WARNING_DISMISS, 'true')
+    }
+  }
+
   useEffect(() => {
     if (ims && !isLoadingIms) {
       setAccessToken(ims.getAccessToken())
@@ -108,7 +127,13 @@ const Playground = () => {
           The Cloud Manager API Playground enables authorized users to make API calls to the Cloud Manager API using their current user account. The tabs shown below will
           populate with the API responses allow you to navigate through the API.
         </p>
-        <InlineAlert variant="warning" text={<span>The playground is an early access work-in-progress. It may not be fully functional. If you run into issues, please log an issue using the button above.</span>}/>
+        {showEarlyAccessWarning && (
+        <InlineAlert variant="warning"
+          text={<span>
+            The playground is an early access work-in-progress. It may not be fully functional. If you run into issues, please log an issue using the button above.
+            {' '}<a onClick={dismissEarlyAccessWarning} className="spectrum-Link">Dismiss</a>
+            </span>}/>
+        )}
         {(profile && playgroundEnabled) ? (<PlaygroundHeader adobeIdData={ims.adobeIdData} accessToken={accessToken} clientId={clientId} setOrgId={setOrgId} profile={profile}/>) : (<DisabledPlayground isWaitingForLogin={clientId && ims && !accessToken}/>)}
       </header>
       <section className="cmapi-playground-body">
