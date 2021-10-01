@@ -219,7 +219,13 @@ ${request.body}`
             className="spectrum-Textfield-input" onKeyDown={(e) => e.key === 'Enter' && makeRequest()}
           />
         </div>&nbsp;
-        <ActionButton onClick={makeRequest} isDisabled={requestRunning}>Go</ActionButton>&nbsp;
+        <ActionButton onClick={() => {
+          setRequest({
+            ...request,
+            method: 'GET',
+          })
+          makeRequest()
+        }} isDisabled={requestRunning}>Go</ActionButton>&nbsp;
         <ActionButton onClick={() => setRequest({ method: 'GET', path: '/api/programs', body: '' })} isDisabled={requestRunning}>Reset</ActionButton><br/>
         {endpoint !== PROD_CM_ENDPOINT && showCustomEndpoint()}
       </section>
