@@ -13,4 +13,4 @@ updates:
       - "dependencies"
     ignore:
       # Ignore updates to package
-      - dependency-name: "gatsby"
+      - dependency-name: "*"
