@@ -14,6 +14,7 @@ import React, { useState, useEffect, createRef, useRef } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import { css } from '@emotion/react'
+import classNames from 'classnames'
 import { ActionButton } from '@adobe/gatsby-theme-aio/src/components/ActionButton'
 import { InlineAlert } from '@adobe/gatsby-theme-aio/src/components/InlineAlert'
 import { CodeBlock } from '@adobe/gatsby-theme-aio/src/components/CodeBlock'
@@ -26,6 +27,7 @@ import { CM_ENDPOINTS, PROD_CM_ENDPOINT } from './constants'
 import '@spectrum-css/fieldlabel'
 import LinkTable from './link-table'
 import commonProptypes from './common-proptypes'
+import './playground.css'
 
 const RequestPane = ({
   orgId,
@@ -243,13 +245,9 @@ ${request.body}`
         </TabsItem>
         <TabsIndicator ref={selectedTabIndicator} />
       </Tabs>
-        {selectedIndex === 0 && (<section className="cmapi-playground-response-structured">{outputStructuredResponse()}</section>)}
-        {selectedIndex === 1 && (<section className="cmapi-playground-response-raw">
-          {outputRawResponse()}
-        </section>)}
-        {selectedIndex === 2 && (<section className="cmapi-playground-request">
-          {outputRequest()}
-        </section>)}
+      <section className={classNames('cmapi-playground-response-structured', { 'cmapi-playground-response-hidden': selectedIndex !== 0 })}>{outputStructuredResponse()}</section>
+      <section className={classNames('cmapi-playground-response-raw', { 'cmapi-playground-response-hidden': selectedIndex !== 1 })}>{outputRawResponse()}</section>
+      <section className={classNames('cmapi-playground-request', { 'cmapi-playground-response-hidden': selectedIndex !== 2 })}>{outputRequest()}</section>
     </section>
   )
 }
