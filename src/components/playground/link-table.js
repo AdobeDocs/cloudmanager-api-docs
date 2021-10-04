@@ -17,13 +17,15 @@ import { LinkOut } from '@adobe/gatsby-theme-aio/src/components/WorkflowIcons'
 import { ActionButton } from '@adobe/gatsby-theme-aio/src/components/ActionButton'
 import CustomRequestDialog from './custom-request-dialog'
 import { Edit } from '@adobe/gatsby-theme-aio/src/components/Icons'
+import TemplatedRequestDialog from './template-request-dialog'
 
 const LinkTable = ({
   links,
   setRequest,
   response,
 }) => {
-  const [dialogOpen, setDialogOpen] = useState(null)
+  const [customDialogOpen, setCustomDialogOpen] = useState(null)
+  const [templatedDialogOpen, setTemplatedDialogOpen] = useState(null)
 
   return (
       <Table width="100%">
@@ -37,8 +39,10 @@ const LinkTable = ({
         <TBody>
         {Object.keys(links).map(rel => {
           const href = links[rel].href
+          const templated = links[rel].templated
           const onSubmit = (req) => {
-            setDialogOpen(null)
+            setCustomDialogOpen(null)
+            setTemplatedDialogOpen(null)
             setRequest(req)
           }
           return (
@@ -50,14 +54,21 @@ const LinkTable = ({
               <code className="spectrum-Code spectrum-Code--sizeS">{href}</code>
             </Td>
             <Td>
-              <ActionButton title="Navigate" aria-label="Navigate" onClick={() => setRequest({ method: 'GET', path: href, body: '' })}>
+              <ActionButton title="Navigate" aria-label="Navigate" onClick={() => {
+                if (templated) {
+                  setTemplatedDialogOpen(rel)
+                } else {
+                  setRequest({ method: 'GET', path: href, body: '' })
+                }
+              }}>
                 <LinkOut />
               </ActionButton>
               &nbsp;
-              <ActionButton title="Custom Request" aria-label="Custom Request" onClick={() => setDialogOpen(rel)}>
+              <ActionButton title="Custom Request" aria-label="Custom Request" onClick={() => setCustomDialogOpen(rel)}>
                 <Edit />
               </ActionButton>
-              {(dialogOpen === rel) && <CustomRequestDialog path={href} currentResponse={response} onSubmit={onSubmit} onCancel={() => setDialogOpen(null)} />}
+              {(customDialogOpen === rel) && <CustomRequestDialog path={href} currentResponse={response} onSubmit={onSubmit} onCancel={() => setCustomDialogOpen(null)} />}
+              {(templatedDialogOpen === rel) && <TemplatedRequestDialog path={href} currentResponse={response} onSubmit={onSubmit} onCancel={() => setTemplatedDialogOpen(null)} />}
             </Td>
           </Tr>)
         })}
