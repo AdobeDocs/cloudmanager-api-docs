@@ -22,6 +22,9 @@ tags:
   - name: IP Allowlist Binding
   - name: Domain Names
   - name: SSLCertificates
+  - name: Tenants
+  - name: Network infrastructure
+  - name: Environment Advanced Networking Configuration
 paths:
   /api/programs:
     get:
@@ -2404,6 +2407,372 @@ paths:
             $ref: '#/definitions/SslCertificate'
         '404':
           description: Program not found
+  /api/tenants:
+    get:
+      tags:
+        - Tenants
+      summary: List Tenants
+      description: Lists all tenants
+      operationId: getTenants
+      parameters:
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of tenant list
+          schema:
+            $ref: '#/definitions/TenantList'
+  '/api/tenant/{tenantId}':
+    get:
+      tags:
+        - Tenants
+      summary: Get Tenant
+      description: Returns a tenant by its id
+      operationId: getTenant
+      parameters:
+        - name: tenantId
+          in: path
+          description: Identifier of the tenant
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of tenant
+          schema:
+            $ref: '#/definitions/Tenant'
+        '404':
+          description: Tenant not found
+  '/api/program/{programId}/networkInfrastructures':
+    get:
+      tags:
+        - Network infrastructure
+      summary: List Network Infrastructures
+      description: Lists all network infrastructures in an program
+      operationId: getNetworkInfrastructures
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of network infrastructure list
+          schema:
+            $ref: '#/definitions/NetworkInfrastructuresList'
+        '404':
+          description: Program not found
+    post:
+      tags:
+        - Network infrastructure
+      summary: Create network configuration
+      description: Create a new network configuration
+      operationId: createNetworkInfrastructure
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Configuration
+          required: true
+          schema:
+            $ref: '#/definitions/NetworkInfrastructure'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Network infrastructure created
+          schema:
+            $ref: '#/definitions/NetworkInfrastructure'
+        '404':
+          description: Resource not found
+  '/api/program/{programId}/networkInfrastructure/{networkInfrastructureId}':
+    get:
+      tags:
+        - Network infrastructure
+      summary: Get network infrastructure
+      description: Gets an existing network infrastructure
+      operationId: getNetworkInfrastructure
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: networkInfrastructureId
+          in: path
+          description: Identifier of the network infrastructure
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Got network Infrastructure details
+          schema:
+            $ref: '#/definitions/NetworkInfrastructure'
+        '404':
+          description: Network Infrastructure not found
+    put:
+      tags:
+        - Network infrastructure
+      summary: Update network infrastructure
+      description: Updates an existing network infrastructure
+      operationId: updateNetworkInfrastructure
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: networkInfrastructureId
+          in: path
+          description: Identifier of the network infrastructure
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Configuration
+          required: true
+          schema:
+            $ref: '#/definitions/NetworkInfrastructure'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Network infrastructure updated
+          schema:
+            $ref: '#/definitions/NetworkInfrastructure'
+        '404':
+          description: Network Infrastructure not found
+  '/api/program/{programId}/environment/{environmentId}/advancedNetworking':
+    get:
+      tags:
+        - Environment Advanced Networking Configuration
+      summary: Get Environment Advanced Networking Configuration
+      description: Returns an environment advanced networking configuration by its id
+      operationId: getEnvironmentAdvancedNetworkingConfiguration
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Environment Advanced Networking Configuration
+          schema:
+            $ref: '#/definitions/AdvancedNetworkingConfiguration'
+        '404':
+          description: Resource not found
+    put:
+      tags:
+        - Environment Advanced Networking Configuration
+      summary: Enable Environment Advanced Networking Configuration
+      description: Enable an environment advanced networking configuration by its id
+      operationId: enableEnvironmentAdvancedNetworkingConfiguration
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: ' Environment Advanced Networking Configuration'
+          required: true
+          schema:
+            $ref: '#/definitions/EnableAdvancedNetworkingConfiguration'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Environment Advanced Networking Configuration started
+          schema:
+            $ref: '#/definitions/Environment'
+        '400':
+          description: Validation exception
+        '404':
+          description: Resource not found
+    delete:
+      tags:
+        - Environment Advanced Networking Configuration
+      summary: Disable Environment Advanced Networking Configuration
+      description: Disable an environment advanced networking configuration by its id
+      operationId: disableEnvironmentAdvancedNetworkingConfiguration
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Environment Advanced Networking Configuration disabled
+          schema:
+            $ref: '#/definitions/Environment'
+        '400':
+          description: Validation exception
+        '404':
+          description: Resource not found
 definitions:
   ProgramList:
     type: object
@@ -2510,6 +2879,11 @@ definitions:
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/domainNames':
             description: The domain names linked to this program.
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/tenant':
+            description: The tenant this program belongs to
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/networkInfrastructures':
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
@@ -2721,15 +3095,15 @@ definitions:
       createdAt:
         type: string
         format: date-time
-        description: Start time
+        description: Timestamp at which the execution was created
       updatedAt:
         type: string
         format: date-time
-        description: Date of last status change
+        description: Timestamp at which the status of the execution last changed
       finishedAt:
         type: string
         format: date-time
-        description: Date the execution reached a final state
+        description: Timestamp at which the execution completed
       _embedded:
         type: object
         readOnly: true
@@ -2782,11 +3156,11 @@ definitions:
       startedAt:
         type: string
         format: date-time
-        description: Start time
+        description: Timestamp at which the step state started running
       finishedAt:
         type: string
         format: date-time
-        description: Date the execution reached a final state
+        description: Timestamp at which the step completed
       details:
         type: object
         example: scheduled time
@@ -2992,6 +3366,8 @@ definitions:
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/variables':
             description: Custom environment variables
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/advancedNetworking':
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
@@ -3703,6 +4079,357 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+  Tenant:
+    type: object
+    required:
+      - imsOrgId
+      - imsTenantId
+    properties:
+      id:
+        type: string
+        example: '14'
+        description: Identifier of the tenant
+      imsOrgId:
+        type: string
+        example: 1AAA222B3C4444D55E666666@AdobeOrg
+        description: IMS Organization of this tenant
+        minLength: 0
+        maxLength: 255
+      imsTenantId:
+        type: string
+        example: acmeCorp
+        description: IMS Tenant Id
+        minLength: 0
+        maxLength: 255
+      status:
+        type: string
+        example: creating
+        description: Status of the tenant
+        enum:
+          - creating
+          - ready
+          - failed
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          self:
+            $ref: '#/definitions/HalLink'
+    description: Describes a __Tenant__
+  TenantList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          tenants:
+            type: array
+            items:
+              $ref: '#/definitions/Tenant'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+          prev:
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+  DnsConfiguration:
+    type: object
+    required:
+      - resolvers
+    properties:
+      resolvers:
+        type: array
+        description: List of remote DNS resolvers
+        items:
+          type: string
+    description: DNS Information. Only applicable to VPN infrastructures.
+  GatewayInfrastructure:
+    type: object
+    required:
+      - address
+      - addressSpace
+    properties:
+      address:
+        type: string
+        description: Customer VPN Device IP Address
+      addressSpace:
+        type: array
+        description: IP Ranges to route through the VPN
+        items:
+          type: string
+  IpSecPolicyInfrastructure:
+    type: object
+    properties:
+      dhGroup:
+        type: string
+        description: DH Group
+        enum:
+          - DHGroup24
+          - "\_ECP384"
+          - "\_ECP256"
+          - "\_DHGroup14"
+          - "\_DHGroup2048"
+          - "\_DHGroup2"
+          - "\_DHGroup1"
+          - "\_None"
+      ikeEncryption:
+        type: string
+        description: IKEv2 Encryption
+        enum:
+          - AES256
+          - "\_AES192"
+          - "\_AES128"
+          - "\_DES3"
+          - "\_DES"
+      ikeIntegrity:
+        type: string
+        description: IKEv2 Integrity
+        enum:
+          - SHA384
+          - "\_SHA256"
+          - "\_SHA1"
+          - "\_MD5"
+      ipsecEncryption:
+        type: string
+        description: IPsec Encryption
+        enum:
+          - GCMAES256
+          - "\_GCMAES192"
+          - "\_GCMAES128"
+          - "\_AES256"
+          - "\_AES192"
+          - "\_AES128"
+          - "\_DES3"
+          - "\_DES"
+          - "\_None"
+      ipsecIntegrity:
+        type: string
+        description: IPsec Integrity
+        enum:
+          - GCMASE256
+          - "\_GCMAES192"
+          - "\_GCMAES128"
+          - "\_SHA256"
+          - "\_SHA1"
+          - "\_MD5"
+      pfsGroup:
+        type: string
+        description: PFS Group
+        enum:
+          - PFS24
+          - "\_ECP384"
+          - "\_ECP256"
+          - "\_PFS2048"
+          - "\_PFS2"
+          - "\_PFS1"
+          - "\_None"
+      saDatasize:
+        type: integer
+        format: int64
+        description: QM SA Lifetime Seconds min. 300
+      saLifetime:
+        type: integer
+        format: int32
+        description: QM SA Lifetime KBytes in 1024
+  VpnConnection:
+    type: object
+    required:
+      - gateway
+      - name
+      - sharedKey
+    properties:
+      name:
+        type: string
+        description: Name of the connection
+      gateway:
+        description: Gateway configuration
+        $ref: '#/definitions/GatewayInfrastructure'
+      sharedKey:
+        type: string
+        description: Customer VPN preshared key
+      ipsecPolicy:
+        description: IPSec Policy
+        $ref: '#/definitions/IpSecPolicyInfrastructure'
+  ErrorDetailsRepresentation:
+    type: object
+    properties:
+      errorCode:
+        type: string
+        description: The error code
+      publicDetails:
+        type: object
+        description: Additional error details that can be used by customer
+        additionalProperties:
+          type: object
+      message:
+        type: string
+        description: Human readable error message
+  NetworkInfrastructure:
+    type: object
+    required:
+      - kind
+      - region
+    properties:
+      kind:
+        type: string
+        description: Kind of the infrastructure
+        enum:
+          - vpn
+          - dedicatedEgressIp
+          - flexiblePortEgress
+      id:
+        type: string
+        description: id
+      programId:
+        type: string
+        example: '14'
+        description: Identifier of the program. Unique within the space.
+      status:
+        type: string
+        example: creating
+        description: Status of the network configuration
+        enum:
+          - creating
+          - failed
+          - updating
+          - deleting
+          - deleted
+          - ready
+          - error
+      region:
+        type: string
+        example: va6
+        description: Region to create the infrastructure
+      created:
+        type: string
+        format: date-time
+        description: Creation date
+      updated:
+        type: string
+        format: date-time
+        description: Last modification date
+      addressSpace:
+        type: array
+        description: A list of CIDRs. It can only be one /26 CIDR (64 IP addresses) or bigger IP range in the customer space. Cannot be changed later. Only applicable to VPN.
+        items:
+          type: string
+      dns:
+        description: DNS Information. Only applicable to VPN infrastructures.
+        $ref: '#/definitions/DnsConfiguration'
+      connections:
+        type: array
+        description: List of VPN connections
+        items:
+          $ref: '#/definitions/VpnConnection'
+      statusDetails:
+        description: Error details. Present only when failed operations.
+        $ref: '#/definitions/ErrorDetailsRepresentation'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/program':
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+    description: An network infrastructure representation
+  NetworkInfrastructuresList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          networkInfrastructures:
+            type: array
+            items:
+              $ref: '#/definitions/NetworkInfrastructure'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+          prev:
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+  PortForwardRepresentation:
+    type: object
+    required:
+      - portDest
+      - portOrig
+    properties:
+      name:
+        type: string
+        example: smtp.example.com
+        description: Destination host
+      portDest:
+        type: integer
+        format: int32
+        example: 443
+        description: Destination port
+        maximum: 65535
+      portOrig:
+        type: integer
+        format: int32
+        example: 30710
+        description: Origin port for tunnel. Must be unique and in 30000-31000 range.
+        minimum: 30000
+        maximum: 31000
+  AdvancedNetworkingConfiguration:
+    type: object
+    properties:
+      programId:
+        type: string
+        example: '14'
+        description: Identifier of the program. Unique within the space.
+        readOnly: true
+      environmentId:
+        type: string
+        description: Identifier of the environment. Unique within the space.
+        readOnly: true
+      networkInfrastructureId:
+        type: string
+        example: '123'
+        description: Advanced network infrastructure used.
+        readOnly: true
+      nonProxyHosts:
+        type: array
+        description: 'A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a ''''*'''' for wildcards.'
+        items:
+          type: string
+        example:
+          - '*.example.com'
+          - '*.example.net'
+      portForwards:
+        type: array
+        description: List of port forwarding rules
+        items:
+          $ref: '#/definitions/PortForwardRepresentation'
+      advancedNetworkingEnabled:
+        type: boolean
+        description: Whether advanced networking is enabled in this environment
+        default: false
+        readOnly: true
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          self:
+            $ref: '#/definitions/HalLink'
+    description: Describes the Advanced Networking configuration for an environment
   Redirect:
     type: object
     required:
@@ -3733,3 +4460,19 @@ definitions:
         items:
           type: string
         description: The PEM-encoded certificate chain.
+  EnableAdvancedNetworkingConfiguration:
+    type: object
+    properties:
+      nonProxyHosts:
+        type: array
+        description: 'A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a ''''*'''' for wildcards.'
+        items:
+          type: string
+        example:
+          - '*.example.com'
+          - '*.example.net'
+      portForwards:
+        type: array
+        description: List of port forwarding rules
+        items:
+          $ref: '#/definitions/PortForwardRepresentation'
