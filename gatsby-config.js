@@ -57,11 +57,11 @@ module.exports = {
             path: '/guides/getting-started/understanding-the-api/',
           },
           {
-            title: 'Create an API Integration',
+            title: 'Create an API Integration Project',
             path: '/guides/getting-started/create-api-integration/',
           },
           {
-            title: 'Create an Event Integration',
+            title: 'Create an Event Integration Project',
             path: '/guides/getting-started/create-event-integration/',
           },
           {

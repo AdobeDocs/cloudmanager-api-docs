@@ -1,10 +1,12 @@
 ---
-title: Creating an API Integration - Cloud Manager API
+title: Creating an API Integration Project - Cloud Manager API
 description: Describes how to create an API integration project on Adobe I/O Developer Console
 
 ---
 
-# Creating an API Integration
+# Creating an API Integration Project
+
+In order to make API calls to the Cloud Manager API, you must create a _project_ (formerly known as an _integration_) in the [Adobe I/O Console](https://console.adobe.io/). This project defines the credentials used when making API calls as well as the permissions associated with those credentials.
 
 To work with the Cloud Manager API on the Adobe I/O Console, you need to either the System Administrator role or be an assigned API Developer for your organization. Click [here](http://www.adobe.com/go/aac_api_prod_learn) to learn more about the API Developer role.
 

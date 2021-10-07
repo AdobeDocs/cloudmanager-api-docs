@@ -33,13 +33,13 @@ The links in this documentation will guide you through getting started with the 
 
 ### Guides
 
-[Creating an API Integration](guides/getting-started/create-api-integration/) 
+[Creating an API Integration Project](guides/getting-started/create-api-integration/) 
      
 Learn how to create an API Integration Project
 
 <DiscoverBlock slots="link, text"/>
 
-[Creating an Event Integration](guides/getting-started/create-event-integration/) 
+[Creating an Event Integration Project](guides/getting-started/create-event-integration/) 
 
 Learn how to create an Event Integration Project to receive webhooks when your pipelines execute.
 

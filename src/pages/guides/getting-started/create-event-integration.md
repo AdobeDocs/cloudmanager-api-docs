@@ -1,10 +1,10 @@
 ---
-title: Creating an Event Integration - Cloud Manager API
+title: Creating an Event Integration Project - Cloud Manager API
 description: Describes how to create an Event integration project on Adobe I/O Developer Console
 
 ---
 
-# Creating an Event Integration
+# Creating an Event Integration Project
 
 By using Adobe I/O Events, Cloud Manager can send external applications notifications when key events occur. This allows customers to connect existing and new external applications which respond to events emitted by Cloud Manager CI/CD pipelines.
 
