@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { Picker } from '@adobe/gatsby-theme-aio/src/components/Picker'
 import axios from 'axios'
@@ -34,10 +34,10 @@ const OrgIdSelector = ({
 
   const baseEndpoint = adobeIdData.environment === 'prod' ? IMS_ENDPOINTS.prod : IMS_ENDPOINTS.stage
 
-  const organizationsWithCorrectServiceCode = profile.projectedProductContext
+  const organizationsWithCorrectServiceCode = useMemo(() => profile.projectedProductContext
     ? profile.projectedProductContext.map(ppc => ppc.prodCtx)
       .filter(ctx => SERVICE_CODES.includes(ctx.serviceCode)).map(ctx => ctx.owningEntity)
-    : []
+    : [], [profile])
 
   useEffect(() => {
     const query = qs.stringify({
@@ -68,7 +68,7 @@ const OrgIdSelector = ({
         }])
       }
     })
-  }, [accessToken, clientId])
+  }, [accessToken, baseEndpoint, clientId, organizationsWithCorrectServiceCode, setOrgId])
 
   return (
     <Picker

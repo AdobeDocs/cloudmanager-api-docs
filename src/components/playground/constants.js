@@ -29,3 +29,5 @@ export const SERVICE_CODES = [
 ]
 
 export const ISSUE_URL = 'https://github.com/AdobeDocs/cloudmanager-api-docs/issues/new?body=Issue%20in%20API%20Playground'
+
+export const DEBOUNCE_DELAY = 300
