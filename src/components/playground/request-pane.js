@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import React, { useState, useEffect, createRef, useRef } from 'react'
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import { css } from '@emotion/react'
@@ -23,7 +23,8 @@ import { Code } from '@adobe/gatsby-theme-aio/src/components/Code'
 import { Divider } from '@adobe/gatsby-theme-aio/src/components/Divider'
 import { Accordion, AccordionItem } from '@adobe/gatsby-theme-aio/src/components/Accordion'
 import { Tabs, Item as TabsItem, Label as TabsItemLabel, TabsIndicator, positionIndicator } from '@adobe/gatsby-theme-aio/src/components/Tabs'
-import { CM_ENDPOINTS, PROD_CM_ENDPOINT } from './constants'
+import debounce from 'lodash.debounce'
+import { CM_ENDPOINTS, PROD_CM_ENDPOINT, DEBOUNCE_DELAY } from './constants'
 import '@spectrum-css/fieldlabel'
 import LinkTable from './link-table'
 import commonProptypes from './common-proptypes'
@@ -43,39 +44,50 @@ const RequestPane = ({
   const [response, setResponse] = useState(null)
   const [requestRunning, setRequestRunning] = useState(false)
   const [error, setError] = useState(false)
-  const tabs = [
-    createRef(),
-    createRef(),
-    createRef(),
-  ]
+
   const [endpoint, setEndpoint] = useState(adobeIdData.environment === 'prod' ? CM_ENDPOINTS.prod : CM_ENDPOINTS.stage)
   const [customEndpointShown, setCustomEndpointShow] = useState(false)
 
   // tabs
+  const structuredTab = useRef()
+  const rawTab = useRef()
+  const requestTab = useRef()
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const selectedTabIndicator = useRef(null)
+  const selectedTabIndicator = useRef()
 
-  const positionSelectedTabIndicator = (index = selectedIndex) => {
-    const selectedTab = tabs.filter((tab) => tab.current)[index]
-    if (selectedTabIndicator.current && selectedTab) {
+  const positionSelectedTabIndicator = useCallback((index) => {
+    let selectedTab
+    switch (index) {
+      case 0:
+        selectedTab = structuredTab
+        break
+      case 1:
+        selectedTab = rawTab
+        break
+      case 2:
+        selectedTab = requestTab
+        break
+    }
+
+    if (selectedTab && selectedTab.current && selectedTabIndicator.current) {
       positionIndicator(selectedTabIndicator, selectedTab)
     }
-  }
+  }, [structuredTab, rawTab, requestTab])
 
   useEffect(() => {
-    positionSelectedTabIndicator()
-  }, [tabs])
+    positionSelectedTabIndicator(selectedIndex)
+  }, [positionSelectedTabIndicator, selectedIndex])
 
-  const makeRequest = () => {
+  const makeRequest = useCallback((req, organizationId) => {
     setRequestRunning(true)
     axios({
-      url: `https://${endpoint}${request.path}`,
-      method: request.method,
-      data: (request.body && request.body !== '') ? JSON.parse(request.body) : undefined,
+      url: `https://${endpoint}${req.path}`,
+      method: req.method,
+      data: (req.body && req.body !== '') ? JSON.parse(req.body) : undefined,
       headers: {
         authorization: `Bearer ${accessToken.token}`,
         'x-api-key': clientId,
-        'x-gw-ims-org-id': orgId,
+        'x-gw-ims-org-id': organizationId,
       },
     }).then(response => {
       setRequestRunning(false)
@@ -86,11 +98,11 @@ const RequestPane = ({
       setError(true)
       setResponse(error.response)
     }).finally(() => {
-      window.location.hash = request.path
+      window.location.hash = req.path
     })
-  }
+  }, [accessToken.token, clientId, endpoint])
 
-  useEffect(() => makeRequest(), [request, orgId])
+  useEffect(() => makeRequest(request, orgId), [request, orgId, makeRequest])
 
   const stringify = (obj) => `${JSON.stringify(obj, null, 2)}`
 
@@ -188,6 +200,8 @@ ${request.body}`
     positionSelectedTabIndicator(idx)
   }
 
+  const onEndpointChange = useMemo(() => debounce((event) => setEndpoint(event.target.value), DEBOUNCE_DELAY), [])
+
   const showCustomEndpoint = () => {
     return (
       <>
@@ -200,13 +214,15 @@ ${request.body}`
         {customEndpointShown && (
         <>
           &nbsp;<div className="spectrum-Textfield cmapi-playground-Textfield--wide">
-            <input type="text" name="endpoint" value={endpoint} onChange={(event) => setEndpoint(event.target.value)}
+            <input type="text" name="endpoint" value={endpoint} onChange={onEndpointChange}
               className="spectrum-Textfield-input" />
           </div>&nbsp;
         </>)}
       </>
     )
   }
+
+  const onPathChange = useMemo(() => debounce((event) => setRequest({ method: 'GET', path: event.target.value }), DEBOUNCE_DELAY), [])
 
   return (
     <section className="cmapi-playground-request-container" css={css`
@@ -217,8 +233,8 @@ ${request.body}`
       <section className="cmapi-playground-request-header">
         <label htmlFor="path" className="spectrum-FieldLabel spectrum-FieldLabel--sizeM">Path</label>
         <div className="spectrum-Textfield cmapi-playground-Textfield--wide">
-          <input type="text" name="path" value={request.path} onChange={(event) => setRequest({ method: 'GET', path: event.target.value })}
-            className="spectrum-Textfield-input" onKeyDown={(e) => e.key === 'Enter' && makeRequest()}
+          <input type="text" name="path" value={request.path} onChange={onPathChange}
+            className="spectrum-Textfield-input" onKeyDown={(e) => e.key === 'Enter' && makeRequest(request, orgId)}
           />
         </div>&nbsp;
         <ActionButton onClick={() => {
@@ -226,21 +242,20 @@ ${request.body}`
             ...request,
             method: 'GET',
           })
-          makeRequest()
-        }} isDisabled={requestRunning}>Go</ActionButton>&nbsp;
-        <ActionButton onClick={() => setRequest({ method: 'GET', path: '/api/programs', body: '' })} isDisabled={requestRunning}>Reset</ActionButton><br/>
+        }} disabled={requestRunning}>Go</ActionButton>&nbsp;
+        <ActionButton onClick={() => setRequest({ method: 'GET', path: '/api/programs', body: '' })} disabled={requestRunning}>Reset</ActionButton><br/>
         {endpoint !== PROD_CM_ENDPOINT && showCustomEndpoint()}
       </section>
       <Divider orientation="horizontal" size="M"/>
       {error && <InlineAlert variant="error" text={<span>Unable to execute request. More information may be visible in the browser console.</span>} />}
       <Tabs>
-        <TabsItem ref={tabs[0]} selected={selectedIndex === 0} onClick={() => selectTab(0)}>
+        <TabsItem ref={structuredTab} selected={selectedIndex === 0} onClick={() => selectTab(0)}>
           <TabsItemLabel>Structured Response</TabsItemLabel>
         </TabsItem>
-        <TabsItem ref={tabs[1]} selected={selectedIndex === 1} onClick={() => selectTab(1)}>
+        <TabsItem ref={rawTab} selected={selectedIndex === 1} onClick={() => selectTab(1)}>
           <TabsItemLabel>Raw Response</TabsItemLabel>
         </TabsItem>
-        <TabsItem ref={tabs[2]} selected={selectedIndex === 1} onClick={() => selectTab(2)}>
+        <TabsItem ref={requestTab} selected={selectedIndex === 2} onClick={() => selectTab(2)}>
           <TabsItemLabel>Request</TabsItemLabel>
         </TabsItem>
         <TabsIndicator ref={selectedTabIndicator} />

@@ -1,5 +1,5 @@
 {
-    "extends": ["standard", "plugin:jsdoc/recommended", "plugin:node/recommended", "plugin:react/recommended"],
+    "extends": ["standard", "plugin:jsdoc/recommended", "plugin:node/recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
     "rules" : {
         "jsdoc/require-jsdoc": 0,
         "jsdoc/require-param": 0,
@@ -16,7 +16,8 @@
         }],
         "@emotion/no-vanilla": "error",
         "@emotion/syntax-preference": ["error", "string"],
-        "@emotion/import-from-emotion": "error"
+        "@emotion/import-from-emotion": "error",
+        "react-hooks/exhaustive-deps": "error"
     },
     "parserOptions": {
       "sourceType": "module"
