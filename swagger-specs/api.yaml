@@ -4173,64 +4173,64 @@ definitions:
         description: DH Group
         enum:
           - DHGroup24
-          - "\_ECP384"
-          - "\_ECP256"
-          - "\_DHGroup14"
-          - "\_DHGroup2048"
-          - "\_DHGroup2"
-          - "\_DHGroup1"
-          - "\_None"
+          - ECP384
+          - ECP256
+          - DHGroup14
+          - DHGroup2048
+          - DHGroup2
+          - DHGroup1
+          - None
       ikeEncryption:
         type: string
         description: IKEv2 Encryption
         enum:
           - AES256
-          - "\_AES192"
-          - "\_AES128"
-          - "\_DES3"
-          - "\_DES"
+          - AES192
+          - AES128
+          - DES3
+          - DES
       ikeIntegrity:
         type: string
         description: IKEv2 Integrity
         enum:
           - SHA384
-          - "\_SHA256"
-          - "\_SHA1"
-          - "\_MD5"
+          - SHA256
+          - SHA1
+          - MD5
       ipsecEncryption:
         type: string
         description: IPsec Encryption
         enum:
           - GCMAES256
-          - "\_GCMAES192"
-          - "\_GCMAES128"
-          - "\_AES256"
-          - "\_AES192"
-          - "\_AES128"
-          - "\_DES3"
-          - "\_DES"
-          - "\_None"
+          - GCMAES192
+          - GCMAES128
+          - AES256
+          - AES192
+          - AES128
+          - DES3
+          - DES
+          - None
       ipsecIntegrity:
         type: string
         description: IPsec Integrity
         enum:
           - GCMASE256
-          - "\_GCMAES192"
-          - "\_GCMAES128"
-          - "\_SHA256"
-          - "\_SHA1"
-          - "\_MD5"
+          - GCMAES192
+          - GCMAES128
+          - SHA256
+          - SHA1
+          - MD5
       pfsGroup:
         type: string
         description: PFS Group
         enum:
           - PFS24
-          - "\_ECP384"
-          - "\_ECP256"
-          - "\_PFS2048"
-          - "\_PFS2"
-          - "\_PFS1"
-          - "\_None"
+          - ECP384
+          - ECP256
+          - PFS2048
+          - PFS2
+          - PFS1
+          - None
       saDatasize:
         type: integer
         format: int64
