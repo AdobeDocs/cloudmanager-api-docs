@@ -1,0 +1,22 @@
+diff --git a/node_modules/@adobe/gatsby-theme-aio/algolia/query-builder.js b/node_modules/@adobe/gatsby-theme-aio/algolia/query-builder.js
+index faa9d6e..c7adf3c 100644
+--- a/node_modules/@adobe/gatsby-theme-aio/algolia/query-builder.js
++++ b/node_modules/@adobe/gatsby-theme-aio/algolia/query-builder.js
+@@ -53,7 +53,6 @@ class QueryBuilder {
+                     description
+                     contributors
+                     keywords
+-                    openAPISpec
+                     frameSrc
+                   }
+                   headings {
+@@ -138,7 +137,9 @@ class QueryBuilder {
+         minCharsLengthPerTag: 20,
+         minWordsCount: 5
+       };
++      /* need to figure out why this doesn't work on github actions
+       records = await this.createRecordsForOpenApi.execute(node, options);
++      */
+     } else {
+       const options = {
+         tagsToIndex: 'paragraph text, code, tableCell text',
