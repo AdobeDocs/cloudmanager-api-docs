@@ -1,0 +1,12 @@
+diff --git a/node_modules/@adobe/gatsby-theme-aio/algolia/query-builder.js b/node_modules/@adobe/gatsby-theme-aio/algolia/query-builder.js
+index faa9d6e..658cc34 100644
+--- a/node_modules/@adobe/gatsby-theme-aio/algolia/query-builder.js
++++ b/node_modules/@adobe/gatsby-theme-aio/algolia/query-builder.js
+@@ -53,7 +53,6 @@ class QueryBuilder {
+                     description
+                     contributors
+                     keywords
+-                    openAPISpec
+                     frameSrc
+                   }
+                   headings {
