@@ -383,7 +383,7 @@ paths:
           description: The updated Pipeline
           required: true
           schema:
-            $ref: '#/definitions/Pipeline'
+            $ref: '#/definitions/PipelineUpdate'
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -4460,6 +4460,33 @@ definitions:
         items:
           type: string
         description: The PEM-encoded certificate chain.
+  PipelineUpdate:
+    type: object
+    description: Describe an update to a pipeline
+    properties:
+      phases:
+        type: array
+        description: Pipeline phases to update
+        items:
+          $ref: '#/definitions/PipelinePhaseUpdate'
+  PipelinePhaseUpdate:
+    type: object
+    required:
+      - type
+    description: Describes an update to a phase of a pipeline
+    properties:
+      type:
+        type: string
+        example: BUILD
+        description: Type of the phase
+        enum:
+          - BUILD
+      repositoryId:
+        type: string
+        description: 'Identifier of the source repository. The code from this repository will be build at the start of this phase. If not provided, the current value is retained.'
+      branch:
+        type: string
+        description: 'Name of the tracked branch or a fully qualified git tag (e.g. refs/tags/v1). If not provided, the current value is retained.'
   EnableAdvancedNetworkingConfiguration:
     type: object
     properties:
