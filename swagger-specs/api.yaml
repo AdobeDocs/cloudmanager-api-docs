@@ -1270,7 +1270,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Variable'
+              $ref: '#/definitions/VariableUpdate'
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1362,7 +1362,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Variable'
+              $ref: '#/definitions/VariableUpdate'
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -4469,6 +4469,34 @@ definitions:
         description: Pipeline phases to update
         items:
           $ref: '#/definitions/PipelinePhaseUpdate'
+  VariableUpdate:
+    type: object
+    properties:
+      name:
+        type: string
+        example: MY_VAR1
+        description: 'Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number.'
+        minLength: 2
+        maxLength: 100
+        pattern: '[a-zA-Z_][a-zA-Z_0-9]*'
+      value:
+        type: string
+        example: myValue
+        description: 'Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted.'
+        minLength: 0
+        maxLength: 2048
+      type:
+        type: string
+        example: string
+        description: Type of the variable. Default `string` if missing. `secretString` variables are encrypted at rest. The type of a variable be changed after creation; the variable must be deleted and recreated.
+        enum:
+          - string
+          - secretString
+      service:
+        type: string
+        example: author
+        description: 'Service of the variable. When not provided, the variable applies to all services. Currently the values ''author'', ''publish'', and ''preview'' are supported. Note - this value is case-sensitive.'
+    description: 'A change (create, update, delete) of a named value than on an Environment or Pipeline'
   PipelinePhaseUpdate:
     type: object
     required:
