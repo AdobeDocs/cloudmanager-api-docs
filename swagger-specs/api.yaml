@@ -3630,7 +3630,7 @@ definitions:
       name:
         type: string
         example: MY_VAR1
-        description: 'Name of the variable. Of a-z, A-Z, _ and 0-9 Cannot begin with a number.'
+        description: 'Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number.'
         minLength: 2
         maxLength: 100
         pattern: '[a-zA-Z_][a-zA-Z_0-9]*'
