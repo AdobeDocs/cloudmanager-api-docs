@@ -24,10 +24,10 @@
     globby "^11.0.1"
     graphql-fetch "^1.0.1"
 
-"@adobe/gatsby-theme-aio@3.20.3":
-  version "3.20.3"
-  resolved "https://registry.yarnpkg.com/@adobe/gatsby-theme-aio/-/gatsby-theme-aio-3.20.3.tgz#08bd225a0ca1403c966bad89394a20042aaeb5b9"
-  integrity sha512-fQvNmtRvhc5DfGNVrUaJ5hM59bT+1qAvejIDWytsnxYEt1WgbDck72Ogue+01Bd/5l7W42HdS7MlJ0aCeYrB8A==
+"@adobe/gatsby-theme-aio@3.21.1":
+  version "3.21.1"
+  resolved "https://registry.yarnpkg.com/@adobe/gatsby-theme-aio/-/gatsby-theme-aio-3.21.1.tgz#f6214869b963401c4256afb07e139ccfc62295f6"
+  integrity sha512-5BPDSQ9e42nilE+UVV0RR6oUr4JjInrpi582vWenk5Btu8p8sLPiZjoMyHsweXqXQIemrfAG81RAhm00mYSajg==
   dependencies:
     "@adobe/focus-ring-polyfill" "^0.1.5"
     "@adobe/gatsby-source-github-file-contributors" "^0.3.1"
@@ -100,6 +100,7 @@
     sharp "^0.29.0"
     stream-http "^3.1.1"
     styled-components "^5.3.1"
+    swiper "^7.0.6"
     to-arraybuffer "^1.0.1"
     unist-util-select "2.0.0"
     uuid "^8.3.2"
@@ -5543,6 +5544,13 @@ dom-walk@^0.1.0:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/dom-walk/-/dom-walk-0.1.2.tgz#0c548bef048f4d1f2a97249002236060daa3fd84"
   integrity sha512-6QvTW9mrGeIegrFXdtQi9pk7O/nSK6lSdXW2eqUspN5LWD7UTji2Fqw5V2YLjBpHEoU9Xl/eUWNpDeZvoyOv2w==
+
+dom7@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/dom7/-/dom7-4.0.0.tgz#69c8fb9b170c92d64f385fdc37f81456e82b80a1"
+  integrity sha512-xOJ0LAHFwktyj8Xljz4R2wzRI+Y9mR0plkMP0WlqtwqAkqn/vbdAyRifiW/w8mXe17LGktntcAwsQ5fKVDBNYg==
+  dependencies:
+    ssr-window "^4.0.0"
 
 domelementtype@1, domelementtype@^1.3.0, domelementtype@^1.3.1:
   version "1.3.1"
@@ -13970,6 +13978,11 @@ sshpk@^1.7.0:
     safer-buffer "^2.0.2"
     tweetnacl "~0.14.0"
 
+ssr-window@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/ssr-window/-/ssr-window-4.0.0.tgz#4ee82fc360c5f88a022f321740bcfec59ada1a61"
+  integrity sha512-qCg6wJNeGNTVcPK2KFNfwtHU1gA3UZDZdxogu+Ys5+Ue5PMOENxUb7sscpAWWo4mWOBkJRCwQ50IlyA7qZ0hxw==
+
 st@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/st/-/st-2.0.0.tgz#eabd11e7722863b8ee8cfbdd027cb25e76ff35e9"
@@ -14432,6 +14445,14 @@ swap-case@^1.1.0:
   dependencies:
     lower-case "^1.1.1"
     upper-case "^1.1.1"
+
+swiper@^7.0.6:
+  version "7.0.8"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-7.0.8.tgz#5727cf4c34ca11e4b038ccff2a984bbf41d2f6ad"
+  integrity sha512-1IpWjHam98eTNiysi9MauvPHdLgrLesSYGd7JXvQEJkvW/NvI9gogMfRfbv+7jCK3+nIWuCpVnJmKCOBtJi4JA==
+  dependencies:
+    dom7 "^4.0.0"
+    ssr-window "^4.0.0"
 
 symbol-observable@^1.0.4:
   version "1.2.0"
