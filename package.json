@@ -21,6 +21,8 @@
     "gatsby": "3.8.1",
     "gatsby-plugin-static-folders": "1.0.1",
     "lodash.debounce": "4.0.8",
+    "lodash.uniq": "4.5.0",
+    "lodash.uniqueid": "4.0.1",
     "patch-package": "6.4.7",
     "postinstall-postinstall": "2.1.0",
     "prop-types": "15.7.2",

@@ -23,6 +23,7 @@ tags:
   - name: Domain Names
   - name: SSLCertificates
   - name: Tenants
+  - name: Regions
   - name: Network infrastructure
   - name: Environment Advanced Networking Configuration
 paths:
@@ -502,6 +503,15 @@ paths:
           description: Identifier of the pipeline
           required: true
           type: string
+        - name: pipelineExecutionMode
+          in: query
+          description: The mode in which to run the execution. EMERGENCY mode will skip certain steps and is only available to select AMS customers.
+          required: false
+          type: string
+          default: NORMAL
+          enum:
+            - NORMAL
+            - EMERGENCY
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1094,7 +1104,7 @@ paths:
         - name: service
           in: query
           description: Names of services
-          required: false
+          required: true
           type: array
           items:
             type: string
@@ -1102,7 +1112,7 @@ paths:
         - name: name
           in: query
           description: Names of log
-          required: false
+          required: true
           type: array
           items:
             type: string
@@ -2470,6 +2480,39 @@ paths:
             $ref: '#/definitions/Tenant'
         '404':
           description: Tenant not found
+  '/api/program/{programId}/regions':
+    get:
+      tags:
+        - Regions
+      summary: Lists Regions
+      description: Returns all Regions that can be used to create environments for this program.
+      operationId: getProgramRegions
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/RegionsList'
   '/api/program/{programId}/networkInfrastructures':
     get:
       tags:
@@ -2780,6 +2823,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _page:
         $ref: '#/definitions/RequestedPageDetails'
       _embedded:
@@ -2802,6 +2846,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
   EmbeddedProgram:
     type: object
     properties:
@@ -2825,12 +2870,34 @@ definitions:
         example: acmeCorp
         description: Tenant Id
         readOnly: true
+      status:
+        type: string
+        description: Status of the program
+        enum:
+          - creating
+          - ready
+          - deleting
+          - deleted
+          - deleted_failed
+          - failed
+      createdAt:
+        type: string
+        format: date-time
+        description: Created time
+      updatedAt:
+        type: string
+        format: date-time
+        description: Date of last change
       _links:
         type: object
         readOnly: true
         properties:
+          'http://ns.adobe.com/adobecloud/rel/tenant':
+            description: The tenant this program belongs to
+            $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: A lightweight representation of a Program
   Program:
     type: object
@@ -2859,6 +2926,24 @@ definitions:
         type: string
         example: 6522A55453334E247F120101@AdobeOrg
         description: Organisation Id
+      status:
+        type: string
+        description: Status of the program
+        enum:
+          - creating
+          - ready
+          - deleting
+          - deleted
+          - deleted_failed
+          - failed
+      createdAt:
+        type: string
+        format: date-time
+        description: Created time
+      updatedAt:
+        type: string
+        format: date-time
+        description: Date of last change
       _links:
         type: object
         readOnly: true
@@ -2885,8 +2970,12 @@ definitions:
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/networkInfrastructures':
             $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/regions':
+            description: Regions
+            $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: A representation of a Program
   HalLink:
     type: object
@@ -2968,6 +3057,13 @@ definitions:
           $ref: '#/definitions/PipelinePhase'
         maxItems: 100
         minItems: 1
+      type:
+        type: string
+        example: CI_CD
+        description: Pipeline type
+        enum:
+          - CI_CD
+          - CODE_GENERATOR
       _links:
         type: object
         readOnly: true
@@ -2995,6 +3091,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: A representation of a CI/CD Pipeline
   PipelinePhase:
     type: object
@@ -3033,6 +3130,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _embedded:
         type: object
         readOnly: true
@@ -3051,6 +3149,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
   PipelineExecution:
     type: object
     properties:
@@ -3092,6 +3191,12 @@ definitions:
           - ON_COMMIT
           - MANUAL
           - PUSH_UPGRADES
+      pipelineExecutionMode:
+        type: string
+        description: The mode in which the execution occurred. EMERGENCY mode will skip certain steps and is only available to select AMS customers
+        enum:
+          - NORMAL
+          - EMERGENCY
       createdAt:
         type: string
         format: date-time
@@ -3104,6 +3209,13 @@ definitions:
         type: string
         format: date-time
         description: Timestamp at which the execution completed
+      pipelineType:
+        type: string
+        example: CI_CD
+        description: Pipeline type
+        enum:
+          - CI_CD
+          - CODE_GENERATOR
       _embedded:
         type: object
         readOnly: true
@@ -3124,6 +3236,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: A representation of an execution of a CI/CD Pipeline.
   PipelineExecutionStepState:
     type: object
@@ -3205,6 +3318,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: Describes the status of a particular pipeline execution step for display purposes
   PipelineExecutionListRepresentation:
     type: object
@@ -3212,6 +3326,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _page:
         $ref: '#/definitions/RequestedPageDetails'
       _embedded:
@@ -3234,6 +3349,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: List of pipeline executions
   PipelineStepMetrics:
     type: object
@@ -3291,6 +3407,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _embedded:
         type: object
         readOnly: true
@@ -3309,6 +3426,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
   Environment:
     type: object
     properties:
@@ -3335,6 +3453,21 @@ definitions:
           - dev
           - stage
           - prod
+      status:
+        type: string
+        example: creating
+        description: Status of the environment
+        enum:
+          - creating
+          - ready
+          - deleting
+          - deleted
+          - updating
+          - failed
+          - deploy_failed
+          - created
+          - restoring
+          - restore_failed
       availableLogOptions:
         type: array
         description: List of logs available in the environment
@@ -3371,6 +3504,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: A representation of an Environment known to Cloud Manager.
   Repository:
     type: object
@@ -3399,6 +3533,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: A sourcecode repository
   RepositoryList:
     type: object
@@ -3406,6 +3541,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _page:
         $ref: '#/definitions/RequestedPageDetails'
       _embedded:
@@ -3428,6 +3564,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
   RepositoryBranch:
     type: object
     properties:
@@ -3461,6 +3598,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _embedded:
         type: object
         readOnly: true
@@ -3479,6 +3617,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
   RequestedPageDetails:
     type: object
     properties:
@@ -3614,6 +3753,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
       _embedded:
         type: object
         readOnly: true
@@ -3671,6 +3811,7 @@ definitions:
         type: integer
         format: int32
         example: 1
+        description: The total number of embedded items
       _embedded:
         type: object
         readOnly: true
@@ -3696,6 +3837,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
   LogOptionRepresentation:
     type: object
     required:
@@ -3761,6 +3903,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: Describes an __IP Allowed List Binding__
   IPAllowedList:
     type: object
@@ -3807,6 +3950,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: Describes an __IP Allowed List__
   IPAllowlistBindingsList:
     type: object
@@ -3814,6 +3958,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _embedded:
         type: object
         readOnly: true
@@ -3832,12 +3977,14 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
   IPAllowlistList:
     type: object
     properties:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _embedded:
         type: object
         readOnly: true
@@ -3856,6 +4003,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
   DomainNameTargetRepresentation:
     type: object
     properties:
@@ -3969,6 +4117,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: A Domain Name representation
   DomainNameList:
     type: object
@@ -3976,6 +4125,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _page:
         $ref: '#/definitions/RequestedPageDetails'
       _embedded:
@@ -3998,6 +4148,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
   SslCertificate:
     type: object
     properties:
@@ -4054,6 +4205,7 @@ definitions:
         properties:
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: Describes an SSL Certificate
   CertificatesList:
     type: object
@@ -4061,6 +4213,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _embedded:
         type: object
         readOnly: true
@@ -4079,6 +4232,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
   Tenant:
     type: object
     required:
@@ -4115,6 +4269,7 @@ definitions:
         properties:
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: Describes a __Tenant__
   TenantList:
     type: object
@@ -4122,6 +4277,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _embedded:
         type: object
         readOnly: true
@@ -4140,6 +4296,48 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
+  Region:
+    type: object
+    properties:
+      name:
+        type: string
+        example: va7
+        description: Region name
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+    description: Describes a __Region__
+  RegionsList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+        description: The total number of embedded items
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          regions:
+            type: array
+            items:
+              $ref: '#/definitions/Region'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+          prev:
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
   DnsConfiguration:
     type: object
     required:
@@ -4340,6 +4538,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: An network infrastructure representation
   NetworkInfrastructuresList:
     type: object
@@ -4347,6 +4546,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        description: The total number of embedded items
       _embedded:
         type: object
         readOnly: true
@@ -4365,6 +4565,7 @@ definitions:
             $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
   PortForwardRepresentation:
     type: object
     required:
@@ -4429,6 +4630,7 @@ definitions:
         properties:
           self:
             $ref: '#/definitions/HalLink'
+            description: This object's representation
     description: Describes the Advanced Networking configuration for an environment
   Redirect:
     type: object
