@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import React, { useEffect, useState, useMemo } from 'react'
+import React, { useEffect, useState, useMemo, useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { Picker } from '@adobe/gatsby-theme-aio/src/components/Picker'
 import axios from 'axios'
@@ -18,7 +18,8 @@ import qs from 'qs'
 import { IMS_ENDPOINTS, SERVICE_CODES } from './constants'
 import commonProptypes from './common-proptypes'
 
-const NO_ORG = -1
+const LOCAL_STORGAGE_ORG_ID = 'cmplayground.orgId'
+const NO_ORG = '-1'
 
 const OrgIdSelector = ({
   adobeIdData,
@@ -39,6 +40,13 @@ const OrgIdSelector = ({
       .filter(ctx => SERVICE_CODES.includes(ctx.serviceCode)).map(ctx => ctx.owningEntity)
     : [], [profile])
 
+  const saveAndSetOrgId = useCallback((newOrgId) => {
+    if (window.localStorage) {
+      window.localStorage.setItem(LOCAL_STORGAGE_ORG_ID, newOrgId)
+    }
+    setOrgId(newOrgId)
+  }, [setOrgId])
+
   useEffect(() => {
     const query = qs.stringify({
       bearer_token: accessToken.token,
@@ -57,10 +65,16 @@ const OrgIdSelector = ({
         }
       }).filter(org => organizationsWithCorrectServiceCode.includes(org.id))
       if (fromApi.length > 0) {
+        const localStorageOrgId = window.localStorage.getItem(LOCAL_STORGAGE_ORG_ID)
+        const localStorageReferenceOrg = localStorageOrgId && fromApi.find(org => org.id === localStorageOrgId)
+        if (localStorageReferenceOrg) {
+          localStorageReferenceOrg.selected = true
+        }
+
         setOrgs([
           ...fromApi,
         ])
-        setOrgId(fromApi[0].id)
+        setOrgId(localStorageReferenceOrg ? localStorageReferenceOrg.id : fromApi[0].id)
       } else {
         setOrgs([{
           id: NO_ORG,
@@ -73,7 +87,7 @@ const OrgIdSelector = ({
   return (
     <Picker
     items={orgs}
-    onChange={(idx) => orgs[idx].id !== -1 && setOrgId(orgs[idx].id)}>
+    onChange={(idx) => orgs[idx].id !== NO_ORG && saveAndSetOrgId(orgs[idx].id)}>
   </Picker>
   )
 }
