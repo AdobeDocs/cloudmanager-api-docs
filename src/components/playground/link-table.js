@@ -14,7 +14,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Table, THead, Th, TBody, Tr, Td } from '@adobe/gatsby-theme-aio/src/components/Table'
 import { LinkOut } from '@adobe/gatsby-theme-aio/src/components/WorkflowIcons'
-import { ActionButton } from '@adobe/gatsby-theme-aio/src/components/ActionButton'
+import { ActionButton, Text } from '@adobe/gatsby-theme-aio/src/components/ActionButton'
 import CustomRequestDialog from './custom-request-dialog'
 import { Edit } from '@adobe/gatsby-theme-aio/src/components/Icons'
 import TemplatedRequestDialog from './template-request-dialog'
@@ -54,7 +54,7 @@ const LinkTable = ({
               <code className="spectrum-Code spectrum-Code--sizeS">{href}</code>
             </Td>
             <Td>
-              <ActionButton title="Navigate" aria-label="Navigate" onClick={() => {
+              <ActionButton title="GET Request" aria-label="GET Request" onClick={() => {
                 if (templated) {
                   setTemplatedDialogOpen(rel)
                 } else {
@@ -62,10 +62,12 @@ const LinkTable = ({
                 }
               }}>
                 <LinkOut />
+                <Text>GET Request</Text>
               </ActionButton>
               &nbsp;
-              <ActionButton title="Custom Request" aria-label="Custom Request" onClick={() => setCustomDialogOpen(rel)}>
+              <ActionButton title="Customize Request" aria-label="Customize Request" onClick={() => setCustomDialogOpen(rel)}>
                 <Edit />
+                <Text>Custom Request</Text>
               </ActionButton>
               {(customDialogOpen === rel) && <CustomRequestDialog path={href} currentResponse={response} onSubmit={onSubmit} onCancel={() => setCustomDialogOpen(null)} />}
               {(templatedDialogOpen === rel) && <TemplatedRequestDialog path={href} currentResponse={response} onSubmit={onSubmit} onCancel={() => setTemplatedDialogOpen(null)} />}
