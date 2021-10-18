@@ -15,6 +15,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import { css } from '@emotion/react'
 import classNames from 'classnames'
+import { createHashHistory } from 'history'
 import { ActionButton } from '@adobe/gatsby-theme-aio/src/components/ActionButton'
 import { InlineAlert } from '@adobe/gatsby-theme-aio/src/components/InlineAlert'
 import { CodeBlock } from '@adobe/gatsby-theme-aio/src/components/CodeBlock'
@@ -36,11 +37,13 @@ const RequestPane = ({
   accessToken,
   clientId,
 }) => {
+  const [history] = useState(createHashHistory())
+
   const defaultRequest = {
     method: 'GET',
-    path: (window.location.hash && window.location.hash.substring(1)) || '/api/programs',
+    path: (history && history.location && history.location.pathname !== '/' && history.location.pathname) || '/api/programs',
   }
-  const [request, setRequest] = useState(defaultRequest)
+  const [request, internalSetRequest] = useState(defaultRequest)
   const [response, setResponse] = useState(null)
   const [requestRunning, setRequestRunning] = useState(false)
   const [error, setError] = useState(false)
@@ -78,6 +81,14 @@ const RequestPane = ({
     positionSelectedTabIndicator(selectedIndex)
   }, [positionSelectedTabIndicator, selectedIndex])
 
+  // requests created through this function always generate history entries
+  const setRequest = useCallback((req) => {
+    internalSetRequest({
+      ...req,
+      skipHistoryEntry: false,
+    })
+  }, [internalSetRequest])
+
   const makeRequest = useCallback((req, organizationId) => {
     setRequestRunning(true)
     axios({
@@ -98,11 +109,23 @@ const RequestPane = ({
       setError(true)
       setResponse(error.response)
     }).finally(() => {
-      window.location.hash = req.path
+      if (!req.skipHistoryEntry) {
+        history.push(req.path)
+      }
     })
-  }, [accessToken.token, clientId, endpoint])
+  }, [accessToken.token, clientId, endpoint, history])
 
   useEffect(() => makeRequest(request, orgId), [request, orgId, makeRequest])
+
+  history.listen(({ action, location }) => {
+    if (action === 'POP' && location.pathname && location.pathname !== '/' && location.pathname !== request.path) {
+      internalSetRequest({
+        method: 'GET',
+        path: location.pathname,
+        skipHistoryEntry: true,
+      })
+    }
+  })
 
   const stringify = (obj) => `${JSON.stringify(obj, null, 2)}`
 
@@ -222,7 +245,7 @@ ${request.body}`
     )
   }
 
-  const onPathChange = useMemo(() => debounce((event) => setRequest({ method: 'GET', path: event.target.value }), DEBOUNCE_DELAY), [])
+  const onPathChange = useMemo(() => debounce((event) => setRequest({ method: 'GET', path: event.target.value }), DEBOUNCE_DELAY), [setRequest])
 
   return (
     <section className="cmapi-playground-request-container" css={css`
