@@ -40,6 +40,10 @@
       .replace('README.md', '')
       .replace('.md', '/')
 
+    if (newLocation.startsWith('#/') && newLocation.endsWith('/patchEnvironmentVariables')) {
+      newLocation = 'reference/api/#operation/patchEnvironmentVariables'
+    }
+
     if (newLocation.startsWith('#/') || newLocation === '') {
       newLocation = 'reference/api/'
     }
