@@ -12,7 +12,7 @@
     "url": "https://github.com/justinedelson"
   },
   "dependencies": {
-    "@adobe/gatsby-theme-aio": "3.22.0",
+    "@adobe/gatsby-theme-aio": "3.22.1",
     "@emotion/react": "11.5.0",
     "@spectrum-css/buttongroup": "3.0.3",
     "@spectrum-css/fieldlabel": "3.0.3",
