@@ -44,6 +44,10 @@
       newLocation = 'reference/api/#operation/patchEnvironmentVariables'
     }
 
+    if (newLocation.startsWith('#/') && newLocation.endsWith('/patchPipelineVariables')) {
+      newLocation = 'reference/api/#operation/patchPipelineVariables'
+    }
+
     if (newLocation.startsWith('#/') || newLocation === '') {
       newLocation = 'reference/api/'
     }
