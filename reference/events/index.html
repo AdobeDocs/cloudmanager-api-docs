@@ -74,7 +74,7 @@
               opacity: 1 !important;
             }
           </style>
-        </noscript><script>/*
+        </noscript><script>var allCloudManagerApiOperations = ["/getPrograms","/getProgram","/deleteProgram","/getRepositories","/getRepository","/getBranches","/getPipelines","/getPipeline","/deletePipeline","/patchPipeline","/invalidateCache","/getCurrentExecution","/startPipeline","/getExecution","/stepState","/advancePipelineExecution","/cancelPipelineExecutionStep","/getStepLogs","/stepMetric","/getExecutions","/getEnvironments","/getEnvironment","/deleteEnvironment","/getEnvironmentLogs","/downloadLogs","/getEnvironmentVariables","/patchEnvironmentVariables","/getPipelineVariables","/patchPipelineVariables","/getIPAllowlist","/updateIPAllowlist","/deleteIPAllowlist","/getIPAllowlistBinding","/deleteIPAllowlistBinding","/retryIPAllowlistBinding","/getIPAllowlistBindings","/createIPAllowlistBinding","/getProgramIPAllowlists","/createIPAllowlist","/getDomainNames","/createEnvironmentDomainName","/getEnvironmentDomainName","/updateEnvironmentDomainName","/deleteEnvironmentDomainName","/deployDomainName","/verifyDomainName","/validateDomainName","/getCertificate","/updateCertificate","/deleteCertificate","/getCertificates","/createCertificate","/getTenants","/getTenant","/getProgramRegions","/getNetworkInfrastructures","/createNetworkInfrastructure","/getNetworkInfrastructure","/updateNetworkInfrastructure","/getEnvironmentAdvancedNetworkingConfiguration","/enableEnvironmentAdvancedNetworkingConfiguration","/disableEnvironmentAdvancedNetworkingConfiguration"]</script><script>/*
  * Copyright 2021 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License. You may obtain a copy
@@ -109,6 +109,8 @@ window.addEventListener('click', function (event) {
  * governing permissions and limitations under the License.
  */
 
+/* global allCloudManagerApiOperations */
+
 (() => {
   const href = window.location.href
   if (window.location.href.includes('github.io')) { // don't do any of this on gh pages
@@ -139,12 +141,12 @@ window.addEventListener('click', function (event) {
       .replace('README.md', '')
       .replace('.md', '/')
 
-    if (newLocation.startsWith('#/') && newLocation.endsWith('/patchEnvironmentVariables')) {
-      newLocation = 'reference/api/#operation/patchEnvironmentVariables'
-    }
-
-    if (newLocation.startsWith('#/') && newLocation.endsWith('/patchPipelineVariables')) {
-      newLocation = 'reference/api/#operation/patchPipelineVariables'
+    if (newLocation.startsWith('#/')) {
+      allCloudManagerApiOperations.forEach(operationPath => {
+        if (newLocation.endsWith(operationPath)) {
+          newLocation = `reference/api/#operation${operationPath}`
+        }
+      })
     }
 
     if (newLocation.startsWith('#/') || newLocation === '') {
