@@ -1,7 +1,15 @@
 ---
 title: Understanding Metric Data  - Cloud Manager API
 description: Describes the structure of metric data in the API
-
+keywords:
+  - Experience Cloud
+  - Adobe Experience Manager
+  - API Documentation
+  - Cloud Manager
+  - Code Quality
+  - Performance Testing
+  - Security Testing
+  - Experience Audit
 ---
 
 # Understanding Metric Data

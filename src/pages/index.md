@@ -1,7 +1,11 @@
 ---
 title: Overview - Cloud Manager API
 description: This is the overview page of the Cloud Manager API
- 
+keywords:
+  - Experience Cloud
+  - Adobe Experience Manager
+  - API Documentation
+  - Cloud Manager
 ---
 
 <Hero slots="image, heading, text"/> 

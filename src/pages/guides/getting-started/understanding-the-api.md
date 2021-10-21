@@ -1,7 +1,11 @@
 ---
 title: Understanding the API - Cloud Manager API
 description: Describes the general structure of the API
-
+keywords:
+  - Experience Cloud
+  - Adobe Experience Manager
+  - API Documentation
+  - Cloud Manager
 ---
 
 # Understanding the API

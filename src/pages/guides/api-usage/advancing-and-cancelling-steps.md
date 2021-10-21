@@ -1,7 +1,15 @@
 ---
 title: Advancing and Cancelling Steps - Cloud Manager API
 description: Describes how to advance or cancel steps
-
+keywords:
+  - Experience Cloud
+  - Adobe Experience Manager
+  - API Documentation
+  - Cloud Manager
+  - Pipeline
+  - Code Quality
+  - Performance Testing
+  - Security Testing
 ---
 
 # Advancing and Cancelling Steps

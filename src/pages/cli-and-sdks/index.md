@@ -1,7 +1,13 @@
 ---
 title: CLI and SDKs - Cloud Manager API
 description: Describes the available CLI and SDKs that use the API
-
+keywords:
+  - Experience Cloud
+  - Adobe Experience Manager
+  - JavaScript
+  - Java
+  - Command Line Interface
+  - Cloud Manager
 ---
 
 # CLI and SDKs

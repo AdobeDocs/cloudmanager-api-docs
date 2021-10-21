@@ -1,7 +1,12 @@
 ---
 title: Getting Started with Postman - Cloud Manager API
 description: Describes how to use a pre-configured Postman collection
-
+keywords:
+  - Experience Cloud
+  - Adobe Experience Manager
+  - API Documentation
+  - Cloud Manager
+  - Postman
 ---
 
 import RunInPostman from '../../../components/run-in-postman.js'

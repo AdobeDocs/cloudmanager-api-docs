@@ -1,7 +1,13 @@
 ---
 title: Tutorial - Cloud Manager API
 description: This is the start of a tutorial for the Cloud Manager API
- 
+keywords:
+  - Experience Cloud
+  - Adobe Experience Manager
+  - API Documentation
+  - Cloud Manager
+  - Tutorial
+  - JavaScript
 ---
 
 # Tutorial Introduction

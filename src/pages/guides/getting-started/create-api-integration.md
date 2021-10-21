@@ -1,7 +1,11 @@
 ---
 title: Creating an API Integration Project - Cloud Manager API
 description: Describes how to create an API integration project on Adobe I/O Developer Console
-
+keywords:
+  - Experience Cloud
+  - Adobe Experience Manager
+  - API Documentation
+  - Cloud Manager
 ---
 
 # Creating an API Integration Project
