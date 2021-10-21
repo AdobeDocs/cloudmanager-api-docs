@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
+/* global allCloudManagerApiOperations */
+
 (() => {
   const href = window.location.href
   if (window.location.href.includes('github.io')) { // don't do any of this on gh pages
@@ -40,12 +42,12 @@
       .replace('README.md', '')
       .replace('.md', '/')
 
-    if (newLocation.startsWith('#/') && newLocation.endsWith('/patchEnvironmentVariables')) {
-      newLocation = 'reference/api/#operation/patchEnvironmentVariables'
-    }
-
-    if (newLocation.startsWith('#/') && newLocation.endsWith('/patchPipelineVariables')) {
-      newLocation = 'reference/api/#operation/patchPipelineVariables'
+    if (newLocation.startsWith('#/')) {
+      allCloudManagerApiOperations.forEach(operationPath => {
+        if (newLocation.endsWith(operationPath)) {
+          newLocation = `reference/api/#operation${operationPath}`
+        }
+      })
     }
 
     if (newLocation.startsWith('#/') || newLocation === '') {

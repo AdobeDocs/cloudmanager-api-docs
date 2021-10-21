@@ -12,14 +12,22 @@
 
 import React from 'react'
 import { readFileSync } from 'fs'
+import { paths } from './swagger-specs/api.yaml'
+
+const operations = Object.keys(paths).flatMap(path => {
+  return Object.keys(paths[path]).map(method => `/${paths[path][method].operationId}`)
+})
 
 export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
     <script dangerouslySetInnerHTML= {{
+      __html: `var allCloudManagerApiOperations = ${JSON.stringify(operations)}`,
+    }} key="operations"/>,
+    <script dangerouslySetInnerHTML= {{
       __html: `${readFileSync('./files/accordion.js').toString()}`,
     }} key="accordion"/>,
-<script dangerouslySetInnerHTML= {{
-  __html: `${readFileSync('./files/redirections.js').toString()}`,
-}} key="redirections"/>,
+    <script dangerouslySetInnerHTML= {{
+      __html: `${readFileSync('./files/redirections.js').toString()}`,
+    }} key="redirections"/>,
   ])
 }
