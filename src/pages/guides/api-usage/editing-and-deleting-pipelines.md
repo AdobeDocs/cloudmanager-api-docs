@@ -1,7 +1,10 @@
 ---
 title: Editing and Deleting Pipelines - Cloud Manager API
 description: Describes editing and deleting pipelines
-
+keywords:
+  - Experience Cloud
+  - API Documentation
+  - JavaScript
 ---
 
 ## Editing Pipelines

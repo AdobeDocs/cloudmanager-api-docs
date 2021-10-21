@@ -1,7 +1,10 @@
 ---
 title: Tutorial Step 6 - Cloud Manager API
 description: This is step 6 of the Cloud Manager API Tutorial
- 
+keywords:
+  - Experience Cloud
+  - API Documentation
+  - JavaScript 
 ---
 
 import Glitch from "../../components/glitch"

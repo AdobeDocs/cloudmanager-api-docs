@@ -1,7 +1,10 @@
 ---
 title: Understanding Metric Data  - Cloud Manager API
 description: Describes the structure of metric data in the API
-
+keywords:
+  - Experience Cloud
+  - API Documentation
+  - JavaScript
 ---
 
 # Understanding Metric Data

@@ -1,6 +1,10 @@
 ---
 title: Cloud Manager Model Definitions
 description: Cloud Manager Model Definitions
+keywords:
+  - Experience Cloud
+  - API Documentation
+  - JavaScript
 ---
 
 import data from '../../../swagger-specs/api.yaml'

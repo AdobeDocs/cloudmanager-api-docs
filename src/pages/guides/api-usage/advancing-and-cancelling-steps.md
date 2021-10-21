@@ -1,7 +1,10 @@
 ---
 title: Advancing and Cancelling Steps - Cloud Manager API
 description: Describes how to advance or cancel steps
-
+keywords:
+  - Experience Cloud
+  - API Documentation
+  - JavaScript
 ---
 
 # Advancing and Cancelling Steps

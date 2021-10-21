@@ -1,7 +1,10 @@
 ---
 title: API Permissions - Cloud Manager API
 description: Describes the permissions needed to use the API
-
+keywords:
+  - Experience Cloud
+  - API Documentation
+  - JavaScript
 ---
 
 import PermissionsTable from "../../../components/permissions-table"

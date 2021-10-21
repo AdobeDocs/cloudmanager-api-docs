@@ -1,6 +1,10 @@
 ---
 title: Guides - Cloud Manager API
-description: This is the guides overview page of Cloud Manager API 
+description: This is the guides overview page of Cloud Manager API
+keywords:
+  - Experience Cloud
+  - API Documentation
+  - JavaScript 
 ---
 
 import GettingStarted from './getting-started/index.md'

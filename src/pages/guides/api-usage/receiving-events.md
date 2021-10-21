@@ -3,6 +3,10 @@ title: Receiving Events  - Cloud Manager API
 description: Describes how to receive events
 contributors:
   - https://github.com/bstopp 
+keywords:
+  - Experience Cloud
+  - API Documentation
+  - JavaScript  
 ---
 # Receiving Events
 

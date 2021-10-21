@@ -1,6 +1,10 @@
 ---
 title: Getting Started Guides - Cloud Manager API
-description: This is the getting started guides overview page of Cloud Manager API 
+description: This is the getting started guides overview page of Cloud Manager API
+keywords:
+  - Experience Cloud
+  - API Documentation
+  - JavaScript 
 ---
 
 <DiscoverBlock slots="heading, link, text"/>

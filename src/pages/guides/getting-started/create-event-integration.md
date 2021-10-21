@@ -1,7 +1,10 @@
 ---
 title: Creating an Event Integration Project - Cloud Manager API
 description: Describes how to create an Event integration project on Adobe I/O Developer Console
-
+keywords:
+  - Experience Cloud
+  - API Documentation
+  - JavaScript
 ---
 
 # Creating an Event Integration Project
