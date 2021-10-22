@@ -30,6 +30,30 @@ import '@spectrum-css/fieldlabel'
 import LinkTable from './link-table'
 import commonProptypes from './common-proptypes'
 import './playground.css'
+import { getDefinitionNameFromRef, addAnnotations } from '../../utils/schema'
+
+import SWAGGER from '../../../swagger-specs/api.yaml'
+
+const PATHS = []
+Object.keys(SWAGGER.paths).forEach(path => {
+  const newPath = path.replace(/{[a-zA-Z]+}/g, '[^/]+')
+  const methods = SWAGGER.paths[path]
+  const responseDefName = methods.get && methods.get.responses && methods.get.responses['200'] && methods.get.responses['200'].schema && methods.get.responses['200'].schema.$ref
+  if (responseDefName) {
+    const responseDefShortName = getDefinitionNameFromRef(responseDefName)
+    if (SWAGGER.definitions[responseDefShortName]) {
+      PATHS.push({
+        pattern: new RegExp(`^${newPath}(?:\\?.*)?$`),
+        schema: SWAGGER.definitions[responseDefShortName],
+      })
+    }
+  }
+})
+
+const TAB_INDEX_STRUCTURED = 0
+const TAB_INDEX_ANNOTATED = 1
+const TAB_INDEX_RAW = 2
+const TAB_INDEX_REQUEST = 3
 
 const RequestPane = ({
   orgId,
@@ -47,12 +71,12 @@ const RequestPane = ({
   const [response, setResponse] = useState(null)
   const [requestRunning, setRequestRunning] = useState(false)
   const [error, setError] = useState(false)
-
   const [endpoint, setEndpoint] = useState(adobeIdData.environment === 'prod' ? CM_ENDPOINTS.prod : CM_ENDPOINTS.stage)
   const [customEndpointShown, setCustomEndpointShow] = useState(false)
 
   // tabs
   const structuredTab = useRef()
+  const annotatedTab = useRef()
   const rawTab = useRef()
   const requestTab = useRef()
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -61,13 +85,16 @@ const RequestPane = ({
   const positionSelectedTabIndicator = useCallback((index) => {
     let selectedTab
     switch (index) {
-      case 0:
+      case TAB_INDEX_STRUCTURED:
         selectedTab = structuredTab
         break
-      case 1:
+      case TAB_INDEX_ANNOTATED:
+        selectedTab = annotatedTab
+        break
+      case TAB_INDEX_RAW:
         selectedTab = rawTab
         break
-      case 2:
+      case TAB_INDEX_REQUEST:
         selectedTab = requestTab
         break
     }
@@ -75,7 +102,7 @@ const RequestPane = ({
     if (selectedTab && selectedTab.current && selectedTabIndicator.current) {
       positionIndicator(selectedTabIndicator, selectedTab)
     }
-  }, [structuredTab, rawTab, requestTab])
+  }, [structuredTab, rawTab, requestTab, annotatedTab])
 
   useEffect(() => {
     positionSelectedTabIndicator(selectedIndex)
@@ -160,6 +187,14 @@ const RequestPane = ({
     return outputStructuredData(response.data)
   }
 
+  const outputAnnotatedResponse = () => {
+    if (!response || !response.data) {
+      return (<div />)
+    }
+
+    return outputAnnotatedData(response.data)
+  }
+
   const outputRequest = () => {
     let requestText = `${request.method} ${request.path}
 host: ${endpoint}
@@ -188,13 +223,14 @@ ${request.body}`
     delete structure._embedded
 
     const json = stringify(structure)
+    const schemaData = getSchema(data)
 
     return (
       <>
         <Code className="language-json" theme="light">{json}</Code>
         <Accordion>
           <AccordionItem header="Links">
-            <LinkTable links={links} setRequest={setRequest} response={data}/>
+            <LinkTable links={links} setRequest={setRequest} response={data} schema={schemaData.properties && schemaData.properties._links}/>
           </AccordionItem>
           {Object.keys(embedded).map((embeddedName) => {
             const key = `embedded-${embeddedName}`
@@ -206,6 +242,79 @@ ${request.body}`
                   return (
                   <AccordionItem key={idx} header={idx.toString()}>
                     {outputStructuredData(embeddedObject)}
+                  </AccordionItem>
+                  )
+                })}
+                </Accordion>
+              </AccordionItem>
+            )
+          })}
+          </Accordion>
+      </>
+    )
+  }
+
+  const getSchema = (responseData) => {
+    let schemaData
+
+    if (responseData._links && responseData._links.self) {
+      const pathEntry = PATHS.find(p => p.pattern.exec(responseData._links.self.href))
+      if (pathEntry) {
+        schemaData = pathEntry.schema
+      }
+    }
+    return schemaData || {}
+  }
+
+  const outputAnnotatedData = (data, level = 0, schemaOverride) => {
+    const baseLevel = level + 2
+    const structure = { ...data }
+    const links = structure._links || {}
+    const embedded = structure._embedded || {}
+
+    delete structure._links
+    delete structure._embedded
+
+    const schemaData = schemaOverride || getSchema(data)
+    const schemaJson = stringify(schemaData)
+
+    let json = stringify(structure)
+
+    json = addAnnotations(json, baseLevel, schemaData, SWAGGER)
+
+    return (
+      <>
+        <CodeBlock languages="JSON,JSON"
+          theme="light"
+          heading1={
+            <Heading3>Response Object</Heading3>
+          }
+          code1={
+            <Code className="language-json" theme="light">{json}</Code>
+          }
+          heading2={
+            <Heading3>Response Schema</Heading3>
+          }
+          code2={
+            <Code className="language-json" theme="light">{schemaJson}</Code>
+          } />
+        <Accordion>
+          <AccordionItem header="Links">
+            <LinkTable links={links} setRequest={setRequest} response={data} schema={schemaData.properties && schemaData.properties._links}/>
+          </AccordionItem>
+          {Object.keys(embedded).map((embeddedName) => {
+            const schemaOverrideRef = schemaData.properties && schemaData.properties._embedded && schemaData.properties._embedded.properties && schemaData.properties._embedded.properties[embeddedName] &&
+            schemaData.properties._embedded.properties[embeddedName].type === 'array' && schemaData.properties._embedded.properties[embeddedName].items && schemaData.properties._embedded.properties[embeddedName].items.$ref
+            const schema = schemaOverrideRef && SWAGGER.definitions[getDefinitionNameFromRef(schemaOverrideRef)]
+            const key = `embedded-${embeddedName}`
+            const objects = embedded[embeddedName]
+            return (
+              <AccordionItem header={`Embedded - ${embeddedName}`} key={key}>
+                <Accordion>
+                {objects.map((embeddedObject, idx) => {
+                  return (
+                  <AccordionItem key={idx} header={idx.toString()}>
+                    {outputAnnotatedData(embeddedObject, 0, schema)}
                   </AccordionItem>
                   )
                 })}
@@ -272,20 +381,24 @@ ${request.body}`
       <Divider orientation="horizontal" size="M"/>
       {error && <InlineAlert variant="error" text={<span>Unable to execute request. More information may be visible in the browser console.</span>} />}
       <Tabs>
-        <TabsItem ref={structuredTab} selected={selectedIndex === 0} onClick={() => selectTab(0)}>
+        <TabsItem ref={structuredTab} selected={selectedIndex === TAB_INDEX_STRUCTURED} onClick={() => selectTab(TAB_INDEX_STRUCTURED)}>
           <TabsItemLabel>Structured Response</TabsItemLabel>
         </TabsItem>
-        <TabsItem ref={rawTab} selected={selectedIndex === 1} onClick={() => selectTab(1)}>
+        <TabsItem ref={annotatedTab} selected={selectedIndex === TAB_INDEX_ANNOTATED} onClick={() => selectTab(TAB_INDEX_ANNOTATED)}>
+          <TabsItemLabel>Annotated Response</TabsItemLabel>
+        </TabsItem>
+        <TabsItem ref={rawTab} selected={selectedIndex === TAB_INDEX_RAW} onClick={() => selectTab(TAB_INDEX_RAW)}>
           <TabsItemLabel>Raw Response</TabsItemLabel>
         </TabsItem>
-        <TabsItem ref={requestTab} selected={selectedIndex === 2} onClick={() => selectTab(2)}>
+        <TabsItem ref={requestTab} selected={selectedIndex === TAB_INDEX_REQUEST} onClick={() => selectTab(TAB_INDEX_REQUEST)}>
           <TabsItemLabel>Request</TabsItemLabel>
         </TabsItem>
         <TabsIndicator ref={selectedTabIndicator} />
       </Tabs>
-      <section className={classNames('cmapi-playground-response-structured', { 'cmapi-playground-response-hidden': selectedIndex !== 0 })}>{outputStructuredResponse()}</section>
-      <section className={classNames('cmapi-playground-response-raw', { 'cmapi-playground-response-hidden': selectedIndex !== 1 })}>{outputRawResponse()}</section>
-      <section className={classNames('cmapi-playground-request', { 'cmapi-playground-response-hidden': selectedIndex !== 2 })}>{outputRequest()}</section>
+      <section className={classNames('cmapi-playground-response-structured', { 'cmapi-playground-response-hidden': selectedIndex !== TAB_INDEX_STRUCTURED })}>{outputStructuredResponse()}</section>
+      <section className={classNames('cmapi-playground-response-annotated', { 'cmapi-playground-response-hidden': selectedIndex !== TAB_INDEX_ANNOTATED })}>{outputAnnotatedResponse()}</section>
+      <section className={classNames('cmapi-playground-response-raw', { 'cmapi-playground-response-hidden': selectedIndex !== TAB_INDEX_RAW })}>{outputRawResponse()}</section>
+      <section className={classNames('cmapi-playground-request', { 'cmapi-playground-response-hidden': selectedIndex !== TAB_INDEX_REQUEST })}>{outputRequest()}</section>
     </section>
   )
 }

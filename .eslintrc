@@ -1,5 +1,5 @@
 {
-    "extends": ["standard", "plugin:jsdoc/recommended", "plugin:node/recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
+    "extends": ["standard", "plugin:jsdoc/recommended", "plugin:node/recommended", "plugin:react/recommended", "plugin:react-hooks/recommended", "plugin:jest/recommended"],
     "rules" : {
         "jsdoc/require-jsdoc": 0,
         "jsdoc/require-param": 0,

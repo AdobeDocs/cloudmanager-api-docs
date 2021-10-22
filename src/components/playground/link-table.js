@@ -23,6 +23,7 @@ const LinkTable = ({
   links,
   setRequest,
   response,
+  schema,
 }) => {
   const [customDialogOpen, setCustomDialogOpen] = useState(null)
   const [templatedDialogOpen, setTemplatedDialogOpen] = useState(null)
@@ -40,6 +41,7 @@ const LinkTable = ({
         {Object.keys(links).map(rel => {
           const href = links[rel].href
           const templated = links[rel].templated
+          const description = schema && schema.properties && schema.properties[rel] && schema.properties[rel].description
           const onSubmit = (req) => {
             setCustomDialogOpen(null)
             setTemplatedDialogOpen(null)
@@ -49,6 +51,7 @@ const LinkTable = ({
           <Tr key={rel}>
             <Td>
               <code className="spectrum-Code spectrum-Code--sizeS">{rel}</code>
+              {description && (<div>{description}</div>)}
             </Td>
             <Td>
               <code className="spectrum-Code spectrum-Code--sizeS">{href}</code>
@@ -83,6 +86,7 @@ LinkTable.propTypes = {
   setRequest: PropTypes.func.isRequired,
   links: PropTypes.object,
   response: PropTypes.object.isRequired,
+  schema: PropTypes.object,
 }
 
 export default LinkTable

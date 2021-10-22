@@ -35,15 +35,21 @@
     "uritemplate": "0.3.4"
   },
   "devDependencies": {
+    "@babel/core": "7.15.8",
+    "@babel/preset-env": "7.15.8",
     "@emotion/eslint-plugin": "11.5.0",
+    "babel-jest": "27.3.1",
     "eslint": "8.0.1",
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-import": "2.25.2",
+    "eslint-plugin-jest": "25.2.2",
     "eslint-plugin-jsdoc": "36.1.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.1",
     "eslint-plugin-react": "7.26.1",
     "eslint-plugin-react-hooks": "4.2.0",
+    "jest": "27.3.1",
+    "jest-junit": "13.0.0",
     "js-yaml": "4.1.0"
   },
   "scripts": {
@@ -54,12 +60,14 @@
     "dev:https:stage": "gatsby develop --https --host developer-stage.adobe.com --port 443",
     "dev:https:prod": "gatsby develop --https --host www.adobe.io --port 443",
     "dev:debug": "node --nolazy node_modules/.bin/gatsby develop --inspect-brk",
-    "build": "yarn run lint && npx copyfiles -f swagger-specs/* static && gatsby build",
+    "build": "yarn run lint && yarn run test && npx copyfiles -f swagger-specs/* static && gatsby build",
+    "build:incremental": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "lint": "eslint gatsby-*.js src files scripts && node scripts/validate-permissions.js",
     "lint-fix": "eslint gatsby-*.js src files scripts --fix",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "test": "jest --config test/jest.config.js"
   },
   "engines": {
     "node": ">=14.0.0"
