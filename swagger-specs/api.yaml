@@ -4328,6 +4328,9 @@ definitions:
         type: object
         readOnly: true
         properties:
+          'http://ns.adobe.com/adobecloud/rel/programs':
+            description: Programs defined in the tenant
+            $ref: '#/definitions/HalLink'
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
