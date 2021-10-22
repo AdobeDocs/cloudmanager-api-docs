@@ -361,6 +361,12 @@ ${request.body}`
       .spectrum-Textfield.cmapi-playground-Textfield--wide {
         width: var(--spectrum-global-dimension-size-5000);
       }
+      .cmapi-playground-response-structured,
+      .cmapi-playground-response-annotated {
+        .spectrum-Accordion-itemHeader {
+          font-size: var(--spectrum-global-dimension-font-size-100)
+        }
+      }
     `}>
       <section className="cmapi-playground-request-header">
         <label htmlFor="path" className="spectrum-FieldLabel spectrum-FieldLabel--sizeM">Path</label>
