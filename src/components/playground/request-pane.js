@@ -401,7 +401,13 @@ ${request.body}`
         </TabsItem>
         <TabsIndicator ref={selectedTabIndicator} />
       </Tabs>
-      <section className={classNames('cmapi-playground-response-structured', { 'cmapi-playground-response-hidden': selectedIndex !== TAB_INDEX_STRUCTURED })}>{outputStructuredResponse()}</section>
+      <section className={classNames('cmapi-playground-response-structured', { 'cmapi-playground-response-hidden': selectedIndex !== TAB_INDEX_STRUCTURED })}>
+        <div css={css`
+          margin-top: var(--spectrum-global-dimension-size-400);
+        `}>
+          {outputStructuredResponse()}
+        </div>
+      </section>
       <section className={classNames('cmapi-playground-response-annotated', { 'cmapi-playground-response-hidden': selectedIndex !== TAB_INDEX_ANNOTATED })}>{outputAnnotatedResponse()}</section>
       <section className={classNames('cmapi-playground-response-raw', { 'cmapi-playground-response-hidden': selectedIndex !== TAB_INDEX_RAW })}>{outputRawResponse()}</section>
       <section className={classNames('cmapi-playground-request', { 'cmapi-playground-response-hidden': selectedIndex !== TAB_INDEX_REQUEST })}>{outputRequest()}</section>
