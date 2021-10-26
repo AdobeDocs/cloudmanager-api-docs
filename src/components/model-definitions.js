@@ -122,9 +122,14 @@ const ModelDefinitions = ({ data, exclusions, defaultOpen, sort, forTag }) => {
 
   const renderObject = (obj, name, skipDescription) => {
     if (!obj.properties) {
-      return (<div>
-      <code className="spectrum-Code spectrum-Code--sizeS"><strong>object</strong></code>
-  </div>)
+      return (
+        <div css={css`
+          padding-left: calc(var(--spectrum-accordion-item-padding-x, var(--spectrum-global-dimension-size-225)) + var(--spectrum-accordion-icon-width, var(--spectrum-global-dimension-size-75)) + var(--spectrum-accordion-icon-gap, var(--spectrum-global-dimension-size-100)) + var(--spectrum-accordion-item-border-left-size-key-focus, var(--spectrum-alias-border-size-thick)));
+          padding-right: var(--spectrum-accordion-item-padding-x, var(--spectrum-global-dimension-size-225));
+        `}>
+          <code className="spectrum-Code spectrum-Code--sizeS"><strong>object</strong></code>
+          {obj.description && (<div>{obj.description}</div>)}
+        </div>)
     }
 
     return renderObjectSchema({

@@ -3283,10 +3283,8 @@ definitions:
         description: Timestamp at which the step completed
       details:
         type: object
-        example: scheduled time
-        description: Information about step result
-        additionalProperties:
-          type: object
+        description: Additional details of the step
+        $ref: '#/definitions/PipelineExecutionStepStateDetails'
       status:
         type: string
         example: NOT_STARTED
@@ -4803,3 +4801,29 @@ definitions:
         description: List of port forwarding rules
         items:
           $ref: '#/definitions/PortForwardRepresentation'
+  PipelineExecutionStepStateDetails:
+    type: object
+    description: Details available for each step state. The set of properties available will vary by the step action
+    properties:
+      deployCommands:
+        type: string
+        description: 'For deploy steps, a JSON array encoded as a string which lists the deployment activities expected to be performed.'
+      currentDeployCommandId:
+        type: string
+        description: 'For deploy steps, the current identifier from the deployCommands which is being executed.'
+      environmentUrls:
+        type: array
+        description: 'For deploy steps, the the set of URLs for the environment.'
+        items:
+          type: object
+          properties:
+            instanceType:
+              type: string
+            instanceUrl:
+              type: string
+      deploymentStepDescription:
+        type: string
+        description: 'For deploy steps, a JSON array encoded as a string which includes the detailed list of deployment activities which have been performed.'
+      input:
+        type: object
+        description: 'Input provided when advancing the step. See documentation at https://www.adobe.io/experience-cloud/cloud-manager/guides/api-usage/advancing-and-cancelling-steps/ for details.'
