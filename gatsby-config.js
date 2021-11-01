@@ -99,6 +99,10 @@ module.exports = {
             path: 'guides/api-usage/advancing-and-cancelling-steps.md',
             title: 'Advancing and Cancelling Steps',
           },
+          {
+            path: 'guides/api-usage/creating-programs-and-environments.md',
+            title: 'Creating Programs and Environments',
+          },
         ],
       },
       {
