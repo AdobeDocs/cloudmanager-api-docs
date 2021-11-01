@@ -3448,10 +3448,10 @@
   dependencies:
     "@spectrum-css/vars" "^3.0.1"
 
-"@spectrum-css/fieldlabel@3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@spectrum-css/fieldlabel/-/fieldlabel-3.0.3.tgz#f73c04d20734d4718ffb620dc46458904685b449"
-  integrity sha512-nEvIkEXCD5n4fW67Unq6Iu7VXoauEd/JGpfTY02VsC5p4FJLnwKfPDbJUuUsqClAxqw7nAsmXVKtn4zQFf5yPQ==
+"@spectrum-css/fieldlabel@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@spectrum-css/fieldlabel/-/fieldlabel-4.0.1.tgz#a50179ca6878596878da8856c9e81f51fdbe5088"
+  integrity sha512-o+MEKpLiM3782vm6OjS+CLAsmNFmwWFwgAht5+QHS2VX58hfmRoXWtpBAc/M0gxd+yt8rCIas/+McTsax+Gjkg==
 
 "@spectrum-css/icon@3.0.1":
   version "3.0.1"
