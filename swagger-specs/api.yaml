@@ -3128,6 +3128,18 @@ definitions:
       environmentId:
         type: string
         description: Identifier of the target environment. Mandatory if type=DEPLOY
+      environmentType:
+        type: string
+        description: 'Type of environment (for example stage or prod, readOnly = true)'
+        enum:
+          - dev
+          - stage
+          - prod
+      steps:
+        type: array
+        description: 'Steps to be included in the phase in execution order. Might be added or not, depending on permissions or configuration'
+        items:
+          $ref: '#/definitions/PipelineStep'
     description: Describes a phase of a pipeline
   PipelineList:
     type: object
@@ -3859,6 +3871,20 @@ definitions:
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
+  PipelineStep:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        type: string
+        example: deploy
+        description: Name of the step
+      options:
+        type: object
+        description: Map of option parameters for the step
+        $ref: '#/definitions/PipelineStepOptions'
+    description: Describes a step from a phase of a pipeline
   LogOptionRepresentation:
     type: object
     required:
@@ -4827,3 +4853,44 @@ definitions:
       input:
         type: object
         description: 'Input provided when advancing the step. See documentation at https://www.adobe.io/experience-cloud/cloud-manager/guides/api-usage/advancing-and-cancelling-steps/ for details.'
+  PipelineStepOptions:
+    properties:
+      skipDetachingDispatchers:
+        type: boolean
+        description: 'For deploy steps on AMS pipelines, if true will not detach dispatcher from the load balancer.'
+      dispatcherCacheInvalidationPaths:
+        type: array
+        items:
+          type: string
+        description: 'For deploy steps on AMS pipelines, list of paths to invalidate on dispatchers after package installation.'
+      dispatcherCacheFlushPaths:
+        type: array
+        items:
+          type: string
+        description: 'For deploy steps on AMS pipelines, list of paths to invalidate on dispatchers after package installation.'
+      cse:
+        type: string
+        enum:
+          - MY_CSE
+          - ANY_CSE
+        description: 'For managed steps on AMS pipelines, which CSE will be responsible for CSE oversight.'
+      popularPagesWeight:
+        type: integer
+        format: int32
+        description: 'For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the popular pages bucket.'
+      newPagesWeight:
+        type: integer
+        format: int32
+        description: 'For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the new pages bucket.'
+      otherPagesWeight:
+        type: integer
+        format: int32
+        description: 'For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the other pages bucket.'
+      imageAssetsWeight:
+        type: integer
+        format: int32
+        description: 'For assetsTest steps on AMS pipelines, the percentage of asset uploads which will be test images.'
+      pdfAssetsWeight:
+        type: integer
+        format: int32
+        description: 'For assetsTest steps on AMS pipelines, the percentage of asset uploads which will be test PDF files.'
