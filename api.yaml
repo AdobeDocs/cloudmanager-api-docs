@@ -2480,6 +2480,41 @@ paths:
             $ref: '#/definitions/Tenant'
         '404':
           description: Tenant not found
+  '/api/tenant/{tenantId}/programs':
+    get:
+      tags:
+        - Programs
+      summary: Lists Programs for Tenant
+      description: Returns all programs defined for tenant.
+      operationId: getProgramsForTenant
+      parameters:
+        - name: tenantId
+          in: path
+          description: Identifier of the tenant
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ProgramList'
+        '404':
+          description: Tenant not found.
   '/api/program/{programId}/regions':
     get:
       tags:
@@ -4554,14 +4589,17 @@ definitions:
       errorCode:
         type: string
         description: The error code
+        readOnly: true
       publicDetails:
         type: object
         description: Additional error details that can be used by customer
         additionalProperties:
           type: object
+        readOnly: true
       message:
         type: string
         description: Human readable error message
+        readOnly: true
   NetworkInfrastructure:
     type: object
     required:
@@ -4578,10 +4616,12 @@ definitions:
       id:
         type: string
         description: id
+        readOnly: true
       programId:
         type: string
         example: '14'
         description: Identifier of the program. Unique within the space.
+        readOnly: true
       status:
         type: string
         example: creating
@@ -4594,6 +4634,7 @@ definitions:
           - deleted
           - ready
           - error
+        readOnly: true
       region:
         type: string
         example: va6
@@ -4602,10 +4643,12 @@ definitions:
         type: string
         format: date-time
         description: Creation date
+        readOnly: true
       updated:
         type: string
         format: date-time
         description: Last modification date
+        readOnly: true
       addressSpace:
         type: array
         description: A list of CIDRs. It can only be one /26 CIDR (64 IP addresses) or bigger IP range in the customer space. Cannot be changed later. Only applicable to VPN.
@@ -4622,6 +4665,7 @@ definitions:
       statusDetails:
         description: Error details. Present only when failed operations.
         $ref: '#/definitions/ErrorDetailsRepresentation'
+        readOnly: true
       _links:
         type: object
         readOnly: true
@@ -4829,7 +4873,7 @@ definitions:
           $ref: '#/definitions/PortForwardRepresentation'
   PipelineExecutionStepStateDetails:
     type: object
-    description: Details available for each step state. The set of properties available will vary by the step action
+    description: Details available for each step state. The set of properties available will vary by the step action.
     properties:
       deployCommands:
         type: string
@@ -4854,6 +4898,8 @@ definitions:
         type: object
         description: 'Input provided when advancing the step. See documentation at https://www.adobe.io/experience-cloud/cloud-manager/guides/api-usage/advancing-and-cancelling-steps/ for details.'
   PipelineStepOptions:
+    type: object
+    description: Options for a pipeline step. Will vary based on step action and platform.
     properties:
       skipDetachingDispatchers:
         type: boolean
@@ -4867,7 +4913,7 @@ definitions:
         type: array
         items:
           type: string
-        description: 'For deploy steps on AMS pipelines, list of paths to invalidate on dispatchers after package installation.'
+        description: 'For deploy steps on AMS pipelines, list of paths to flush on dispatchers after package installation.'
       cse:
         type: string
         enum:
