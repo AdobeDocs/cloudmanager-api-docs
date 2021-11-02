@@ -4589,14 +4589,17 @@ definitions:
       errorCode:
         type: string
         description: The error code
+        readOnly: true
       publicDetails:
         type: object
         description: Additional error details that can be used by customer
         additionalProperties:
           type: object
+        readOnly: true
       message:
         type: string
         description: Human readable error message
+        readOnly: true
   NetworkInfrastructure:
     type: object
     required:
@@ -4613,10 +4616,12 @@ definitions:
       id:
         type: string
         description: id
+        readOnly: true
       programId:
         type: string
         example: '14'
         description: Identifier of the program. Unique within the space.
+        readOnly: true
       status:
         type: string
         example: creating
@@ -4629,6 +4634,7 @@ definitions:
           - deleted
           - ready
           - error
+        readOnly: true
       region:
         type: string
         example: va6
@@ -4637,10 +4643,12 @@ definitions:
         type: string
         format: date-time
         description: Creation date
+        readOnly: true
       updated:
         type: string
         format: date-time
         description: Last modification date
+        readOnly: true
       addressSpace:
         type: array
         description: A list of CIDRs. It can only be one /26 CIDR (64 IP addresses) or bigger IP range in the customer space. Cannot be changed later. Only applicable to VPN.
@@ -4657,6 +4665,7 @@ definitions:
       statusDetails:
         description: Error details. Present only when failed operations.
         $ref: '#/definitions/ErrorDetailsRepresentation'
+        readOnly: true
       _links:
         type: object
         readOnly: true
