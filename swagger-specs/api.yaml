@@ -4864,7 +4864,7 @@ definitions:
           $ref: '#/definitions/PortForwardRepresentation'
   PipelineExecutionStepStateDetails:
     type: object
-    description: Details available for each step state. The set of properties available will vary by the step action
+    description: Details available for each step state. The set of properties available will vary by the step action.
     properties:
       deployCommands:
         type: string
@@ -4889,6 +4889,8 @@ definitions:
         type: object
         description: 'Input provided when advancing the step. See documentation at https://www.adobe.io/experience-cloud/cloud-manager/guides/api-usage/advancing-and-cancelling-steps/ for details.'
   PipelineStepOptions:
+    type: object
+    description: Options for a pipeline step. Will vary based on step action and platform.
     properties:
       skipDetachingDispatchers:
         type: boolean
@@ -4902,7 +4904,7 @@ definitions:
         type: array
         items:
           type: string
-        description: 'For deploy steps on AMS pipelines, list of paths to invalidate on dispatchers after package installation.'
+        description: 'For deploy steps on AMS pipelines, list of paths to flush on dispatchers after package installation.'
       cse:
         type: string
         enum:
