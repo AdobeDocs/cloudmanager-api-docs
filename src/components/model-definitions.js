@@ -152,7 +152,7 @@ const ModelDefinitions = ({ data, exclusions, defaultOpen, sort, forTag }) => {
           isArray: true,
         })
       } else if (obj.items.type) {
-        return renderSimple(obj.items.type, obj, true)
+        return renderSimple(obj.items.type, { ...obj.items, description: obj.description }, true)
       }
     } else {
       return (<div></div>)
