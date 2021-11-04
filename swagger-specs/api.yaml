@@ -5114,6 +5114,7 @@ definitions:
         $ref: '#/definitions/ProgramCapabilities'
       solutionNames:
         type: array
+        description: List of solutions to be enabled on the new program.
         items:
           type: string
           enum:
