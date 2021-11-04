@@ -1002,6 +1002,51 @@ paths:
             $ref: '#/definitions/EnvironmentList'
         '404':
           description: Program not found
+    post:
+      tags:
+        - Environments
+      summary: Create or clone Environment
+      description: Create Environment
+      operationId: createEnvironment
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Environment
+          required: true
+          schema:
+            $ref: '#/definitions/NewEnvironment'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Environment created
+          schema:
+            $ref: '#/definitions/Environment'
+        '400':
+          description: Bad request
   '/api/program/{programId}/environment/{environmentId}':
     get:
       tags:
@@ -2515,6 +2560,51 @@ paths:
             $ref: '#/definitions/ProgramList'
         '404':
           description: Tenant not found.
+    post:
+      tags:
+        - Programs
+      summary: Create Program
+      description: Creates a program
+      operationId: addProgram
+      parameters:
+        - name: tenantId
+          in: path
+          description: Identifier of the tenant
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Program
+          required: true
+          schema:
+            $ref: '#/definitions/NewProgram'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Creation was successful.
+          schema:
+            $ref: '#/definitions/Program'
+        '409':
+          description: Program already exists.
   '/api/program/{programId}/regions':
     get:
       tags:
@@ -2942,6 +3032,7 @@ definitions:
     type: object
     required:
       - name
+      - type
     properties:
       id:
         type: string
@@ -2975,6 +3066,18 @@ definitions:
           - deleted
           - deleted_failed
           - failed
+      type:
+        type: string
+        example: aem_cloud_service
+        description: The type of program
+        enum:
+          - aem_managed_services
+          - aem_cloud_service
+          - media_library
+      capabilities:
+        example: '{ ''capability1'':''value1'', ''capability1'': {''param3'':''value3''}}'
+        description: Program capabilities
+        $ref: '#/definitions/ProgramCapabilities'
       createdAt:
         type: string
         format: date-time
@@ -3017,6 +3120,13 @@ definitions:
             $ref: '#/definitions/HalLink'
             description: This object's representation
     description: A representation of a Program
+  ProgramCapabilities:
+    type: object
+    properties:
+      sandbox:
+        description: Indicator of a sandbox program.
+        type: boolean
+    description: Contains the program capabilities
   HalLink:
     type: object
     properties:
@@ -3526,6 +3636,10 @@ definitions:
           - created
           - restoring
           - restore_failed
+      region:
+        type: string
+        example: va7
+        description: Region of the environment
       availableLogOptions:
         type: array
         description: List of logs available in the environment
@@ -4843,18 +4957,58 @@ definitions:
       - type
     description: Describes an update to a phase of a pipeline
     properties:
+      name:
+        type: string
+        example: BUILD_1
+        description: Name of the phase
       type:
         type: string
         example: BUILD
         description: Type of the phase
         enum:
           - BUILD
+          - DEPLOY
       repositoryId:
         type: string
-        description: 'Identifier of the source repository. The code from this repository will be build at the start of this phase. If not provided, the current value is retained.'
+        description: 'For BUILD phase type. Identifier of the source repository. The code from this repository will be build at the start of this phase. If not provided, the current value is retained.'
       branch:
         type: string
-        description: 'Name of the tracked branch or a fully qualified git tag (e.g. refs/tags/v1). If not provided, the current value is retained.'
+        description: 'For BUILD phase type. Name of the tracked branch or a fully qualified git tag (e.g. refs/tags/v1). If not provided, the current value is retained.'
+      environmentId:
+        type: string
+        description: For DEPLOY phase type. Identifier of the target environment.
+      steps:
+        type: array
+        description: Steps to update within the phase.
+        items:
+          $ref: '#/definitions/PipelineStepUpdate'
+  PipelineStepUpdate:
+    type: object
+    required:
+      - type
+    description: Describes an update to a phase of a pipeline
+    properties:
+      name:
+        type: string
+        example: deploy
+        description: Name of the step
+      options:
+        type: object
+        description: Map of option parameters for the step
+        $ref: '#/definitions/PipelineStepUpdateOptions'
+  PipelineStepUpdateOptions:
+    type: object
+    properties:
+      dispatcherCacheInvalidationPaths:
+        type: array
+        items:
+          type: string
+        description: 'For deploy steps on AMS pipelines, list of paths to invalidate on dispatchers after package installation.'
+      dispatcherCacheFlushPaths:
+        type: array
+        items:
+          type: string
+        description: 'For deploy steps on AMS pipelines, list of paths to flush on dispatchers after package installation.'
   EnableAdvancedNetworkingConfiguration:
     type: object
     properties:
@@ -4940,3 +5094,54 @@ definitions:
         type: integer
         format: int32
         description: 'For assetsTest steps on AMS pipelines, the percentage of asset uploads which will be test PDF files.'
+  NewProgram:
+    type: object
+    required:
+      - name
+      - type
+    description: Description of a new program to be created
+    properties:
+      name:
+        type: string
+        description: New program name
+        minLength: 0
+        maxLength: 64
+      type:
+        type: string
+        enum:
+          - aem_cloud_service
+      capabilities:
+        $ref: '#/definitions/ProgramCapabilities'
+      solutionNames:
+        type: array
+        items:
+          type: string
+          enum:
+            - aemsites
+            - aemassets
+  NewEnvironment:
+    type: object
+    description: Description of a new program to be created
+    required:
+      - name
+      - region
+      - type
+    properties:
+      name:
+        type: string
+        example: acme-dev1
+        description: Name of the environment
+      type:
+        type: string
+        enum:
+          - dev
+          - stage
+          - prod
+      region:
+        type: string
+        example: va7
+        description: Region to create the environment.
+      description:
+        type: string
+        example: This is our primary development environment
+        description: Description of the environment
