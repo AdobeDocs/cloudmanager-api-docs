@@ -33,3 +33,9 @@ See how to edit and delete pipelines.
 [Advancing and Cancelling Steps](api-usage/advancing-and-cancelling-steps.md) 
 
 See how to advance and cancel steps using the API.
+
+<DiscoverBlock slots="link, text"/>
+
+[Creating Programs and Environments](api-usage/creating-programs-and-environments.md) 
+
+See how to create programs and environments.

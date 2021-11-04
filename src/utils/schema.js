@@ -24,42 +24,45 @@ const splitDoRejoin = (str, callback) => {
 
 const replaceLines = (str, startLine, endLine, replacement) => {
   const arr = splitLines(str)
-  return [
+  const splitReplacement = splitLines(replacement)
+  const newStr = [
     ...arr.slice(0, startLine),
-    replacement,
+    ...splitReplacement,
     ...arr.slice(endLine + 1),
-  ].join('\n')
+  ]
+  return {
+    newStr: newStr.join('\n'),
+    addLines: (newStr.length - arr.length),
+  }
 }
 
-export const extractObject = (jsonString, level, field, endToken) => {
+export const extractObjects = (jsonString, level, field, endToken) => {
   const startLinePrefix = `${' '.repeat(level)}"${field}": `
   const endLinePrefix = `${' '.repeat(level)}${endToken}`
-  const result = {
-    found: false,
-    startLine: 0,
-    endLine: 0,
-    jsonString: undefined,
-  }
+  const result = []
+  let currentEntry
+
   let inside = false
-  const jsonStringLines = []
+  let jsonStringLines = []
   const lines = splitLines(jsonString)
   lines.forEach((line, index) => {
-    if (!result.found && line.startsWith(startLinePrefix)) {
-      result.found = true
-      result.startLine = index
+    if (line.startsWith(startLinePrefix)) {
+      currentEntry = {
+        startLine: index,
+      }
       inside = true
       jsonStringLines.push(line.substring(startLinePrefix.length))
     } else if (inside) {
       jsonStringLines.push(line)
       if (line.startsWith(endLinePrefix)) {
-        result.endLine = index
+        currentEntry.endLine = index
+        currentEntry.jsonString = jsonStringLines.join('\n')
+        jsonStringLines = []
+        result.push(currentEntry)
         inside = false
       }
     }
   })
-  if (result.found) {
-    result.jsonString = jsonStringLines.join('\n')
-  }
   return result
 }
 
@@ -90,12 +93,15 @@ export const addAnnotations = (json, level, schemaData, fullSwagger) => {
       if (property.$ref) {
         const objectSchema = fullSwagger.definitions[getDefinitionNameFromRef(property.$ref)]
         if (objectSchema) {
-          const extractedObject = extractObject(json, level, propName, '}')
-          if (extractedObject.found) {
+          const extractedObjects = extractObjects(json, level, propName, '}')
+          let offset = 0
+          extractedObjects.forEach(extractedObject => {
             let annotatedObject = addAnnotations(extractedObject.jsonString, level + 2, objectSchema, fullSwagger)
             annotatedObject = `${' '.repeat(level)}"${propName}": ${annotatedObject}`
-            json = replaceLines(json, extractedObject.startLine, extractedObject.endLine, annotatedObject)
-          }
+            const replaced = replaceLines(json, offset + extractedObject.startLine, offset + extractedObject.endLine, annotatedObject)
+            json = replaced.newStr
+            offset = offset + replaced.addLines
+          })
         }
       }
 
@@ -103,12 +109,15 @@ export const addAnnotations = (json, level, schemaData, fullSwagger) => {
         if (property.items.$ref) {
           const arraySchema = fullSwagger.definitions[getDefinitionNameFromRef(property.items.$ref)]
           if (arraySchema) {
-            const extractedObject = extractObject(json, level, propName, ']')
-            if (extractedObject.found) {
+            const extractedObjects = extractObjects(json, level, propName, ']')
+            let offset = 0
+            extractedObjects.forEach(extractedObject => {
               let annotatedObject = addAnnotations(extractedObject.jsonString, level + 4, arraySchema, fullSwagger)
               annotatedObject = `${' '.repeat(level)}"${propName}": ${annotatedObject}`
-              json = replaceLines(json, extractedObject.startLine, extractedObject.endLine, annotatedObject)
-            }
+              const replaced = replaceLines(json, offset + extractedObject.startLine, offset + extractedObject.endLine, annotatedObject)
+              json = replaced.newStr
+              offset = offset + replaced.addLines
+            })
           }
         }
       }

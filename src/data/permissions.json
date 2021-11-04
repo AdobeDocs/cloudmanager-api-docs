@@ -179,5 +179,17 @@
         "profiles": "Deployment Manager, Business Owner",
         "method": "DELETE",
         "path": "/api/program/{programId}/environment/{environmentId}/advancedNetworking"
+    },
+    {
+        "operation": "createEnvironment",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "POST",
+        "path": "/api/program/{programId}/environments"
+    },
+    {
+        "operation": "addProgram",
+        "profiles": "Business Owner",
+        "method": "POST",
+        "path": "/api/tenant/{tenantId}/programs"
     }
 ]

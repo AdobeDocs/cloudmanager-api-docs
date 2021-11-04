@@ -67,7 +67,8 @@
     "lint": "eslint gatsby-*.js src files scripts && node scripts/validate-permissions.js",
     "lint-fix": "eslint gatsby-*.js src files scripts --fix",
     "postinstall": "patch-package",
-    "test": "jest --config test/jest.config.js"
+    "test": "jest --config test/jest.config.js",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --config test/jest.config.js"
   },
   "engines": {
     "node": ">=14.0.0"
