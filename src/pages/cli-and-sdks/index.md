@@ -48,3 +48,22 @@ The [Cloud Manager Java SDK](https://github.com/adobe/aio-lib-java-cloudmanager)
 CloudManagerApi api = new CloudManagerApiImpl("orgId", "x-api-key", "valid auth token");
 List<EmbeddedProgram> client.listPrograms();
 ```
+
+## GitHub Actions
+
+The Node.js SDK is wrapped into a [GitHub Action](https://github.com/adobe/aio-cloudmanager-create-execution-action) for cases when it is appropriate to create a pipeline execution as a step in a GitHub Action-based workflow.
+
+### Example Usage
+
+```yaml
+- name: Create Execution
+  uses: adobe/aio-cloudmanager-create-execution-action@v1.0.5
+  with:
+    CLIENTID: ${{ secrets.CM_CLIENT_ID }}
+    CLIENTSECRET: ${{ secrets.CM_CLIENT_SECRET }}
+    TECHNICALACCOUNTID: ${{ secrets.CM_TA_EMAIL }}
+    IMSORGID: ${{ secrets.CM_ORG_ID }}
+    KEY: ${{ secrets.CM_PRIVATE_KEY }}
+    PIPELINEID: ${{ secrets.CM_PIPELINE_ID }}
+    PROGRAMID: ${{ secrets.CM_PROGRAM_ID }}
+```
