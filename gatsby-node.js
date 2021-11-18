@@ -15,6 +15,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     resolve: {
       fallback: {
         tty: require.resolve('tty-browserify'),
+        os: require.resolve('os-browserify'),
       },
     },
   })
