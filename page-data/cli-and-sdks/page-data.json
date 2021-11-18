@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-pages-cli-and-sdks-index-md","path":"/cli-and-sdks/","result":{"pageContext":{"frontmatter":{"title":"CLI and SDKs - Cloud Manager API","description":"Describes the available CLI and SDKs that use the API","keywords":["Experience Cloud","Adobe Experience Manager","JavaScript","Java","Command Line Interface","Cloud Manager"]}}},"staticQueryHashes":["915530536"]}
+{
+    "componentChunkName": "component---src-pages-cli-and-sdks-index-md",
+    "path": "/cli-and-sdks/",
+    "result": {"pageContext":{"frontmatter":{"title":"CLI and SDKs - Cloud Manager API","description":"Describes the available CLI and SDKs that use the API","keywords":["Experience Cloud","Adobe Experience Manager","JavaScript","Java","Command Line Interface","Cloud Manager"]}}},
+    "staticQueryHashes": ["915530536"]}

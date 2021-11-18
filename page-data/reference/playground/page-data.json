@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-pages-reference-playground-md","path":"/reference/playground/","result":{"pageContext":{"frontmatter":{"title":"Cloud Manager API Playground","description":"Cloud Manager API Playground","layout":"none","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager"]}}},"staticQueryHashes":["915530536"]}
+{
+    "componentChunkName": "component---src-pages-reference-playground-md",
+    "path": "/reference/playground/",
+    "result": {"pageContext":{"frontmatter":{"title":"Cloud Manager API Playground","description":"Cloud Manager API Playground","layout":"none","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager"]}}},
+    "staticQueryHashes": ["915530536"]}
