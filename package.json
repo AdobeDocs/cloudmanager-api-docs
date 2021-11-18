@@ -24,7 +24,7 @@
     "lodash.debounce": "4.0.8",
     "lodash.uniq": "4.5.0",
     "lodash.uniqueid": "4.0.1",
-    "os-browserify": "^0.3.0",
+    "os-browserify": "0.3.0",
     "patch-package": "6.4.7",
     "postinstall-postinstall": "2.1.0",
     "prop-types": "15.7.2",
