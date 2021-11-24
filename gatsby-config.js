@@ -69,6 +69,10 @@ module.exports = {
             path: '/guides/getting-started/create-event-integration/',
           },
           {
+            path: 'guides/getting-started/authentication.md',
+            title: 'Authentication',
+          },
+          {
             path: 'guides/getting-started/permissions.md',
             title: 'API Permissions',
           },
