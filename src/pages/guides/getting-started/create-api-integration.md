@@ -34,7 +34,7 @@ Once you've generated your certificate, to create an API Integration:
 
 5. Under the Experience Cloud section select `Cloud Manager` and then click `Next`.
 
-6. Generate or Upload a key pair. Click either `Generate keypair` or `Next`.
+6. Generate or Upload a key pair. Click either `Generate keypair` or `Next`. If you generate a key pair, be sure to retain the downloaded file -- it **cannot** be recovered if lost and you will have to generate a new key pair.
 
 7. Select one of the Product Profiles to assign the integration to a [specific Cloud Manager role](https://www.adobe.com/go/aem_cloud_mrg_usersroles_en).
 

@@ -36,6 +36,12 @@ Learn how to expirement with the API using Postman.
 
 <DiscoverBlock slots="link, text"/>
 
+[Authentication](guides/getting-started/authentication/)
+
+Learn how to authenticate API calls.
+
+<DiscoverBlock slots="link, text"/>
+
 [Permissions](guides/getting-started/permissions/)
 
 See which permissions are required for using the API.
