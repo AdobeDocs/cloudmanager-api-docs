@@ -1,6 +1,6 @@
 ---
 title: Creating an API Integration Project - Cloud Manager API
-description: Describes how to create an API integration project on Adobe I/O Developer Console
+description: Describes how to create an API integration project on Adobe Developer Console
 keywords:
   - Experience Cloud
   - Adobe Experience Manager
@@ -10,13 +10,13 @@ keywords:
 
 # Creating an API Integration Project
 
-In order to make API calls to the Cloud Manager API, you must create a _project_ (formerly known as an _integration_) in the [Adobe I/O Console](https://console.adobe.io/). This project defines the credentials used when making API calls as well as the permissions associated with those credentials.
+In order to make API calls to the Cloud Manager API, you must create a _project_ (formerly known as an _integration_) in the [Adobe Developer Console](https://developer.adobe.com/console). This project defines the credentials used when making API calls as well as the permissions associated with those credentials.
 
-To work with the Cloud Manager API on the Adobe I/O Console, you need to either the System Administrator role or be an assigned API Developer for your organization. Click [here](http://www.adobe.com/go/aac_api_prod_learn) to learn more about the API Developer role.
+To work with the Cloud Manager API on the Adobe Developer Console, you need to either the System Administrator role or be an assigned API Developer for your organization. Click [here](http://www.adobe.com/go/aac_api_prod_learn) to learn more about the API Developer role.
 
 <InlineAlert slots="text" />
 
-Note that the API Developer role required to create integrations in the Adobe I/O console is unrelated to the Developer role within Cloud Manager (i.e. the "Developer - Cloud Manager" or "Developer - Cloud Service" product profile). The former is assigned to a user who is permitted to create integrations in the Adobe I/O console. The latter is assigned to a user who has development rights _within_ Cloud Manager itself. Granting one of these does not grant the other.
+Note that the API Developer role required to create integrations in the Adobe Developer Console is unrelated to the Developer role within Cloud Manager (i.e. the "Developer - Cloud Manager" or "Developer - Cloud Service" product profile). The former is assigned to a user who is permitted to create integrations in the Adobe Developer Console. The latter is assigned to a user who has development rights _within_ Cloud Manager itself. Granting one of these does not grant the other.
 
 When you receive notification of this role, click the **Get Started** button in the message to access services.
 
@@ -24,7 +24,7 @@ All requests to the Cloud Manager API must be authenticated using an access toke
 
 Once you've generated your certificate, to create an API Integration:
 
-1. Navigate to the following URL: [https://console.adobe.io/](https://console.adobe.io/).
+1. Navigate to the following URL: [https://developer.adobe.com/console](https://developer.adobe.com/console). This can also be reached by clicking the Console button at the top of this page.
 
 2. Click the `Create new project` button or select an existing project.
 

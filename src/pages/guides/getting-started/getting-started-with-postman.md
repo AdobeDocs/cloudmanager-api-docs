@@ -37,7 +37,7 @@ Then click on the eye icon to view the environment variables and click the Edit 
 
 ![Postman Environment Details](img/postman-editenvironment.png)
 
-Four of these values need to be populated using the values displayed in the Adobe I/O Console.
+Four of these values need to be populated using the values displayed in the Adobe Developer Console.
 
 * `api_key`
 * `organization_id`
