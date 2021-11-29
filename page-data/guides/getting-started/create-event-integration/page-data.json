@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-pages-guides-getting-started-create-event-integration-md",
     "path": "/guides/getting-started/create-event-integration/",
-    "result": {"pageContext":{"frontmatter":{"title":"Creating an Event Integration Project - Cloud Manager API","description":"Describes how to create an Event integration project on Adobe I/O Developer Console","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Events"]}}},
+    "result": {"pageContext":{"frontmatter":{"title":"Creating an Event Integration Project - Cloud Manager API","description":"Describes how to create an Event integration project on Adobe Developer Console","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Events"]}}},
     "staticQueryHashes": ["915530536"]}
