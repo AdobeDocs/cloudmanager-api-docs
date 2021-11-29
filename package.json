@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@adobe/gatsby-theme-aio": "3.23.0",
-    "@emotion/react": "11.6.0",
+    "@emotion/react": "11.7.0",
     "@spectrum-css/buttongroup": "3.0.5",
     "@spectrum-css/fieldlabel": "4.0.1",
     "axios": "0.24.0",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@babel/core": "7.16.0",
     "@babel/preset-env": "7.16.4",
-    "@emotion/eslint-plugin": "11.5.0",
+    "@emotion/eslint-plugin": "11.7.0",
     "babel-jest": "27.4.0",
     "eslint": "8.3.0",
     "eslint-config-standard": "16.0.3",
