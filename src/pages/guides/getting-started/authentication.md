@@ -21,7 +21,7 @@ Every inbound HTTP API call to the Cloud Manager API must contain these three he
 * `x-gw-ims-org-id`
 * `Authorization`
 
-The values which should be sent in the `x-api-key` and `x-gw-ims-org-id` headers are provided in the Credentials details screen in the Adobe Developer Console. The value of the `x-api-key` header is the _Client ID_ and the value for the `x-gw-ims-org-id` header is the _Organization ID_.
+The values which should be sent in the `x-api-key` and `x-gw-ims-org-id` headers are provided in the Credentials details screen in the [Adobe Developer Console](https://developer.adobe.com/console). The value of the `x-api-key` header is the _Client ID_ and the value for the `x-gw-ims-org-id` header is the _Organization ID_.
 
 ![Credential details](img/credential-details.png)
 

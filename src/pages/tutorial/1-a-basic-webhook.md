@@ -130,7 +130,7 @@ Feel free to create an account with Glitch if you want to continue to use it in 
 
 ## Registering the Webhook with Adobe I/O
 
-Now that you have your webhook running at a publicly accessible URL, you can register it with Adobe I/O. To do this, open the <a href="https://console.adobe.io/projects" target="_new">Adobe I/O Console</a> and open the Project you created in Step 0. Click Add to Project and select Event. Select Cloud Manager and click Next.
+Now that you have your webhook running at a publicly accessible URL, you can register it with Adobe I/O. To do this, open the <a href="https://console.adobe.io/projects" target="_new">Adobe Developer Console</a> and open the Project you created in Step 0. Click Add to Project and select Event. Select Cloud Manager and click Next.
 
 ![Select Event Types](img/event-select-event-types.png)
 
