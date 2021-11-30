@@ -39,7 +39,7 @@
     "@babel/core": "7.16.0",
     "@babel/preset-env": "7.16.4",
     "@emotion/eslint-plugin": "11.7.0",
-    "babel-jest": "27.4.0",
+    "babel-jest": "27.4.2",
     "eslint": "8.3.0",
     "eslint-config-standard": "16.0.3",
     "eslint-plugin-import": "2.25.3",
@@ -49,7 +49,7 @@
     "eslint-plugin-promise": "5.1.1",
     "eslint-plugin-react": "7.27.1",
     "eslint-plugin-react-hooks": "4.3.0",
-    "jest": "27.4.0",
+    "jest": "27.4.2",
     "jest-junit": "13.0.0",
     "js-yaml": "4.1.0"
   },
