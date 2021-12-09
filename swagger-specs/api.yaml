@@ -5187,8 +5187,8 @@ definitions:
       dnsTxtRecord:
         type: string
         example: adobe-aem-verification=www.adobe.com/1/2/ab-cd-ef
-        description: DNS TXT record. Must match the record returned from the validate request.
+        description: DNS TXT record. Must match the corresponding record returned from the validate request.
       dnsZone:
         type: string
         example: adobe.com.
-        description: Name of the DNS zone. Must match the record returned from the validate request.
+        description: Name of the DNS zone. Must match the corresponding value returned from the validate request.
