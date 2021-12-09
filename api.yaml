@@ -1957,7 +1957,7 @@ paths:
           description: Domain Name
           required: true
           schema:
-            $ref: '#/definitions/DomainName'
+            $ref: '#/definitions/NewDomainName'
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1979,10 +1979,6 @@ paths:
           required: true
           type: string
       responses:
-        '200':
-          description: successful operation
-          schema:
-            $ref: '#/definitions/DomainName'
         '201':
           description: Domain name created
           schema:
@@ -2222,7 +2218,7 @@ paths:
           description: Domain name to be validated
           required: true
           schema:
-            $ref: '#/definitions/DomainName'
+            $ref: '#/definitions/DomainNameValidate'
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -5146,3 +5142,53 @@ definitions:
         type: string
         example: This is our primary development environment
         description: Description of the environment
+  DomainNameValidate:
+    type: object
+    description: Description of a domain name to validate
+    required:
+      - name
+      - environmentId
+      - certificateId
+    properties:
+      name:
+        type: string
+        example: customer.domain.com
+        description: Name of the domain name
+      environmentId:
+        type: integer
+        format: int64
+        description: The environment id
+      certificateId:
+        type: integer
+        format: int64
+        description: The certificate id
+  NewDomainName:
+    type: object
+    description: Description of a domain name to create
+    required:
+      - name
+      - environmentId
+      - certificateId
+      - dnsTxtRecord
+      - dnsZone
+    properties:
+      name:
+        type: string
+        example: customer.domain.com
+        description: Name of the domain name
+      environmentId:
+        type: integer
+        format: int64
+        description: The environment id
+      certificateId:
+        type: integer
+        format: int64
+        description: The certificate id
+      dnsTxtRecord:
+        type: string
+        example: adobe-aem-verification=www.adobe.com/1/2/ab-cd-ef
+        description: DNS TXT record. Must match the record returned from the validate request.
+      dnsZone:
+        type: string
+        example: adobe.com.
+        description: Name of the DNS zone. Must match the record returned from the validate request.
