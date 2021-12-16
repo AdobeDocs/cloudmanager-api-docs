@@ -3434,6 +3434,9 @@ definitions:
         type: string
         format: date-time
         description: Timestamp at which the step completed
+      commitId:
+        type: string
+        description: Target commit id
       details:
         type: object
         description: Additional details of the step
