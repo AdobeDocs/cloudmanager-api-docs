@@ -39,3 +39,9 @@ See how to advance and cancel steps using the API.
 [Creating Programs and Environments](api-usage/creating-programs-and-environments.md) 
 
 See how to create programs and environments.
+
+<DiscoverBlock slots="link, text"/>
+
+[Adding Custom Domain Names](api-usage/adding-custom-domain-names.md)
+
+Learn how to add your own custom domain names to an environment.
