@@ -1,6 +1,6 @@
 ---
 title: Adding Custom Domain Names
-description: Learn how to add your own custom domain names
+description: Learn how to add your own custom domain names to an environment.
 keywords:
   - Experience Cloud
   - Adobe Experience Manager
