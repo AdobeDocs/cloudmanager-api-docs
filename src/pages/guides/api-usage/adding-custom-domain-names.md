@@ -16,9 +16,9 @@ keywords:
 
 Custom domain names can be added to an environment in your AEM Cloud Service program through the Cloud Manager API. The steps required are:
 
-1. Retrieve the custom domains available.
-1. Obtain the DNS TXT record value of the domain you wish to add.
-1. Add the custom domain using the retrieved information
+1. [Retrieve the custom domains available.](#Retrieve-Custom-Domains)
+1. [Obtain the DNS TXT record value of the domain you wish to add.](#Obtain-DNS-TXT-Record-Value)
+1. [Add the custom domain using the retrieved information](#Add-Custom-Domain-Name)
 
 This documents details the steps for adding custom domain names. Update, delete, and other APIs are available, but not covered in detail in this section.om domain name.
 

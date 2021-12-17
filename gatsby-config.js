@@ -107,6 +107,10 @@ module.exports = {
             path: 'guides/api-usage/creating-programs-and-environments.md',
             title: 'Creating Programs and Environments',
           },
+          {
+            path: 'guides/api-usage/adding-custom-domain-names.md',
+            title: 'Adding Custom Domain Names',
+          },
         ],
       },
       {
