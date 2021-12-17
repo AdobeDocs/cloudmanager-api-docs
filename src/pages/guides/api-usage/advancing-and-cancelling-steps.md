@@ -18,9 +18,9 @@ Certain steps in the pipeline can be "advanced" or "cancelled" when interactive 
 
 These actions apply to a variety of steps:
 
-* For the Code Quality, Security Test, and Performance Test steps, advance and cancel are how important failures in these steps get overridden or rejected, respectively.
-* For the Go-Live Approval step, advance and cancel are how the deployment is approved or rejected, respectively.
-* For the Schedule step, advance and cancel are how a schedule is set or the pipeline is canclled, respectively.
+* For the [Code Quality, Security Test, and Performance Test](#override-code-quality-security-test-performance-test-results) steps, advance and cancel are how important failures in these steps get overridden or rejected, respectively.
+* For the [Go-Live Approval](#go-live-approval) step, advance and cancel are how the deployment is approved or rejected, respectively.
+* For the [Schedule](#schedule-step) step, advance and cancel are how a schedule is set or the pipeline is canclled, respectively.
 * For the Build, Security Test, and Performance Test steps, cancel can be used to cancel the step (and the pipeline) while the step is running.
 
 For both advance and cancel functions, a `PUT` request is made to the appropriate endpoint, discoverable as the `http://ns.adobe.com/adobecloud/rel/pipeline/advance` and `http://ns.adobe.com/adobecloud/rel/pipeline/cancel` links of the step, respectively. The body of the request will vary based on the step and circumstance.
