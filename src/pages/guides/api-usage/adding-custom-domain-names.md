@@ -14,11 +14,17 @@ keywords:
 
 # Adding Custom Domain Names
 
-Custom domain names can be added to an environment in your AEM Cloud Service program through the Cloud Manager API.
+Custom domain names can be added to an environment in your AEM Cloud Service program through the Cloud Manager API. The steps required are:
+
+1. Retrieve the custom domains available.
+1. Obtain the DNS TXT record value of the domain you wish to add.
+1. Add the custom domain using the retrieved information
+
+This documents details the steps for adding custom domain names. Update, delete, and other APIs are available, but not covered in detail in this section.om domain name.
 
 ## Retrieve Custom Domains
 
-Each program resource has a HAL link named `http://ns.adobe.com/adobecloud/rel/domainNames`. To get a list of existing custom domain names in your program,  execute a GET request to the HAL link.
+Each program resource has a HAL link named `http://ns.adobe.com/adobecloud/rel/domainNames`. To generate a list of existing custom domain names in your program, execute a GET request to the HAL link.
 
 ```shell
 GET https://cloudmanager.adobe.io/api/program/1234/domainNames
@@ -68,15 +74,15 @@ This will return a list similar to the following.
 }
 ```
 
-This documents details the steps for adding custom domain names. Update, delete, and other APIs are available, but not covered in detail in this section.
-
-Follow the steps outlined as follows to add your custom domain name.
-
 ## Obtain DNS TXT Record Value
 
-Before you get started, you must get a DNS TXT record value and zone for your domain name. In order to do this, execute a POST request by appending ‘/validate’ to the `http://ns.adobe.com/adobecloud/rel/domainNames` HAL link of the program. The body of the POST request must include the custom domain name, environment ID, and SSL certificate ID. This validates if the domain entry can be created.
+To add a custom domain, you must get a DNS TXT record value and zone for the domain name. In order to do this, execute a POST request by appending `/validate` to the `http://ns.adobe.com/adobecloud/rel/domainNames` HAL link of the program.
 
-The response body contains a TXT record value and the domain zone.
+The body of the POST request must include the following in order to validate if the domain entry can be created.
+
+* Custom domain name 
+* Environment ID
+* SSL certificate ID
 
 ```shell
 POST https://cloudmanager.adobe.io/api/program/1234/domainNames/validate
@@ -87,7 +93,7 @@ POST https://cloudmanager.adobe.io/api/program/1234/domainNames/validate
 }
 ```
 
-This will return a response body that contains a TXT record that is used as an identifier as well as the domain zone.
+This will return a response body that contains the domain zone and a TXT record that is used as an identifier.
 
 ```text
 {
@@ -124,7 +130,15 @@ This will return a response body that contains a TXT record that is used as an i
 
 ## Add Custom Domain Name
 
-You are now ready to add your custom domain name. To do this, execute a POST request to `http://ns.adobe.com/adobecloud/rel/domainNames` HAL link of the program. The body of the POST request needs to include the custom domain name, environment ID, certificate ID, the DNS TXT record value, and the DNS zone.
+Having retrieved the necessary information you can now add your custom domain name. To do this, execute a POST request to `http://ns.adobe.com/adobecloud/rel/domainNames` HAL link of the program. 
+
+The body of the POST request needs to include the following data.
+
+* Custom domain name
+* Environment ID
+* Certificate ID
+* DNS TXT record value
+* DNS zone
 
 ```shell
 POST https://cloudmanager.adobe.io/api/program/1234/domainNames/
