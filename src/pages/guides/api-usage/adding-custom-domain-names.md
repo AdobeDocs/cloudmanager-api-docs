@@ -16,9 +16,9 @@ keywords:
 
 Custom domain names can be added to an environment in your AEM Cloud Service program through the Cloud Manager API. The steps required are:
 
-1. [Retrieve the custom domains available.](#Retrieve-Custom-Domains)
-1. [Obtain the DNS TXT record value of the domain you wish to add.](#Obtain-DNS-TXT-Record-Value)
-1. [Add the custom domain using the retrieved information](#Add-Custom-Domain-Name)
+1. [Retrieve the custom domains available.](#retrieve-custom-domains)
+1. [Obtain the DNS TXT record value of the domain you wish to add.](#obtain-dns-txt-record-value)
+1. [Add the custom domain using the retrieved information](#add-custom-domain-name)
 
 This documents details the steps for adding custom domain names. Update, delete, and other APIs are available, but not covered in detail in this section.om domain name.
 
@@ -32,7 +32,7 @@ GET https://cloudmanager.adobe.io/api/program/1234/domainNames
 
 This will return a list similar to the following.
 
-```text
+```json
 {
     "_links": {
         "http://ns.adobe.com/adobecloud/rel/domain-name/certificates": {
@@ -95,7 +95,7 @@ POST https://cloudmanager.adobe.io/api/program/1234/domainNames/validate
 
 This will return a response body that contains the domain zone and a TXT record that is used as an identifier.
 
-```text
+```json
 {
     "_links": {
         "http://ns.adobe.com/adobecloud/rel/domain-name/certificates": {
@@ -153,7 +153,7 @@ POST https://cloudmanager.adobe.io/api/program/1234/domainNames/
 
 This will return a response similar to the following.
 
-```text
+```json
 {
 "id": 0,
 "name": "customer.domain.com",

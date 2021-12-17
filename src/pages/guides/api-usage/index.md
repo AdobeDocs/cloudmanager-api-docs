@@ -40,8 +40,8 @@ See how to advance and cancel steps using the API.
 
 See how to create programs and environments.
 
+<DiscoverBlock slots="link, text"/>
+
 [Adding Custom Domain Names](api-usage/adding-custom-domain-names.md)
 
 Learn how to add your own custom domain names to an environment.
-
-<DiscoverBlock slots="link, text"/>
