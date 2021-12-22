@@ -31,6 +31,10 @@ The `Authorization` header's value is in the form `Bearer ` followed by a genera
 
 ### Manual Generation Using Adobe Developer Console
 
+<InlineAlert variant="warning" slots="text"/>
+
+Please note that tokens generated through the AEM Developer Console cannot be used with the Cloud Manager API. If you want to manually generate a token, you must use the Adobe Developer Console.
+
 Generating an access token can be done by navigating to the Cloud Manager API page for the project in the Adobe Developer Console and pasting the private key for the project.
 
 ![Generate Access Token](img/generate-access-token.png)
