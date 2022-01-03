@@ -36,8 +36,8 @@
     "uritemplate": "0.3.4"
   },
   "devDependencies": {
-    "@babel/core": "7.16.5",
-    "@babel/preset-env": "7.16.5",
+    "@babel/core": "7.16.7",
+    "@babel/preset-env": "7.16.7",
     "@emotion/eslint-plugin": "11.7.0",
     "babel-jest": "27.4.5",
     "eslint": "8.6.0",
