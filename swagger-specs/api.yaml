@@ -4657,7 +4657,7 @@ definitions:
         type: string
         description: IPsec Integrity
         enum:
-          - GCMASE256
+          - GCMAES256
           - GCMAES192
           - GCMAES128
           - SHA256
