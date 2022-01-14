@@ -3120,8 +3120,11 @@ definitions:
     type: object
     properties:
       sandbox:
-        description: Indicator of a sandbox program.
         type: boolean
+        example: true
+        description: Indicator of a sandbox program.
+        readOnly: true
+        default: false
     description: Contains the program capabilities
   HalLink:
     type: object
