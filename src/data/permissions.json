@@ -191,5 +191,18 @@
         "profiles": "Business Owner",
         "method": "POST",
         "path": "/api/tenant/{tenantId}/programs"
+    },
+    {
+        "operation": "getEnvironmentLogs",
+        "profiles" : "Deployment Manager",
+        "method": "GET",
+        "path":"/api/program/{programId}/environment/{environmentId}/logs"
+    },
+    {
+        "operation": "downloadLogs",
+        "profiles" : "Deployment Manager",
+        "method": "GET",
+        "path":"/api/program/{programId}/environment/{environmentId}/logs/download"
+
     }
 ]
