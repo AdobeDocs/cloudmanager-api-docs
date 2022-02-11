@@ -25,7 +25,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Extract path prefix
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         id: extract_path_prefix
         with:
           script: |
