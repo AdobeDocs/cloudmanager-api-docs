@@ -20,7 +20,7 @@ Note that the API Developer role required to create integrations in the Adobe De
 
 When you receive notification of this role, click the **Get Started** button in the message to access services.
 
-All requests to the Cloud Manager API must be authenticated using an access token retrieved using a JSON Web Token (JWT). The [Adobe I/O JWT Documentation](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md) provides a guide to creating the certificate files necessary to set up the integration as well as instructions for how to generate your first access token.
+All requests to the Cloud Manager API must be authenticated using an access token retrieved using a JSON Web Token (JWT). The [Adobe I/O JWT Documentation](https://developer.adobe.com/developer-console/docs/guides/authentication/JWT/) provides a guide to creating the certificate files necessary to set up the integration as well as instructions for how to generate your first access token.
 
 Once you've generated your certificate, to create an API Integration:
 

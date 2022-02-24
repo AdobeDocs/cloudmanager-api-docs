@@ -51,7 +51,7 @@ Programmatic generation of an access token is done by generating a JSON Web Toke
 
 <InlineAlert variant="help" slots="text"/>
 
-The below is a summary of this process. Complete documentation can be found in the [Adobe I/O JWT Documentation](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md)
+The below is a summary of this process. Complete documentation can be found in the [Adobe I/O JWT Documentation](https://developer.adobe.com/developer-console/docs/guides/authentication/JWT/)
 
 The JWT is constructed as a JSON object with these keys, referred to as _claims_:
 
@@ -68,4 +68,4 @@ Finally, the encoded value is sent in the body of a `POST` request to https://im
 
 #### Language Support for JWT
 
-While it is possible to do the entire JWT generation and exchange process in custom code, it is more common to use a higher-level library to do so. A number of such libraries are listed on the [Adobe I/O JWT Documentation](https://www.adobe.io/authentication/auth-methods.html#!AdobeDocs/adobeio-auth/master/JWT/JWT.md).
+While it is possible to do the entire JWT generation and exchange process in custom code, it is more common to use a higher-level library to do so. A number of such libraries are listed on the [Adobe I/O JWT Documentation](https://developer.adobe.com/developer-console/docs/guides/authentication/JWT/).

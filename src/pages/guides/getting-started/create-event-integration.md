@@ -15,7 +15,7 @@ By using Adobe I/O Events, Cloud Manager can send external applications notifica
 
 To work with the Cloud Manager Events on the Adobe Developer Console, you need to either the System Administrator role or be an assigned API Developer for your organization. Click [here](http://www.adobe.com/go/aac_api_prod_learn) to learn more about the API Developer role.
 
-Adobe I/O Events emitted by Cloud Manager are sent to **webhooks** hosted either in on-premise infrastructure, specialized webhook hosting providers, [Adobe I/O Runtime](https://www.adobe.io/apis/cloudplatform/runtime.html), or even your AEM instances managed by Adobe. Alternatively, the [Adobe I/O Journaling API](https://developer.adobe.com/events/docs/guides/api/journaling_api/) may be used, especially in cases where network security rules prohibit a webhook from being accessible from the public internet.
+Adobe I/O Events emitted by Cloud Manager are sent to **webhooks** hosted either in on-premise infrastructure, specialized webhook hosting providers, [Adobe I/O Runtime](https://developer.adobe.com/runtime/docs/), or even your AEM instances managed by Adobe. Alternatively, the [Adobe I/O Journaling API](https://developer.adobe.com/events/docs/guides/api/journaling_api/) may be used, especially in cases where network security rules prohibit a webhook from being accessible from the public internet.
 
 The [Getting Started with Adobe I/O Events](https://developer.adobe.com/events/docs/guides/) guide provides general documentation on how to set up a webhook. As with [API Integration Projecs](create-api-integration.md), a certificate file is needed to set up an Event Integration.
 

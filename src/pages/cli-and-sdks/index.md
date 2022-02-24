@@ -29,7 +29,7 @@ $ aio cloudmanager:list-programs
 
 ## Node.js SDK
 
-The [Cloud Manager Node.js SDK](https://github.com/adobe/aio-lib-cloudmanager) is used inside the Command Line Interface, but is also independently usable for other Node.js applications, e.g. in [Firefly](https://www.adobe.io/apis/experienceplatform/project-firefly.html) or [Electron](https://www.electronjs.org/) applications.
+The [Cloud Manager Node.js SDK](https://github.com/adobe/aio-lib-cloudmanager) is used inside the Command Line Interface, but is also independently usable for other Node.js applications, e.g. in [Adobe App Builder](https://developer.adobe.com/app-builder/) or [Electron](https://www.electronjs.org/) applications.
 
 ### Example Usage
 

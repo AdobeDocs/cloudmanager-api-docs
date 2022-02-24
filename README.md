@@ -1,6 +1,6 @@
 # Adobe Cloud Manager API Documentation
 
-This projects builds the documentation for the [Cloud Manager API](https://www.adobe.io/apis/experiencecloud/cloud-manager/docs.html) using
+This projects builds the documentation for the [Cloud Manager API](https://developer.adobe.com/experience-cloud/cloud-manager/) using
 the [Adobe I/O Gatsby Theme](https://github.com/adobe/aio-theme).
 
 ## How to develop
