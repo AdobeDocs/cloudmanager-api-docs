@@ -24,10 +24,10 @@
     globby "^11.0.1"
     graphql-fetch "^1.0.1"
 
-"@adobe/gatsby-theme-aio@3.23.0":
-  version "3.23.0"
-  resolved "https://registry.yarnpkg.com/@adobe/gatsby-theme-aio/-/gatsby-theme-aio-3.23.0.tgz#00ec828b8d01788375a480d325eabbe1d1cd0e38"
-  integrity sha512-VL4DTN68fE138ek59jajjv3Ju0KzgfculFAJigpWH/x88PCbVEUoDOSbhIJZKxrLDJVxQCi693G7gm3DUzA4og==
+"@adobe/gatsby-theme-aio@3.23.10":
+  version "3.23.10"
+  resolved "https://registry.yarnpkg.com/@adobe/gatsby-theme-aio/-/gatsby-theme-aio-3.23.10.tgz#7dec530690e8d909ccc7afe8c4bef6639f9198f1"
+  integrity sha512-ZNo1wo3ZqtLrqOB78X3uf6wJORC/JGHl3Oi2V8JX+QKY0gjkGpEjHHeR3f8XzrrbUEzjjkKxUNTIrokuTKRTPw==
   dependencies:
     "@adobe/focus-ring-polyfill" "^0.1.5"
     "@adobe/gatsby-source-github-file-contributors" "^0.3.1"
@@ -85,12 +85,13 @@
     https-browserify "^1.0.0"
     mdx-embed "^0.0.19"
     mobx "^6.3.2"
+    os-browserify "^0.3.0"
     path-browserify "^1.0.1"
     penpal "^6.1.0"
     postcss "^8.3.6"
     preact "^10.5.12"
     preact-render-to-string "^5.1.16"
-    prism-react-renderer "^1.2.0"
+    prism-react-renderer "1.2.1"
     prop-types "^15.7.2"
     react-helmet "^6.1.0"
     react-id-generator "^3.0.1"
@@ -102,6 +103,7 @@
     styled-components "^5.3.1"
     swiper "^7.0.6"
     to-arraybuffer "^1.0.1"
+    tty-browserify "^0.0.1"
     unist-util-select "2.0.0"
     uuid "^8.3.2"
 
@@ -14323,7 +14325,7 @@ pretty-format@^3.8.0:
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-3.8.0.tgz#bfbed56d5e9a776645f4b1ff7aa1a3ac4fa3c385"
   integrity sha1-v77VbV6ad2ZF9LH/eqGjrE+jw4U=
 
-prism-react-renderer@^1.2.0:
+prism-react-renderer@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/prism-react-renderer/-/prism-react-renderer-1.2.1.tgz#392460acf63540960e5e3caa699d851264e99b89"
   integrity sha512-w23ch4f75V1Tnz8DajsYKvY5lF7H1+WvzvLUcF0paFxkTHSp42RS0H5CttdN2Q8RR3DRGZ9v5xD/h3n8C8kGmg==
@@ -16817,7 +16819,7 @@ tty-browserify@0.0.0:
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.0.tgz#a157ba402da24e9bf957f9aa69d524eed42901a6"
   integrity sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY=
 
-tty-browserify@0.0.1:
+tty-browserify@0.0.1, tty-browserify@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/tty-browserify/-/tty-browserify-0.0.1.tgz#3f05251ee17904dfd0677546670db9651682b811"
   integrity sha512-C3TaO7K81YvjCgQH9Q1S3R3P3BtN3RIM8n+OvX4il1K1zgE8ZhI0op7kClgkxtutIE8hQrcrHBXvIheqKUUCxw==
