@@ -16,7 +16,7 @@
     "@emotion/react": "11.8.1",
     "@spectrum-css/buttongroup": "3.0.5",
     "@spectrum-css/fieldlabel": "4.0.1",
-    "axios": "0.24.0",
+    "axios": "0.26.0",
     "classnames": "2.3.1",
     "gatsby": "3.14.6",
     "gatsby-plugin-static-folders": "1.0.1",
