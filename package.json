@@ -15,7 +15,7 @@
     "@adobe/gatsby-theme-aio": "3.23.10",
     "@emotion/react": "11.8.1",
     "@spectrum-css/buttongroup": "3.0.10",
-    "@spectrum-css/fieldlabel": "4.0.1",
+    "@spectrum-css/fieldlabel": "4.0.14",
     "axios": "0.26.0",
     "classnames": "2.3.1",
     "gatsby": "3.14.6",

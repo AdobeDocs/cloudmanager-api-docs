@@ -3581,10 +3581,10 @@
   dependencies:
     "@spectrum-css/vars" "^3.0.1"
 
-"@spectrum-css/fieldlabel@4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@spectrum-css/fieldlabel/-/fieldlabel-4.0.1.tgz#a50179ca6878596878da8856c9e81f51fdbe5088"
-  integrity sha512-o+MEKpLiM3782vm6OjS+CLAsmNFmwWFwgAht5+QHS2VX58hfmRoXWtpBAc/M0gxd+yt8rCIas/+McTsax+Gjkg==
+"@spectrum-css/fieldlabel@4.0.14":
+  version "4.0.14"
+  resolved "https://registry.yarnpkg.com/@spectrum-css/fieldlabel/-/fieldlabel-4.0.14.tgz#5d8b77e23169710d218a99c5c9313f0be4dcc68c"
+  integrity sha512-F9rlbNS2mIruIW/sk3LQUEgETIrcOizvRP5z8U3DMPZekRkk1hz6RynnhZA7EGiwr5yL6jmEYJJiuJ70Tz5crg==
 
 "@spectrum-css/icon@3.0.1":
   version "3.0.1"
