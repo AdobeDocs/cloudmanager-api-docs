@@ -21,23 +21,26 @@ As seen in [Step 1](1-a-basic-webhook.md), webhooks can be registered for one or
 Replace the `app.post` block with this code:
 
 ```javascript
-app.post("/webhook", (req, res) => {
-  res.writeHead(200, { "Content-Type": "application/text" });
-  res.end("pong");
-
-  const STARTED = "https://ns.adobe.com/experience/cloudmanager/event/started";
-  const EXECUTION =
-    "https://ns.adobe.com/experience/cloudmanager/pipeline-execution";
-
-  const event = req.body.event;
-
-  if (
-    STARTED === event["@type"] &&
-    EXECUTION === event["xdmEventEnvelope:objectType"]
-  ) {
-    console.log("received execution start event");
+app.post('/webhook', (req, res) => {
+  if (process.env.CLIENT_ID !== req.body.recipient_client_id) {
+    console.warn(`Unexpected client id. Was expecting ${process.env.CLIENT_ID} and received ${req.body.recipient_client_id}`)
+    res.status(400)
+    res.end()
+    return
   }
-});
+  res.set('Content-Type', 'text/plain')
+  res.send('pong')
+
+  const STARTED = 'https://ns.adobe.com/experience/cloudmanager/event/started'
+  const EXECUTION = 'https://ns.adobe.com/experience/cloudmanager/pipeline-execution'
+
+  const event = req.body.event
+
+  if (STARTED === event['@type'] &&
+       EXECUTION === event['xdmEventEnvelope:objectType']) {
+    console.log('received execution start event')
+  }
+})
 ```
 
 Now when a Pipeline Execution Started event is received, the message `received execution start event` will be logged.

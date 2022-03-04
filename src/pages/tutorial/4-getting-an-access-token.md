@@ -20,73 +20,42 @@ In this step, we're going to lay the groundwork for making those API calls by ob
 
 ## Setting up the Environment Variables
 
-The JWT token is created, signed and exchanged using the `API_KEY`, `CLIENT_SECRET`, `ORGANIZATION`, `TECHNICAL_ACCOUNT_ID` and `PRIVATE_KEY` variables, so the first step is to make sure the `.env` file has all of these variable populated. You should have done this in Step 0, but if not (or if you are using Glitch), you will need to do this now.
+The JWT token is created, signed and exchanged using the `CLIENT_ID`, `CLIENT_SECRET`, `ORGANIZATION`, and `TECHNICAL_ACCOUNT_ID` variables along with the `private.key` file in the `.data` directory, so the first step is to make sure the `.env` file has all of these variable populated and the `private.key` file is in place. You should have done this in Step 0, but if not (or if you are using Glitch), you will need to do this now.
 
 ## Adding Dependencies
 
-We're going to use two new third-party dependencies for the exchange process. First, <a href="http://kjur.github.io/jsrsasign/" target="_new">jsrsasign</a> is used to sign the JWT. Then, <a href="https://github.com/bitinn/node-fetch" target="_new">node-fetch</a> is used to make the exchange HTTP request. If you are editing the script locally, you'll need to install these two packages:
+For the exchange process, we'll use Adobe's <a href="https://github.com/adobe/jwt-auth" target="_new">jwt-auth</a> library. If you are editing the script locally, you'll need to install this package:
 
 ```bash
-npm install jsrsasign node-fetch
+npm install @adobe/jwt-auth
 ```
 
-If you are running the webhook in Glitch, you'll need to edit the `package.json` file manually and add these two packages to the `dependencies` object. Take a look at the Remix link below if you need help doing this.
+If you are running the webhook in Glitch, you'll need to edit the `package.json` file manually and add these this package to the `dependencies` object. Take a look at the Remix link below if you need help doing this.
 
-The header of the script also needs to be updated to include these new dependencies, along with the `URLSearchParams` class:
+The header of the script also needs to be updated to include this dependency, along with the built-in `fs` library which will be used to load the private key.
 
 ```javascript
-const express = require("express");
-const bodyParser = require("body-parser");
-const crypto = require("crypto");
-const jsrsasign = require("jsrsasign");
-const fetch = require("node-fetch");
-
-const { URLSearchParams } = require("url");
+const auth = require('@adobe/jwt-auth')
+const fs = require('fs')
 ```
 
 ## Writing the `getAccessToken` Function
 
-As the code to obtain an access token is fairly complicated, it makes sense to organize it into a separate function. The function has three parts. First, it generates the JWT payload, then the signed token is created, and then the exchange is done. Finally, the function returns the access token.
+For clarity, it makes sense to organize obtaining the access token into a separate function. The function has assembles the configuration object needed by `jwt-auth` and then does the token exchange.
 
 ```javascript
-async function getAccessToken() {
-  const EXPIRATION = 60 * 60; // 1 hour
+async function getAccessToken () {
+  const config = {
+    clientId: process.env.CLIENT_ID,
+    technicalAccountId: process.env.TECHNICAL_ACCOUNT_ID,
+    orgId: process.env.ORGANIZATION_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    metaScopes: [ 'ent_cloudmgr_sdk' ]
+  }
+  config.privateKey = fs.readFileSync('.data/private.key')
 
-  const header = {
-    alg: "RS256",
-    typ: "JWT",
-  };
-
-  const payload = {
-    exp: Math.round(new Date().getTime() / 1000) + EXPIRATION,
-    iss: process.env.ORGANIZATION_ID,
-    sub: process.env.TECHNICAL_ACCOUNT_ID,
-    aud: `https://ims-na1.adobelogin.com/c/${process.env.API_KEY}`,
-    "https://ims-na1.adobelogin.com/s/ent_cloudmgr_sdk": true,
-  };
-
-  const jwtToken = jsrsasign.jws.JWS.sign(
-    "RS256",
-    JSON.stringify(header),
-    JSON.stringify(payload),
-    process.env.PRIVATE_KEY
-  );
-
-  const response = await fetch(
-    "https://ims-na1.adobelogin.com/ims/exchange/jwt",
-    {
-      method: "POST",
-      body: new URLSearchParams({
-        client_id: process.env.API_KEY,
-        client_secret: process.env.CLIENT_SECRET,
-        jwt_token: jwtToken,
-      }),
-    }
-  );
-
-  const json = await response.json();
-
-  return json["access_token"];
+  const { access_token } = await auth(config)
+  return access_token  
 }
 ```
 
@@ -95,14 +64,12 @@ async function getAccessToken() {
 The access token is an asynchronous function so it returns a `Promise`. So logging of the access token (which is all we're doing in this step) has to be done in a closure invoked when the Promise is resolved:
 
 ```javascript
-if (
-  STARTED === event["@type"] &&
-  EXECUTION === event["xdmEventEnvelope:objectType"]
-) {
-  console.log("received execution start event");
-  getAccessToken().then((accessToken) => {
-    console.log(accessToken);
-  });
+if (STARTED === event['@type'] &&
+      EXECUTION === event['xdmEventEnvelope:objectType']) {
+  console.log('received execution start event')
+  getAccessToken().then(accessToken => {
+    console.log(accessToken)
+  })
 }
 ```
 

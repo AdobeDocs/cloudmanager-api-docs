@@ -51,24 +51,26 @@ For the purpose of this tutorial, the path `/webhook` is used. This can be any p
 The challenge handler looks like this:
 
 ```javascript
-app.get("/webhook", (req, res) => {
-  if (req.query["challenge"]) {
-    res.send(req.query["challenge"]);
+app.get('/webhook', (req, res) => {
+  if (req.query['challenge']) {
+    res.set('Content-Type', 'text/plain')
+    res.send(req.query['challenge'])
   } else {
-    console.log("No challenge");
-    res.status(400);
+    console.log('No challenge')
+    res.status(400)
+    res.end()
   }
-});
+})
 ```
 
 For the POST handler, at this point in the tutorial, it should just log the body and then write something trivial as a response.
 
 ```javascript
-app.post("/webhook", (req, res) => {
-  console.log(req.body);
-  res.writeHead(200, { "Content-Type": "application/text" });
-  res.end("pong");
-});
+app.post('/webhook', (req, res) => {
+  console.log(req.body)
+  res.set('Content-Type', 'text/plain')
+  res.send('pong')
+})
 ```
 
 The last part of the script is to start listening for requests. Here, the `PORT` variable specified in the `.env` file is used.
@@ -122,6 +124,8 @@ For the purpose of this tutorial, the free ngrok service is acceptable. Just kee
 Alternatively, you can run the webhook script using <a href="https://glitch.com/" target="_new">Glitch</a>. Glitch is an interactive web-based code editor for Node.js applications with built-in hosting. To save you the trouble of copy and pasting the files you've created already, you can just click the button below to create a new application on Glitch pre-populated with the content of the tutorial so far.
 
 <Glitch projectName="adobe-cloudmanager-api-tutorial-step1" />
+
+In the new Glitch project, you will need to populate the `.env` file and create the `.data/private.key` file as describe in the [introduction](index.md).
 
 <InlineAlert slots="text" />
 
