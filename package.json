@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@adobe/gatsby-theme-aio": "3.24.0",
-    "@emotion/react": "11.8.1",
+    "@emotion/react": "11.8.2",
     "@spectrum-css/buttongroup": "3.0.10",
     "@spectrum-css/fieldlabel": "4.0.16",
     "axios": "0.26.1",
