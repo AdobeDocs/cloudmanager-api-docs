@@ -200,7 +200,7 @@
     },
     {
         "operation": "downloadLogs",
-        "profiles" : "Deployment Manager",
+        "profiles" : "Deployment Manager, Developer",
         "method": "GET",
         "path":"/api/program/{programId}/environment/{environmentId}/logs/download"
 
