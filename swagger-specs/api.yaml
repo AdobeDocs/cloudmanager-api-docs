@@ -267,6 +267,24 @@ paths:
           description: Identifier of the program
           required: true
           type: string
+        - name: type
+          in: query
+          description: Type of the pipelines
+          required: false
+          type: string
+        - name: start
+          in: query
+          description: Pagination start parameter
+          required: false
+          type: string
+          default: '0'
+        - name: limit
+          in: query
+          description: Pagination limit parameter
+          required: false
+          type: integer
+          default: 500
+          format: int32
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -512,6 +530,11 @@ paths:
           enum:
             - NORMAL
             - EMERGENCY
+        - name: stepId
+          in: query
+          description: Identifier of the step from which the re-execution will start
+          required: false
+          type: string
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3294,6 +3317,9 @@ definitions:
         type: integer
         format: int32
         description: The total number of embedded items
+      _page:
+        $ref: '#/definitions/RequestedPageDetails'
+        description: Details of the requested page of items
       _embedded:
         type: object
         readOnly: true
@@ -3309,6 +3335,9 @@ definitions:
           next:
             $ref: '#/definitions/HalLink'
             description: The next page of results.
+          page:
+            $ref: '#/definitions/HalLink'
+            description: An arbitrary page of results.
           prev:
             $ref: '#/definitions/HalLink'
             description: The previous page of results.
@@ -3472,6 +3501,8 @@ definitions:
           'http://ns.adobe.com/adobecloud/rel/pipeline/logs':
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/pipeline/metrics':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/pipeline/reExecute':
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/pipeline/advance':
             description: 'Post to this link in order to advance the pipeline, if paused and waiting for user interaction. Link is present in output only in that case.'
