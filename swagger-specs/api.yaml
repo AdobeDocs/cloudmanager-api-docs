@@ -2827,6 +2827,47 @@ paths:
             $ref: '#/definitions/NetworkInfrastructure'
         '404':
           description: Network Infrastructure not found
+    delete:
+      tags:
+        - Network infrastructure
+      summary: Delete network infrastructure
+      description: Deletes an existing network infrastructure
+      operationId: deleteNetworkInfrastructure
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: networkInfrastructureId
+          in: path
+          description: Identifier of the network infrastructure
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Network infrastructure deleted
+          schema:
+            $ref: '#/definitions/NetworkInfrastructure'
+        '400':
+          description: Network Infrastructure cannot be deleted
+        '404':
+          description: Network Infrastructure not found
   '/api/program/{programId}/environment/{environmentId}/advancedNetworking':
     get:
       tags:
