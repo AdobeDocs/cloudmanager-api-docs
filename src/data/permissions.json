@@ -169,6 +169,12 @@
         "path": "/api/program/{programId}/networkInfrastructure/{networkInfrastructureId}"
     },
     {
+        "operation": "deleteNetworkInfrastructure",
+        "profiles": "Business Owner",
+        "method": "DELETE",
+        "path": "/api/program/{programId}/networkInfrastructure/{networkInfrastructureId}"
+    },
+    {
         "operation": "enableEnvironmentAdvancedNetworkingConfiguration",
         "profiles": "Deployment Manager, Business Owner",
         "method": "PUT",
