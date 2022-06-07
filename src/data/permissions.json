@@ -210,5 +210,23 @@
         "method": "GET",
         "path":"/api/program/{programId}/environment/{environmentId}/logs/download"
 
+    },
+    {
+        "operation": "restoreExecution",
+        "profiles" : "Deployment Manager",
+        "method": "PUT",
+        "path":"/api/program/{programId}/environment/{environmentId}/restoreExecution"
+    },
+    {
+        "operation": "getNewRelicSubAccountUserList",
+        "profiles" : "Deployment Manager, Business Owner",
+        "method": "GET",
+        "path":"/api/program/{programId}/newRelicUsers"
+    },
+    {
+        "operation": "createDeleteNewRelicSubAccountUsers",
+        "profiles" : "Deployment Manager, Business Owner",
+        "method": "PATCH",
+        "path":"/api/program/{programId}/newRelicUsers"
     }
 ]

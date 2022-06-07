@@ -18,6 +18,7 @@ tags:
   - name: Pipeline Execution
   - name: Environments
   - name: Variables
+  - name: Environment Restore From Backup
   - name: IP Allowlist
   - name: IP Allowlist Binding
   - name: Domain Names
@@ -1374,6 +1375,238 @@ paths:
           description: Successful setting of variables
         '404':
           description: Environment not found
+  '/api/program/{programId}/environment/{environmentId}/restorePoints':
+    get:
+      tags:
+        - Environment Restore From Backup
+      summary: Get Restore Points
+      description: List the backups available for this environment (Cloud Service only)
+      operationId: getRestorePoints
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of restore points for an environment
+          schema:
+            $ref: '#/definitions/RestorePointsList'
+        '404':
+          description: Resource not found
+  '/api/program/{programId}/environment/{environmentId}/restoreExecution/{restoreId}':
+    get:
+      tags:
+        - Environment Restore From Backup
+      summary: Get Restore Execution
+      description: Returns a restore execution by its id (Cloud Service only)
+      operationId: getRestoreExecution
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - name: restoreId
+          in: path
+          description: Identifier of the restore execution
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/RestoreExecution'
+  '/api/program/{programId}/environment/{environmentId}/restoreExecution/{restoreId}/logs':
+    get:
+      tags:
+        - Environment Restore From Backup
+      summary: Get Restore Execution Logs
+      description: Gets the logs of a Restore Execution (Cloud Service only)
+      operationId: getRestoreExecutionLogs
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - name: restoreId
+          in: path
+          description: Identifier of the restore execution
+          required: true
+          type: string
+        - name: Accept
+          in: header
+          required: false
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        default:
+          description: successful operation
+  '/api/program/{programId}/environment/{environmentId}/restoreExecutions':
+    get:
+      tags:
+        - Environment Restore From Backup
+      summary: Lists Restore Executions
+      description: List the Restore Executions of an environment (Cloud Service only)
+      operationId: getRestoreExecutions
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - name: start
+          in: query
+          description: Pagination start parameter
+          required: false
+          type: string
+          default: '0'
+        - name: limit
+          in: query
+          description: Pagination limit parameter
+          required: false
+          type: integer
+          default: 5
+          format: int32
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/RestoreExecutionList'
+  '/api/program/{programId}/environment/{environmentId}/restoreExecution':
+    put:
+      tags:
+        - Environment Restore From Backup
+      summary: Start a Restore Execution
+      description: Start a Restore from Backup execution (Cloud Service only)
+      operationId: restoreExecution
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Restore Parameters Representation
+          required: false
+          schema:
+            $ref: '#/definitions/RestoreParamRepresentation'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Environment restore in progress
+          schema:
+            $ref: '#/definitions/RestoreExecution'
+        '404':
+          description: Environment not found
+        '412':
+          description: Restore precondition failed
   '/api/program/{programId}/pipeline/{pipelineId}/variables':
     get:
       tags:
@@ -2481,6 +2714,122 @@ paths:
             $ref: '#/definitions/SslCertificate'
         '404':
           description: Program not found
+  '/api/program/{programId}/newRelicUsers':
+    get:
+      tags:
+        - Programs
+      summary: Get New Relic Sub Account users list
+      description: Get New Relic Sub Account users list for this program
+      operationId: getNewRelicSubAccountUserList
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the list of New Relic Sub Account users
+          schema:
+            $ref: '#/definitions/NewRelicSubAccountUserlist'
+        '400':
+          description: The request is malformed.
+        '401':
+          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
+        '403':
+          description: The requester is not authorized to access the resource.
+        '405':
+          description: Client sent a request using a HTTP method that the server doesn't support.
+        '406':
+          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: This is an indicator of a server-side error.
+        '502':
+          description: This is an indicator that the back-end service did not send a valid response.
+        '503':
+          description: This is an indicator of a potential server overload.
+        '504':
+          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
+    patch:
+      tags:
+        - Programs
+      summary: Create and Delete New Relic Sub Account users
+      description: Create and Delete New Relic Sub Account users for this program
+      operationId: createDeleteNewRelicSubAccountUsers
+      parameters:
+        - in: body
+          name: body
+          description: New Relic Sub-Account Users
+          required: true
+          schema:
+            $ref: '#/definitions/NewRelicSubAccountUser'
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/NewRelicSubAccountUserlist'
+        '204':
+          description: Successful newRelic Sub Account User flow initiation
+        '400':
+          description: The request is malformed.
+        '401':
+          description: The request has not been applied because it lacks valid authentication credentials for the target resource.
+        '403':
+          description: The requester is not authorized to access the resource.
+        '404':
+          description: Program not found
+        '406':
+          description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
+        '500':
+          description: This is an indicator of a server-side error.
+        '502':
+          description: This is an indicator that the back-end service did not send a valid response.
+        '503':
+          description: This is an indicator of a potential server overload.
+        '504':
+          description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   /api/tenants:
     get:
       tags:
@@ -2860,6 +3209,10 @@ paths:
           required: true
           type: string
       responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/NetworkInfrastructure'
         '204':
           description: Network infrastructure deleted
           schema:
@@ -4122,6 +4475,240 @@ definitions:
       name:
         type: string
         description: 'Name of the log for service in environment. Example: aemerror'
+  RestorePointDetails:
+    type: object
+    properties:
+      atlasOrganisationId:
+        type: integer
+        format: int64
+        description: Atlas Organisation ID
+      atlasClusterId:
+        type: integer
+        format: int64
+        description: Atlas cluster ID
+      restorePoint:
+        type: integer
+        format: int64
+        description: Restore point
+      deploymentDate:
+        type: string
+        format: date-time
+        description: The date when the deployment was made
+      deploymentHistoryId:
+        type: integer
+        format: int64
+        description: The Helm Deployment History ID
+      aemReleaseVersion:
+        type: string
+        description: AEM release version
+      repositoryId:
+        type: string
+        description: Git repository ID
+      repositoryName:
+        type: string
+        description: Git repository name
+      repositoryUrl:
+        type: string
+        description: Git repository URL
+      branchName:
+        type: string
+        description: Git branch name
+      commitHash:
+        type: string
+        description: Git commit hash
+      restoreDate:
+        type: string
+        format: date-time
+        description: Restore date
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/atlascluster':
+            $ref: '#/definitions/HalLink'
+  RestorePointsList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+        description: The total number of embedded items
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          restorePointsDetails:
+            type: array
+            description: restorePointsDetails
+            items:
+              $ref: '#/definitions/RestorePointDetails'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+            description: The next page of results.
+          prev:
+            $ref: '#/definitions/HalLink'
+            description: The previous page of results.
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+  ErrorDetailsRepresentation:
+    type: object
+    properties:
+      errorCode:
+        type: string
+        description: The error code
+        readOnly: true
+      publicDetails:
+        type: object
+        description: Additional error details that can be used by customer
+        additionalProperties:
+          type: object
+        readOnly: true
+      message:
+        type: string
+        description: Human readable error message
+        readOnly: true
+  Restore-Environmentdetailsrepresentation:
+    type: object
+    properties:
+      releaseId:
+        type: string
+      repositoryId:
+        type: string
+      repositoryName:
+        type: string
+      branch:
+        type: string
+      commitSha:
+        type: string
+      repositoryUrl:
+        type: string
+      timestamp:
+        type: integer
+        format: int64
+  RestoreExecution:
+    type: object
+    properties:
+      id:
+        type: string
+        description: id
+      programId:
+        type: string
+        example: '14'
+        description: 'Identifier of the program, unique within the space'
+      environmentId:
+        type: string
+        example: '14'
+        description: 'Identifier of the environment, unique within the space'
+      status:
+        type: string
+        example: not_started
+        description: Status of the restore execution
+        enum:
+          - not_started
+          - running
+          - finished
+          - error
+          - failed
+      errorDetails:
+        description: 'Error details, present only when execution failed'
+        $ref: '#/definitions/ErrorDetailsRepresentation'
+      environmentDetailsAtSnapshotDate:
+        description: Environment details at snapshot timestamp
+        $ref: '#/definitions/Restore-Environmentdetailsrepresentation'
+      environmentDetailsAtRestoreDate:
+        description: Environment details when the restore was triggered
+        $ref: '#/definitions/Restore-Environmentdetailsrepresentation'
+      createdAt:
+        type: string
+        format: date-time
+        description: createdAt
+      updatedAt:
+        type: string
+        format: date-time
+        description: updatedAt
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/environment':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/flow':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/program':
+            description: The Application this environment belongs to
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/restoreExecution/logs/download':
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+    description: A RestoreExecution
+  RestoreExecutionLimit:
+    type: object
+    properties:
+      resetDate:
+        type: string
+        format: date
+        description: Reset date
+      available:
+        type: integer
+        format: int64
+        description: Available runs until reset
+      max:
+        type: integer
+        format: int64
+        description: Max runs per interval
+  RestoreExecutionList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int64
+        description: The total number of embedded items
+      limits:
+        description: Restore executions limits
+        $ref: '#/definitions/RestoreExecutionLimit'
+      _page:
+        $ref: '#/definitions/RequestedPageDetails'
+        description: Details of the requested page of items
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          restoreExecutions:
+            type: array
+            items:
+              $ref: '#/definitions/RestoreExecution'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+            description: The next page of results.
+          page:
+            $ref: '#/definitions/HalLink'
+            description: An arbitrary page of results.
+          prev:
+            $ref: '#/definitions/HalLink'
+            description: The previous page of results.
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+  RestoreParamRepresentation:
+    type: object
+    required:
+      - pointInTimeInMillis
+    properties:
+      pointInTimeInMillis:
+        type: string
+        description: Desired point in time
+        pattern: '\d{1,19}$'
   IPAllowedListBinding:
     type: object
     required:
@@ -4515,6 +5102,67 @@ definitions:
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
+  NewRelicSub-AccountUser:
+    type: object
+    properties:
+      id:
+        type: string
+        example: '42'
+        description: Identifier of the New Relic sub account User
+      firstName:
+        type: string
+        example: John
+        description: First name of the New Relic sub account User
+      lastName:
+        type: string
+        example: Doe
+        description: Last name of the New Relic sub account User
+      email:
+        type: string
+        example: foobar@newrelic.com
+        description: email of the New Relic sub account user
+      role:
+        type: string
+        example: admin
+        description: Role of the New Relic sub account user
+      owner:
+        type: boolean
+        example: false
+        description: Owner detail of the New Relic sub account User
+        default: false
+    description: Describes __New Relic Sub-Account User__
+  NewRelicSubAccountUserlist:
+    type: object
+    properties:
+      _totalNumberOfNewRelicSubAccountUsers:
+        type: integer
+        format: int32
+      applicationId:
+        type: string
+        example: '44'
+        description: The id of the Cloud Manager application this sub account user list is linked to
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          newRelicUsers:
+            type: array
+            items:
+              $ref: '#/definitions/NewRelicSub-AccountUser'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/application':
+            description: Application linked to this New Relic sub account
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/newRelicSubAccount':
+            description: New Relic sub account linked to the New Relic sub account User list
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+    description: List of New Relic sub account users
   Organisation:
     type: object
     properties:
@@ -4688,64 +5336,64 @@ definitions:
         description: DH Group
         enum:
           - DHGroup24
-          - ECP384
-          - ECP256
-          - DHGroup14
-          - DHGroup2048
-          - DHGroup2
-          - DHGroup1
-          - None
+          - '?ECP384'
+          - '?ECP256'
+          - '?DHGroup14'
+          - '?DHGroup2048'
+          - '?DHGroup2'
+          - '?DHGroup1'
+          - '?None'
       ikeEncryption:
         type: string
         description: IKEv2 Encryption
         enum:
           - AES256
-          - AES192
-          - AES128
-          - DES3
-          - DES
+          - '?AES192'
+          - '?AES128'
+          - '?DES3'
+          - '?DES'
       ikeIntegrity:
         type: string
         description: IKEv2 Integrity
         enum:
           - SHA384
-          - SHA256
-          - SHA1
-          - MD5
+          - '?SHA256'
+          - '?SHA1'
+          - '?MD5'
       ipsecEncryption:
         type: string
         description: IPsec Encryption
         enum:
           - GCMAES256
-          - GCMAES192
-          - GCMAES128
-          - AES256
-          - AES192
-          - AES128
-          - DES3
-          - DES
-          - None
+          - '?GCMAES192'
+          - '?GCMAES128'
+          - '?AES256'
+          - '?AES192'
+          - '?AES128'
+          - '?DES3'
+          - '?DES'
+          - '?None'
       ipsecIntegrity:
         type: string
         description: IPsec Integrity
         enum:
           - GCMAES256
-          - GCMAES192
-          - GCMAES128
-          - SHA256
-          - SHA1
-          - MD5
+          - '?GCMAES192'
+          - '?GCMAES128'
+          - '?SHA256'
+          - '?SHA1'
+          - '?MD5'
       pfsGroup:
         type: string
         description: PFS Group
         enum:
           - PFS24
-          - ECP384
-          - ECP256
-          - PFS2048
-          - PFS2
-          - PFS1
-          - None
+          - '?ECP384'
+          - '?ECP256'
+          - '?PFS2048'
+          - '?PFS2'
+          - '?PFS1'
+          - '?None'
       saDatasize:
         type: integer
         format: int64
@@ -4773,23 +5421,6 @@ definitions:
       ipsecPolicy:
         description: IPSec Policy
         $ref: '#/definitions/IpSecPolicyInfrastructure'
-  ErrorDetailsRepresentation:
-    type: object
-    properties:
-      errorCode:
-        type: string
-        description: The error code
-        readOnly: true
-      publicDetails:
-        type: object
-        description: Additional error details that can be used by customer
-        additionalProperties:
-          type: object
-        readOnly: true
-      message:
-        type: string
-        description: Human readable error message
-        readOnly: true
   NetworkInfrastructure:
     type: object
     required:
@@ -5296,3 +5927,32 @@ definitions:
         type: string
         example: adobe.com.
         description: Name of the DNS zone. Must match the corresponding value returned from the validate request.
+  NewRelicSubAccountUser:
+    type: object
+    properties:
+      id:
+        type: string
+        example: '42'
+        description: Identifier of the New Relic sub account User
+      firstName:
+        type: string
+        example: John
+        description: First name of the New Relic sub account User
+      lastName:
+        type: string
+        example: Doe
+        description: Last name of the New Relic sub account User
+      email:
+        type: string
+        example: foobar@newrelic.com
+        description: email of the New Relic sub account user
+      role:
+        type: string
+        example: admin
+        description: Role of the New Relic sub account user
+      owner:
+        type: boolean
+        example: false
+        description: Owner detail of the New Relic sub account User
+        default: false
+    description: Describes __New Relic Sub-Account User__
