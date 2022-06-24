@@ -21,7 +21,7 @@ Cloud Manager enables organizations to self-manage Adobe Experience Manager envi
 #### Resources
 
 * [Cloud Manager Documentation - Managed Services](https://www.adobe.com/go/aem_cloud_mgr_userguide_en)
-* [Cloud Manager Documentation - AEM Cloud Service](https://www.adobe.com/go/aem_cloud_mgr_userguide_en)
+* [Cloud Manager Documentation - AEM Cloud Service](https://www.adobe.com/go/aem_cloud_serv_implement__en)
 
 ## Overview
 
