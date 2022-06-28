@@ -199,6 +199,12 @@
         "path": "/api/tenant/{tenantId}/programs"
     },
     {
+        "operation": "addFeedback",
+        "profiles": "Business Owner, Deployment Manager, Program Manager",
+        "method": "POST",
+        "path": "/api/program/{programId}/feedbacks"
+    },
+    {
         "operation": "getEnvironmentLogs",
         "profiles" : "Deployment Manager",
         "method": "GET",

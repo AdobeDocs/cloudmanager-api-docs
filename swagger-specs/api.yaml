@@ -2714,6 +2714,50 @@ paths:
             $ref: '#/definitions/SslCertificate'
         '404':
           description: Program not found
+  '/api/program/{programId}/feedbacks':
+    post:
+      tags:
+        - Programs
+      summary: Post feedback
+      description: Add new feedback
+      operationId: postFeedback
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Feedback
+          required: true
+          schema:
+            $ref: '#/definitions/NewFeedback'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '400':
+          description: Invalid request
+        '404':
+          description: Application not found
   '/api/program/{programId}/newRelicUsers':
     get:
       tags:
@@ -5621,6 +5665,43 @@ definitions:
         items:
           type: string
         description: The PEM-encoded certificate chain.
+  NewFeedback:
+    type: object
+    required:
+      - rating
+      - type
+    properties:
+      createdAt:
+        type: string
+        description: Created time
+      id:
+        type: integer
+        description: Identifier of the feedback. Unique within the space.
+      rating:
+        type: integer
+        description: Rating values from 1 to 5
+      comment:
+        type: string
+        description: Feedback comment
+      type:
+        type: string
+        description: Type of feedback
+        enum:
+          - GO_LIVE
+      options:
+        type: object
+        description: Optional information about the feedback
+    description: Describes feedback
+  GoLiveDates:
+    type: object
+    properties:
+      plannedDate:
+        type: string
+        description: Date when go live is planned
+      actualDate:
+        type: string
+        description: Date when the program completed go live
+    description: Contains planned and actual go live dates of a program
   PipelineUpdate:
     type: object
     description: Describe an update to a pipeline
@@ -5851,6 +5932,9 @@ definitions:
           enum:
             - aemsites
             - aemassets
+      goLive:
+        "description": "Go live dates"
+        "$ref": "#/definitions/GoLiveDates"
   NewEnvironment:
     type: object
     description: Description of a new program to be created
