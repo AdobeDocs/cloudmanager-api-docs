@@ -33,7 +33,7 @@ paths:
       tags:
         - Programs
       summary: Lists Programs
-      description: Returns all programs that the requesting user has access to
+      description: This API is deprecated and should no longer be used. Please use the [List Programs for Tenant API](#operation/getProgramsForTenant) instead.
       operationId: getPrograms
       parameters:
         - name: x-gw-ims-org-id
