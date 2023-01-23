@@ -16,6 +16,7 @@ tags:
   - name: Branches
   - name: Pipelines
   - name: Pipeline Execution
+  - name: Execution Artifacts
   - name: Environments
   - name: Variables
   - name: Environment Restore From Backup
@@ -870,6 +871,127 @@ paths:
             $ref: '#/definitions/Redirect'
         '403':
           description: Missing permission for user to read logs
+        '404':
+          description: Pipeline execution does not exist
+  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/artifacts':
+    get:
+      tags:
+        - Execution Artifacts
+      summary: ListArtifacts
+      description: Get the list of artifacts associated with a step.
+      operationId: listStepArtifacts
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program.
+          required: true
+          type: string
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: string
+        - name: executionId
+          in: path
+          description: Identifier of the execution
+          required: true
+          type: string
+        - name: phaseId
+          in: path
+          description: Identifier of the phase
+          required: true
+          type: string
+        - name: stepId
+          in: path
+          description: Identifier of the step
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of artifacts list
+          schema:
+            $ref: '#/definitions/ArtifactList'
+        '403':
+          description: Missing permission for user to read artifacts
+        '404':
+          description: Pipeline execution does not exist
+  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/artifact/{artifactId}':
+    get:
+      tags:
+        - Execution Artifacts
+      summary: GetArtifact
+      description: Get artifact.
+      operationId: getStepArtifact
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program.
+          required: true
+          type: string
+        - name: pipelineId
+          in: path
+          description: Identifier of the pipeline
+          required: true
+          type: string
+        - name: executionId
+          in: path
+          description: Identifier of the execution
+          required: true
+          type: string
+        - name: phaseId
+          in: path
+          description: Identifier of the phase
+          required: true
+          type: string
+        - name: stepId
+          in: path
+          description: Identifier of the step
+          required: true
+          type: string
+        - name: artifactId
+          in: path
+          description: Identifier of the artifact
+          required: true
+          type: string
+        - name: Accept
+          in: header
+          required: false
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of artifact
+        '403':
+          description: Missing permission for user to read artifact
         '404':
           description: Pipeline execution does not exist
   '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/metrics':
@@ -4507,6 +4629,105 @@ definitions:
         description: Map of option parameters for the step
         $ref: '#/definitions/PipelineStepOptions'
     description: Describes a step from a phase of a pipeline
+  Artifact:
+    type: object
+    required:
+      - stepName
+      - type
+    properties:
+      id:
+        type: string
+        example: '29'
+        description: Identifier of the Artifact
+      stepName:
+        type: string
+        example: loadTest
+        description: Name of the step
+      type:
+        type: string
+        example: LOAD_ERROR_PAGES
+        description: Type of the artifact
+        enum:
+          - LOG_FILE
+          - SCAN_ISSUES
+          - LOAD_ERROR_PAGES
+          - LOAD_SLOW_PAGES
+          - LOAD_ERROR_GRAPH_CSV
+          - LOAD_ERROR_GRAPH_JSON
+          - LOAD_RESPONSE_TIME_GRAPH_CSV
+          - LOAD_RESPONSE_TIME_GRAPH_JSON
+          - LOAD_PEAK_RESPONSE_TIME_GRAPH_JSON
+          - LOAD_PEAK_RESPONSE_TIME_GRAPH_CSV
+          - CPU_PERCENT_CSV
+          - CPU_PERCENT_JSON
+          - CPU_I_O_WAIT_PERCENT_CSV
+          - CPU_I_O_WAIT_PERCENT_JSON
+          - DISK_UTILIZATION_PERCENT_CSV
+          - DISK_UTILIZATION_PERCENT_JSON
+          - NETWORK_BANDWIDTH_CSV
+          - NETWORK_BANDWIDTH_JSON
+          - SKYLINE_CUSTOMER_IMAGE
+          - SKYLINE_DISPATCHER_CONFIGURATION
+          - SIGNED_CONTENT_PACKAGE
+          - SIGNED_DISPATCHER_CONFIGURATION
+          - CONTENT_AUDIT_RESULTS
+          - CONTENT_AUDIT_REPORT
+          - SKYLINE_UI_TESTS_IMAGE
+          - SKYLINE_TRANSFORM_JOB_OUTPUT_ARTIFACT
+          - SKYLINE_TRANSFORM_JOB_OUTPUT_DESCRIPTOR
+          - CONTENT_PACKAGE
+          - DISPATCHER_CONFIGURATION
+          - FONT_ARCHIVE
+          - UI_TEST_RESULTS
+      file:
+        type: string
+        example: build/code_quality_scan.log
+        description: File location
+      format:
+        type: string
+        example: text/csv
+        description: File format
+      md5:
+        type: string
+        example: d41d8cd98f00b204e9800998ecf8427e
+        description: MD5 hash of the file
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+    description: Describes an artifact associated with a step
+  ArtifactList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+        description: The total number of embedded items
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          artifacts:
+            type: array
+            items:
+              $ref: '#/definitions/Artifact'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+            description: The next page of results.
+          prev:
+            $ref: '#/definitions/HalLink'
+            description: The previous page of results.
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+    description: Describes a list of artifacts associated with a step
   LogOptionRepresentation:
     type: object
     required:
