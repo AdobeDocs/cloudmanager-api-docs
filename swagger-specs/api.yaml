@@ -18,6 +18,7 @@ tags:
   - name: Pipeline Execution
   - name: Environments
   - name: Variables
+  - name: Rapid Development Environments
   - name: Environment Restore From Backup
   - name: IP Allowlist
   - name: IP Allowlist Binding
@@ -33,7 +34,7 @@ paths:
       tags:
         - Programs
       summary: Lists Programs
-      description: This API is deprecated and should no longer be used. Please use the [Lists Programs for Tenant API](#operation/getProgramsForTenant) instead.
+      description: 'This API is deprecated and should no longer be used. Please use the [Lists Programs for Tenant API](#operation/getProgramsForTenant) instead.'
       operationId: getPrograms
       parameters:
         - name: x-gw-ims-org-id
@@ -1004,6 +1005,7 @@ paths:
             - dev
             - stage
             - prod
+            - rde
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1373,6 +1375,44 @@ paths:
       responses:
         '204':
           description: Successful setting of variables
+        '404':
+          description: Environment not found
+  '/api/program/{programId}/environment/{environmentId}/reset':
+    put:
+      tags:
+        - Rapid Development Environments
+      summary: Reset Rapid Development Environment
+      description: Reset Rapid Development Environment. Also updates the RDE to the latest AEM release.
+      operationId: resetRde
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '202':
+          description: Successfully reset RDE
         '404':
           description: Environment not found
   '/api/program/{programId}/environment/{environmentId}/restorePoints':
@@ -2855,7 +2895,7 @@ paths:
           schema:
             $ref: '#/definitions/NewRelicSubAccountUserlist'
         '204':
-          description: Successful newRelic Sub Account User flow initiation
+          description: Successful New Relic Sub Account user flow initiation
         '400':
           description: The request is malformed.
         '401':
@@ -3449,8 +3489,8 @@ definitions:
       enabled:
         type: boolean
         description: Whether this Program has been enabled for Cloud Manager usage
-        readOnly: true
         default: false
+        readOnly: true
       tenantId:
         type: string
         example: acmeCorp
@@ -3742,6 +3782,7 @@ definitions:
           - dev
           - stage
           - prod
+          - rde
       steps:
         type: array
         description: 'Steps to be included in the phase in execution order. Might be added or not, depending on permissions or configuration'
@@ -4094,6 +4135,7 @@ definitions:
           - dev
           - stage
           - prod
+          - rde
       status:
         type: string
         example: creating
@@ -4109,6 +4151,9 @@ definitions:
           - created
           - restoring
           - restore_failed
+          - resetting
+          - reset_failed
+          - degraded
       region:
         type: string
         example: va7
@@ -4707,6 +4752,10 @@ definitions:
         type: integer
         format: int64
         description: Max runs per interval
+      countInterval:
+        type: integer
+        format: int64
+        description: Rolling window used to count the available runs
   RestoreExecutionList:
     type: object
     properties:
@@ -5380,64 +5429,64 @@ definitions:
         description: DH Group
         enum:
           - DHGroup24
-          - '?ECP384'
-          - '?ECP256'
-          - '?DHGroup14'
-          - '?DHGroup2048'
-          - '?DHGroup2'
-          - '?DHGroup1'
-          - '?None'
+          - ECP384
+          - ECP256
+          - DHGroup14
+          - DHGroup2048
+          - DHGroup2
+          - DHGroup1
+          - None
       ikeEncryption:
         type: string
         description: IKEv2 Encryption
         enum:
           - AES256
-          - '?AES192'
-          - '?AES128'
-          - '?DES3'
-          - '?DES'
+          - AES192
+          - AES128
+          - DES3
+          - DES
       ikeIntegrity:
         type: string
         description: IKEv2 Integrity
         enum:
           - SHA384
-          - '?SHA256'
-          - '?SHA1'
-          - '?MD5'
+          - SHA256
+          - SHA1
+          - MD5
       ipsecEncryption:
         type: string
         description: IPsec Encryption
         enum:
           - GCMAES256
-          - '?GCMAES192'
-          - '?GCMAES128'
-          - '?AES256'
-          - '?AES192'
-          - '?AES128'
-          - '?DES3'
-          - '?DES'
-          - '?None'
+          - GCMAES192
+          - GCMAES128
+          - AES256
+          - AES192
+          - AES128
+          - DES3
+          - DES
+          - None
       ipsecIntegrity:
         type: string
         description: IPsec Integrity
         enum:
           - GCMAES256
-          - '?GCMAES192'
-          - '?GCMAES128'
-          - '?SHA256'
-          - '?SHA1'
-          - '?MD5'
+          - GCMAES192
+          - GCMAES128
+          - SHA256
+          - SHA1
+          - MD5
       pfsGroup:
         type: string
         description: PFS Group
         enum:
           - PFS24
-          - '?ECP384'
-          - '?ECP256'
-          - '?PFS2048'
-          - '?PFS2'
-          - '?PFS1'
-          - '?None'
+          - ECP384
+          - ECP256
+          - PFS2048
+          - PFS2
+          - PFS1
+          - None
       saDatasize:
         type: integer
         format: int64
@@ -5503,7 +5552,7 @@ definitions:
       region:
         type: string
         example: va6
-        description: Region to create the infrastructure
+        description: 'Region to create the infrastructure. Use your primary region, whose identifier can be retrieved from the [List Regions endpoint](#operation/getProgramRegions).'
       created:
         type: string
         format: date-time
@@ -5933,8 +5982,8 @@ definitions:
             - aemsites
             - aemassets
       goLive:
-        "description": "Go live dates"
-        "$ref": "#/definitions/GoLiveDates"
+        description: Go live dates
+        $ref: '#/definitions/GoLiveDates'
   NewEnvironment:
     type: object
     description: Description of a new program to be created
@@ -5953,6 +6002,7 @@ definitions:
           - dev
           - stage
           - prod
+          - rde
       region:
         type: string
         example: va7
