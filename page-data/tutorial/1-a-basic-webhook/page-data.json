@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-pages-tutorial-1-a-basic-webhook-md",
-    "path": "/tutorial/1-a-basic-webhook/",
-    "result": {"pageContext":{"frontmatter":{"title":"Tutorial Step 1 - Cloud Manager API","description":"This is step 1 of the Cloud Manager API Tutorial","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Tutorial","JavaScript"]}}},
-    "staticQueryHashes": ["915530536"]}
+{"componentChunkName":"component---src-pages-tutorial-1-a-basic-webhook-md","path":"/tutorial/1-a-basic-webhook/","result":{"pageContext":{"frontmatter":{"title":"Tutorial Step 1 - Cloud Manager API","description":"This is step 1 of the Cloud Manager API Tutorial","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Tutorial","JavaScript"]}}},"staticQueryHashes":["1440646406","3508090095","915530536"]}

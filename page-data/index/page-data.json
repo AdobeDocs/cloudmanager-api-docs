@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-pages-index-md",
-    "path": "/",
-    "result": {"pageContext":{"frontmatter":{"title":"Overview - Cloud Manager API","description":"This is the overview page of the Cloud Manager API","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager"]}}},
-    "staticQueryHashes": ["915530536"]}
+{"componentChunkName":"component---src-pages-index-md","path":"/","result":{"pageContext":{"frontmatter":{"title":"Overview - Cloud Manager API","description":"This is the overview page of the Cloud Manager API","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager"]}}},"staticQueryHashes":["1440646406","3508090095","915530536"]}

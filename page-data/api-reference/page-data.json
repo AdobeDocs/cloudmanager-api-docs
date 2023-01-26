@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-pages-api-reference-md",
-    "path": "/api-reference/",
-    "result": {"pageContext":{"frontmatter":{"title":"Redirect","description":"This page is purely for redirection."}}},
-    "staticQueryHashes": ["915530536"]}
+{"componentChunkName":"component---src-pages-api-reference-md","path":"/api-reference/","result":{"pageContext":{"frontmatter":{"title":"Redirect","description":"This page is purely for redirection."}}},"staticQueryHashes":["1440646406","3508090095","915530536"]}

@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-pages-tutorial-7-sending-notifications-md",
-    "path": "/tutorial/7-sending-notifications/",
-    "result": {"pageContext":{"frontmatter":{"title":"Tutorial Step 7 - Cloud Manager API","description":"This is step 7 of the Cloud Manager API Tutorial","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Tutorial","JavaScript"]}}},
-    "staticQueryHashes": ["915530536"]}
+{"componentChunkName":"component---src-pages-tutorial-7-sending-notifications-md","path":"/tutorial/7-sending-notifications/","result":{"pageContext":{"frontmatter":{"title":"Tutorial Step 7 - Cloud Manager API","description":"This is step 7 of the Cloud Manager API Tutorial","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Tutorial","JavaScript"]}}},"staticQueryHashes":["1440646406","3508090095","915530536"]}

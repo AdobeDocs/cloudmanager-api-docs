@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-pages-guides-api-usage-adding-custom-domain-names-md",
-    "path": "/guides/api-usage/adding-custom-domain-names/",
-    "result": {"pageContext":{"frontmatter":{"title":"Adding Custom Domain Names","description":"Learn how to add your own custom domain names to an environment.","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Pipeline","Code Quality","Performance Testing","Security Testing"]}}},
-    "staticQueryHashes": ["915530536"]}
+{"componentChunkName":"component---src-pages-guides-api-usage-adding-custom-domain-names-md","path":"/guides/api-usage/adding-custom-domain-names/","result":{"pageContext":{"frontmatter":{"title":"Adding Custom Domain Names","description":"Learn how to add your own custom domain names to an environment.","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Pipeline","Code Quality","Performance Testing","Security Testing"]}}},"staticQueryHashes":["1440646406","3508090095","915530536"]}

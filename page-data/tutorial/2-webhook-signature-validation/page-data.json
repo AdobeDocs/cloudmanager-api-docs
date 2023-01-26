@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-pages-tutorial-2-webhook-signature-validation-md",
-    "path": "/tutorial/2-webhook-signature-validation/",
-    "result": {"pageContext":{"frontmatter":{"title":"Tutorial Step 2 - Cloud Manager API","description":"This is step 2 of the Cloud Manager API Tutorial","contributors":["https://github.com/oostanc"],"keywords":["Experience Cloud","API Documentation","JavaScript"]}}},
-    "staticQueryHashes": ["915530536"]}
+{"componentChunkName":"component---src-pages-tutorial-2-webhook-signature-validation-md","path":"/tutorial/2-webhook-signature-validation/","result":{"pageContext":{"frontmatter":{"title":"Tutorial Step 2 - Cloud Manager API","description":"This is step 2 of the Cloud Manager API Tutorial","contributors":["https://github.com/oostanc"],"keywords":["Experience Cloud","API Documentation","JavaScript"]}}},"staticQueryHashes":["1440646406","3508090095","915530536"]}

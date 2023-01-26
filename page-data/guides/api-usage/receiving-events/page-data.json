@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-pages-guides-api-usage-receiving-events-md",
-    "path": "/guides/api-usage/receiving-events/",
-    "result": {"pageContext":{"frontmatter":{"title":"Receiving Events  - Cloud Manager API","description":"Describes how to receive events","contributors":["https://github.com/bstopp"],"keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Events","Pipeline"]}}},
-    "staticQueryHashes": ["915530536"]}
+{"componentChunkName":"component---src-pages-guides-api-usage-receiving-events-md","path":"/guides/api-usage/receiving-events/","result":{"pageContext":{"frontmatter":{"title":"Receiving Events  - Cloud Manager API","description":"Describes how to receive events","contributors":["https://github.com/bstopp"],"keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Events","Pipeline"]}}},"staticQueryHashes":["1440646406","3508090095","915530536"]}

@@ -1,5 +1,1 @@
-{
-    "componentChunkName": "component---src-pages-guides-getting-started-getting-started-with-postman-md",
-    "path": "/guides/getting-started/getting-started-with-postman/",
-    "result": {"pageContext":{"frontmatter":{"title":"Getting Started with Postman - Cloud Manager API","description":"Describes how to use a pre-configured Postman collection","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Postman"]}}},
-    "staticQueryHashes": ["915530536"]}
+{"componentChunkName":"component---src-pages-guides-getting-started-getting-started-with-postman-md","path":"/guides/getting-started/getting-started-with-postman/","result":{"pageContext":{"frontmatter":{"title":"Getting Started with Postman - Cloud Manager API","description":"Describes how to use a pre-configured Postman collection","keywords":["Experience Cloud","Adobe Experience Manager","API Documentation","Cloud Manager","Postman"]}}},"staticQueryHashes":["1440646406","3508090095","915530536"]}
