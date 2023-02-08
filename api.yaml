@@ -34,7 +34,7 @@ paths:
       tags:
         - Programs
       summary: Lists Programs
-      description: This API is deprecated and should no longer be used. Please use the [Lists Programs for Tenant API](#operation/getProgramsForTenant) instead.
+      description: 'This API is deprecated and should no longer be used. Please use the [Lists Programs for Tenant API](#operation/getProgramsForTenant) instead.'
       operationId: getPrograms
       parameters:
         - name: x-gw-ims-org-id
@@ -2977,7 +2977,7 @@ paths:
           schema:
             $ref: '#/definitions/NewRelicSubAccountUserlist'
         '204':
-          description: Successful newRelic Sub Account User flow initiation
+          description: Successful New Relic Sub Account user flow initiation
         '400':
           description: The request is malformed.
         '401':
@@ -3571,8 +3571,8 @@ definitions:
       enabled:
         type: boolean
         description: Whether this Program has been enabled for Cloud Manager usage
-        readOnly: true
         default: false
+        readOnly: true
       tenantId:
         type: string
         example: acmeCorp
@@ -4231,6 +4231,8 @@ definitions:
           - created
           - restoring
           - restore_failed
+          - resetting
+          - reset_failed
       region:
         type: string
         example: va7
@@ -5601,64 +5603,64 @@ definitions:
         description: DH Group
         enum:
           - DHGroup24
-          - '?ECP384'
-          - '?ECP256'
-          - '?DHGroup14'
-          - '?DHGroup2048'
-          - '?DHGroup2'
-          - '?DHGroup1'
-          - '?None'
+          - ECP384
+          - ECP256
+          - DHGroup14
+          - DHGroup2048
+          - DHGroup2
+          - DHGroup1
+          - None
       ikeEncryption:
         type: string
         description: IKEv2 Encryption
         enum:
           - AES256
-          - '?AES192'
-          - '?AES128'
-          - '?DES3'
-          - '?DES'
+          - AES192
+          - AES128
+          - DES3
+          - DES
       ikeIntegrity:
         type: string
         description: IKEv2 Integrity
         enum:
           - SHA384
-          - '?SHA256'
-          - '?SHA1'
-          - '?MD5'
+          - SHA256
+          - SHA1
+          - MD5
       ipsecEncryption:
         type: string
         description: IPsec Encryption
         enum:
           - GCMAES256
-          - '?GCMAES192'
-          - '?GCMAES128'
-          - '?AES256'
-          - '?AES192'
-          - '?AES128'
-          - '?DES3'
-          - '?DES'
-          - '?None'
+          - GCMAES192
+          - GCMAES128
+          - AES256
+          - AES192
+          - AES128
+          - DES3
+          - DES
+          - None
       ipsecIntegrity:
         type: string
         description: IPsec Integrity
         enum:
           - GCMAES256
-          - '?GCMAES192'
-          - '?GCMAES128'
-          - '?SHA256'
-          - '?SHA1'
-          - '?MD5'
+          - GCMAES192
+          - GCMAES128
+          - SHA256
+          - SHA1
+          - MD5
       pfsGroup:
         type: string
         description: PFS Group
         enum:
           - PFS24
-          - '?ECP384'
-          - '?ECP256'
-          - '?PFS2048'
-          - '?PFS2'
-          - '?PFS1'
-          - '?None'
+          - ECP384
+          - ECP256
+          - PFS2048
+          - PFS2
+          - PFS1
+          - None
       saDatasize:
         type: integer
         format: int64
@@ -5724,7 +5726,7 @@ definitions:
       region:
         type: string
         example: va6
-        description: Region to create the infrastructure
+        description: 'Region to create the infrastructure. Use your primary region, whose identifier can be retrieved from the [List Regions endpoint](#operation/getProgramRegions).'
       created:
         type: string
         format: date-time
@@ -6154,8 +6156,8 @@ definitions:
             - aemsites
             - aemassets
       goLive:
-        "description": "Go live dates"
-        "$ref": "#/definitions/GoLiveDates"
+        description: Go live dates
+        $ref: '#/definitions/GoLiveDates'
   NewEnvironment:
     type: object
     description: Description of a new program to be created
