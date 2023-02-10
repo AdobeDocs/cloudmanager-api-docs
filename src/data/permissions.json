@@ -234,5 +234,11 @@
         "profiles" : "Deployment Manager, Business Owner",
         "method": "PATCH",
         "path":"/api/program/{programId}/newRelicUsers"
+    },
+    {
+        "operation": "resetRde",
+        "profiles" : "Developer",
+        "method": "PUT",
+        "path":"/api/program/{programId}/environment/{environmentId}/reset"
     }
 ]
