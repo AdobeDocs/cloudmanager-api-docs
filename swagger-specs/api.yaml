@@ -3431,9 +3431,9 @@ paths:
     get:
       tags:
         - Environment Advanced Networking Configuration
-      summary: Get Environment Advanced Networking Configuration
-      description: Returns an environment advanced networking configuration by its id
-      operationId: getEnvironmentAdvancedNetworkingConfiguration
+      summary: Get Environment Advanced Networking Configurations
+      description: Returns environment advanced networking configurations by its id
+      operationId: getEnvironmentAdvancedNetworkingConfigurationList
       parameters:
         - name: programId
           in: path
@@ -3462,9 +3462,9 @@ paths:
           type: string
       responses:
         '200':
-          description: Environment Advanced Networking Configuration
+          description: Environment Advanced Networking Configurations
           schema:
-            $ref: '#/definitions/AdvancedNetworkingConfiguration'
+            $ref: '#/definitions/AdvancedNetworkingConfigurationList'
         '404':
           description: Resource not found
     put:
@@ -5774,6 +5774,10 @@ definitions:
         type: string
         example: va6
         description: 'Region to create the infrastructure. Use your primary region, whose identifier can be retrieved from the [List Regions endpoint](#operation/getProgramRegions).'
+      isPrimaryRegion:
+        type: boolean
+        description: Boolean property to mark whether network infrastructure being created is for primary region or not.
+        default: false
       created:
         type: string
         format: date-time
@@ -5905,6 +5909,34 @@ definitions:
             $ref: '#/definitions/HalLink'
             description: This object's representation
     description: Describes the Advanced Networking configuration for an environment
+  AdvancedNetworkingConfigurationList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+        description: The total number of embedded items
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          networkingConfigurations:
+            type: array
+            items:
+              $ref: '#/definitions/AdvancedNetworkingConfiguration'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+            description: The next page of results.
+          prev:
+            $ref: '#/definitions/HalLink'
+            description: The previous page of results.
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
   Redirect:
     type: object
     required:
