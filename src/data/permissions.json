@@ -240,5 +240,17 @@
         "profiles" : "Developer",
         "method": "PUT",
         "path":"/api/program/{programId}/environment/{environmentId}/reset"
+    },
+    {
+        "operation": "createRegionDeployment",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "POST",
+        "path": "/api/program/{programId}/environment/{environmentId}/regionDeployments"
+    },
+    {
+        "operation": "patchRegionDeployment",
+        "profiles": "Deployment Manager, Business Owner",
+        "method": "PATCH",
+        "path": "/api/program/{programId}/environment/{environmentId}/regionDeployments"
     }
 ]
