@@ -18,6 +18,7 @@ tags:
   - name: Pipeline Execution
   - name: Execution Artifacts
   - name: Environments
+  - name: Region Deployments
   - name: Variables
   - name: Rapid Development Environments
   - name: Environment Restore From Backup
@@ -1276,6 +1277,195 @@ paths:
             $ref: '#/definitions/BadRequestError'
         '404':
           description: Environment not found
+  '/api/program/{programId}/environment/{environmentId}/regionDeployments/{regionDeploymentId}':
+    get:
+      tags:
+        - Region Deployments
+      summary: Get Region Deployment
+      description: Return a region deployment by its id
+      operationId: getRegionDeployment
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - name: regionDeploymentId
+          in: path
+          description: Identifier of the regionDeployment
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the region deployment for the environment
+          schema:
+            $ref: '#/definitions/RegionDeployment'
+  '/api/program/{programId}/environment/{environmentId}/regionDeployments':
+    get:
+      tags:
+        - Region Deployments
+      summary: Get Region Deployments
+      description: List the region deployments for an environment
+      operationId: getRegionDeployments
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the region deployments for the environment
+          schema:
+            $ref: '#/definitions/RegionDeploymentList'
+    post:
+      tags:
+        - Region Deployments
+      summary: Create Region Deployment
+      description: Add region deployments in an environment
+      operationId: createRegionDeployment
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of an environment
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: RegionDeployment
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/NewRegionDeployment'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Region deployment created
+          schema:
+            $ref: '#/definitions/RegionDeploymentList'
+        '400':
+          description: Bad request
+    patch:
+      tags:
+        - Region Deployments
+      summary: Patch Region Deployment
+      description: Remove region deployments from an environment
+      operationId: patchRegionDeployment
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the application
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: RegionDeployment
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/RegionDeploymentDeletion'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '202':
+          description: Region Deployment Modification request accepted
+          schema:
+            $ref: '#/definitions/RegionDeploymentList'
+        '400':
+          description: Region Deployment Modification bad request
+          schema:
+            $ref: '#/definitions/BadRequestError'
+        '404':
+          description: Region deployment not found for the given identifier
   '/api/program/{programId}/environment/{environmentId}/logs':
     get:
       tags:
@@ -4660,6 +4850,99 @@ definitions:
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
+  RegionDeployment:
+    type: object
+    properties:
+      cluster:
+        type: string
+        example: ethos13stageva7
+        description: The cluster where this deployment happens
+      namespace:
+        type: string
+        example: ns-team-aem
+        description: The namespace in which this deployment happens
+      createdAt:
+        type: string
+        format: date-time
+        description: Created time
+      updatedAt:
+        type: string
+        format: date-time
+        description: Date of last change
+      id:
+        type: string
+        description: identifier of a region deployment
+      environmentId:
+        type: string
+        description: identifier of an environment
+      region:
+        type: string
+        example: va7
+        description: Region name of the deployment
+      status:
+        type: string
+        description: Status of the region deployment
+        enum:
+          - PENDING
+          - PROGRESSING
+          - FAILED
+          - COMPLETE
+          - DELETING
+          - DELETED
+          - DELETION_FAILED
+          - TO_DELETE
+      type:
+        type: string
+        example: primary
+        description: Type of the region deployment
+        enum:
+          - PRIMARY
+          - SECONDARY
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/kubernetesCluster':
+            description: Get the Kubernetes Cluster in which this deployment happens
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/kubernetesNamespace':
+            description: Get the Kubernetes Namespace in which this deployment happens
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/region':
+            description: Region being used for this deployment
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+    description: describes region deployments for an environment
+  RegionDeploymentList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+        description: The total number of embedded items
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          regionDeployments:
+            type: array
+            items:
+              $ref: '#/definitions/RegionDeployment'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+            description: The next page of results.
+          prev:
+            $ref: '#/definitions/HalLink'
+            description: The previous page of results.
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
   PipelineStep:
     type: object
     required:
@@ -6264,6 +6547,30 @@ definitions:
         type: string
         example: This is our primary development environment
         description: Description of the environment
+  NewRegionDeployment:
+    type: object
+    description: Description of a new region deployment to be added in the environment
+    required:
+      - region
+    properties:
+      region:
+        type: string
+        example: va7
+        description: Region to be added in the environment
+  RegionDeploymentDeletion:
+    type: object
+    description: Description of region deployment to be deleted in the environment
+    required:
+      - id
+      - status
+    properties:
+      id:
+        type: string
+        description: Identifier of the  region deployment
+      status:
+        type: string
+        example: TO_DELETE
+        description: Status of the region deployment to be set
   DomainNameValidate:
     type: object
     description: Description of a domain name to validate

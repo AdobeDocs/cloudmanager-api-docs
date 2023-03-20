@@ -38,6 +38,10 @@ import ModelDefinitions from "../../components/model-definitions"
 
 <ModelDefinitions data={data} sort={true} forTag="Environments" exclusions={['BadRequestError', 'Redirect']} />
 
+## Region Deployment
+
+<ModelDefinitions data={data} sort={true} forTag="Region Deployments" exclusions={['BadRequestError', 'Redirect']} />
+
 ## Variables
 
 <ModelDefinitions data={data} sort={true} forTag="Variables" />
