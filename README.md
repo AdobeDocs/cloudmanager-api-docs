@@ -13,7 +13,8 @@ the [Adobe I/O Gatsby Theme](https://github.com/adobe/aio-theme).
 ### Building Locally
 
 For local development, simply use :
-```
+
+```text
 $ yarn install
 $ yarn dev
 ```
