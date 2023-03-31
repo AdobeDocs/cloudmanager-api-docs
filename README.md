@@ -32,3 +32,4 @@ Creating a new guide page generally consists of three steps (and one optional st
 4. (if appropriate) Add a new `DiscoverBlock` to `pages/index.md` -- this will cause the guide to appear on the home page.
 
 If you are running `yarn dev` the whole time, you should be able to instantly view your changes.
+
