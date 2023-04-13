@@ -12,7 +12,7 @@
     "url": "https://github.com/justinedelson"
   },
   "dependencies": {
-    "@adobe/gatsby-theme-aio": "^4.8.4",
+    "@adobe/gatsby-theme-aio": "^4.9.7",
     "@emotion/react": "11.8.2",
     "@spectrum-css/buttongroup": "3.0.10",
     "@spectrum-css/fieldlabel": "4.0.17",
@@ -52,7 +52,9 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "jest": "27.5.1",
     "jest-junit": "13.0.0",
-    "js-yaml": "4.1.0"
+    "js-yaml": "4.1.0",
+    "remark-cli": "^11.0.0",
+    "remark-validate-links": "^12.1.0"
   },
   "scripts": {
     "start": "gatsby build && gatsby serve",
@@ -70,10 +72,16 @@
     "lint-fix": "eslint gatsby-*.js src files scripts --fix",
     "postinstall": "patch-package",
     "test": "jest --config test/jest.config.js",
+    "test:links": "remark src/pages --quiet --frail",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --config test/jest.config.js"
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-validate-links"
+    ]
   },
   "packageManager": "yarn@3.2.2"
 }
