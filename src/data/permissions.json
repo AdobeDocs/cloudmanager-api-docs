@@ -252,5 +252,59 @@
         "profiles": "Deployment Manager, Business Owner",
         "method": "PATCH",
         "path": "/api/program/{programId}/environment/{environmentId}/regionDeployments"
+    },
+    {
+        "operation": "createContentSet",
+        "profiles": "Deployment Manager",
+        "method": "POST",
+        "path": "/api/program/{programId}/contentSets"
+    },
+    {
+        "operation": "deleteContentSet",
+        "profiles": "Deployment Manager",
+        "method": "DELETE",
+        "path": "/api/program/{programId}/contentSet/{contentSetId}"
+    },
+    {
+        "operation": "updateContentSet",
+        "profiles": "Deployment Manager",
+        "method": "PUT",
+        "path": "/api/program/{programId}/contentSet/{contentSetId}"
+    },
+    {
+        "operation": "getContentSet",
+        "profiles": "Deployment Manager",
+        "method": "GET",
+        "path": "/api/program/{programId}/contentSet/{contentSetId}"
+    },
+    {
+        "operation": "listContentSets",
+        "profiles": "Deployment Manager",
+        "method": "GET",
+        "path": "/api/program/{programId}/contentSets"
+    },
+    {
+        "operation": "createContentFlow",
+        "profiles": "Deployment Manager",
+        "method": "POST",
+        "path": "/api/program/{programId}/environment/{environmentId}/contentFlow"
+    },
+    {
+        "operation": "getContentFlow",
+        "profiles": "Deployment Manager",
+        "method": "GET",
+        "path": "/api/program/{programId}/contentFlow/{contentFlowId}"
+    },
+    {
+        "operation": "cancelContentFlow",
+        "profiles": "Deployment Manager",
+        "method": "DELETE",
+        "path": "/api/program/{programId}/contentFlow/{contentFlowId}"
+    },
+    {
+        "operation": "listContentFlows",
+        "profiles": "Deployment Manager",
+        "method": "GET",
+        "path": "/api/program/{programId}/contentFlows"
     }
 ]
