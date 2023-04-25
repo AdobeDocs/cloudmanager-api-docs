@@ -30,6 +30,7 @@ tags:
   - name: Regions
   - name: Network infrastructure
   - name: Environment Advanced Networking Configuration
+  - name: ContentSets
 paths:
   /api/programs:
     get:
@@ -574,6 +575,10 @@ paths:
           description: No pipeline execution exits or unknown pipeline or application
         '412':
           description: Pipeline is busy
+        '503':
+          description: Pipeline execution cannot be started because of unplanned maintenance
+          schema:
+            $ref: '#/definitions/SystemUnderMaintenanceExceptionMapper'
   '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}':
     get:
       tags:
@@ -1251,6 +1256,12 @@ paths:
           description: Identifier of the environment
           required: true
           type: string
+        - name: ignoreResourcesDeletionResult
+          in: query
+          description: 'Ignore Resources Deletion Result option, delete flow does not fail if resources could not be deleted'
+          required: false
+          type: boolean
+          default: false
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3750,6 +3761,405 @@ paths:
           description: Validation exception
         '404':
           description: Resource not found
+  '/api/program/{programId}/contentSets':
+    get:
+      tags:
+        - ContentSets
+      summary: Lists Content Sets for program
+      description: Returns all content sets defined for the program.
+      operationId: getContentSets
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: List content sets
+          schema:
+            $ref: '#/definitions/ContentSetList'
+        '400':
+          description: Bad request
+    post:
+      tags:
+        - ContentSets
+      summary: Create content set
+      description: create a content set
+      operationId: createContentSet
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Content set
+          required: true
+          schema:
+            $ref: '#/definitions/NewContentSet'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Content Set created
+          schema:
+            $ref: '#/definitions/ContentSet'
+        '400':
+          description: Bad request
+        '404':
+          description: Program not found
+  '/api/program/{programId}/contentSet/{contentSetId}':
+    get:
+      tags:
+        - ContentSets
+      summary: Get content set
+      description: Gets a content set by Id
+      operationId: getContentSet
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: contentSetId
+          in: path
+          description: Identifier of the content set
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Found content set
+          schema:
+            $ref: '#/definitions/ContentSet'
+        '400':
+          description: Bad request
+        '404':
+          description: Content set not found
+    put:
+      tags:
+        - ContentSets
+      summary: Update content set
+      description: Updates the content set
+      operationId: updateContentSet
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: contentSetId
+          in: path
+          description: Identifier of the content set
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Content set
+          required: true
+          schema:
+            $ref: '#/definitions/ContentSet'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Content set updated
+          schema:
+            $ref: '#/definitions/ContentSet'
+        '400':
+          description: Bad request
+        '404':
+          description: Content set not found
+    delete:
+      tags:
+        - ContentSets
+      summary: Delete content set
+      description: Deletes the content set by Id
+      operationId: deleteContentSet
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: contentSetId
+          in: path
+          description: Identifier of the content set
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Content set deleted
+          schema:
+            $ref: '#/definitions/ContentSet'
+        '400':
+          description: Bad request
+        '404':
+          description: Content set not found
+  '/api/program/{programId}/contentFlows':
+    get:
+      tags:
+        - ContentSets
+      summary: List content flows for the program
+      description: List all content flows for a program
+      operationId: listContentFlows
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: start
+          in: query
+          description: Pagination start parameter
+          required: false
+          type: string
+          default: '0'
+        - name: limit
+          in: query
+          description: Pagination limit parameter
+          required: false
+          type: integer
+          default: 20
+          format: int32
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: List content flows
+          schema:
+            $ref: '#/definitions/ContentFlowList'
+        '400':
+          description: Bad request
+  '/api/program/{programId}/environment/{environmentId}/contentFlow':
+    post:
+      tags:
+        - ContentSets
+      summary: Execute content flow using content set
+      description: Executes a content flow
+      operationId: createContentFlow
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the destination environment
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Content Flow details
+          required: true
+          schema:
+            $ref: '#/definitions/ContentFlowInput'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Content Flow started
+          schema:
+            $ref: '#/definitions/ContentFlow'
+        '400':
+          description: Bad request
+        '403':
+          description: The requester is not authorized to access the resource.
+        '404':
+          description: Program not found
+  '/api/program/{programId}/contentFlow/{contentFlowId}':
+    get:
+      tags:
+        - ContentSets
+      summary: Get content flows
+      description: Gets content flow for a program
+      operationId: getContentFlow
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: contentFlowId
+          in: path
+          description: Identifier of the contentFlow
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful retrieval of the content flow
+          schema:
+            $ref: '#/definitions/ContentFlow'
+        '400':
+          description: Bad request
+    delete:
+      tags:
+        - ContentSets
+      summary: Cancel content flow
+      description: Cancel content flow
+      operationId: cancelContentFlow
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: contentFlowId
+          in: path
+          description: Identifier of the content flow
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Content flow canceled
+          schema:
+            $ref: '#/definitions/ContentFlow'
+        '400':
+          description: Bad request
 definitions:
   ProgramList:
     type: object
@@ -4280,6 +4690,7 @@ definitions:
           - WAITING
           - CANCELLED
           - FAILED
+          - INCOMPLETE
       _links:
         type: object
         readOnly: true
@@ -4879,6 +5290,9 @@ definitions:
         type: string
         example: va7
         description: Region name of the deployment
+      integrations:
+        description: region integrations
+        $ref: '#/definitions/EnvironmentRegionintegrations'
       status:
         type: string
         description: Status of the region deployment
@@ -4902,6 +5316,8 @@ definitions:
         type: object
         readOnly: true
         properties:
+          'http://ns.adobe.com/adobecloud/rel/flow':
+            $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/kubernetesCluster':
             description: Get the Kubernetes Cluster in which this deployment happens
             $ref: '#/definitions/HalLink'
@@ -4943,6 +5359,189 @@ definitions:
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
+  ContentSet:
+    type: object
+    properties:
+      id:
+        type: string
+        example: '123'
+        description: Identifier of the Content Set
+      name:
+        type: string
+        description: The name of the content set
+      paths:
+        type: array
+        description: Included asset paths
+        uniqueItems: true
+        items:
+          $ref: '#/definitions/ContentSetPath'
+      programId:
+        type: string
+        example: '658'
+        description: Identifier of the program. Unique within the space.
+      createdAt:
+        type: string
+        format: date-time
+        description: Create date
+        readOnly: true
+      updatedAt:
+        type: string
+        format: date-time
+        description: Update date
+        readOnly: true
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/program':
+            description: The Application this content set belongs to.
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+    description: A representation of a ContentSet custom
+  ContentSetPath:
+    type: object
+    properties:
+      path:
+        type: string
+        description: path
+      excluded:
+        type: array
+        description: excluded
+        uniqueItems: true
+        items:
+          type: string
+    description: Describes a __Content Set path__
+  ContentSetList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+        description: The total number of embedded items
+      _page:
+        $ref: '#/definitions/RequestedPageDetails'
+        description: Details of the requested page of items
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          contentSets:
+            type: array
+            items:
+              $ref: '#/definitions/ContentSet'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+            description: The next page of results.
+          page:
+            $ref: '#/definitions/HalLink'
+            description: An arbitrary page of results.
+          prev:
+            $ref: '#/definitions/HalLink'
+            description: The previous page of results.
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+    description: Describes a Content Set List representation
+  ContentFlow:
+    type: object
+    properties:
+      contentSetId:
+        type: string
+        description: The content set id
+      contentSetName:
+        type: string
+        description: The content set name
+      srcEnvironmentId:
+        type: string
+        description: Source environment id
+      srcEnvironmentName:
+        type: string
+        description: Source environment name
+      destEnvironmentId:
+        type: string
+        description: Destination environment id
+      destEnvironmentName:
+        type: string
+        description: Destination environment name
+      tier:
+        type: string
+        description: 'The tier, for example author'
+      status:
+        type: string
+        description: Status of the flows
+      destProgramId:
+        type: string
+        description: Destination program id
+      resultDetails:
+        description: Details of this content flow result
+        $ref: '#/definitions/ContentFlowResults'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/contentSet':
+            description: The Content set for this flow.
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/program':
+            description: The Application this content set belongs to.
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/environment':
+            description: The source Environment this content flow is copying from.
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/destEnvironment':
+            description: The destination Environment this content flow is copying to.
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+    description: The Content Flow Execution
+  ContentFlowResults:
+    type: object
+    properties:
+      exportResult:
+        description: export results
+        $ref: '#/definitions/ContentFlowResultDetails'
+      importResult:
+        description: import results
+        $ref: '#/definitions/ContentFlowResultDetails'
+    description: The Content Flow Results
+  ContentFlowList:
+    type: object
+    properties:
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+        description: The total number of embedded items
+      _page:
+        $ref: '#/definitions/RequestedPageDetails'
+        description: Details of the requested page of items
+      _embedded:
+        type: object
+        readOnly: true
+        properties:
+          contentFlows:
+            type: array
+            items:
+              $ref: '#/definitions/ContentFlow'
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          next:
+            $ref: '#/definitions/HalLink'
+            description: The next page of results.
+          prev:
+            $ref: '#/definitions/HalLink'
+            description: The previous page of results.
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
   PipelineStep:
     type: object
     required:
@@ -4957,6 +5556,8 @@ definitions:
         description: Map of option parameters for the step
         $ref: '#/definitions/PipelineStepOptions'
     description: Describes a step from a phase of a pipeline
+  SystemUnderMaintenanceExceptionMapper:
+    type: object
   Artifact:
     type: object
     required:
@@ -5068,6 +5669,24 @@ definitions:
       name:
         type: string
         description: 'Name of the log for service in environment. Example: aemerror'
+  EnvironmentBlobStorageConfiguration:
+    type: object
+    required:
+      - type
+    properties:
+      type:
+        type: string
+        enum:
+          - azure_blob
+          - azure_files
+          - mongo_atlas
+    description: Settings for environment blob storage
+  EnvironmentRegionintegrations:
+    type: object
+    properties:
+      blobStorage:
+        $ref: '#/definitions/EnvironmentBlobStorageConfiguration'
+    description: integrations for a particular EnvironmentRegion
   RestorePointDetails:
     type: object
     properties:
@@ -6136,6 +6755,7 @@ definitions:
         type: string
         example: smtp.example.com
         description: Destination host
+        pattern: '^[a-z0-9]([-a-z0-9]*[a-z0-9])?([.][a-z0-9]([-a-z0-9]*[a-z0-9])?)*$'
       portDest:
         type: integer
         format: int32
@@ -6220,6 +6840,40 @@ definitions:
           self:
             $ref: '#/definitions/HalLink'
             description: This object's representation
+  ContentFlowResultDetails:
+    type: object
+    properties:
+      errorCode:
+        type: string
+        description: content flow error
+      message:
+        type: string
+        description: content flow error message
+      details:
+        type: array
+        description: details
+        items:
+          type: string
+    description: The Content Flow Result Details
+  ContentFlowInput:
+    type: object
+    properties:
+      contentSetId:
+        type: string
+      destEnvironmentId:
+        type: string
+      tier:
+        type: string
+        example: author
+        description: tier
+      includeACL:
+        type: boolean
+        description: includeACL
+        default: false
+      destProgramId:
+        type: string
+        description: destProgramId
+    description: Wraps the content flow execution arguments
   Redirect:
     type: object
     required:
@@ -6650,3 +7304,17 @@ definitions:
         description: Owner detail of the New Relic sub account User
         default: false
     description: Describes __New Relic Sub-Account User__
+  NewContentSet:
+    type: object
+    properties:
+      name:
+        type: string
+        description: The name of this content set.
+      description:
+        type: string
+        description: The description of this content set.
+      paths:
+        type: array
+        description: Included asset paths
+        items:
+          $ref: '#/definitions/ContentSetPath'
