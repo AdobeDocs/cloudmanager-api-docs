@@ -4125,7 +4125,7 @@ paths:
       tags:
         - ContentSets
       summary: Cancel content flow
-      description: Cancel content flow
+      description: Cancel content flow (Cloud Service only).
       operationId: cancelContentFlow
       parameters:
         - name: programId
