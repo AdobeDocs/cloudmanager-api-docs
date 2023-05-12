@@ -12,7 +12,7 @@
     "url": "https://github.com/justinedelson"
   },
   "dependencies": {
-    "@adobe/gatsby-theme-aio": "^4.9.7",
+    "@adobe/gatsby-theme-aio": "^4.9.9",
     "@emotion/react": "11.8.2",
     "@spectrum-css/buttongroup": "3.0.10",
     "@spectrum-css/fieldlabel": "4.0.17",
@@ -64,7 +64,8 @@
     "dev:https:stage": "gatsby develop --https --host developer-stage.adobe.com --port 443",
     "dev:https:prod": "gatsby develop --https --host www.adobe.io --port 443",
     "dev:debug": "node --nolazy node_modules/.bin/gatsby develop --inspect-brk",
-    "build": "yarn run lint && yarn run test && npx copyfiles -f swagger-specs/* static && gatsby build",
+    "build": "npx copyfiles -f swagger-specs/* static && gatsby build",
+    "build:test": "yarn run lint && yarn run test && npx copyfiles -f swagger-specs/* static && gatsby build",
     "build:incremental": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
