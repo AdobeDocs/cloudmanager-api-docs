@@ -82,7 +82,7 @@ Embedded resources are named, like links. In some cases, a resource may have a m
 
 ## Event Structure
 
-Events are represented as JSON objects which follow the [Activity Stream](https://www.w3.org/TR/activitystreams-core/) specification. Each event has a type, contained in the `@type` property, and an object, defined in the `activitystreams:object` property. More information can be found on the [Receiving Events](../api-usage/receiving-events/) page as well as the [Reference Documentation](../../reference/events/).
+Events are represented as JSON objects which follow the [Activity Stream](https://www.w3.org/TR/activitystreams-core/) specification. Each event has a type, contained in the `@type` property, and an object, defined in the `activitystreams:object` property. More information can be found on the [Receiving Events](../api-usage/receiving-events.md) page as well as the [Reference Documentation](../../reference/events.md).
 
 ### Example
 

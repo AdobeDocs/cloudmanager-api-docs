@@ -29,7 +29,7 @@ Cloud Manager includes a full-featured web user interface at [https://my.cloudma
 
 General information on Cloud Manager can be found in the Product Documentation in the Resources section.
 
-The links in this documentation will guide you through getting started with the Cloud Manager API. There is also a complete [API Reference](reference/api/) which describes all of the individual endpoints and requests which are available for usage.
+The links in this documentation will guide you through getting started with the Cloud Manager API. There is also a complete [API Reference](reference/api.md) which describes all of the individual endpoints and requests which are available for usage.
 
 ## Discover 
 
@@ -37,19 +37,19 @@ The links in this documentation will guide you through getting started with the 
 
 ### Guides
 
-[Creating an API Integration Project](guides/getting-started/create-api-integration/) 
+[Creating an API Integration Project](guides/getting-started/create-api-integration.md) 
      
 Learn how to create an API Integration Project
 
 <DiscoverBlock slots="link, text"/>
 
-[Creating an Event Integration Project](guides/getting-started/create-event-integration/) 
+[Creating an Event Integration Project](guides/getting-started/create-event-integration.md) 
 
 Learn how to create an Event Integration Project to receive webhooks when your pipelines execute.
 
 <DiscoverBlock slots="link, text"/>
 
-[Permissions](guides/getting-started/permissions/)
+[Permissions](guides/getting-started/permissions.md)
 
 See which permissions are required for using the API.
 
@@ -61,19 +61,19 @@ See which permissions are required for using the API.
 
 ### Detailed API Information
 
-[Complete API Reference](reference/api/) 
+[Complete API Reference](reference/api.md) 
 
 See the full API Reference.
 
 <DiscoverBlock slots="link, text"/>
 
-[Event Definitions](reference/events/) 
+[Event Definitions](reference/events.md) 
 
 See the definitions of events sent from Cloud Manager.
 
 <DiscoverBlock slots="link, text"/>
 
-[API Playground](reference/playground/) 
+[API Playground](reference/playground.md) 
 
 Make API calls from your browser.
 
