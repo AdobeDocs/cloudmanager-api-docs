@@ -33,7 +33,7 @@ The embedded resources themselves may contain links and _other_ embedded resourc
 
 ### Links
 
-Links in a resource are defined using a link type (commonly called a "rel", short for relationship). The special link type `self` is a link to the resource itself. 
+Links in a resource are defined using a link type (commonly called a "rel", short for relationship). The special link type `self` is a link to the resource itself.
 
 ```json
 "_links": {
