@@ -14,12 +14,12 @@ keywords:
 
 <DiscoverBlock slots="link, text"/>
 
-[Cloud Manager API](./api.md) 
-     
+[Cloud Manager API](./api.md)
+
 See how metric data is structured.
 
 <DiscoverBlock slots="link, text"/>
 
-[Event Definitions](./events.md) 
+[Event Definitions](./events.md)
 
 See how to edit and delete pipelines.
