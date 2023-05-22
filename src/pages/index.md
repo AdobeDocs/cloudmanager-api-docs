@@ -8,7 +8,7 @@ keywords:
   - Cloud Manager
 ---
 
-<Hero slots="image, heading, text"/> 
+<Hero slots="image, heading, text"/>
 
 ![Hero image](img/pipeline-illustration.png)
 
@@ -31,19 +31,19 @@ General information on Cloud Manager can be found in the Product Documentation i
 
 The links in this documentation will guide you through getting started with the Cloud Manager API. There is also a complete [API Reference](reference/api.md) which describes all of the individual endpoints and requests which are available for usage.
 
-## Discover 
+## Discover
 
 <DiscoverBlock slots="heading, link, text"/>
 
 ### Guides
 
-[Creating an API Integration Project](guides/getting-started/create-api-integration.md) 
-     
+[Creating an API Integration Project](guides/getting-started/create-api-integration.md)
+
 Learn how to create an API Integration Project
 
 <DiscoverBlock slots="link, text"/>
 
-[Creating an Event Integration Project](guides/getting-started/create-event-integration.md) 
+[Creating an Event Integration Project](guides/getting-started/create-event-integration.md)
 
 Learn how to create an Event Integration Project to receive webhooks when your pipelines execute.
 
@@ -61,19 +61,19 @@ See which permissions are required for using the API.
 
 ### Detailed API Information
 
-[Complete API Reference](reference/api.md) 
+[Complete API Reference](reference/api.md)
 
 See the full API Reference.
 
 <DiscoverBlock slots="link, text"/>
 
-[Event Definitions](reference/events.md) 
+[Event Definitions](reference/events.md)
 
 See the definitions of events sent from Cloud Manager.
 
 <DiscoverBlock slots="link, text"/>
 
-[API Playground](reference/playground.md) 
+[API Playground](reference/playground.md)
 
 Make API calls from your browser.
 
@@ -81,7 +81,7 @@ Make API calls from your browser.
 
 ### Tutorial
 
-[Tutorial](tutorial/) 
+[Tutorial](tutorial/)
 
 Walk through a step-by-step tutorial
 
@@ -89,10 +89,10 @@ Walk through a step-by-step tutorial
 
 ### CLI and SDKs
 
-[CLI and SDKs](cli-and-sdks/) 
+[CLI and SDKs](cli-and-sdks/)
 
 Learn about the Cloud Manager CLI and the available SDKs for easy project integration.
 
-## Contributing 
+## Contributing
 
 We encourage you to participate in our open documentation initiative, if you have suggestions, corrections, additions or deletions for this documentation, check out the source from [this github repo](https://github.com/AdobeDocs/cloudmanager-api-docs), create issues, and submit pull requests with your contribution.
