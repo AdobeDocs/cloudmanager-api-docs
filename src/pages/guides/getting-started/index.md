@@ -18,19 +18,19 @@ Get an understanding of how the Cloud Manager API is structured.
 
 <DiscoverBlock slots="link, text"/>
 
-[Creating an API Integration](/src/pages/guides/getting-started/create-api-integration.md) 
-     
+[Creating an API Integration](/src/pages/guides/getting-started/create-api-integration.md)
+
 Learn how to create an API Integration Project.
 
 <DiscoverBlock slots="link, text"/>
 
-[Creating an Event Integration](/src/pages/guides/getting-started/create-event-integration.md) 
+[Creating an Event Integration](/src/pages/guides/getting-started/create-event-integration.md)
 
 Learn how to create an Event Integration Project to receive webhooks when your pipelines execute.
 
 <DiscoverBlock slots="link, text"/>
 
-[Getting Started with Postman](/src/pages/guides/getting-started/getting-started-with-postman.md) 
+[Getting Started with Postman](/src/pages/guides/getting-started/getting-started-with-postman.md)
 
 Learn how to expirement with the API using Postman.
 
