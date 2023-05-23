@@ -12,7 +12,7 @@
     "url": "https://github.com/justinedelson"
   },
   "dependencies": {
-    "@adobe/gatsby-theme-aio": "^4.8.4",
+    "@adobe/gatsby-theme-aio": "^4.9.9",
     "@emotion/react": "11.8.2",
     "@spectrum-css/buttongroup": "3.0.10",
     "@spectrum-css/fieldlabel": "4.0.17",
@@ -52,7 +52,9 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "jest": "27.5.1",
     "jest-junit": "13.0.0",
-    "js-yaml": "4.1.0"
+    "js-yaml": "4.1.0",
+    "remark-cli": "^11.0.0",
+    "remark-validate-links": "^12.1.0"
   },
   "scripts": {
     "start": "gatsby build && gatsby serve",
@@ -62,18 +64,24 @@
     "dev:https:stage": "gatsby develop --https --host developer-stage.adobe.com --port 443",
     "dev:https:prod": "gatsby develop --https --host www.adobe.io --port 443",
     "dev:debug": "node --nolazy node_modules/.bin/gatsby develop --inspect-brk",
-    "build": "yarn run lint && yarn run test && npx copyfiles -f swagger-specs/* static && gatsby build",
+    "build": "npx copyfiles -f swagger-specs/* static && gatsby build",
+    "build:test": "yarn run lint && yarn run test && npx copyfiles -f swagger-specs/* static && gatsby build",
     "build:incremental": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "lint": "eslint gatsby-*.js src files scripts && node scripts/validate-permissions.js",
-    "lint-fix": "eslint gatsby-*.js src files scripts --fix",
+    "lint": "docker run --rm -e RUN_LOCAL=true --env-file '.github/super-linter.env' -v \"$PWD\":/tmp/lint github/super-linter:slim-v4.10.1",
     "postinstall": "patch-package",
     "test": "jest --config test/jest.config.js",
+    "test:links": "remark src/pages --quiet --frail",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --config test/jest.config.js"
   },
   "engines": {
     "node": ">=14.0.0"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-validate-links"
+    ]
   },
   "packageManager": "yarn@3.2.2"
 }
