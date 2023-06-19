@@ -19,6 +19,25 @@ import CustomRequestDialog from './custom-request-dialog'
 import { Edit } from '@adobe/gatsby-theme-aio/src/components/Icons'
 import TemplatedRequestDialog from './template-request-dialog'
 
+const EmptyLinkTable = () => (
+  <Table width="100%">
+    <THead>
+      <Tr>
+        <Th>rel</Th>
+        <Th>href</Th>
+        <Th>actions</Th>
+      </Tr>
+    </THead>
+    <TBody>
+      <Tr>
+        <Td></Td>
+        <Td></Td>
+        <Td></Td>
+      </Tr>
+    </TBody>
+  </Table>
+);
+
 const LinkTable = ({
   links,
   setRequest,
@@ -27,6 +46,13 @@ const LinkTable = ({
 }) => {
   const [customDialogOpen, setCustomDialogOpen] = useState(null)
   const [templatedDialogOpen, setTemplatedDialogOpen] = useState(null)
+
+  const linksKeys = Object.keys(links);
+  const hasLinks = linksKeys.length > 0;
+
+  if (!hasLinks) {
+    return <EmptyLinkTable />;
+  }
 
   return (
       <Table width="100%">
