@@ -4031,7 +4031,7 @@ paths:
       tags:
         - ContentSets
       summary: Execute content flow using content set
-      description: Executes a content flow
+      description: 'Executes a content flow. Note that the user must have appropriate rights in both the source and destination environments. See https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/developer-tools/content-copy.html for more information.'
       operationId: createContentFlow
       parameters:
         - name: programId
