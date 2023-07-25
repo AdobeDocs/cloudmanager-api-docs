@@ -4041,7 +4041,7 @@ paths:
           type: string
         - name: environmentId
           in: path
-          description: Identifier of the destination environment
+          description: Identifier of the source environment
           required: true
           type: string
         - in: body
@@ -4085,7 +4085,7 @@ paths:
     get:
       tags:
         - ContentSets
-      summary: Get content flows
+      summary: Get content flow
       description: Gets content flow for a program
       operationId: getContentFlow
       parameters:
@@ -4125,7 +4125,7 @@ paths:
       tags:
         - ContentSets
       summary: Cancel content flow
-      description: Cancel content flow (Cloud Service only).
+      description: Cancel content flow
       operationId: cancelContentFlow
       parameters:
         - name: programId
@@ -4263,6 +4263,7 @@ definitions:
         description: Name of the program
         minLength: 0
         maxLength: 64
+        pattern: '(?=.*[a-zA-Z])[-+!''"/#$%&*.,;:()’@-}À-ÿ– 0-9]*'
       enabled:
         type: boolean
         description: Whether this Program has been enabled for Cloud Manager usage
@@ -4846,6 +4847,7 @@ definitions:
         type: string
         example: AcmeCorp Dev1 Environment
         description: Name of the environment
+        pattern: '(?=.*[a-zA-Z])[-+!''"/#$%&*.,;()@-} 0-9]*'
       description:
         type: string
         example: This is our primary development environment
@@ -5267,11 +5269,11 @@ definitions:
       cluster:
         type: string
         example: ethos13stageva7
-        description: The cluster where this deployment happens
+        description: The cluster where this deployment is happened
       namespace:
         type: string
         example: ns-team-aem
-        description: The namespace in which this deployment happens
+        description: The namespace in which this deployment is happened
       createdAt:
         type: string
         format: date-time
@@ -5305,6 +5307,7 @@ definitions:
           - DELETED
           - DELETION_FAILED
           - TO_DELETE
+          - DEPLOY_FAILED
       type:
         type: string
         example: primary
@@ -5319,10 +5322,10 @@ definitions:
           'http://ns.adobe.com/adobecloud/rel/flow':
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/kubernetesCluster':
-            description: Get the Kubernetes Cluster in which this deployment happens
+            description: Get the Kubernetes Cluster in which this deployment is happened
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/kubernetesNamespace':
-            description: Get the Kubernetes Namespace in which this deployment happens
+            description: Get the Kubernetes Namespace in which this deployment is happened
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/region':
             description: Region being used for this deployment
@@ -5510,6 +5513,9 @@ definitions:
       importResult:
         description: import results
         $ref: '#/definitions/ContentFlowResultDetails'
+      transferProgress:
+        type: string
+        description: transfer progress percentage
     description: The Content Flow Results
   ContentFlowList:
     type: object
@@ -5681,11 +5687,25 @@ definitions:
           - azure_files
           - mongo_atlas
     description: Settings for environment blob storage
+  EnvironmentLogStorageConfiguration:
+    type: object
+    required:
+      - type
+    properties:
+      type:
+        type: string
+        enum:
+          - azure_blob
+          - azure_files
+          - mongo_atlas
+    description: Settings for environment log storage
   EnvironmentRegionintegrations:
     type: object
     properties:
       blobStorage:
         $ref: '#/definitions/EnvironmentBlobStorageConfiguration'
+      logStorage:
+        $ref: '#/definitions/EnvironmentLogStorageConfiguration'
     description: integrations for a particular EnvironmentRegion
   RestorePointDetails:
     type: object
@@ -6854,6 +6874,9 @@ definitions:
         description: details
         items:
           type: string
+      phase:
+        type: string
+        description: phase
     description: The Content Flow Result Details
   ContentFlowInput:
     type: object
@@ -6873,6 +6896,10 @@ definitions:
       destProgramId:
         type: string
         description: destProgramId
+      mergeExcludePaths:
+        type: boolean
+        description: mergeExcludePaths
+        default: false
     description: Wraps the content flow execution arguments
   Redirect:
     type: object
