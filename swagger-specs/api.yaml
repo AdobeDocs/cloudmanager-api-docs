@@ -1,8 +1,8 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   version: 1.0.0
   title: Cloud Manager API
-  description: 'This API allows access to Cloud Manager programs, pipelines, and environments by an authorized technical account created through the Adobe I/O Console. The base url for this API is https://cloudmanager.adobe.io, e.g. to get the list of programs for an organization, you would make a GET request to https://cloudmanager.adobe.io/api/programs (with the correct set of headers as described below). This swagger file can be downloaded from https://raw.githubusercontent.com/AdobeDocs/cloudmanager-api-docs/main/swagger-specs/api.yaml.'
+  description: "This API allows access to Cloud Manager programs, pipelines, and environments by an authorized technical account created through the Adobe I/O Console. The base url for this API is https://cloudmanager.adobe.io, e.g. to get the list of programs for an organization, you would make a GET request to https://cloudmanager.adobe.io/api/programs (with the correct set of headers as described below). This swagger file can be downloaded from https://raw.githubusercontent.com/AdobeDocs/cloudmanager-api-docs/main/swagger-specs/api.yaml."
 host: cloudmanager.adobe.io
 schemes:
   - https
@@ -37,7 +37,7 @@ paths:
       tags:
         - Programs
       summary: Lists Programs
-      description: 'This API is deprecated and should no longer be used. Please use the [Lists Programs for Tenant API](#operation/getProgramsForTenant) instead.'
+      description: "This API is deprecated and should no longer be used. Please use the [Lists Programs for Tenant API](#operation/getProgramsForTenant) instead."
       operationId: getPrograms
       parameters:
         - name: x-gw-ims-org-id
@@ -47,7 +47,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -56,11 +56,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/ProgramList'
-  '/api/program/{programId}':
+            $ref: "#/definitions/ProgramList"
+  "/api/program/{programId}":
     get:
       tags:
         - Programs
@@ -80,7 +80,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -89,11 +89,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of program
           schema:
-            $ref: '#/definitions/Program'
-        '404':
+            $ref: "#/definitions/Program"
+        "404":
           description: Program not found
     delete:
       tags:
@@ -114,7 +114,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -123,21 +123,21 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/Program'
-        '202':
+            $ref: "#/definitions/Program"
+        "202":
           description: Delete was successful.
           schema:
-            $ref: '#/definitions/Program'
-        '403':
+            $ref: "#/definitions/Program"
+        "403":
           description: Forbidden.
-        '404':
+        "404":
           description: Program not found.
-        '412':
+        "412":
           description: Deletion not supported
-  '/api/program/{programId}/repositories':
+  "/api/program/{programId}/repositories":
     get:
       tags:
         - Repositories
@@ -155,7 +155,7 @@ paths:
           description: Pagination start parameter
           required: false
           type: string
-          default: '0'
+          default: "0"
         - name: limit
           in: query
           description: Pagination limit parameter
@@ -170,7 +170,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -179,11 +179,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/RepositoryList'
-  '/api/program/{programId}/repository/{repositoryId}':
+            $ref: "#/definitions/RepositoryList"
+  "/api/program/{programId}/repository/{repositoryId}":
     get:
       tags:
         - Repositories
@@ -208,7 +208,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -217,11 +217,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/Repository'
-  '/api/program/{programId}/repository/{repositoryId}/branches':
+            $ref: "#/definitions/Repository"
+  "/api/program/{programId}/repository/{repositoryId}/branches":
     get:
       tags:
         - Branches
@@ -246,7 +246,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -255,11 +255,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of the list of repository branches
           schema:
-            $ref: '#/definitions/BranchList'
-  '/api/program/{programId}/pipelines':
+            $ref: "#/definitions/BranchList"
+  "/api/program/{programId}/pipelines":
     get:
       tags:
         - Pipelines
@@ -282,7 +282,7 @@ paths:
           description: Pagination start parameter
           required: false
           type: string
-          default: '0'
+          default: "0"
         - name: limit
           in: query
           description: Pagination limit parameter
@@ -297,7 +297,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -306,11 +306,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/PipelineList'
-  '/api/program/{programId}/pipeline/{pipelineId}':
+            $ref: "#/definitions/PipelineList"
+  "/api/program/{programId}/pipeline/{pipelineId}":
     get:
       tags:
         - Pipelines
@@ -335,7 +335,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -344,11 +344,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of pipeline
           schema:
-            $ref: '#/definitions/Pipeline'
-        '404':
+            $ref: "#/definitions/Pipeline"
+        "404":
           description: Pipeline not found
     delete:
       tags:
@@ -374,7 +374,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -407,7 +407,7 @@ paths:
           description: The update to the pipeline
           required: true
           schema:
-            $ref: '#/definitions/PipelineUpdate'
+            $ref: "#/definitions/PipelineUpdate"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -415,7 +415,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -429,11 +429,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/Pipeline'
-  '/api/program/{programId}/pipeline/{pipelineId}/cache':
+            $ref: "#/definitions/Pipeline"
+  "/api/program/{programId}/pipeline/{pipelineId}/cache":
     delete:
       tags:
         - Pipelines
@@ -458,7 +458,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -469,7 +469,7 @@ paths:
       responses:
         default:
           description: successful operation
-  '/api/program/{programId}/pipeline/{pipelineId}/execution':
+  "/api/program/{programId}/pipeline/{pipelineId}/execution":
     get:
       tags:
         - Pipeline Execution
@@ -494,7 +494,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -503,11 +503,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of current execution
           schema:
-            $ref: '#/definitions/PipelineExecution'
-        '404':
+            $ref: "#/definitions/PipelineExecution"
+        "404":
           description: No pipeline execution exits or unknown pipeline or program
     put:
       tags:
@@ -547,7 +547,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -561,25 +561,25 @@ paths:
           required: true
           type: string
       responses:
-        '201':
+        "201":
           description: Successfully started pipeline execution
           schema:
-            $ref: '#/definitions/PipelineExecution'
+            $ref: "#/definitions/PipelineExecution"
           headers:
             location:
               type: string
               description: The URL of the new execution
-        '400':
+        "400":
           description: Request conflicts with the expected state of pipeline
-        '404':
+        "404":
           description: No pipeline execution exits or unknown pipeline or application
-        '412':
+        "412":
           description: Pipeline is busy
-        '503':
+        "503":
           description: Pipeline execution cannot be started because of unplanned maintenance
           schema:
-            $ref: '#/definitions/SystemUnderMaintenanceExceptionMapper'
-  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}':
+            $ref: "#/definitions/SystemUnderMaintenanceExceptionMapper"
+  "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}":
     get:
       tags:
         - Pipeline Execution
@@ -609,7 +609,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -618,18 +618,18 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of execution
           schema:
-            $ref: '#/definitions/PipelineExecution'
-        '404':
+            $ref: "#/definitions/PipelineExecution"
+        "404":
           description: No pipeline execution exits or unknown pipeline or application
-  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}':
+  "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}":
     get:
       tags:
         - Pipeline Execution
       summary: Get step state
-      description: ''
+      description: ""
       operationId: stepState
       parameters:
         - name: programId
@@ -664,7 +664,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -673,20 +673,20 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of step state
           schema:
-            $ref: '#/definitions/PipelineExecutionStepState'
-        '403':
+            $ref: "#/definitions/PipelineExecutionStepState"
+        "403":
           description: Missing permission for user to read step
-        '404':
+        "404":
           description: Pipeline execution does not exist
-  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance':
+  "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance":
     put:
       tags:
         - Pipeline Execution
       summary: Advance
-      description: 'Post to this url in order to advance the current pipeline execution, if paused and waiting for user interaction. Link is present in output only in that case. The input depends on the actual reason for which the pipeline execution stopped.'
+      description: "Post to this url in order to advance the current pipeline execution, if paused and waiting for user interaction. Link is present in output only in that case. The input depends on the actual reason for which the pipeline execution stopped."
       operationId: advancePipelineExecution
       parameters:
         - name: programId
@@ -716,7 +716,7 @@ paths:
           type: string
         - in: body
           name: body
-          description: 'Input for advance. See documentation at https://www.adobe.io/experience-cloud/cloud-manager/guides/api-usage/advancing-and-cancelling-steps/ for details.'
+          description: "Input for advance. See documentation at https://www.adobe.io/experience-cloud/cloud-manager/guides/api-usage/advancing-and-cancelling-steps/ for details."
           required: true
           schema:
             type: object
@@ -727,7 +727,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -741,13 +741,13 @@ paths:
           required: true
           type: string
       responses:
-        '202':
+        "202":
           description: Successful resume of pipeline execution
-        '403':
+        "403":
           description: Missing permission for user to advance the pipeline execution
-        '404':
+        "404":
           description: No pipeline execution exits or unknown pipeline or program
-  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel':
+  "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel":
     put:
       tags:
         - Pipeline Execution
@@ -782,7 +782,7 @@ paths:
           type: string
         - in: body
           name: body
-          description: 'Input for cancel. See documentation at https://www.adobe.io/experience-cloud/cloud-manager/guides/api-usage/advancing-and-cancelling-steps/ for details.'
+          description: "Input for cancel. See documentation at https://www.adobe.io/experience-cloud/cloud-manager/guides/api-usage/advancing-and-cancelling-steps/ for details."
           required: true
           schema:
             type: object
@@ -793,7 +793,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -807,13 +807,13 @@ paths:
           required: true
           type: string
       responses:
-        '202':
+        "202":
           description: Successful cancel of pipeline execution
-        '403':
+        "403":
           description: Missing permission for user to cancel the current pipeline execution
-        '404':
+        "404":
           description: No pipeline execution exits or unknown pipeline or program
-  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/logs':
+  "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/logs":
     get:
       tags:
         - Pipeline Execution
@@ -855,7 +855,7 @@ paths:
           in: header
           required: false
           type: string
-          description: 'Specify application/json in this header to receive a JSON response. Otherwise, a 307 response code will be returned with a Location header.'
+          description: "Specify application/json in this header to receive a JSON response. Otherwise, a 307 response code will be returned with a Location header."
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -863,7 +863,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -872,15 +872,15 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of logs
           schema:
-            $ref: '#/definitions/Redirect'
-        '403':
+            $ref: "#/definitions/Redirect"
+        "403":
           description: Missing permission for user to read logs
-        '404':
+        "404":
           description: Pipeline execution does not exist
-  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/artifacts':
+  "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/artifacts":
     get:
       tags:
         - Execution Artifacts
@@ -920,7 +920,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -929,15 +929,15 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of artifacts list
           schema:
-            $ref: '#/definitions/ArtifactList'
-        '403':
+            $ref: "#/definitions/ArtifactList"
+        "403":
           description: Missing permission for user to read artifacts
-        '404':
+        "404":
           description: Pipeline execution does not exist
-  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/artifact/{artifactId}':
+  "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/artifact/{artifactId}":
     get:
       tags:
         - Execution Artifacts
@@ -986,7 +986,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -995,18 +995,18 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of artifact
-        '403':
+        "403":
           description: Missing permission for user to read artifact
-        '404':
+        "404":
           description: Pipeline execution does not exist
-  '/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/metrics':
+  "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/metrics":
     get:
       tags:
         - Pipeline Execution
       summary: Get step metrics
-      description: ''
+      description: ""
       operationId: stepMetric
       parameters:
         - name: programId
@@ -1041,7 +1041,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1050,15 +1050,15 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of metrics
           schema:
-            $ref: '#/definitions/PipelineStepMetrics'
-        '403':
+            $ref: "#/definitions/PipelineStepMetrics"
+        "403":
           description: Missing permission for user to read metrics
-        '404':
+        "404":
           description: Pipeline execution does not exist
-  '/api/program/{programId}/pipeline/{pipelineId}/executions':
+  "/api/program/{programId}/pipeline/{pipelineId}/executions":
     get:
       tags:
         - Pipeline Execution
@@ -1094,7 +1094,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1103,15 +1103,15 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of execution history
           schema:
-            $ref: '#/definitions/PipelineExecutionListRepresentation'
-        '403':
+            $ref: "#/definitions/PipelineExecutionListRepresentation"
+        "403":
           description: Missing permission for user to read executions
-        '404':
+        "404":
           description: Pipeline does not exist
-  '/api/program/{programId}/environments':
+  "/api/program/{programId}/environments":
     get:
       tags:
         - Environments
@@ -1141,7 +1141,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1150,11 +1150,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of environment list
           schema:
-            $ref: '#/definitions/EnvironmentList'
-        '404':
+            $ref: "#/definitions/EnvironmentList"
+        "404":
           description: Program not found
     post:
       tags:
@@ -1173,7 +1173,7 @@ paths:
           description: Environment
           required: true
           schema:
-            $ref: '#/definitions/NewEnvironment'
+            $ref: "#/definitions/NewEnvironment"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1181,7 +1181,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1195,13 +1195,13 @@ paths:
           required: true
           type: string
       responses:
-        '201':
+        "201":
           description: Environment created
           schema:
-            $ref: '#/definitions/Environment'
-        '400':
+            $ref: "#/definitions/Environment"
+        "400":
           description: Bad request
-  '/api/program/{programId}/environment/{environmentId}':
+  "/api/program/{programId}/environment/{environmentId}":
     get:
       tags:
         - Environments
@@ -1226,7 +1226,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1235,10 +1235,10 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/Environment'
+            $ref: "#/definitions/Environment"
     delete:
       tags:
         - Environments
@@ -1258,7 +1258,7 @@ paths:
           type: string
         - name: ignoreResourcesDeletionResult
           in: query
-          description: 'Ignore Resources Deletion Result option, delete flow does not fail if resources could not be deleted'
+          description: "Ignore Resources Deletion Result option, delete flow does not fail if resources could not be deleted"
           required: false
           type: boolean
           default: false
@@ -1269,7 +1269,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1278,17 +1278,17 @@ paths:
           required: true
           type: string
       responses:
-        '201':
+        "201":
           description: Environment deleted
           schema:
-            $ref: '#/definitions/Environment'
-        '400':
+            $ref: "#/definitions/Environment"
+        "400":
           description: Environment deletion in progress
           schema:
-            $ref: '#/definitions/BadRequestError'
-        '404':
+            $ref: "#/definitions/BadRequestError"
+        "404":
           description: Environment not found
-  '/api/program/{programId}/environment/{environmentId}/regionDeployments/{regionDeploymentId}':
+  "/api/program/{programId}/environment/{environmentId}/regionDeployments/{regionDeploymentId}":
     get:
       tags:
         - Region Deployments
@@ -1318,7 +1318,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1327,11 +1327,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of the region deployment for the environment
           schema:
-            $ref: '#/definitions/RegionDeployment'
-  '/api/program/{programId}/environment/{environmentId}/regionDeployments':
+            $ref: "#/definitions/RegionDeployment"
+  "/api/program/{programId}/environment/{environmentId}/regionDeployments":
     get:
       tags:
         - Region Deployments
@@ -1356,7 +1356,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1365,10 +1365,10 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of the region deployments for the environment
           schema:
-            $ref: '#/definitions/RegionDeploymentList'
+            $ref: "#/definitions/RegionDeploymentList"
     post:
       tags:
         - Region Deployments
@@ -1393,7 +1393,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/NewRegionDeployment'
+              $ref: "#/definitions/NewRegionDeployment"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1401,7 +1401,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1415,11 +1415,11 @@ paths:
           required: true
           type: string
       responses:
-        '201':
+        "201":
           description: Region deployment created
           schema:
-            $ref: '#/definitions/RegionDeploymentList'
-        '400':
+            $ref: "#/definitions/RegionDeploymentList"
+        "400":
           description: Bad request
     patch:
       tags:
@@ -1445,7 +1445,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/RegionDeploymentDeletion'
+              $ref: "#/definitions/RegionDeploymentDeletion"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1453,7 +1453,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1467,17 +1467,17 @@ paths:
           required: true
           type: string
       responses:
-        '202':
+        "202":
           description: Region Deployment Modification request accepted
           schema:
-            $ref: '#/definitions/RegionDeploymentList'
-        '400':
+            $ref: "#/definitions/RegionDeploymentList"
+        "400":
           description: Region Deployment Modification bad request
           schema:
-            $ref: '#/definitions/BadRequestError'
-        '404':
+            $ref: "#/definitions/BadRequestError"
+        "404":
           description: Region deployment not found for the given identifier
-  '/api/program/{programId}/environment/{environmentId}/logs':
+  "/api/program/{programId}/environment/{environmentId}/logs":
     get:
       tags:
         - Environments
@@ -1524,7 +1524,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1533,17 +1533,17 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of logs for an environment
           schema:
-            $ref: '#/definitions/EnvironmentLogs'
-        '400':
+            $ref: "#/definitions/EnvironmentLogs"
+        "400":
           description: invalid parameters
           schema:
-            $ref: '#/definitions/BadRequestError'
-        '404':
+            $ref: "#/definitions/BadRequestError"
+        "404":
           description: Environment not found
-  '/api/program/{programId}/environment/{environmentId}/logs/download':
+  "/api/program/{programId}/environment/{environmentId}/logs/download":
     get:
       tags:
         - Environments
@@ -1584,7 +1584,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1595,20 +1595,20 @@ paths:
         - name: Accept
           required: false
           type: string
-          description: 'Specify application/json in this header to receive a JSON response. Otherwise, a 307 response code will be returned with a Location header.'
+          description: "Specify application/json in this header to receive a JSON response. Otherwise, a 307 response code will be returned with a Location header."
           in: header
       responses:
-        '200':
+        "200":
           description: Successful retrieval of logs
           schema:
-            $ref: '#/definitions/Redirect'
-        '400':
+            $ref: "#/definitions/Redirect"
+        "400":
           description: invalid parameters
           schema:
-            $ref: '#/definitions/BadRequestError'
-        '404':
+            $ref: "#/definitions/BadRequestError"
+        "404":
           description: Environment not found
-  '/api/program/{programId}/environment/{environmentId}/variables':
+  "/api/program/{programId}/environment/{environmentId}/variables":
     get:
       tags:
         - Variables
@@ -1621,13 +1621,13 @@ paths:
           description: Identifier of the program
           required: true
           type: string
-          x-example: '2351'
+          x-example: "2351"
         - name: environmentId
           in: path
           description: Identifier of the environment
           required: true
           type: string
-          x-example: '128'
+          x-example: "128"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1635,7 +1635,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1644,17 +1644,17 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of environment variables
           schema:
-            $ref: '#/definitions/VariableList'
-        '404':
+            $ref: "#/definitions/VariableList"
+        "404":
           description: Environment not found
     patch:
       tags:
         - Variables
       summary: Patch User Environment Variables
-      description: 'Modify multiple environment variables (Cloud Service only). To delete a variable, include it with an empty value.'
+      description: "Modify multiple environment variables (Cloud Service only). To delete a variable, include it with an empty value."
       operationId: patchEnvironmentVariables
       parameters:
         - name: programId
@@ -1669,12 +1669,12 @@ paths:
           type: string
         - in: body
           name: body
-          description: 'The list of variables to add, modify, or remove. It is not necessary to send variables here which are not changing. The length of `secretString` values must be less than 500 characters.'
+          description: "The list of variables to add, modify, or remove. It is not necessary to send variables here which are not changing. The length of `secretString` values must be less than 500 characters."
           required: true
           schema:
             type: array
             items:
-              $ref: '#/definitions/EnvironmentVariableUpdate'
+              $ref: "#/definitions/EnvironmentVariableUpdate"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1682,7 +1682,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1696,11 +1696,11 @@ paths:
           required: true
           type: string
       responses:
-        '204':
+        "204":
           description: Successful setting of variables
-        '404':
+        "404":
           description: Environment not found
-  '/api/program/{programId}/environment/{environmentId}/reset':
+  "/api/program/{programId}/environment/{environmentId}/reset":
     put:
       tags:
         - Rapid Development Environments
@@ -1725,7 +1725,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1734,11 +1734,11 @@ paths:
           required: true
           type: string
       responses:
-        '202':
+        "202":
           description: Successfully reset RDE
-        '404':
+        "404":
           description: Environment not found
-  '/api/program/{programId}/environment/{environmentId}/restorePoints':
+  "/api/program/{programId}/environment/{environmentId}/restorePoints":
     get:
       tags:
         - Environment Restore From Backup
@@ -1763,7 +1763,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1772,13 +1772,13 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of restore points for an environment
           schema:
-            $ref: '#/definitions/RestorePointsList'
-        '404':
+            $ref: "#/definitions/RestorePointsList"
+        "404":
           description: Resource not found
-  '/api/program/{programId}/environment/{environmentId}/restoreExecution/{restoreId}':
+  "/api/program/{programId}/environment/{environmentId}/restoreExecution/{restoreId}":
     get:
       tags:
         - Environment Restore From Backup
@@ -1808,7 +1808,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1817,11 +1817,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/RestoreExecution'
-  '/api/program/{programId}/environment/{environmentId}/restoreExecution/{restoreId}/logs':
+            $ref: "#/definitions/RestoreExecution"
+  "/api/program/{programId}/environment/{environmentId}/restoreExecution/{restoreId}/logs":
     get:
       tags:
         - Environment Restore From Backup
@@ -1855,7 +1855,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1866,7 +1866,7 @@ paths:
       responses:
         default:
           description: successful operation
-  '/api/program/{programId}/environment/{environmentId}/restoreExecutions':
+  "/api/program/{programId}/environment/{environmentId}/restoreExecutions":
     get:
       tags:
         - Environment Restore From Backup
@@ -1889,7 +1889,7 @@ paths:
           description: Pagination start parameter
           required: false
           type: string
-          default: '0'
+          default: "0"
         - name: limit
           in: query
           description: Pagination limit parameter
@@ -1904,7 +1904,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1913,11 +1913,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/RestoreExecutionList'
-  '/api/program/{programId}/environment/{environmentId}/restoreExecution':
+            $ref: "#/definitions/RestoreExecutionList"
+  "/api/program/{programId}/environment/{environmentId}/restoreExecution":
     put:
       tags:
         - Environment Restore From Backup
@@ -1940,7 +1940,7 @@ paths:
           description: Restore Parameters Representation
           required: false
           schema:
-            $ref: '#/definitions/RestoreParamRepresentation'
+            $ref: "#/definitions/RestoreParamRepresentation"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1948,7 +1948,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -1962,15 +1962,15 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Environment restore in progress
           schema:
-            $ref: '#/definitions/RestoreExecution'
-        '404':
+            $ref: "#/definitions/RestoreExecution"
+        "404":
           description: Environment not found
-        '412':
+        "412":
           description: Restore precondition failed
-  '/api/program/{programId}/pipeline/{pipelineId}/variables':
+  "/api/program/{programId}/pipeline/{pipelineId}/variables":
     get:
       tags:
         - Variables
@@ -1983,13 +1983,13 @@ paths:
           description: Identifier of the program
           required: true
           type: string
-          x-example: '2351'
+          x-example: "2351"
         - name: pipelineId
           in: path
           description: Identifier of the pipeline
           required: true
           type: string
-          x-example: '128'
+          x-example: "128"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -1997,7 +1997,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2006,17 +2006,17 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of pipeline variables
           schema:
-            $ref: '#/definitions/VariableList'
-        '404':
+            $ref: "#/definitions/VariableList"
+        "404":
           description: Pipeline not found
     patch:
       tags:
         - Variables
       summary: Patch User Pipeline Variables
-      description: 'Modify multiple pipeline variables. To delete a variable, include it with an empty value.'
+      description: "Modify multiple pipeline variables. To delete a variable, include it with an empty value."
       operationId: patchPipelineVariables
       parameters:
         - name: programId
@@ -2031,12 +2031,12 @@ paths:
           type: string
         - in: body
           name: body
-          description: 'The list of variables to add, modify, or remove. It is not necessary to send variables here which are not changing. The length of `secretString` values must be less than 500 characters.'
+          description: "The list of variables to add, modify, or remove. It is not necessary to send variables here which are not changing. The length of `secretString` values must be less than 500 characters."
           required: true
           schema:
             type: array
             items:
-              $ref: '#/definitions/PipelineVariableUpdate'
+              $ref: "#/definitions/PipelineVariableUpdate"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2044,7 +2044,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2058,11 +2058,11 @@ paths:
           required: true
           type: string
       responses:
-        '204':
+        "204":
           description: Successful setting of variables
-        '404':
+        "404":
           description: Pipeline not found
-  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}':
+  "/api/program/{programId}/ipAllowlist/{ipAllowlistId}":
     get:
       tags:
         - IP Allowlist
@@ -2087,7 +2087,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2096,11 +2096,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of IP Allowlist
           schema:
-            $ref: '#/definitions/IPAllowedList'
-        '404':
+            $ref: "#/definitions/IPAllowedList"
+        "404":
           description: Resource not found
     put:
       tags:
@@ -2124,7 +2124,7 @@ paths:
           description: IP Allowlist
           required: true
           schema:
-            $ref: '#/definitions/IPAllowedList'
+            $ref: "#/definitions/IPAllowedList"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2132,7 +2132,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2146,13 +2146,13 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: IP Allowlist updated
           schema:
-            $ref: '#/definitions/IPAllowedList'
-        '400':
+            $ref: "#/definitions/IPAllowedList"
+        "400":
           description: The request is malformed.
-        '404':
+        "404":
           description: Resource not found
     delete:
       tags:
@@ -2178,7 +2178,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2187,13 +2187,13 @@ paths:
           required: true
           type: string
       responses:
-        '202':
+        "202":
           description: Delete was successful
           schema:
-            $ref: '#/definitions/IPAllowedList'
-        '404':
+            $ref: "#/definitions/IPAllowedList"
+        "404":
           description: Resource not found
-  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}':
+  "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}":
     get:
       tags:
         - IP Allowlist Binding
@@ -2223,7 +2223,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2232,11 +2232,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of IP Allowlist
           schema:
-            $ref: '#/definitions/IPAllowedListBinding'
-        '404':
+            $ref: "#/definitions/IPAllowedListBinding"
+        "404":
           description: IP Allowlist not found
     delete:
       tags:
@@ -2267,7 +2267,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2276,13 +2276,13 @@ paths:
           required: true
           type: string
       responses:
-        '202':
+        "202":
           description: Delete was successful
           schema:
-            $ref: '#/definitions/IPAllowedListBinding'
-        '404':
+            $ref: "#/definitions/IPAllowedListBinding"
+        "404":
           description: IP Allowlist not found
-  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}/retry':
+  "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}/retry":
     put:
       tags:
         - IP Allowlist Binding
@@ -2312,7 +2312,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2321,13 +2321,13 @@ paths:
           required: true
           type: string
       responses:
-        '202':
+        "202":
           description: Retry operation was successful
           schema:
-            $ref: '#/definitions/IPAllowedListBinding'
-        '404':
+            $ref: "#/definitions/IPAllowedListBinding"
+        "404":
           description: IP Allowlist not found
-  '/api/program/{programId}/ipAllowlist/{ipAllowlistId}/bindings':
+  "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/bindings":
     get:
       tags:
         - IP Allowlist Binding
@@ -2352,7 +2352,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2361,11 +2361,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: The list of IP Allowlists assigned to the program
           schema:
-            $ref: '#/definitions/IPAllowlistBindingsList'
-        '404':
+            $ref: "#/definitions/IPAllowlistBindingsList"
+        "404":
           description: IP Allowlist not found
     post:
       tags:
@@ -2389,7 +2389,7 @@ paths:
           description: IP Allowlist binding
           required: true
           schema:
-            $ref: '#/definitions/IPAllowedListBinding'
+            $ref: "#/definitions/IPAllowedListBinding"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2397,7 +2397,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2411,21 +2411,21 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/IPAllowedListBinding'
-        '201':
+            $ref: "#/definitions/IPAllowedListBinding"
+        "201":
           description: IP Allowlist binding created
           schema:
-            $ref: '#/definitions/IPAllowedListBinding'
-        '400':
+            $ref: "#/definitions/IPAllowedListBinding"
+        "400":
           description: The request is malformed.
-        '404':
+        "404":
           description: Environment not found
-        '412':
+        "412":
           description: Creating IP Allowlists for non cloud programs is not supported
-  '/api/program/{programId}/ipAllowlists':
+  "/api/program/{programId}/ipAllowlists":
     get:
       tags:
         - IP Allowlist
@@ -2445,7 +2445,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2454,11 +2454,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: The list of IP Allowlists assigned to the program
           schema:
-            $ref: '#/definitions/IPAllowlistList'
-        '404':
+            $ref: "#/definitions/IPAllowlistList"
+        "404":
           description: Program not found
     post:
       tags:
@@ -2477,7 +2477,7 @@ paths:
           description: IP Allowlist
           required: true
           schema:
-            $ref: '#/definitions/IPAllowedList'
+            $ref: "#/definitions/IPAllowedList"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2485,7 +2485,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2499,21 +2499,21 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/IPAllowedList'
-        '201':
+            $ref: "#/definitions/IPAllowedList"
+        "201":
           description: IP Allowlist created
           schema:
-            $ref: '#/definitions/IPAllowedList'
-        '400':
+            $ref: "#/definitions/IPAllowedList"
+        "400":
           description: The request is malformed.
-        '404':
+        "404":
           description: Program not found
-        '412':
+        "412":
           description: Creating IP Allowlists for non cloud programs is not supported
-  '/api/program/{programId}/domainNames':
+  "/api/program/{programId}/domainNames":
     get:
       tags:
         - Domain Names
@@ -2531,7 +2531,7 @@ paths:
           description: Pagination start parameter
           required: false
           type: string
-          default: '0'
+          default: "0"
         - name: limit
           in: query
           description: Pagination limit parameter
@@ -2546,7 +2546,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2555,10 +2555,10 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/DomainNameList'
+            $ref: "#/definitions/DomainNameList"
     post:
       tags:
         - Domain Names
@@ -2576,7 +2576,7 @@ paths:
           description: Domain Name
           required: true
           schema:
-            $ref: '#/definitions/NewDomainName'
+            $ref: "#/definitions/NewDomainName"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2584,7 +2584,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2598,13 +2598,13 @@ paths:
           required: true
           type: string
       responses:
-        '201':
+        "201":
           description: Domain name created
           schema:
-            $ref: '#/definitions/DomainName'
-        '404':
+            $ref: "#/definitions/DomainName"
+        "404":
           description: Resource not found
-  '/api/program/{programId}/domainName/{domainNameId}':
+  "/api/program/{programId}/domainName/{domainNameId}":
     get:
       tags:
         - Domain Names
@@ -2629,7 +2629,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2638,10 +2638,10 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/DomainName'
+            $ref: "#/definitions/DomainName"
     put:
       tags:
         - Domain Names
@@ -2664,7 +2664,7 @@ paths:
           description: Updated domain name
           required: true
           schema:
-            $ref: '#/definitions/DomainName'
+            $ref: "#/definitions/DomainName"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2672,7 +2672,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2686,15 +2686,15 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/DomainName'
-        '202':
+            $ref: "#/definitions/DomainName"
+        "202":
           description: Updating domain name
           schema:
-            $ref: '#/definitions/DomainName'
-        '404':
+            $ref: "#/definitions/DomainName"
+        "404":
           description: Resource not found
     delete:
       tags:
@@ -2720,7 +2720,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2729,13 +2729,13 @@ paths:
           required: true
           type: string
       responses:
-        '202':
+        "202":
           description: Deleting domain Name
           schema:
-            $ref: '#/definitions/DomainName'
-        '404':
+            $ref: "#/definitions/DomainName"
+        "404":
           description: Resource not found
-  '/api/program/{programId}/domainName/{domainNameId}/deploy':
+  "/api/program/{programId}/domainName/{domainNameId}/deploy":
     post:
       tags:
         - Domain Names
@@ -2760,7 +2760,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2769,13 +2769,13 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Domain name verified
           schema:
-            $ref: '#/definitions/DomainName'
-        '404':
+            $ref: "#/definitions/DomainName"
+        "404":
           description: Resource not found
-  '/api/program/{programId}/domainName/{domainNameId}/verify':
+  "/api/program/{programId}/domainName/{domainNameId}/verify":
     post:
       tags:
         - Domain Names
@@ -2800,7 +2800,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2809,17 +2809,17 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/DomainName'
-        '202':
+            $ref: "#/definitions/DomainName"
+        "202":
           description: Domain name is being verified
           schema:
-            $ref: '#/definitions/DomainName'
-        '404':
+            $ref: "#/definitions/DomainName"
+        "404":
           description: Resource not found
-  '/api/program/{programId}/domainNames/validate':
+  "/api/program/{programId}/domainNames/validate":
     post:
       tags:
         - Domain Names
@@ -2837,7 +2837,7 @@ paths:
           description: Domain name to be validated
           required: true
           schema:
-            $ref: '#/definitions/DomainNameValidate'
+            $ref: "#/definitions/DomainNameValidate"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2845,7 +2845,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2859,13 +2859,13 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Domain name successfully validated
           schema:
-            $ref: '#/definitions/DomainName'
-        '404':
+            $ref: "#/definitions/DomainName"
+        "404":
           description: Resource not found
-  '/api/program/{programId}/certificate/{certificateId}':
+  "/api/program/{programId}/certificate/{certificateId}":
     get:
       tags:
         - SSLCertificates
@@ -2890,7 +2890,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2899,10 +2899,10 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/SslCertificate'
+            $ref: "#/definitions/SslCertificate"
     put:
       tags:
         - SSLCertificates
@@ -2925,7 +2925,7 @@ paths:
           description: Updated certificate
           required: true
           schema:
-            $ref: '#/definitions/SslCertificate'
+            $ref: "#/definitions/SslCertificate"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2933,7 +2933,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2947,11 +2947,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Certificate updated
           schema:
-            $ref: '#/definitions/SslCertificate'
-        '404':
+            $ref: "#/definitions/SslCertificate"
+        "404":
           description: Resource not found
     delete:
       tags:
@@ -2977,7 +2977,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -2986,13 +2986,13 @@ paths:
           required: true
           type: string
       responses:
-        '204':
+        "204":
           description: Certificate deleted
           schema:
-            $ref: '#/definitions/SslCertificate'
-        '404':
+            $ref: "#/definitions/SslCertificate"
+        "404":
           description: Resource not found
-  '/api/program/{programId}/certificates':
+  "/api/program/{programId}/certificates":
     get:
       tags:
         - SSLCertificates
@@ -3017,7 +3017,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3026,11 +3026,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of certificates list
           schema:
-            $ref: '#/definitions/CertificatesList'
-        '404':
+            $ref: "#/definitions/CertificatesList"
+        "404":
           description: Program not found
     post:
       tags:
@@ -3049,7 +3049,7 @@ paths:
           description: Certificate
           required: true
           schema:
-            $ref: '#/definitions/NewSslCertificate'
+            $ref: "#/definitions/NewSslCertificate"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3057,7 +3057,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3071,13 +3071,13 @@ paths:
           required: true
           type: string
       responses:
-        '201':
+        "201":
           description: Certificate created
           schema:
-            $ref: '#/definitions/SslCertificate'
-        '404':
+            $ref: "#/definitions/SslCertificate"
+        "404":
           description: Program not found
-  '/api/program/{programId}/feedbacks':
+  "/api/program/{programId}/feedbacks":
     post:
       tags:
         - Programs
@@ -3095,7 +3095,7 @@ paths:
           description: Feedback
           required: true
           schema:
-            $ref: '#/definitions/NewFeedback'
+            $ref: "#/definitions/NewFeedback"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3103,7 +3103,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3117,11 +3117,11 @@ paths:
           required: true
           type: string
       responses:
-        '400':
+        "400":
           description: Invalid request
-        '404':
+        "404":
           description: Application not found
-  '/api/program/{programId}/newRelicUsers':
+  "/api/program/{programId}/newRelicUsers":
     get:
       tags:
         - Programs
@@ -3141,7 +3141,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3150,29 +3150,29 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of the list of New Relic Sub Account users
           schema:
-            $ref: '#/definitions/NewRelicSubAccountUserlist'
-        '400':
+            $ref: "#/definitions/NewRelicSubAccountUserlist"
+        "400":
           description: The request is malformed.
-        '401':
+        "401":
           description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
+        "403":
           description: The requester is not authorized to access the resource.
-        '405':
+        "405":
           description: Client sent a request using a HTTP method that the server doesn't support.
-        '406':
+        "406":
           description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '422':
+        "422":
           description: Unprocessable Entity
-        '500':
+        "500":
           description: This is an indicator of a server-side error.
-        '502':
+        "502":
           description: This is an indicator that the back-end service did not send a valid response.
-        '503':
+        "503":
           description: This is an indicator of a potential server overload.
-        '504':
+        "504":
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
     patch:
       tags:
@@ -3186,7 +3186,7 @@ paths:
           description: New Relic Sub-Account Users
           required: true
           schema:
-            $ref: '#/definitions/NewRelicSubAccountUser'
+            $ref: "#/definitions/NewRelicSubAccountUser"
         - name: programId
           in: path
           description: Identifier of the program
@@ -3199,7 +3199,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3213,29 +3213,29 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/NewRelicSubAccountUserlist'
-        '204':
+            $ref: "#/definitions/NewRelicSubAccountUserlist"
+        "204":
           description: Successful New Relic Sub Account user flow initiation
-        '400':
+        "400":
           description: The request is malformed.
-        '401':
+        "401":
           description: The request has not been applied because it lacks valid authentication credentials for the target resource.
-        '403':
+        "403":
           description: The requester is not authorized to access the resource.
-        '404':
+        "404":
           description: Program not found
-        '406':
+        "406":
           description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
-        '500':
+        "500":
           description: This is an indicator of a server-side error.
-        '502':
+        "502":
           description: This is an indicator that the back-end service did not send a valid response.
-        '503':
+        "503":
           description: This is an indicator of a potential server overload.
-        '504':
+        "504":
           description: This is an indicator that the back-end service did not complete a response within an allowed time period.
   /api/tenants:
     get:
@@ -3252,7 +3252,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3261,11 +3261,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of tenant list
           schema:
-            $ref: '#/definitions/TenantList'
-  '/api/tenant/{tenantId}':
+            $ref: "#/definitions/TenantList"
+  "/api/tenant/{tenantId}":
     get:
       tags:
         - Tenants
@@ -3285,7 +3285,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3294,13 +3294,13 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of tenant
           schema:
-            $ref: '#/definitions/Tenant'
-        '404':
+            $ref: "#/definitions/Tenant"
+        "404":
           description: Tenant not found
-  '/api/tenant/{tenantId}/programs':
+  "/api/tenant/{tenantId}/programs":
     get:
       tags:
         - Programs
@@ -3320,7 +3320,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3329,11 +3329,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/ProgramList'
-        '404':
+            $ref: "#/definitions/ProgramList"
+        "404":
           description: Tenant not found.
     post:
       tags:
@@ -3352,7 +3352,7 @@ paths:
           description: Program
           required: true
           schema:
-            $ref: '#/definitions/NewProgram'
+            $ref: "#/definitions/NewProgram"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3360,7 +3360,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3374,13 +3374,13 @@ paths:
           required: true
           type: string
       responses:
-        '201':
+        "201":
           description: Creation was successful.
           schema:
-            $ref: '#/definitions/Program'
-        '409':
+            $ref: "#/definitions/Program"
+        "409":
           description: Program already exists.
-  '/api/program/{programId}/regions':
+  "/api/program/{programId}/regions":
     get:
       tags:
         - Regions
@@ -3400,7 +3400,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3409,11 +3409,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/RegionsList'
-  '/api/program/{programId}/networkInfrastructures':
+            $ref: "#/definitions/RegionsList"
+  "/api/program/{programId}/networkInfrastructures":
     get:
       tags:
         - Network infrastructure
@@ -3433,7 +3433,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3442,11 +3442,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of network infrastructure list
           schema:
-            $ref: '#/definitions/NetworkInfrastructuresList'
-        '404':
+            $ref: "#/definitions/NetworkInfrastructuresList"
+        "404":
           description: Program not found
     post:
       tags:
@@ -3465,7 +3465,7 @@ paths:
           description: Configuration
           required: true
           schema:
-            $ref: '#/definitions/NetworkInfrastructure'
+            $ref: "#/definitions/NetworkInfrastructure"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3473,7 +3473,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3487,13 +3487,13 @@ paths:
           required: true
           type: string
       responses:
-        '201':
+        "201":
           description: Network infrastructure created
           schema:
-            $ref: '#/definitions/NetworkInfrastructure'
-        '404':
+            $ref: "#/definitions/NetworkInfrastructure"
+        "404":
           description: Resource not found
-  '/api/program/{programId}/networkInfrastructure/{networkInfrastructureId}':
+  "/api/program/{programId}/networkInfrastructure/{networkInfrastructureId}":
     get:
       tags:
         - Network infrastructure
@@ -3518,7 +3518,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3527,11 +3527,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Got network Infrastructure details
           schema:
-            $ref: '#/definitions/NetworkInfrastructure'
-        '404':
+            $ref: "#/definitions/NetworkInfrastructure"
+        "404":
           description: Network Infrastructure not found
     put:
       tags:
@@ -3555,7 +3555,7 @@ paths:
           description: Configuration
           required: true
           schema:
-            $ref: '#/definitions/NetworkInfrastructure'
+            $ref: "#/definitions/NetworkInfrastructure"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3563,7 +3563,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3577,11 +3577,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Network infrastructure updated
           schema:
-            $ref: '#/definitions/NetworkInfrastructure'
-        '404':
+            $ref: "#/definitions/NetworkInfrastructure"
+        "404":
           description: Network Infrastructure not found
     delete:
       tags:
@@ -3607,7 +3607,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3616,19 +3616,19 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: successful operation
           schema:
-            $ref: '#/definitions/NetworkInfrastructure'
-        '204':
+            $ref: "#/definitions/NetworkInfrastructure"
+        "204":
           description: Network infrastructure deleted
           schema:
-            $ref: '#/definitions/NetworkInfrastructure'
-        '400':
+            $ref: "#/definitions/NetworkInfrastructure"
+        "400":
           description: Network Infrastructure cannot be deleted
-        '404':
+        "404":
           description: Network Infrastructure not found
-  '/api/program/{programId}/environment/{environmentId}/advancedNetworking':
+  "/api/program/{programId}/environment/{environmentId}/advancedNetworking":
     get:
       tags:
         - Environment Advanced Networking Configuration
@@ -3653,7 +3653,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3662,11 +3662,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Environment Advanced Networking Configurations
           schema:
-            $ref: '#/definitions/AdvancedNetworkingConfigurationList'
-        '404':
+            $ref: "#/definitions/AdvancedNetworkingConfigurationList"
+        "404":
           description: Resource not found
     put:
       tags:
@@ -3687,10 +3687,10 @@ paths:
           type: string
         - in: body
           name: body
-          description: ' Environment Advanced Networking Configuration'
+          description: " Environment Advanced Networking Configuration"
           required: true
           schema:
-            $ref: '#/definitions/EnableAdvancedNetworkingConfiguration'
+            $ref: "#/definitions/EnableAdvancedNetworkingConfiguration"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3698,7 +3698,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3712,13 +3712,13 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Environment Advanced Networking Configuration started
           schema:
-            $ref: '#/definitions/Environment'
-        '400':
+            $ref: "#/definitions/Environment"
+        "400":
           description: Validation exception
-        '404':
+        "404":
           description: Resource not found
     delete:
       tags:
@@ -3744,7 +3744,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3753,15 +3753,15 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Environment Advanced Networking Configuration disabled
           schema:
-            $ref: '#/definitions/Environment'
-        '400':
+            $ref: "#/definitions/Environment"
+        "400":
           description: Validation exception
-        '404':
+        "404":
           description: Resource not found
-  '/api/program/{programId}/contentSets':
+  "/api/program/{programId}/contentSets":
     get:
       tags:
         - ContentSets
@@ -3781,7 +3781,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3790,11 +3790,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: List content sets
           schema:
-            $ref: '#/definitions/ContentSetList'
-        '400':
+            $ref: "#/definitions/ContentSetList"
+        "400":
           description: Bad request
     post:
       tags:
@@ -3813,7 +3813,7 @@ paths:
           description: Content set
           required: true
           schema:
-            $ref: '#/definitions/NewContentSet'
+            $ref: "#/definitions/NewContentSet"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3821,7 +3821,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3835,15 +3835,15 @@ paths:
           required: true
           type: string
       responses:
-        '201':
+        "201":
           description: Content Set created
           schema:
-            $ref: '#/definitions/ContentSet'
-        '400':
+            $ref: "#/definitions/ContentSet"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Program not found
-  '/api/program/{programId}/contentSet/{contentSetId}':
+  "/api/program/{programId}/contentSet/{contentSetId}":
     get:
       tags:
         - ContentSets
@@ -3868,7 +3868,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3877,13 +3877,13 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Found content set
           schema:
-            $ref: '#/definitions/ContentSet'
-        '400':
+            $ref: "#/definitions/ContentSet"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Content set not found
     put:
       tags:
@@ -3907,7 +3907,7 @@ paths:
           description: Content set
           required: true
           schema:
-            $ref: '#/definitions/ContentSet'
+            $ref: "#/definitions/ContentSet"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3915,7 +3915,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3929,13 +3929,13 @@ paths:
           required: true
           type: string
       responses:
-        '201':
+        "201":
           description: Content set updated
           schema:
-            $ref: '#/definitions/ContentSet'
-        '400':
+            $ref: "#/definitions/ContentSet"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Content set not found
     delete:
       tags:
@@ -3961,7 +3961,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -3970,15 +3970,15 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Content set deleted
           schema:
-            $ref: '#/definitions/ContentSet'
-        '400':
+            $ref: "#/definitions/ContentSet"
+        "400":
           description: Bad request
-        '404':
+        "404":
           description: Content set not found
-  '/api/program/{programId}/contentFlows':
+  "/api/program/{programId}/contentFlows":
     get:
       tags:
         - ContentSets
@@ -3996,7 +3996,7 @@ paths:
           description: Pagination start parameter
           required: false
           type: string
-          default: '0'
+          default: "0"
         - name: limit
           in: query
           description: Pagination limit parameter
@@ -4011,7 +4011,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -4020,18 +4020,18 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: List content flows
           schema:
-            $ref: '#/definitions/ContentFlowList'
-        '400':
+            $ref: "#/definitions/ContentFlowList"
+        "400":
           description: Bad request
-  '/api/program/{programId}/environment/{environmentId}/contentFlow':
+  "/api/program/{programId}/environment/{environmentId}/contentFlow":
     post:
       tags:
         - ContentSets
       summary: Execute content flow using content set
-      description: 'Executes a content flow. Note that the user must have appropriate rights in both the source and destination environments. See https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/developer-tools/content-copy.html for more information.'
+      description: "Executes a content flow. Note that the user must have appropriate rights in both the source and destination environments. See https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/developer-tools/content-copy.html for more information."
       operationId: createContentFlow
       parameters:
         - name: programId
@@ -4049,7 +4049,7 @@ paths:
           description: Content Flow details
           required: true
           schema:
-            $ref: '#/definitions/ContentFlowInput'
+            $ref: "#/definitions/ContentFlowInput"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -4057,7 +4057,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -4071,17 +4071,17 @@ paths:
           required: true
           type: string
       responses:
-        '201':
+        "201":
           description: Content Flow started
           schema:
-            $ref: '#/definitions/ContentFlow'
-        '400':
+            $ref: "#/definitions/ContentFlow"
+        "400":
           description: Bad request
-        '403':
+        "403":
           description: The requester is not authorized to access the resource.
-        '404':
+        "404":
           description: Program not found
-  '/api/program/{programId}/contentFlow/{contentFlowId}':
+  "/api/program/{programId}/contentFlow/{contentFlowId}":
     get:
       tags:
         - ContentSets
@@ -4106,7 +4106,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -4115,11 +4115,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Successful retrieval of the content flow
           schema:
-            $ref: '#/definitions/ContentFlow'
-        '400':
+            $ref: "#/definitions/ContentFlow"
+        "400":
           description: Bad request
     delete:
       tags:
@@ -4145,7 +4145,7 @@ paths:
           type: string
         - name: Authorization
           in: header
-          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
           required: true
           type: string
         - name: x-api-key
@@ -4154,11 +4154,11 @@ paths:
           required: true
           type: string
       responses:
-        '200':
+        "200":
           description: Content flow canceled
           schema:
-            $ref: '#/definitions/ContentFlow'
-        '400':
+            $ref: "#/definitions/ContentFlow"
+        "400":
           description: Bad request
 definitions:
   ProgramList:
@@ -4169,7 +4169,7 @@ definitions:
         format: int32
         description: The total number of embedded items
       _page:
-        $ref: '#/definitions/RequestedPageDetails'
+        $ref: "#/definitions/RequestedPageDetails"
         description: Details of the requested page of items
       _embedded:
         type: object
@@ -4178,29 +4178,29 @@ definitions:
           programs:
             type: array
             items:
-              $ref: '#/definitions/EmbeddedProgram'
+              $ref: "#/definitions/EmbeddedProgram"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           page:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: An arbitrary page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   EmbeddedProgram:
     type: object
     properties:
       id:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the program. Unique within the space.
         readOnly: true
       name:
@@ -4240,11 +4240,11 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/tenant':
+          "http://ns.adobe.com/adobecloud/rel/tenant":
             description: The tenant this program belongs to
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: A lightweight representation of a Program
   Program:
@@ -4255,7 +4255,7 @@ definitions:
     properties:
       id:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the program. Unique within the space.
       name:
         type: string
@@ -4294,9 +4294,9 @@ definitions:
           - aem_cloud_service
           - media_library
       capabilities:
-        example: '{ ''capability1'':''value1'', ''capability1'': {''param3'':''value3''}}'
+        example: "{ 'capability1':'value1', 'capability1': {'param3':'value3'}}"
         description: Program capabilities
-        $ref: '#/definitions/ProgramCapabilities'
+        $ref: "#/definitions/ProgramCapabilities"
       createdAt:
         type: string
         format: date-time
@@ -4309,34 +4309,34 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/pipelines':
+          "http://ns.adobe.com/adobecloud/rel/pipelines":
             description: Pipelines defined in the program
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/environments':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/environments":
             description: The environments linked to this program.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/repositories':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/repositories":
             description: The repositories linked to this program.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/ipAllowlists':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/ipAllowlists":
             description: The IP allowlists linked to this program.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/certificates':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/certificates":
             description: The SSL certificates linked to this program.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/domainNames':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/domainNames":
             description: The domain names linked to this program.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/tenant':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/tenant":
             description: The tenant this program belongs to
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/networkInfrastructures':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/regions':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/networkInfrastructures":
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/regions":
             description: The regions available for this program.
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: A representation of a Program
   ProgramCapabilities:
@@ -4377,11 +4377,11 @@ definitions:
     properties:
       id:
         type: string
-        example: '29'
+        example: "29"
         description: Identifier of the pipeline. Unique within the program.
       programId:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the program. Unique within the space.
       name:
         type: string
@@ -4392,7 +4392,7 @@ definitions:
       trigger:
         type: string
         example: MANUAL
-        description: 'How should the execution be triggered. ON_COMMIT: each time one or more commits are pushed and the Pipeline is idle then a execution is triggered. MANUAL: triggerd through UI or API.'
+        description: "How should the execution be triggered. ON_COMMIT: each time one or more commits are pushed and the Pipeline is idle then a execution is triggered. MANUAL: triggerd through UI or API."
         enum:
           - ON_COMMIT
           - MANUAL
@@ -4428,7 +4428,7 @@ definitions:
         type: array
         description: Pipeline phases in execution order
         items:
-          $ref: '#/definitions/PipelinePhase'
+          $ref: "#/definitions/PipelinePhase"
         maxItems: 100
         minItems: 1
       type:
@@ -4442,29 +4442,29 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/program':
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: The Program this pipeline belongs to.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/execution':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/execution":
             description: Current pipeline execution if any
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/execution/id':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/execution/id":
             description: Get pipeline execution by id
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/executions':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/executions":
             description: Get all historic executions for this pipeline.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/variables':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/variables":
             description: Custom pipeline variables
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/rollbackLastSuccessfulExecution':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/rollbackLastSuccessfulExecution":
             description: Start a CI/CD rollback execution
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/cache':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/cache":
             description: Pipeline cache
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: A representation of a CI/CD Pipeline
   PipelinePhase:
@@ -4499,7 +4499,7 @@ definitions:
         description: Identifier of the target environment. Mandatory if type=DEPLOY
       environmentType:
         type: string
-        description: 'Type of environment (for example stage or prod, readOnly = true)'
+        description: "Type of environment (for example stage or prod, readOnly = true)"
         enum:
           - dev
           - stage
@@ -4507,9 +4507,9 @@ definitions:
           - rde
       steps:
         type: array
-        description: 'Steps to be included in the phase in execution order. Might be added or not, depending on permissions or configuration'
+        description: "Steps to be included in the phase in execution order. Might be added or not, depending on permissions or configuration"
         items:
-          $ref: '#/definitions/PipelineStep'
+          $ref: "#/definitions/PipelineStep"
     description: Describes a phase of a pipeline
   PipelineList:
     type: object
@@ -4519,7 +4519,7 @@ definitions:
         format: int32
         description: The total number of embedded items
       _page:
-        $ref: '#/definitions/RequestedPageDetails'
+        $ref: "#/definitions/RequestedPageDetails"
         description: Details of the requested page of items
       _embedded:
         type: object
@@ -4528,22 +4528,22 @@ definitions:
           pipelines:
             type: array
             items:
-              $ref: '#/definitions/Pipeline'
+              $ref: "#/definitions/Pipeline"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           page:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: An arbitrary page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   PipelineExecution:
     type: object
@@ -4553,12 +4553,12 @@ definitions:
         description: Pipeline execution identifier
       programId:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the program. Unique within the space.
         readOnly: true
       pipelineId:
         type: string
-        example: '10'
+        example: "10"
         description: Identifier of the pipeline. Unique within the space.
         readOnly: true
       artifactsVersion:
@@ -4618,19 +4618,19 @@ definitions:
           stepStates:
             type: array
             items:
-              $ref: '#/definitions/PipelineExecutionStepState'
+              $ref: "#/definitions/PipelineExecutionStepState"
       _links:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/program':
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: Get the program of the execution
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/pipeline":
             description: Get the pipeline of the execution
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: A representation of an execution of a CI/CD Pipeline.
   PipelineExecutionStepState:
@@ -4675,7 +4675,7 @@ definitions:
       details:
         type: object
         description: Additional details of the step
-        $ref: '#/definitions/PipelineExecutionStepStateDetails'
+        $ref: "#/definitions/PipelineExecutionStepStateDetails"
       status:
         type: string
         example: NOT_STARTED
@@ -4695,28 +4695,28 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/execution':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline':
+          "http://ns.adobe.com/adobecloud/rel/execution":
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/pipeline":
             description: Get the pipeline of the execution
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline/logs':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline/metrics':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline/reExecute':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline/advance':
-            description: 'Post to this link in order to advance the pipeline, if paused and waiting for user interaction. Link is present in output only in that case.'
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline/cancel':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/pipeline/logs":
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/pipeline/metrics":
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/pipeline/reExecute":
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/pipeline/advance":
+            description: "Post to this link in order to advance the pipeline, if paused and waiting for user interaction. Link is present in output only in that case."
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/pipeline/cancel":
             description: Post to this link in order to cancel the pipeline. Link is present in output only in that case.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/program':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: Get the program of the execution
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: Describes the status of a particular pipeline execution step for display purposes
   PipelineExecutionListRepresentation:
@@ -4727,7 +4727,7 @@ definitions:
         format: int32
         description: The total number of embedded items
       _page:
-        $ref: '#/definitions/RequestedPageDetails'
+        $ref: "#/definitions/RequestedPageDetails"
         description: Details of the requested page of items
       _embedded:
         type: object
@@ -4736,22 +4736,22 @@ definitions:
           executions:
             type: array
             items:
-              $ref: '#/definitions/PipelineExecution'
+              $ref: "#/definitions/PipelineExecution"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           page:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: An arbitrary page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: List of pipeline executions
   PipelineStepMetrics:
@@ -4762,7 +4762,7 @@ definitions:
         description: metrics
         readOnly: true
         items:
-          $ref: '#/definitions/Metric'
+          $ref: "#/definitions/Metric"
   Metric:
     type: object
     properties:
@@ -4818,19 +4818,19 @@ definitions:
           environments:
             type: array
             items:
-              $ref: '#/definitions/Environment'
+              $ref: "#/definitions/Environment"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   Environment:
     type: object
@@ -4840,7 +4840,7 @@ definitions:
         description: id
       programId:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the program. Unique within the space.
       name:
         type: string
@@ -4885,38 +4885,38 @@ definitions:
         type: array
         description: List of logs available in the environment
         items:
-          $ref: '#/definitions/LogOptionRepresentation'
+          $ref: "#/definitions/LogOptionRepresentation"
       _links:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/program':
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: The Program this environment belongs to.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline':
-            description: 'The Pipeline this environment is assigned to, if any'
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/author':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/pipeline":
+            description: "The Pipeline this environment is assigned to, if any"
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/author":
             description: Author URL
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/publish':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/publish":
             description: Publish URL
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/preview':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/preview":
             description: Publish URL
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/developerConsole':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/developerConsole":
             description: Developer Console URL
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/logs':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/variables':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/logs":
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/variables":
             description: Custom environment variables
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/advancedNetworking':
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/advancedNetworking":
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: A representation of an Environment known to Cloud Manager.
   Repository:
@@ -4932,20 +4932,20 @@ definitions:
         description: description
       repositoryUrl:
         type: string
-        example: 'https://git.cloudmanager.adobe.com/weretailprod/we-retail-global'
+        example: "https://git.cloudmanager.adobe.com/weretailprod/we-retail-global"
         description: Repository Url.
       _links:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/program':
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: The Program the repository belongs to
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/branches':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/branches":
             description: List of branches in this repository
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: A sourcecode repository
   RepositoryList:
@@ -4956,7 +4956,7 @@ definitions:
         format: int32
         description: The total number of embedded items
       _page:
-        $ref: '#/definitions/RequestedPageDetails'
+        $ref: "#/definitions/RequestedPageDetails"
         description: Details of the requested page of items
       _embedded:
         type: object
@@ -4965,29 +4965,29 @@ definitions:
           repositories:
             type: array
             items:
-              $ref: '#/definitions/Repository'
+              $ref: "#/definitions/Repository"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           page:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: An arbitrary page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   RepositoryBranch:
     type: object
     properties:
       programId:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the program. Unique within the space
       repositoryId:
         type: integer
@@ -5002,12 +5002,12 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/program':
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: Program
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/repository':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/repository":
             description: Repository
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
     description: Represents a Git Branch
   BranchList:
     type: object
@@ -5023,19 +5023,19 @@ definitions:
           branches:
             type: array
             items:
-              $ref: '#/definitions/RepositoryBranch'
+              $ref: "#/definitions/RepositoryBranch"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   RequestedPageDetails:
     type: object
@@ -5097,7 +5097,7 @@ definitions:
         description: HTTP status code of the response.
       type:
         type: string
-        example: 'http://ns.adobe.com/adobecloud/error'
+        example: "http://ns.adobe.com/adobecloud/error"
         description: Error type identifier.
       title:
         type: string
@@ -5107,12 +5107,12 @@ definitions:
         type: array
         description: Request's missing parameters.
         items:
-          $ref: '#/definitions/MissingParameter'
+          $ref: "#/definitions/MissingParameter"
       invalidParams:
         type: array
         description: Request's invalid parameters.
         items:
-          $ref: '#/definitions/InvalidParameter'
+          $ref: "#/definitions/InvalidParameter"
     description: A Bad Request response error.
   EnvironmentLog:
     type: object
@@ -5127,7 +5127,7 @@ definitions:
         description: Name of the Log
       date:
         type: string
-        example: '2019-04-05'
+        example: "2019-04-05"
         description: date of the Log
         format: date
       programId:
@@ -5140,12 +5140,12 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/logs/download':
+          "http://ns.adobe.com/adobecloud/rel/logs/download":
             description: Download Logs link
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/logs/tail':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/logs/tail":
             description: Tail Log link
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
     description: Log from Environment
   EnvironmentLogs:
     type: object
@@ -5171,11 +5171,11 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/program':
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: The Application this environment belongs to.
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
       _embedded:
         type: object
@@ -5185,7 +5185,7 @@ definitions:
             type: array
             description: Links to logs
             items:
-              $ref: '#/definitions/EnvironmentLog'
+              $ref: "#/definitions/EnvironmentLog"
     description: Logs of an Environment
   Variable:
     type: object
@@ -5193,14 +5193,14 @@ definitions:
       name:
         type: string
         example: MY_VAR1
-        description: 'Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number.'
+        description: "Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number."
         minLength: 2
         maxLength: 100
-        pattern: '[a-zA-Z_][a-zA-Z_0-9]*'
+        pattern: "[a-zA-Z_][a-zA-Z_0-9]*"
       value:
         type: string
         example: myValue
-        description: 'Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted.'
+        description: "Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted."
         minLength: 0
         maxLength: 2048
       type:
@@ -5213,7 +5213,7 @@ definitions:
       service:
         type: string
         example: author
-        description: 'Service of the variable. When not provided, the variable applies to all services. Currently the values ''author'', ''publish'', and ''preview'' are supported. Note - this value is case-sensitive.'
+        description: "Service of the variable. When not provided, the variable applies to all services. Currently the values 'author', 'publish', and 'preview' are supported. Note - this value is case-sensitive."
       status:
         type: string
         example: ready
@@ -5241,25 +5241,25 @@ definitions:
         properties:
           variables:
             type: array
-            example: '[{ ''name'':''variable1Name'', ''value'':''variable1Value''}, { ''name'':''variable1Name'', ''value'':''variable1Value'', ''service'':''author''}, { ''name'':''variable2Name'', ''type'':''secretString'', ''value'':''variable2SecretValue''}]'
+            example: "[{ 'name':'variable1Name', 'value':'variable1Value'}, { 'name':'variable1Name', 'value':'variable1Value', 'service':'author'}, { 'name':'variable2Name', 'type':'secretString', 'value':'variable2SecretValue'}]"
             description: Variables set on environment
             items:
-              $ref: '#/definitions/Variable'
+              $ref: "#/definitions/Variable"
       _links:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/environment':
+          "http://ns.adobe.com/adobecloud/rel/environment":
             description: The environment holding the variables
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/pipeline':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/pipeline":
             description: The pipeline holding the variables
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/program':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: The Program
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   RegionDeployment:
     type: object
@@ -5292,7 +5292,7 @@ definitions:
         description: Region name of the deployment
       integrations:
         description: region integrations
-        $ref: '#/definitions/EnvironmentRegionintegrations'
+        $ref: "#/definitions/EnvironmentRegionintegrations"
       status:
         type: string
         description: Status of the region deployment
@@ -5316,19 +5316,19 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/flow':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/kubernetesCluster':
+          "http://ns.adobe.com/adobecloud/rel/flow":
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/kubernetesCluster":
             description: Get the Kubernetes Cluster in which this deployment happens
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/kubernetesNamespace':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/kubernetesNamespace":
             description: Get the Kubernetes Namespace in which this deployment happens
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/region':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/region":
             description: Region being used for this deployment
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: describes region deployments for an environment
   RegionDeploymentList:
@@ -5345,26 +5345,26 @@ definitions:
           regionDeployments:
             type: array
             items:
-              $ref: '#/definitions/RegionDeployment'
+              $ref: "#/definitions/RegionDeployment"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   ContentSet:
     type: object
     properties:
       id:
         type: string
-        example: '123'
+        example: "123"
         description: Identifier of the Content Set
       name:
         type: string
@@ -5374,10 +5374,10 @@ definitions:
         description: Included asset paths
         uniqueItems: true
         items:
-          $ref: '#/definitions/ContentSetPath'
+          $ref: "#/definitions/ContentSetPath"
       programId:
         type: string
-        example: '658'
+        example: "658"
         description: Identifier of the program. Unique within the space.
       createdAt:
         type: string
@@ -5393,11 +5393,11 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/program':
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: The Application this content set belongs to.
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: A representation of a ContentSet custom
   ContentSetPath:
@@ -5421,7 +5421,7 @@ definitions:
         format: int32
         description: The total number of embedded items
       _page:
-        $ref: '#/definitions/RequestedPageDetails'
+        $ref: "#/definitions/RequestedPageDetails"
         description: Details of the requested page of items
       _embedded:
         type: object
@@ -5430,22 +5430,22 @@ definitions:
           contentSets:
             type: array
             items:
-              $ref: '#/definitions/ContentSet'
+              $ref: "#/definitions/ContentSet"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           page:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: An arbitrary page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: Describes a Content Set List representation
   ContentFlow:
@@ -5471,7 +5471,7 @@ definitions:
         description: Destination environment name
       tier:
         type: string
-        description: 'The tier, for example author'
+        description: "The tier, for example author"
       status:
         type: string
         description: Status of the flows
@@ -5480,25 +5480,25 @@ definitions:
         description: Destination program id
       resultDetails:
         description: Details of this content flow result
-        $ref: '#/definitions/ContentFlowResults'
+        $ref: "#/definitions/ContentFlowResults"
       _links:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/contentSet':
+          "http://ns.adobe.com/adobecloud/rel/contentSet":
             description: The Content set for this flow.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/program':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: The Application this content set belongs to.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/environment':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/environment":
             description: The source Environment this content flow is copying from.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/destEnvironment':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/destEnvironment":
             description: The destination Environment this content flow is copying to.
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: The Content Flow Execution
   ContentFlowResults:
@@ -5506,10 +5506,10 @@ definitions:
     properties:
       exportResult:
         description: export results
-        $ref: '#/definitions/ContentFlowResultDetails'
+        $ref: "#/definitions/ContentFlowResultDetails"
       importResult:
         description: import results
-        $ref: '#/definitions/ContentFlowResultDetails'
+        $ref: "#/definitions/ContentFlowResultDetails"
     description: The Content Flow Results
   ContentFlowList:
     type: object
@@ -5519,7 +5519,7 @@ definitions:
         format: int32
         description: The total number of embedded items
       _page:
-        $ref: '#/definitions/RequestedPageDetails'
+        $ref: "#/definitions/RequestedPageDetails"
         description: Details of the requested page of items
       _embedded:
         type: object
@@ -5528,19 +5528,19 @@ definitions:
           contentFlows:
             type: array
             items:
-              $ref: '#/definitions/ContentFlow'
+              $ref: "#/definitions/ContentFlow"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   PipelineStep:
     type: object
@@ -5554,7 +5554,7 @@ definitions:
       options:
         type: object
         description: Map of option parameters for the step
-        $ref: '#/definitions/PipelineStepOptions'
+        $ref: "#/definitions/PipelineStepOptions"
     description: Describes a step from a phase of a pipeline
   SystemUnderMaintenanceExceptionMapper:
     type: object
@@ -5566,7 +5566,7 @@ definitions:
     properties:
       id:
         type: string
-        example: '29'
+        example: "29"
         description: Identifier of the Artifact
       stepName:
         type: string
@@ -5625,7 +5625,7 @@ definitions:
         readOnly: true
         properties:
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: Describes an artifact associated with a step
   ArtifactList:
@@ -5642,19 +5642,19 @@ definitions:
           artifacts:
             type: array
             items:
-              $ref: '#/definitions/Artifact'
+              $ref: "#/definitions/Artifact"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: Describes a list of artifacts associated with a step
   LogOptionRepresentation:
@@ -5665,10 +5665,10 @@ definitions:
     properties:
       service:
         type: string
-        description: 'Name of the service in environment. Example: author'
+        description: "Name of the service in environment. Example: author"
       name:
         type: string
-        description: 'Name of the log for service in environment. Example: aemerror'
+        description: "Name of the log for service in environment. Example: aemerror"
   EnvironmentBlobStorageConfiguration:
     type: object
     required:
@@ -5685,7 +5685,7 @@ definitions:
     type: object
     properties:
       blobStorage:
-        $ref: '#/definitions/EnvironmentBlobStorageConfiguration'
+        $ref: "#/definitions/EnvironmentBlobStorageConfiguration"
     description: integrations for a particular EnvironmentRegion
   RestorePointDetails:
     type: object
@@ -5736,8 +5736,8 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/atlascluster':
-            $ref: '#/definitions/HalLink'
+          "http://ns.adobe.com/adobecloud/rel/atlascluster":
+            $ref: "#/definitions/HalLink"
   RestorePointsList:
     type: object
     properties:
@@ -5753,19 +5753,19 @@ definitions:
             type: array
             description: restorePointsDetails
             items:
-              $ref: '#/definitions/RestorePointDetails'
+              $ref: "#/definitions/RestorePointDetails"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   ErrorDetailsRepresentation:
     type: object
@@ -5810,12 +5810,12 @@ definitions:
         description: id
       programId:
         type: string
-        example: '14'
-        description: 'Identifier of the program, unique within the space'
+        example: "14"
+        description: "Identifier of the program, unique within the space"
       environmentId:
         type: string
-        example: '14'
-        description: 'Identifier of the environment, unique within the space'
+        example: "14"
+        description: "Identifier of the environment, unique within the space"
       status:
         type: string
         example: not_started
@@ -5827,14 +5827,14 @@ definitions:
           - error
           - failed
       errorDetails:
-        description: 'Error details, present only when execution failed'
-        $ref: '#/definitions/ErrorDetailsRepresentation'
+        description: "Error details, present only when execution failed"
+        $ref: "#/definitions/ErrorDetailsRepresentation"
       environmentDetailsAtSnapshotDate:
         description: Environment details at snapshot timestamp
-        $ref: '#/definitions/Restore-Environmentdetailsrepresentation'
+        $ref: "#/definitions/Restore-Environmentdetailsrepresentation"
       environmentDetailsAtRestoreDate:
         description: Environment details when the restore was triggered
-        $ref: '#/definitions/Restore-Environmentdetailsrepresentation'
+        $ref: "#/definitions/Restore-Environmentdetailsrepresentation"
       createdAt:
         type: string
         format: date-time
@@ -5847,17 +5847,17 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/environment':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/flow':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/program':
+          "http://ns.adobe.com/adobecloud/rel/environment":
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/flow":
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: The Application this environment belongs to
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/restoreExecution/logs/download':
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/restoreExecution/logs/download":
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: A RestoreExecution
   RestoreExecutionLimit:
@@ -5888,9 +5888,9 @@ definitions:
         description: The total number of embedded items
       limits:
         description: Restore executions limits
-        $ref: '#/definitions/RestoreExecutionLimit'
+        $ref: "#/definitions/RestoreExecutionLimit"
       _page:
-        $ref: '#/definitions/RequestedPageDetails'
+        $ref: "#/definitions/RequestedPageDetails"
         description: Details of the requested page of items
       _embedded:
         type: object
@@ -5899,22 +5899,22 @@ definitions:
           restoreExecutions:
             type: array
             items:
-              $ref: '#/definitions/RestoreExecution'
+              $ref: "#/definitions/RestoreExecution"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           page:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: An arbitrary page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   RestoreParamRepresentation:
     type: object
@@ -5932,7 +5932,7 @@ definitions:
     properties:
       id:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the IP Allowed List Binding to an Environment
       tier:
         type: string
@@ -5956,28 +5956,28 @@ definitions:
           - not_started
       programId:
         type: string
-        example: '22'
+        example: "22"
         description: Identifier of the program.
       ipAllowListId:
         type: string
-        example: '17'
+        example: "17"
         description: Identifier of the IP allow list.
       environmentId:
         type: string
-        example: '5'
+        example: "5"
         description: Identifier of the environment.
       _links:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/program':
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: The Application this environment belongs to.
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/ipAllowList':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/ipAllowList":
             description: IpAllowList to be binded to the environment.
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: Describes an __IP Allowed List Binding__
   IPAllowedList:
@@ -5988,7 +5988,7 @@ definitions:
     properties:
       id:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the IP Allowed List
       name:
         type: string
@@ -5998,7 +5998,7 @@ definitions:
         maxLength: 64
       ipCidrSet:
         type: array
-        example: '["11.22.33.44/28", "99.88.77.66/32"]'
+        example: '\[\"11.22.33.44/28\", \"99.88.77.66/32\"\]'
         description: IP CIDR Set
         uniqueItems: true
         items:
@@ -6007,24 +6007,24 @@ definitions:
         minItems: 1
       programId:
         type: string
-        example: '22'
+        example: "22"
         description: Identifier of the program.
       bindings:
         type: array
         description: IP Allowlist bindings
         items:
-          $ref: '#/definitions/IPAllowedListBinding'
+          $ref: "#/definitions/IPAllowedListBinding"
       _links:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/ipAllowlistBindings':
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/program':
+          "http://ns.adobe.com/adobecloud/rel/ipAllowlistBindings":
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: The Application this environment belongs to.
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: Describes an __IP Allowed List__
   IPAllowlistBindingsList:
@@ -6041,19 +6041,19 @@ definitions:
           ipAllowlistBindings:
             type: array
             items:
-              $ref: '#/definitions/IPAllowedListBinding'
+              $ref: "#/definitions/IPAllowedListBinding"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   IPAllowlistList:
     type: object
@@ -6069,19 +6069,19 @@ definitions:
           ipAllowlists:
             type: array
             items:
-              $ref: '#/definitions/IPAllowedList'
+              $ref: "#/definitions/IPAllowedList"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   DomainNameTargetRepresentation:
     type: object
@@ -6131,7 +6131,7 @@ definitions:
         type: array
         description: Pointing IPs/domain name
         items:
-          $ref: '#/definitions/DomainNameTargetRepresentation'
+          $ref: "#/definitions/DomainNameTargetRepresentation"
       dnsTxtRecord:
         type: string
         example: adobe-aem-verification=www.adobe.com/1/2/ab-cd-ef
@@ -6179,23 +6179,23 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/domainName/certificates':
+          "http://ns.adobe.com/adobecloud/rel/domainName/certificates":
             description: SSL certificates in program
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/domainName/deploy':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/domainName/deploy":
             description: Trigger DNS TXT record verification and start CDN deployment
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/domainName/verify':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/domainName/verify":
             description: Trigger DNS route verification of the domain name
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/environment':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/environment":
             description: The environment holding the domain name
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/program':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/program":
             description: The Application this domain name belongs to.
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: A Domain Name representation
   DomainNameList:
@@ -6206,7 +6206,7 @@ definitions:
         format: int32
         description: The total number of embedded items
       _page:
-        $ref: '#/definitions/RequestedPageDetails'
+        $ref: "#/definitions/RequestedPageDetails"
         description: Details of the requested page of items
       _embedded:
         type: object
@@ -6215,22 +6215,22 @@ definitions:
           domainNames:
             type: array
             items:
-              $ref: '#/definitions/DomainName'
+              $ref: "#/definitions/DomainName"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           page:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: An arbitrary page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   SslCertificate:
     type: object
@@ -6240,7 +6240,7 @@ definitions:
         description: id
       programId:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the application. Unique within the space.
       serialNumber:
         type: string
@@ -6287,7 +6287,7 @@ definitions:
         readOnly: true
         properties:
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: Describes an SSL Certificate
   CertificatesList:
@@ -6304,26 +6304,26 @@ definitions:
           certificates:
             type: array
             items:
-              $ref: '#/definitions/SslCertificate'
+              $ref: "#/definitions/SslCertificate"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   NewRelicSub-AccountUser:
     type: object
     properties:
       id:
         type: string
-        example: '42'
+        example: "42"
         description: Identifier of the New Relic sub account User
       firstName:
         type: string
@@ -6355,7 +6355,7 @@ definitions:
         format: int32
       applicationId:
         type: string
-        example: '44'
+        example: "44"
         description: The id of the Cloud Manager application this sub account user list is linked to
       _embedded:
         type: object
@@ -6364,19 +6364,19 @@ definitions:
           newRelicUsers:
             type: array
             items:
-              $ref: '#/definitions/NewRelicSub-AccountUser'
+              $ref: "#/definitions/NewRelicSub-AccountUser"
       _links:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/application':
+          "http://ns.adobe.com/adobecloud/rel/application":
             description: Application linked to this New Relic sub account
-            $ref: '#/definitions/HalLink'
-          'http://ns.adobe.com/adobecloud/rel/newRelicSubAccount':
+            $ref: "#/definitions/HalLink"
+          "http://ns.adobe.com/adobecloud/rel/newRelicSubAccount":
             description: New Relic sub account linked to the New Relic sub account User list
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: List of New Relic sub account users
   Organisation:
@@ -6406,7 +6406,7 @@ definitions:
     properties:
       id:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the tenant
       imsOrgId:
         type: string
@@ -6436,16 +6436,16 @@ definitions:
           - failed
       organisation:
         description: Tenant-level git repository organisation
-        $ref: '#/definitions/Organisation'
+        $ref: "#/definitions/Organisation"
       _links:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/programs':
+          "http://ns.adobe.com/adobecloud/rel/programs":
             description: Programs defined in the tenant
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: Describes a __Tenant__
   TenantList:
@@ -6462,19 +6462,19 @@ definitions:
           tenants:
             type: array
             items:
-              $ref: '#/definitions/Tenant'
+              $ref: "#/definitions/Tenant"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   Region:
     type: object
@@ -6488,7 +6488,7 @@ definitions:
         readOnly: true
         properties:
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: Describes a __Region__
   RegionsList:
@@ -6505,19 +6505,19 @@ definitions:
           regions:
             type: array
             items:
-              $ref: '#/definitions/Region'
+              $ref: "#/definitions/Region"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   DnsConfiguration:
     type: object
@@ -6630,13 +6630,13 @@ definitions:
         description: Name of the connection
       gateway:
         description: Gateway configuration
-        $ref: '#/definitions/GatewayInfrastructure'
+        $ref: "#/definitions/GatewayInfrastructure"
       sharedKey:
         type: string
         description: Customer VPN preshared key
       ipsecPolicy:
         description: IPSec Policy
-        $ref: '#/definitions/IpSecPolicyInfrastructure'
+        $ref: "#/definitions/IpSecPolicyInfrastructure"
   NetworkInfrastructure:
     type: object
     required:
@@ -6656,7 +6656,7 @@ definitions:
         readOnly: true
       programId:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the program. Unique within the space.
         readOnly: true
       status:
@@ -6675,7 +6675,7 @@ definitions:
       region:
         type: string
         example: va6
-        description: 'Region to create the infrastructure. Use your primary region, whose identifier can be retrieved from the [List Regions endpoint](#operation/getProgramRegions).'
+        description: "Region to create the infrastructure. Use your primary region, whose identifier can be retrieved from the [List Regions endpoint](#operation/getProgramRegions)."
       isPrimaryRegion:
         type: boolean
         description: Boolean property to mark whether network infrastructure being created is for primary region or not.
@@ -6697,24 +6697,24 @@ definitions:
           type: string
       dns:
         description: DNS Information. Only applicable to VPN infrastructures.
-        $ref: '#/definitions/DnsConfiguration'
+        $ref: "#/definitions/DnsConfiguration"
       connections:
         type: array
         description: List of VPN connections
         items:
-          $ref: '#/definitions/VpnConnection'
+          $ref: "#/definitions/VpnConnection"
       statusDetails:
         description: Error details. Present only when failed operations.
-        $ref: '#/definitions/ErrorDetailsRepresentation'
+        $ref: "#/definitions/ErrorDetailsRepresentation"
         readOnly: true
       _links:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/program':
-            $ref: '#/definitions/HalLink'
+          "http://ns.adobe.com/adobecloud/rel/program":
+            $ref: "#/definitions/HalLink"
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: An network infrastructure representation
   NetworkInfrastructuresList:
@@ -6731,19 +6731,19 @@ definitions:
           networkInfrastructures:
             type: array
             items:
-              $ref: '#/definitions/NetworkInfrastructure'
+              $ref: "#/definitions/NetworkInfrastructure"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   PortForwardRepresentation:
     type: object
@@ -6755,7 +6755,7 @@ definitions:
         type: string
         example: smtp.example.com
         description: Destination host
-        pattern: '^[a-z0-9]([-a-z0-9]*[a-z0-9])?([.][a-z0-9]([-a-z0-9]*[a-z0-9])?)*$'
+        pattern: "^[a-z0-9]([-a-z0-9]*[a-z0-9])?([.][a-z0-9]([-a-z0-9]*[a-z0-9])?)*$"
       portDest:
         type: integer
         format: int32
@@ -6774,7 +6774,7 @@ definitions:
     properties:
       programId:
         type: string
-        example: '14'
+        example: "14"
         description: Identifier of the program. Unique within the space.
         readOnly: true
       environmentId:
@@ -6783,22 +6783,22 @@ definitions:
         readOnly: true
       networkInfrastructureId:
         type: string
-        example: '123'
+        example: "123"
         description: Advanced network infrastructure used.
         readOnly: true
       nonProxyHosts:
         type: array
-        description: 'A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a ''''*'''' for wildcards.'
+        description: "A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a ''*'' for wildcards."
         items:
           type: string
         example:
-          - '*.example.com'
-          - '*.example.net'
+          - "*.example.com"
+          - "*.example.net"
       portForwards:
         type: array
         description: List of port forwarding rules
         items:
-          $ref: '#/definitions/PortForwardRepresentation'
+          $ref: "#/definitions/PortForwardRepresentation"
       advancedNetworkingEnabled:
         type: boolean
         description: Whether advanced networking is enabled in this environment
@@ -6809,7 +6809,7 @@ definitions:
         readOnly: true
         properties:
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
     description: Describes the Advanced Networking configuration for an environment
   AdvancedNetworkingConfigurationList:
@@ -6826,19 +6826,19 @@ definitions:
           networkingConfigurations:
             type: array
             items:
-              $ref: '#/definitions/AdvancedNetworkingConfiguration'
+              $ref: "#/definitions/AdvancedNetworkingConfiguration"
       _links:
         type: object
         readOnly: true
         properties:
           next:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The next page of results.
           prev:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: The previous page of results.
           self:
-            $ref: '#/definitions/HalLink'
+            $ref: "#/definitions/HalLink"
             description: This object's representation
   ContentFlowResultDetails:
     type: object
@@ -6949,21 +6949,21 @@ definitions:
         type: array
         description: Pipeline phases to update
         items:
-          $ref: '#/definitions/PipelinePhaseUpdate'
+          $ref: "#/definitions/PipelinePhaseUpdate"
   EnvironmentVariableUpdate:
     type: object
     properties:
       name:
         type: string
         example: MY_VAR1
-        description: 'Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number.'
+        description: "Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number."
         minLength: 2
         maxLength: 100
-        pattern: '[a-zA-Z_][a-zA-Z_0-9]*'
+        pattern: "[a-zA-Z_][a-zA-Z_0-9]*"
       value:
         type: string
         example: myValue
-        description: 'Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted.'
+        description: "Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted."
         minLength: 0
         maxLength: 2048
       type:
@@ -6976,22 +6976,22 @@ definitions:
       service:
         type: string
         example: author
-        description: 'Service of the variable. When not provided, the variable applies to all services. Currently the values ''author'', ''publish'', and ''preview'' are supported. Note - this value is case-sensitive.'
-    description: 'A change (create, update, delete) of a named value on an Environment'
+        description: "Service of the variable. When not provided, the variable applies to all services. Currently the values 'author', 'publish', and 'preview' are supported. Note - this value is case-sensitive."
+    description: "A change (create, update, delete) of a named value on an Environment"
   PipelineVariableUpdate:
     type: object
     properties:
       name:
         type: string
         example: MY_VAR1
-        description: 'Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number.'
+        description: "Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number."
         minLength: 2
         maxLength: 100
-        pattern: '[a-zA-Z_][a-zA-Z_0-9]*'
+        pattern: "[a-zA-Z_][a-zA-Z_0-9]*"
       value:
         type: string
         example: myValue
-        description: 'Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted.'
+        description: "Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted."
         minLength: 0
         maxLength: 2048
       type:
@@ -7001,7 +7001,7 @@ definitions:
         enum:
           - string
           - secretString
-    description: 'A change (create, update, delete) of a named value on a Pipeline'
+    description: "A change (create, update, delete) of a named value on a Pipeline"
   PipelinePhaseUpdate:
     type: object
     required:
@@ -7021,10 +7021,10 @@ definitions:
           - DEPLOY
       repositoryId:
         type: string
-        description: 'For BUILD phase type. Identifier of the source repository. The code from this repository will be build at the start of this phase. If not provided, the current value is retained.'
+        description: "For BUILD phase type. Identifier of the source repository. The code from this repository will be build at the start of this phase. If not provided, the current value is retained."
       branch:
         type: string
-        description: 'For BUILD phase type. Name of the tracked branch or a fully qualified git tag (e.g. refs/tags/v1). If not provided, the current value is retained.'
+        description: "For BUILD phase type. Name of the tracked branch or a fully qualified git tag (e.g. refs/tags/v1). If not provided, the current value is retained."
       environmentId:
         type: string
         description: For DEPLOY phase type. Identifier of the target environment.
@@ -7032,7 +7032,7 @@ definitions:
         type: array
         description: Steps to update within the phase.
         items:
-          $ref: '#/definitions/PipelineStepUpdate'
+          $ref: "#/definitions/PipelineStepUpdate"
   PipelineStepUpdate:
     type: object
     required:
@@ -7046,7 +7046,7 @@ definitions:
       options:
         type: object
         description: Map of option parameters for the step
-        $ref: '#/definitions/PipelineStepUpdateOptions'
+        $ref: "#/definitions/PipelineStepUpdateOptions"
   PipelineStepUpdateOptions:
     type: object
     properties:
@@ -7054,41 +7054,41 @@ definitions:
         type: array
         items:
           type: string
-        description: 'For deploy steps on AMS pipelines, list of paths to invalidate on dispatchers after package installation.'
+        description: "For deploy steps on AMS pipelines, list of paths to invalidate on dispatchers after package installation."
       dispatcherCacheFlushPaths:
         type: array
         items:
           type: string
-        description: 'For deploy steps on AMS pipelines, list of paths to flush on dispatchers after package installation.'
+        description: "For deploy steps on AMS pipelines, list of paths to flush on dispatchers after package installation."
   EnableAdvancedNetworkingConfiguration:
     type: object
     properties:
       nonProxyHosts:
         type: array
-        description: 'A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a ''''*'''' for wildcards.'
+        description: "A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a ''*'' for wildcards."
         items:
           type: string
         example:
-          - '*.example.com'
-          - '*.example.net'
+          - "*.example.com"
+          - "*.example.net"
       portForwards:
         type: array
         description: List of port forwarding rules
         items:
-          $ref: '#/definitions/PortForwardRepresentation'
+          $ref: "#/definitions/PortForwardRepresentation"
   PipelineExecutionStepStateDetails:
     type: object
     description: Details available for each step state. The set of properties available will vary by the step action.
     properties:
       deployCommands:
         type: string
-        description: 'For deploy steps, a JSON array encoded as a string which lists the deployment activities expected to be performed.'
+        description: "For deploy steps, a JSON array encoded as a string which lists the deployment activities expected to be performed."
       currentDeployCommandId:
         type: string
-        description: 'For deploy steps, the current identifier from the deployCommands which is being executed.'
+        description: "For deploy steps, the current identifier from the deployCommands which is being executed."
       environmentUrls:
         type: array
-        description: 'For deploy steps, the the set of URLs for the environment.'
+        description: "For deploy steps, the the set of URLs for the environment."
         items:
           type: object
           properties:
@@ -7098,53 +7098,53 @@ definitions:
               type: string
       deploymentStepDescription:
         type: string
-        description: 'For deploy steps, a JSON array encoded as a string which includes the detailed list of deployment activities which have been performed.'
+        description: "For deploy steps, a JSON array encoded as a string which includes the detailed list of deployment activities which have been performed."
       input:
         type: object
-        description: 'Input provided when advancing the step. See documentation at https://www.adobe.io/experience-cloud/cloud-manager/guides/api-usage/advancing-and-cancelling-steps/ for details.'
+        description: "Input provided when advancing the step. See documentation at https://www.adobe.io/experience-cloud/cloud-manager/guides/api-usage/advancing-and-cancelling-steps/ for details."
   PipelineStepOptions:
     type: object
     description: Options for a pipeline step. Will vary based on step action and platform.
     properties:
       skipDetachingDispatchers:
         type: boolean
-        description: 'For deploy steps on AMS pipelines, if true will not detach dispatcher from the load balancer.'
+        description: "For deploy steps on AMS pipelines, if true will not detach dispatcher from the load balancer."
       dispatcherCacheInvalidationPaths:
         type: array
         items:
           type: string
-        description: 'For deploy steps on AMS pipelines, list of paths to invalidate on dispatchers after package installation.'
+        description: "For deploy steps on AMS pipelines, list of paths to invalidate on dispatchers after package installation."
       dispatcherCacheFlushPaths:
         type: array
         items:
           type: string
-        description: 'For deploy steps on AMS pipelines, list of paths to flush on dispatchers after package installation.'
+        description: "For deploy steps on AMS pipelines, list of paths to flush on dispatchers after package installation."
       cse:
         type: string
         enum:
           - MY_CSE
           - ANY_CSE
-        description: 'For managed steps on AMS pipelines, which CSE will be responsible for CSE oversight.'
+        description: "For managed steps on AMS pipelines, which CSE will be responsible for CSE oversight."
       popularPagesWeight:
         type: integer
         format: int32
-        description: 'For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the popular pages bucket.'
+        description: "For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the popular pages bucket."
       newPagesWeight:
         type: integer
         format: int32
-        description: 'For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the new pages bucket.'
+        description: "For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the new pages bucket."
       otherPagesWeight:
         type: integer
         format: int32
-        description: 'For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the other pages bucket.'
+        description: "For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the other pages bucket."
       imageAssetsWeight:
         type: integer
         format: int32
-        description: 'For assetsTest steps on AMS pipelines, the percentage of asset uploads which will be test images.'
+        description: "For assetsTest steps on AMS pipelines, the percentage of asset uploads which will be test images."
       pdfAssetsWeight:
         type: integer
         format: int32
-        description: 'For assetsTest steps on AMS pipelines, the percentage of asset uploads which will be test PDF files.'
+        description: "For assetsTest steps on AMS pipelines, the percentage of asset uploads which will be test PDF files."
   NewProgram:
     type: object
     required:
@@ -7162,7 +7162,7 @@ definitions:
         enum:
           - aem_cloud_service
       capabilities:
-        $ref: '#/definitions/ProgramCapabilities'
+        $ref: "#/definitions/ProgramCapabilities"
       solutionNames:
         type: array
         description: List of solutions to be enabled on the new program.
@@ -7173,7 +7173,7 @@ definitions:
             - aemassets
       goLive:
         description: Go live dates
-        $ref: '#/definitions/GoLiveDates'
+        $ref: "#/definitions/GoLiveDates"
   NewEnvironment:
     type: object
     description: Description of a new program to be created
@@ -7280,7 +7280,7 @@ definitions:
     properties:
       id:
         type: string
-        example: '42'
+        example: "42"
         description: Identifier of the New Relic sub account User
       firstName:
         type: string
@@ -7317,4 +7317,4 @@ definitions:
         type: array
         description: Included asset paths
         items:
-          $ref: '#/definitions/ContentSetPath'
+          $ref: "#/definitions/ContentSetPath"
