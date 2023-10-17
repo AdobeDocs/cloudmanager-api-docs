@@ -49,12 +49,15 @@ const OrgIdSelector = ({
 
   useEffect(() => {
     const query = qs.stringify({
-      bearer_token: accessToken.token,
       client_id: clientId,
     })
 
     axios({
       url: `${baseEndpoint}/ims/organizations/v6?${query}`,
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${accessToken.token}`,
+      },
     }).then(response => {
       const fromApi = response.data.map(org => {
         const fullOrgIdentity = `${org.orgRef.ident}@${org.orgRef.authSrc}`
