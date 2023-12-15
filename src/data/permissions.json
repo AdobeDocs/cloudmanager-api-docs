@@ -306,5 +306,17 @@
         "profiles": "Deployment Manager",
         "method": "GET",
         "path": "/api/program/{programId}/contentFlows"
+    },
+    {
+        "operation": "getContentFlowLogs",
+        "profiles": "Deployment Manager",
+        "method": "GET",
+        "path": "/api/program/{programId}/contentFlow/{contentFlowId}/logs"
+    },
+    {
+        "operation": "downloadLogs",
+        "profiles": "Deployment Manager",
+        "method": "GET",
+        "path": "/api/program/{programId}/contentFlow/{contentFlowId}/logs/download"
     }
 ]
