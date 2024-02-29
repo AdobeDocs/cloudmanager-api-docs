@@ -1,19 +1,19 @@
 ---
-title: Authentication - Cloud Manager API
-description: Describes how authentication is done in the API.
+title: JWT Authentication
+description: Describes how jwt authentication is done in the API.
 keywords:
   - Experience Cloud
   - Adobe Experience Manager
   - API Documentation
   - Cloud Manager
-  - Authentication
+  - JWT Authentication
 ---
 
-import Epoch from "../../../components/epoch"
-
-# Authentication
+# JWT Authentication
 
 ## Authentication Headers
+
+#### Note that generation of JWT access token is deprecated. Documentation can be found in the [Adobe I/O JWT Documentation](https://developer.adobe.com/developer-console/docs/guides/authentication/JWT/)
 
 Every inbound HTTP API call to the Cloud Manager API must contain these three headers:
 
@@ -23,9 +23,9 @@ Every inbound HTTP API call to the Cloud Manager API must contain these three he
 
 The values which should be sent in the `x-api-key` and `x-gw-ims-org-id` headers are provided in the Credentials details screen in the [Adobe Developer Console](https://developer.adobe.com/console). The value of the `x-api-key` header is the _Client ID_ and the value for the `x-gw-ims-org-id` header is the _Organization ID_.
 
-![Credential details](img/credential-details.png)
+![Credential details](../img/credential-details.png)
 
-The `Authorization` header's value is in the form `Bearer ` followed by a generated access token, e.g. `Bearer somelongtokenvalue`.
+The `Authorization` header's value is in the form `Bearer` followed by a generated access token, e.g. `Bearer somelongtokenvalue`.
 
 ## Generating an Access Token
 
@@ -37,11 +37,11 @@ Please note that tokens generated through the AEM Developer Console cannot be us
 
 Generating an access token can be done by navigating to the Cloud Manager API page for the project in the Adobe Developer Console and pasting the private key for the project.
 
-![Generate Access Token](img/generate-access-token.png)
+![Generate Access Token](../img/generate-access-token-deprecated.png)
 
 Upon clicking the _Generate Token_ button, an access token will be generated and can be copied to the clipboard.
 
-![Generated Access Token](img/generated-access-token.png)
+![Generated Access Token](../img/generated-access-token-deprecated.png)
 
 Access tokens generated in this fashion will be valid for 24 hours, after which a new token must be generated.
 
@@ -58,13 +58,12 @@ The JWT is constructed as a JSON object with these keys, referred to as _claims_
 * `exp`- the requested expiration of the access token, expressed as a number of seconds since January 1st 1970 GMT. For most use cases, this should be a relatively small value, e.g. 5 minutes. For example, for five minutes from now, this value should be <Epoch addition={300} />.
 * `iss`	- the Organization ID from the Adobe Developer Console project, in the format org_ident@AdobeOrg.
 * `sub` - the Technical Account ID from the Adobe Developer Console integration, in the format: id@techacct.adobe.com.
-* `aud` - the Client ID from the Adobe Developer Console integration *prepended* with `https://ims-na1.adobelogin.com/c/`.
+* `aud` - the Client ID from the Adobe Developer Console integration _prepended_ with `https://ims-na1.adobelogin.com/c/`.
 * `https://ims-na1.adobelogin.com/s/ent_cloudmgr_sdk` - set to the literal value `true`.
 
 This JSON object must be then base64 encoded and signed using the private key for the project.
 
 Finally, the encoded value is sent in the body of a `POST` request to https://ims-na1.adobelogin.com/ims/exchange/jwt along with the Client ID and Client Secret for the project.
-
 
 #### Language Support for JWT
 

@@ -69,8 +69,12 @@ module.exports = {
             path: '/guides/getting-started/create-event-integration/',
           },
           {
-            path: 'guides/getting-started/authentication.md',
+            path: 'guides/getting-started/authentication/authentication/',
             title: 'Authentication',
+          },
+          {
+            path: 'guides/getting-started/authentication/jwt-authentication/',
+            title: 'JWT Authentication (Deprecated)',
           },
           {
             path: 'guides/getting-started/permissions.md',
