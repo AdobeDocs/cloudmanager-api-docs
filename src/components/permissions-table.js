@@ -14,22 +14,23 @@ import React, { Fragment } from 'react'
 import data from '../data/permissions.json'
 
 const PermissionsTable = () => {
-  const createRow = ({ operation, profiles, note, method, path }) => {
-    return (
-            <Fragment>
-                <tr className="spectrum-Table-row">
-                    <td className="spectrum-Table-cell"><code>{operation}</code></td>
-                    <td className="spectrum-Table-cell">
-                        {profiles}
-                        {note && (<Fragment><br/><small>{note}</small></Fragment>)}
-                    </td>
-                </tr>
-                <tr className="spectrum-Table-row">
-                    <td colSpan="2" className="spectrum-Table-cell" style={{ fontSize: '75%' }}><code>{method} {path}</code></td>
-                </tr>
-            </Fragment>
-    )
-  }
+  const createRow = ({ operation, profiles, note, method, path, permission }) => {
+      return (
+          <Fragment>
+              <tr className="spectrum-Table-row">
+                  <td className="spectrum-Table-cell"><code>{operation}</code></td>
+                  <td className="spectrum-Table-cell">
+                      {profiles}
+                      {note && (<Fragment><br/><small>{note}</small></Fragment>)}
+                  </td>
+                  <td className="spectrum-Table-cell" style={{ verticalAlign: 'top' }}>{permission}</td>
+              </tr>
+              <tr className="spectrum-Table-row">
+                  <td colSpan="3" className="spectrum-Table-cell" style={{ fontSize: '75%', verticalAlign: 'top' }}><code>{method} {path}</code></td>
+              </tr>
+          </Fragment>
+      );
+  };
 
   const sorted = [...data].sort((a, b) => a.path.localeCompare(b.path))
 
@@ -37,8 +38,9 @@ const PermissionsTable = () => {
     <table className="spectrum-Table" style={{ marginTop: '2em' }}>
         <thead className="spectrum-Table-head">
             <tr>
-                <th className="spectrum-Table-headCell">Operation</th>
-                <th className="spectrum-Table-headCell">Product Profile(s)</th>
+                <th className="spectrum-Table-headCell" style={{ width: '40%' }}>Operation</th>
+                <th className="spectrum-Table-headCell" style={{ width: '40%' }}>Product Profile(s)</th>
+                <th className="spectrum-Table-headCell" style={{ width: '40%' }}>Permission</th>
             </tr>
         </thead>
         <tbody className="spectrum-Table-body">
