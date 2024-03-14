@@ -4041,7 +4041,7 @@ paths:
           type: string
         - name: environmentId
           in: path
-          description: Identifier of the destination environment
+          description: Identifier of the source environment
           required: true
           type: string
         - in: body
@@ -4160,6 +4160,109 @@ paths:
             $ref: "#/definitions/ContentFlow"
         "400":
           description: Bad request
+  "/api/program/{programId}/contentFlow/{contentFlowId}/logs":
+    get:
+      tags:
+        - ContentSets
+      summary: Get Content Flow Logs
+      description: Get Content Flow Logs
+      operationId: getContentFlowLogs
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: contentFlowId
+          in: path
+          description: Identifier of the content flow
+          required: true
+          type: string
+        - name: jobType
+          in: query
+          description: "Job type (import, export)"
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successful retrieval of logs
+          schema:
+            $ref: "#/definitions/ContentFlowLogs"
+        "400":
+          description: Missing JobType
+          schema:
+            $ref: "#/definitions/BadRequestError"
+        "404":
+          description: Program not found.
+  "/api/program/{programId}/contentFlow/{contentFlowId}/logs/download":
+    get:
+      tags:
+        - ContentSets
+      summary: Download content flow logs
+      description: Download content flow logs
+      operationId: downloadLogs
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: contentFlowId
+          in: path
+          description: Identifier of the content flow
+          required: true
+          type: string
+        - name: jobType
+          in: query
+          description: "Job type (import, export)"
+          required: true
+          type: string
+        - name: Accept
+          in: header
+          required: false
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Successful retrieval of logs
+          excludeSchema: true
+          schema:
+            $ref: "#/definitions/Redirect"
+        "400":
+          description: Missing JobType
+          schema:
+            $ref: "#/definitions/BadRequestError"
+        "404":
+          description: Program not found.
 definitions:
   ProgramList:
     type: object
@@ -4487,12 +4590,12 @@ definitions:
       repositoryId:
         type: string
         description: |-
-          Identifier of the source repository. The code from this repository will be build at the start of this phase. 
+          Identifier of the source repository. The code from this repository will be build at the start of this phase.
           Mandatory if type=BUILD
       branch:
         type: string
         description: |-
-          Name of the tracked branch or a fully qualified git tag (e.g. refs/tags/v1). 
+          Name of the tracked branch or a fully qualified git tag (e.g. refs/tags/v1).
            Assumed to be `master` if missing.
       environmentId:
         type: string
@@ -6842,6 +6945,30 @@ definitions:
           self:
             $ref: "#/definitions/HalLink"
             description: This object's representation
+  ContentFlowValidationErrors:
+    type: object
+    properties:
+      errorCode:
+        type: string
+        description: content flow warning error code
+      message:
+        type: string
+        description: content flow warning message
+      details:
+        type: array
+        description: details
+        items:
+          type: string
+    description: The Content Flow Validation Errors
+  ContentFlowInfo:
+    type: object
+    properties:
+      validationErrors:
+        type: array
+        description: validationErrors
+        items:
+          $ref: "#/definitions/ContentFlowValidationErrors"
+    description: The Content Flow Info
   ContentFlowResultDetails:
     type: object
     properties:
@@ -6856,6 +6983,12 @@ definitions:
         description: details
         items:
           type: string
+      phase:
+        type: string
+        description: phase
+      info:
+        description: info
+        $ref: "#/definitions/ContentFlowInfo"
     description: The Content Flow Result Details
   ContentFlowInput:
     type: object
@@ -7320,3 +7453,12 @@ definitions:
         description: Included asset paths
         items:
           $ref: "#/definitions/ContentSetPath"
+  ContentFlowLogs:
+    type: object
+    properties:
+      download:
+        $ref: "#/definitions/Redirect"
+        description: link to download logs
+      logs/tail:
+        $ref: "#/definitions/Redirect"
+        description: link to download tails log
