@@ -4758,13 +4758,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@spectrum-css/fieldlabel@npm:4.0.17":
-  version: 4.0.17
-  resolution: "@spectrum-css/fieldlabel@npm:4.0.17"
+"@spectrum-css/fieldlabel@npm:4.0.29":
+  version: 4.0.29
+  resolution: "@spectrum-css/fieldlabel@npm:4.0.29"
   peerDependencies:
-    "@spectrum-css/icon": ^3.0.11-beta.0
-    "@spectrum-css/vars": ^7.0.0
-  checksum: af7a45f8812952f0cf4fe905b944120931a81620eaec71e2d6458e71c761a982558a74975d48123c17c2ac4ff0c9743890b14312bf3ade70d9fa94dbaa0abc65
+    "@spectrum-css/icon": ^3.0.21
+    "@spectrum-css/vars": ^8.0.0
+  checksum: 7f7eeeb1e800088c82f2a5220df338aee1248cfbbc83ca545dd574599100ed71a571d45ed2acb0d94e38d0b4666ad2391f4c4b361c6e1291e1fb98ae97a13394
   languageName: node
   linkType: hard
 
@@ -7921,7 +7921,7 @@ __metadata:
     "@emotion/eslint-plugin": 11.7.0
     "@emotion/react": 11.8.2
     "@spectrum-css/buttongroup": 3.0.10
-    "@spectrum-css/fieldlabel": 4.0.17
+    "@spectrum-css/fieldlabel": 4.0.29
     axios: 0.26.1
     babel-jest: 27.5.1
     classnames: 2.3.1
