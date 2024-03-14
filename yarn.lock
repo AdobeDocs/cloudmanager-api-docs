@@ -7933,7 +7933,7 @@ __metadata:
     eslint-plugin-node: 11.1.0
     eslint-plugin-promise: 6.0.0
     eslint-plugin-react: 7.29.3
-    eslint-plugin-react-hooks: 4.3.0
+    eslint-plugin-react-hooks: 4.6.0
     gatsby: 4.22.0
     gatsby-plugin-emotion: ^7.23.0
     gatsby-plugin-static-folders: 1.0.1
@@ -10146,16 +10146,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-hooks@npm:4.3.0":
-  version: 4.3.0
-  resolution: "eslint-plugin-react-hooks@npm:4.3.0"
-  peerDependencies:
-    eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
-  checksum: 0ba1566ba0780bbc75a5921f49188edf232db2085ab32c8d3889592f0db9d6fadc97fcf639775e0101dec6b5409ca3c803ec44213b90c8bacaf0bdf921871c2e
-  languageName: node
-  linkType: hard
-
-"eslint-plugin-react-hooks@npm:^4.5.0":
+"eslint-plugin-react-hooks@npm:4.6.0, eslint-plugin-react-hooks@npm:^4.5.0":
   version: 4.6.0
   resolution: "eslint-plugin-react-hooks@npm:4.6.0"
   peerDependencies:
