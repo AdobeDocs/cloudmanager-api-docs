@@ -7789,10 +7789,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:2.3.1":
-  version: 2.3.1
-  resolution: "classnames@npm:2.3.1"
-  checksum: 14db8889d56c267a591f08b0834989fe542d47fac659af5a539e110cc4266694e8de86e4e3bbd271157dbd831361310a8293e0167141e80b0f03a0f175c80960
+"classnames@npm:2.5.1":
+  version: 2.5.1
+  resolution: "classnames@npm:2.5.1"
+  checksum: da424a8a6f3a96a2e87d01a432ba19315503294ac7e025f9fece656db6b6a0f7b5003bb1fbb51cbb0d9624d964f1b9bb35a51c73af9b2434c7b292c42231c1e5
   languageName: node
   linkType: hard
 
@@ -7924,7 +7924,7 @@ __metadata:
     "@spectrum-css/fieldlabel": 4.0.17
     axios: 0.26.1
     babel-jest: 27.5.1
-    classnames: 2.3.1
+    classnames: 2.5.1
     eslint: 8.11.0
     eslint-config-standard: 16.0.3
     eslint-plugin-import: 2.25.4
