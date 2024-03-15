@@ -13,7 +13,7 @@ keywords:
 
 ## Authentication Headers
 
-#### Note that generation of JWT access token is deprecated. Documentation can be found in the [Adobe I/O JWT Documentation](https://developer.adobe.com/developer-console/docs/guides/authentication/JWT/)
+**Note that generation of JWT access token is deprecated.** Documentation can be found in the [Adobe I/O JWT Documentation](https://developer.adobe.com/developer-console/docs/guides/authentication/JWT/)
 
 Every inbound HTTP API call to the Cloud Manager API must contain these three headers:
 
