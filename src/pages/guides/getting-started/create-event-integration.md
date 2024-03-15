@@ -17,9 +17,9 @@ To work with the Cloud Manager Events on the Adobe Developer Console, you need t
 
 Adobe I/O Events emitted by Cloud Manager are sent to **webhooks** hosted either in on-premise infrastructure, specialized webhook hosting providers, [Adobe I/O Runtime](https://developer.adobe.com/runtime/docs/), or even your AEM instances managed by Adobe. Alternatively, the [Adobe I/O Journaling API](https://developer.adobe.com/events/docs/guides/api/journaling_api/) may be used, especially in cases where network security rules prohibit a webhook from being accessible from the public internet.
 
-The [Getting Started with Adobe I/O Events](https://developer.adobe.com/events/docs/guides/) guide provides general documentation on how to set up a webhook. As with [API Integration Projecs](create-api-integration.md), a certificate file is needed to set up an Event Integration.
+The [Getting Started with Adobe I/O Events](https://developer.adobe.com/events/docs/guides/) guide provides general documentation on how to set up a webhook.
 
-Once your webhook is up and running and you have your certificate, to create an Event Integration:
+Once your webhook is up and running, to create an Event Integration:
 
 1. Navigate to the following URL: [https://developer.adobe.com/console](https://developer.adobe.com/console). This can also be reached by clicking the Console button at the top of this page.
 
@@ -31,9 +31,12 @@ Once your webhook is up and running and you have your certificate, to create an 
 
 5. Under the Experience Cloud section select `Cloud Manager` and then click `Next`.
 
-6. For a new project, generate or Upload a key pair. Click either `Generate keypair` or `Next`.
+6. Select the events you want to receive on the webhook.
 
-7. Select the events you want to receive on the webhook.
+7. Choose `OAuth Server-to-Server` authentication.
+   Note that authentication using **Generate or Upload a key pair** is deprecated.
+
+![Choosing type of authentication](img/creating-event-integration.png)
 
 8. Fill out the name and description.
 

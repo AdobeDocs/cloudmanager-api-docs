@@ -20,9 +20,14 @@ Note that the API Developer role required to create integrations in the Adobe De
 
 When you receive notification of this role, click the **Get Started** button in the message to access services.
 
-All requests to the Cloud Manager API must be authenticated using an access token retrieved using a JSON Web Token (JWT). The [Adobe I/O JWT Documentation](https://developer.adobe.com/developer-console/docs/guides/authentication/JWT/) provides a guide to creating the certificate files necessary to set up the integration as well as instructions for how to generate your first access token.
+All requests to the Cloud Manager API must be authenticated using an access token. The [Adobe I/O OAuth Documentation](https://developer.adobe.com/developer-console/docs/guides/authentication/ServerToServerAuthentication/implementation/) provides a guide to generate your first access token with the OAuth Server-to-Server credential.
 
-Once you've generated your certificate, to create an API Integration:
+<InlineAlert slots="text" variant="warning"/>
+The Service Account (JWT) credentials have been deprecated in favor of the OAuth Server-to-Server credentials. Your applications using the Service Account (JWT) credentials will stop working after Jan 1, 2025.
+
+**To authenticate Cloud Manager APIs using a JWT access token, refer to the [Adobe I/O JWT Documentation](https://developer.adobe.com/developer-console/docs/guides/authentication/JWT/) for a guide on creating the certificate files required to set up the integration and instructions on generating your first access token.**
+
+To create an API Integration:
 
 1. Navigate to the following URL: [https://developer.adobe.com/console](https://developer.adobe.com/console). This can also be reached by clicking the Console button at the top of this page.
 
@@ -34,10 +39,12 @@ Once you've generated your certificate, to create an API Integration:
 
 5. Under the Experience Cloud section select `Cloud Manager` and then click `Next`.
 
-6. Generate or Upload a key pair. Click either `Generate keypair` or `Next`. If you generate a key pair, be sure to retain the downloaded file -- it **cannot** be recovered if lost and you will have to generate a new key pair.
+6. Select `OAuth Server-to-Server` authentication.
+   Note that obtaining JWT access token through **Generate or Upload a key pair** is deprecated.
+
+![Choosing type of authentication](img/creating-api-integration.png)
 
 7. Select one of the Product Profiles to assign the integration to a [specific Cloud Manager role](https://www.adobe.com/go/aem_cloud_mrg_usersroles_en).
-
 
 ![Select Product Profile](img/integration-select-product-profile.png)
 
@@ -47,4 +54,4 @@ If you are an API Developer in the organization, you may be restricted as to whi
 
 9. Click `Save configured API`.
 
-Your client is now created. Notice your client has an `Client ID` (sometimes referred to as an API Key) and an `Organization ID`. You'll need these when making API calls. You will also need the `Technical Account ID` and `Client Secret` values to obtain an Access Token.
+Your client is now created. Notice your client has an `Client ID` (sometimes referred to as an API Key) and an `Organization ID`. You'll need these when making API calls. You will also need the `Client Secret` and `Scopes` values to obtain an Access Token.

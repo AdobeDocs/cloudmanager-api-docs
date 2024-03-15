@@ -32,13 +32,19 @@ Learn how to create an Event Integration Project to receive webhooks when your p
 
 [Getting Started with Postman](/src/pages/guides/getting-started/getting-started-with-postman.md)
 
-Learn how to expirement with the API using Postman.
+Learn how to experiment with the API using Postman.
 
 <DiscoverBlock slots="link, text"/>
 
-[Authentication](/src/pages/guides/getting-started/authentication.md)
+[Authentication](/src/pages/guides/getting-started/authentication/authentication.md)
 
 Learn how to authenticate API calls.
+
+<DiscoverBlock slots="link, text"/>
+
+[JWT Authentication (Deprecated)](/src/pages/guides/getting-started/authentication/jwt-authentication.md)
+
+Learn how to authenticate API calls using JWT.
 
 <DiscoverBlock slots="link, text"/>
 
