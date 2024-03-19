@@ -3,320 +3,373 @@
         "operation": "startPipeline",
         "profiles": "Business Owner, Deployment Manager, Program Manager",
         "method": "PUT",
-        "path": "/api/program/{programId}/pipeline/{pipelineId}/execution"
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/execution",
+        "permission": "Pipeline Executions Start"
     },
     {
         "operation": "advancePipelineExecution",
         "profiles": "Business Owner, Deployment Manager, Program Manager",
         "method": "PUT",
-        "path": "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance"
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/advance",
+        "permission": "Production Deployments Approve/Reject, Production Deployments Schedule, Override/Reject Important Metric Failures"
     },
     {
         "operation": "cancelPipelineExecutionStep",
         "profiles": "Business Owner, Deployment Manager, Program Manager",
         "note": "Note - Program Manager role is limited to cancelling steps with the status of WAITING.",
         "method": "PUT",
-        "path": "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel"
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/execution/{executionId}/phase/{phaseId}/step/{stepId}/cancel",
+        "permission": "Pipeline Executions Cancel, Production Deployments Approve/Reject, Production Deployments Schedule, Override/Reject Important Metric Failures"
     },
     {
         "operation": "deleteEnvironment",
         "profiles": "Business Owner, Deployment Manager",
         "method": "DELETE",
-        "path": "/api/program/{programId}/environment/{environmentId}"
+        "path": "/api/program/{programId}/environment/{environmentId}",
+        "permission": "Not Configurable"
     },
     {
         "operation": "deleteProgram",
-        "profiles": "Business Owner, Deployment Manager",
+        "profiles": "Business Owner",
         "method": "DELETE",
-        "path": "/api/program/{programId}"
+        "path": "/api/program/{programId}",
+        "permission": "Not configurable"
     },
     {
         "operation": "deletePipeline",
         "profiles": "Deployment Manager",
         "method": "DELETE",
-        "path": "/api/program/{programId}/pipeline/{pipelineId}"
+        "path": "/api/program/{programId}/pipeline/{pipelineId}",
+        "permission": "Pipeline Delete"
     },
     {
         "operation": "patchEnvironmentVariables",
         "profiles": "Deployment Manager",
         "method": "PATCH",
-        "path": "/api/program/{programId}/environment/{environmentId}/variables"
+        "path": "/api/program/{programId}/environment/{environmentId}/variables",
+        "permission": "Environment Variables Manage"
     },
     {
         "operation": "patchPipelineVariables",
         "profiles": "Deployment Manager",
         "method": "PATCH",
-        "path": "/api/program/{programId}/pipeline/{pipelineId}/variables"
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/variables",
+        "permission":  "Pipeline Edit"
     },
     {
         "operation": "getPipelineVariables",
-        "profiles": "Deployment Manager",
+        "profiles": "Business Owner, Deployment Manager, Program Manager, Developer",
         "method": "GET",
-        "path": "/api/program/{programId}/pipeline/{pipelineId}/variables"
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/variables",
+        "permission": "Program Access"
     },
     {
         "operation": "patchPipeline",
         "profiles": "Deployment Manager",
         "method": "PATCH",
-        "path": "/api/program/{programId}/pipeline/{pipelineId}"
+        "path": "/api/program/{programId}/pipeline/{pipelineId}",
+        "permission": "Pipeline Edit"
     },
     {
         "operation": "invalidateCache",
         "profiles": "Deployment Manager",
         "method": "DELETE",
-        "path": "/api/program/{programId}/pipeline/{pipelineId}/cache"
+        "path": "/api/program/{programId}/pipeline/{pipelineId}/cache",
+        "permission": "Pipeline Cache Invalidation"
     },
     {
         "operation": "updateIPAllowlist",
-        "profiles": "Deployment Manager",
+        "profiles": "Deployment Manager, Business Owner",
         "method": "PUT",
-        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}"
+        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}",
+        "permission": "IP Allowlist Manage"
     },
     {
         "operation": "deleteIPAllowlist",
-        "profiles": "Deployment Manager",
+        "profiles": "Deployment Manager, Business Owner",
         "method": "DELETE",
-        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}"
+        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}",
+        "permission": "IP Allowlist Manage"
     },
     {
         "operation": "deleteIPAllowlistBinding",
-        "profiles": "Deployment Manager",
+        "profiles": "Deployment Manager, Business Owner",
         "method": "DELETE",
-        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}"
+        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}",
+        "permission": "IP Allowlist Manage"
     },
     {
         "operation": "retryIPAllowlistBinding",
-        "profiles": "Deployment Manager",
+        "profiles": "Deployment Manager, Business Owner",
         "method": "PUT",
-        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}/retry"
+        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}/retry",
+        "permission": "IP Allowlist Manage"
     },
     {
         "operation": "createIPAllowlistBinding",
-        "profiles": "Deployment Manager",
+        "profiles": "Deployment Manager, Business Owner",
         "method": "POST",
-        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/bindings"
+        "path": "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/bindings",
+        "permission": "IP Allowlist Manage"
     },
     {
         "operation": "createIPAllowlist",
-        "profiles": "Deployment Manager",
+        "profiles": "Deployment Manager, Business Owner",
         "method": "POST",
-        "path": "/api/program/{programId}/ipAllowlists"
+        "path": "/api/program/{programId}/ipAllowlists",
+        "permission": "IP Allowlist Manage"
     },
     {
         "operation": "createEnvironmentDomainName",
         "profiles": "Deployment Manager, Business Owner",
         "method": "POST",
-        "path": "/api/program/{programId}/domainNames"
+        "path": "/api/program/{programId}/domainNames",
+        "permission": "Domain Name Manage"
     },
     {
         "operation": "updateEnvironmentDomainName",
         "profiles": "Deployment Manager, Business Owner",
         "method": "PUT",
-        "path": "/api/program/{programId}/domainName/{domainNameId}"
+        "path": "/api/program/{programId}/domainName/{domainNameId}",
+        "permission": "Domain Name Manage"
     },
     {
         "operation": "deleteEnvironmentDomainName",
         "profiles": "Deployment Manager, Business Owner",
         "method": "DELETE",
-        "path": "/api/program/{programId}/domainName/{domainNameId}"
+        "path": "/api/program/{programId}/domainName/{domainNameId}",
+        "permission": "Domain Name Manage"
     },
     {
         "operation": "deployDomainName",
         "profiles": "Deployment Manager, Business Owner",
         "method": "POST",
-        "path": "/api/program/{programId}/domainName/{domainNameId}/deploy"
+        "path": "/api/program/{programId}/domainName/{domainNameId}/deploy",
+        "permission": "Domain Name Manage"
     },
     {
         "operation": "verifyDomainName",
         "profiles": "Deployment Manager, Business Owner",
         "method": "POST",
-        "path": "/api/program/{programId}/domainName/{domainNameId}/verify"
+        "path": "/api/program/{programId}/domainName/{domainNameId}/verify",
+        "permission": "Domain Name Manage"
     },
     {
         "operation": "validateDomainName",
         "profiles": "Deployment Manager, Business Owner",
         "method": "POST",
-        "path": "/api/program/{programId}/domainNames/validate"
+        "path": "/api/program/{programId}/domainNames/validate",
+        "permission": "Domain Name Manage"
     },
     {
         "operation": "updateCertificate",
         "profiles": "Deployment Manager, Business Owner",
         "method": "PUT",
-        "path": "/api/program/{programId}/certificate/{certificateId}"
+        "path": "/api/program/{programId}/certificate/{certificateId}",
+        "permission": "SSL Certificate Manage"
     },
     {
         "operation": "deleteCertificate",
         "profiles": "Deployment Manager, Business Owner",
         "method": "DELETE",
-        "path": "/api/program/{programId}/certificate/{certificateId}"
+        "path": "/api/program/{programId}/certificate/{certificateId}",
+        "permission": "SSL Certificate Manage"
     },
     {
         "operation": "createCertificate",
         "profiles": "Deployment Manager, Business Owner",
         "method": "POST",
-        "path": "/api/program/{programId}/certificates"
+        "path": "/api/program/{programId}/certificates",
+        "permission": "SSL Certificate Manage"
     },
     {
         "operation": "createNetworkInfrastructure",
         "profiles": "Business Owner",
         "method": "POST",
-        "path": "/api/program/{programId}/networkInfrastructures"
+        "path": "/api/program/{programId}/networkInfrastructures",
+        "permission": "Network Infrastructure Manage"
     },
     {
         "operation": "updateNetworkInfrastructure",
         "profiles": "Business Owner",
         "method": "PUT",
-        "path": "/api/program/{programId}/networkInfrastructure/{networkInfrastructureId}"
+        "path": "/api/program/{programId}/networkInfrastructure/{networkInfrastructureId}",
+        "permission": "Network Infrastructure Manage"
     },
     {
         "operation": "deleteNetworkInfrastructure",
         "profiles": "Business Owner",
         "method": "DELETE",
-        "path": "/api/program/{programId}/networkInfrastructure/{networkInfrastructureId}"
+        "path": "/api/program/{programId}/networkInfrastructure/{networkInfrastructureId}",
+        "permission": "Network Infrastructure Manage"
     },
     {
         "operation": "enableEnvironmentAdvancedNetworkingConfiguration",
         "profiles": "Deployment Manager, Business Owner",
         "method": "PUT",
-        "path": "/api/program/{programId}/environment/{environmentId}/advancedNetworking"
+        "path": "/api/program/{programId}/environment/{environmentId}/advancedNetworking",
+        "permission": "Environment Edit"
     },
     {
         "operation": "disableEnvironmentAdvancedNetworkingConfiguration",
         "profiles": "Deployment Manager, Business Owner",
         "method": "DELETE",
-        "path": "/api/program/{programId}/environment/{environmentId}/advancedNetworking"
+        "path": "/api/program/{programId}/environment/{environmentId}/advancedNetworking",
+        "permission": "Environment Edit"
     },
     {
         "operation": "createEnvironment",
         "profiles": "Deployment Manager, Business Owner",
         "method": "POST",
-        "path": "/api/program/{programId}/environments"
+        "path": "/api/program/{programId}/environments",
+        "permission": "Environment Create"
     },
     {
         "operation": "addProgram",
         "profiles": "Business Owner",
         "method": "POST",
-        "path": "/api/tenant/{tenantId}/programs"
+        "path": "/api/tenant/{tenantId}/programs",
+        "permission": "Program Create"
     },
     {
         "operation": "addFeedback",
-        "profiles": "Business Owner, Deployment Manager, Program Manager",
+        "profiles": "Business Owner, Deployment Manager, Program Manager, Developer",
         "method": "POST",
-        "path": "/api/program/{programId}/feedbacks"
+        "path": "/api/program/{programId}/feedbacks",
+        "permission": "Any product profile is sufficient"
     },
     {
         "operation": "getEnvironmentLogs",
-        "profiles" : "Deployment Manager",
+        "profiles" : "Deployment Manager, Developer",
         "method": "GET",
-        "path":"/api/program/{programId}/environment/{environmentId}/logs"
+        "path":"/api/program/{programId}/environment/{environmentId}/logs",
+        "permission": "Environment Logs Read"
     },
     {
         "operation": "downloadLogs",
-        "profiles" : "Deployment Manager, Developer",
+        "profiles" : "Deployment Manager",
         "method": "GET",
-        "path":"/api/program/{programId}/environment/{environmentId}/logs/download"
+        "path":"/api/program/{programId}/environment/{environmentId}/logs/download",
+        "permission": "Content Copy Manage"
 
     },
     {
         "operation": "restoreExecution",
         "profiles" : "Deployment Manager",
         "method": "PUT",
-        "path":"/api/program/{programId}/environment/{environmentId}/restoreExecution"
+        "path":"/api/program/{programId}/environment/{environmentId}/restoreExecution",
+        "permission": "Environment Restore Create"
     },
     {
         "operation": "getNewRelicSubAccountUserList",
         "profiles" : "Deployment Manager, Business Owner",
         "method": "GET",
-        "path":"/api/program/{programId}/newRelicUsers"
+        "path":"/api/program/{programId}/newRelicUsers",
+        "permission": "New Relic Sub Account User Manage"
     },
     {
         "operation": "createDeleteNewRelicSubAccountUsers",
         "profiles" : "Deployment Manager, Business Owner",
         "method": "PATCH",
-        "path":"/api/program/{programId}/newRelicUsers"
+        "path":"/api/program/{programId}/newRelicUsers",
+        "permission": "New Relic Sub Account User Manage"
     },
     {
         "operation": "resetRde",
         "profiles" : "Developer",
         "method": "PUT",
-        "path":"/api/program/{programId}/environment/{environmentId}/reset"
+        "path":"/api/program/{programId}/environment/{environmentId}/reset",
+        "permission": "Rapid Dev Environment Reset"
     },
     {
         "operation": "createRegionDeployment",
         "profiles": "Deployment Manager, Business Owner",
         "method": "POST",
-        "path": "/api/program/{programId}/environment/{environmentId}/regionDeployments"
+        "path": "/api/program/{programId}/environment/{environmentId}/regionDeployments",
+        "permission": "Environment Edit"
     },
     {
         "operation": "patchRegionDeployment",
         "profiles": "Deployment Manager, Business Owner",
         "method": "PATCH",
-        "path": "/api/program/{programId}/environment/{environmentId}/regionDeployments"
+        "path": "/api/program/{programId}/environment/{environmentId}/regionDeployments",
+        "permission": "Environment Edit"
     },
     {
         "operation": "createContentSet",
         "profiles": "Deployment Manager",
         "method": "POST",
-        "path": "/api/program/{programId}/contentSets"
+        "path": "/api/program/{programId}/contentSets",
+        "permission": "Content Copy Manage"
     },
     {
         "operation": "deleteContentSet",
         "profiles": "Deployment Manager",
         "method": "DELETE",
-        "path": "/api/program/{programId}/contentSet/{contentSetId}"
+        "path": "/api/program/{programId}/contentSet/{contentSetId}",
+        "permission": "Content Copy Manage"
     },
     {
         "operation": "updateContentSet",
         "profiles": "Deployment Manager",
         "method": "PUT",
-        "path": "/api/program/{programId}/contentSet/{contentSetId}"
+        "path": "/api/program/{programId}/contentSet/{contentSetId}",
+        "permission": "Content Copy Manage"
     },
     {
         "operation": "getContentSet",
         "profiles": "Deployment Manager",
         "method": "GET",
-        "path": "/api/program/{programId}/contentSet/{contentSetId}"
+        "path": "/api/program/{programId}/contentSet/{contentSetId}",
+        "permission": "Content Copy Manage"
     },
     {
         "operation": "listContentSets",
         "profiles": "Deployment Manager",
         "method": "GET",
-        "path": "/api/program/{programId}/contentSets"
+        "path": "/api/program/{programId}/contentSets",
+        "permission": "Content Copy Manage"
     },
     {
         "operation": "createContentFlow",
         "profiles": "Deployment Manager",
         "method": "POST",
-        "path": "/api/program/{programId}/environment/{environmentId}/contentFlow"
+        "path": "/api/program/{programId}/environment/{environmentId}/contentFlow",
+        "permission": "Content Copy Manage"
     },
     {
         "operation": "getContentFlow",
         "profiles": "Deployment Manager",
         "method": "GET",
-        "path": "/api/program/{programId}/contentFlow/{contentFlowId}"
+        "path": "/api/program/{programId}/contentFlow/{contentFlowId}",
+        "permission": "Content Copy Manage"
     },
     {
         "operation": "cancelContentFlow",
         "profiles": "Deployment Manager",
         "method": "DELETE",
-        "path": "/api/program/{programId}/contentFlow/{contentFlowId}"
+        "path": "/api/program/{programId}/contentFlow/{contentFlowId}",
+        "permission": "Content Copy Manage"
     },
     {
         "operation": "listContentFlows",
         "profiles": "Deployment Manager",
         "method": "GET",
-        "path": "/api/program/{programId}/contentFlows"
+        "path": "/api/program/{programId}/contentFlows",
+        "permission": "Content Copy Manage"
     },
     {
         "operation": "getContentFlowLogs",
         "profiles": "Deployment Manager",
         "method": "GET",
-        "path": "/api/program/{programId}/contentFlow/{contentFlowId}/logs"
+        "path": "/api/program/{programId}/contentFlow/{contentFlowId}/logs",
+        "permission": "Content Copy Manage"
     },
     {
         "operation": "downloadLogs",
         "profiles": "Deployment Manager",
         "method": "GET",
-        "path": "/api/program/{programId}/contentFlow/{contentFlowId}/logs/download"
+        "path": "/api/program/{programId}/contentFlow/{contentFlowId}/logs/download",
+        "permission": "Content Copy Manage"
     }
 ]
