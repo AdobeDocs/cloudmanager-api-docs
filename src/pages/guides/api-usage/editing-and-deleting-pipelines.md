@@ -108,7 +108,7 @@ PATCH https://cloudmanager.adobe.io/api/program/4/pipeline/1
 
 ## Invalidating a Pipeline's Cache
 
-Deleting a pipeline can be done by executing a `DELETE` request to the pipeline's cache endpoint, accessible via the `http://ns.adobe.com/adobecloud/rel/cache` HAL Link of the pipeline endpoint.
+Deleting a pipeline's Cache can be done by executing a `DELETE` request to the pipeline's cache endpoint, accessible via the `http://ns.adobe.com/adobecloud/rel/cache` HAL Link of the pipeline endpoint.
 
 ```
 DELETE https://cloudmanager.adobe.io/api/program/4/pipeline/1/cache
