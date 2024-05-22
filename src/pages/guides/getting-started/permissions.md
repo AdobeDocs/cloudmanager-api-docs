@@ -35,6 +35,8 @@ Interactions with the Cloud Manager API using the service account are permitted 
 
 Which product profile(s) or permission(s) to select depends upon the specific requirements for the project and what APIs will be accessed. Either a pre-defined product profile can be assigned or with [custom permissions](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-manager/content/requirements/custom-permissions), a permission can be assigned to a custom profile for respective operation.
 
+You just need to have the developer cloud role assigned.
+
 With a few exception (listed below), if only read (`GET`) access is required, the Developer product profile will be sufficient. Guidance for projects which require specific profiles:
 
 ## Detailed Permission Information
