@@ -3005,6 +3005,19 @@ paths:
           description: Identifier of the program
           required: true
           type: string
+        - name: start
+          in: query
+          description: Pagination start parameter
+          required: false
+          type: string
+          default: "0"
+        - name: limit
+          in: query
+          description: Pagination limit parameter
+          required: false
+          type: integer
+          default: 20
+          format: int32
         - name: domain
           in: query
           description: Domain name used for filtering the certificates
