@@ -24,8 +24,10 @@ tags:
   - name: Environment Restore From Backup
   - name: IP Allowlist
   - name: IP Allowlist Binding
-  - name: Domain Names
-  - name: SSLCertificates
+  - name: Domain
+  - name: Domain Mappings - CDN Configurations
+  - name: SSL Certificates
+  - name: EDS Sites
   - name: Tenants
   - name: Regions
   - name: Network infrastructure
@@ -538,6 +540,11 @@ paths:
         - name: stepId
           in: query
           description: Identifier of the step from which the re-execution will start
+          required: false
+          type: string
+        - name: sourceExecutionId
+          in: query
+          description: Identifier of the source execution from which the execution will start
           required: false
           type: string
         - name: x-gw-ims-org-id
@@ -1134,6 +1141,7 @@ paths:
             - stage
             - prod
             - rde
+            - preprod
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2124,7 +2132,7 @@ paths:
           description: IP Allowlist
           required: true
           schema:
-            $ref: "#/definitions/IPAllowedList"
+            $ref: "#/definitions/Updateanipallowlist"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2282,51 +2290,6 @@ paths:
             $ref: "#/definitions/IPAllowedListBinding"
         "404":
           description: IP Allowlist not found
-  "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/binding/{ipAllowlistBindingId}/retry":
-    put:
-      tags:
-        - IP Allowlist Binding
-      summary: Retry IP Allowlist binding action
-      description: Retry the IP Allowlist binding action for the program and IP Allowlist id
-      operationId: retryIPAllowlistBinding
-      parameters:
-        - name: programId
-          in: path
-          description: Identifier of the program
-          required: true
-          type: string
-        - name: ipAllowlistId
-          in: path
-          description: Identifier of the IP Allowlist
-          required: true
-          type: string
-        - name: ipAllowlistBindingId
-          in: path
-          description: Identifier of the IP Allowlist binding
-          required: true
-          type: string
-        - name: x-gw-ims-org-id
-          in: header
-          description: IMS organization ID that the request is being made under.
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
-          required: true
-          type: string
-        - name: x-api-key
-          in: header
-          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
-          required: true
-          type: string
-      responses:
-        "202":
-          description: Retry operation was successful
-          schema:
-            $ref: "#/definitions/IPAllowedListBinding"
-        "404":
-          description: IP Allowlist not found
   "/api/program/{programId}/ipAllowlist/{ipAllowlistId}/bindings":
     get:
       tags:
@@ -2477,7 +2440,7 @@ paths:
           description: IP Allowlist
           required: true
           schema:
-            $ref: "#/definitions/IPAllowedList"
+            $ref: "#/definitions/Createanewipallowlist"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2513,32 +2476,39 @@ paths:
           description: Program not found
         "412":
           description: Creating IP Allowlists for non cloud programs is not supported
-  "/api/program/{programId}/domainNames":
+  "/api/program/{programId}/domains":
     get:
       tags:
-        - Domain Names
-      summary: List Domain Names
-      description: Lists all domain names in an program
-      operationId: getDomainNames
+        - Domain
+      summary: Get list of domains
+      description: ""
+      operationId: getDomain
       parameters:
         - name: programId
           in: path
-          description: Identifier of the program
+          description: Identifier of program id
           required: true
           type: string
-        - name: start
+        - name: name
           in: query
-          description: Pagination start parameter
+          description: Domain name
           required: false
           type: string
-          default: "0"
-        - name: limit
+        - name: anyVerified
           in: query
-          description: Pagination limit parameter
+          description: Filter any verified
           required: false
-          type: integer
-          default: 20
-          format: int32
+          type: boolean
+        - name: isTxt
+          in: query
+          description: Is TXT verified
+          required: false
+          type: boolean
+        - name: isAcme
+          in: query
+          description: Is ACME verified
+          required: false
+          type: boolean
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2556,27 +2526,27 @@ paths:
           type: string
       responses:
         "200":
-          description: successful operation
+          description: List of domains received
           schema:
-            $ref: "#/definitions/DomainNameList"
+            $ref: "#/definitions/Domain"
     post:
       tags:
-        - Domain Names
-      summary: Create a Domain name
-      description: Create a new Domain name for an Environment
-      operationId: createEnvironmentDomainName
+        - Domain
+      summary: Create a domain
+      description: ""
+      operationId: createDomain
       parameters:
         - name: programId
           in: path
-          description: Identifier of the program
+          description: Identifier of program
           required: true
           type: string
         - in: body
           name: body
-          description: Domain Name
+          description: Payload for creating a domain
           required: true
           schema:
-            $ref: "#/definitions/NewDomainName"
+            $ref: "#/definitions/DomainCreate"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2598,28 +2568,30 @@ paths:
           required: true
           type: string
       responses:
-        "201":
-          description: Domain name created
+        "200":
+          description: Domain created
           schema:
-            $ref: "#/definitions/DomainName"
+            $ref: "#/definitions/Domain"
         "404":
-          description: Resource not found
-  "/api/program/{programId}/domainName/{domainNameId}":
+          description: Program not found
+        "409":
+          description: Domain already exists
+  "/api/program/{programId}/domain/{domain-id}":
     get:
       tags:
-        - Domain Names
-      summary: Get Domain Name
-      description: Returns a domain name by its id
-      operationId: getEnvironmentDomainName
+        - Domain
+      summary: Get domain
+      description: ""
+      operationId: getDomain
       parameters:
         - name: programId
           in: path
-          description: Identifier of the program
+          description: Identifier of program id
           required: true
           type: string
-        - name: domainNameId
+        - name: domain-id
           in: path
-          description: Domain Name id
+          description: Identifier of domain id
           required: true
           type: string
         - name: x-gw-ims-org-id
@@ -2639,32 +2611,34 @@ paths:
           type: string
       responses:
         "200":
-          description: successful operation
+          description: Domain received
           schema:
-            $ref: "#/definitions/DomainName"
+            $ref: "#/definitions/Domain"
+        "404":
+          description: Domain not found
     put:
       tags:
-        - Domain Names
-      summary: Update Domain Name
-      description: Updates a domain name by its id.
-      operationId: updateEnvironmentDomainName
+        - Domain
+      summary: Update domain
+      description: ""
+      operationId: modifyDomain
       parameters:
         - name: programId
           in: path
-          description: Identifier of the program
+          description: Identifier of program id
           required: true
           type: string
-        - name: domainNameId
+        - name: domain-id
           in: path
-          description: Identifier of the domain name
+          description: Identifier of domain id
           required: true
           type: string
         - in: body
           name: body
-          description: Updated domain name
+          description: Domain Update Body
           required: true
           schema:
-            $ref: "#/definitions/DomainName"
+            $ref: "#/definitions/UpdateaDomain"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2687,70 +2661,26 @@ paths:
           type: string
       responses:
         "200":
-          description: successful operation
+          description: Domain updated
           schema:
-            $ref: "#/definitions/DomainName"
-        "202":
-          description: Updating domain name
-          schema:
-            $ref: "#/definitions/DomainName"
+            $ref: "#/definitions/Domain"
         "404":
-          description: Resource not found
+          description: Program not found
     delete:
       tags:
-        - Domain Names
-      summary: Delete Domain Name
-      description: Deletes a domain name by its id
-      operationId: deleteEnvironmentDomainName
+        - Domain
+      summary: Delete a domain
+      description: ""
+      operationId: deleteDomain
       parameters:
         - name: programId
           in: path
-          description: Identifier of the program
+          description: Identifier of program id
           required: true
           type: string
-        - name: domainNameId
+        - name: domain-id
           in: path
-          description: Identifier of the Domain Name
-          required: true
-          type: string
-        - name: x-gw-ims-org-id
-          in: header
-          description: IMS organization ID that the request is being made under.
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
-          required: true
-          type: string
-        - name: x-api-key
-          in: header
-          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
-          required: true
-          type: string
-      responses:
-        "202":
-          description: Deleting domain Name
-          schema:
-            $ref: "#/definitions/DomainName"
-        "404":
-          description: Resource not found
-  "/api/program/{programId}/domainName/{domainNameId}/deploy":
-    post:
-      tags:
-        - Domain Names
-      summary: Verify and deploy a Domain name
-      description: Verify and deploy a Domain name
-      operationId: deployDomainName
-      parameters:
-        - name: programId
-          in: path
-          description: Identifier of the program
-          required: true
-          type: string
-        - name: domainNameId
-          in: path
-          description: Domain Name id
+          description: Identifier of domain id
           required: true
           type: string
         - name: x-gw-ims-org-id
@@ -2770,74 +2700,33 @@ paths:
           type: string
       responses:
         "200":
-          description: Domain name verified
+          description: Domain deleted
           schema:
-            $ref: "#/definitions/DomainName"
-        "404":
-          description: Resource not found
-  "/api/program/{programId}/domainName/{domainNameId}/verify":
-    post:
+            $ref: "#/definitions/Response"
+  "/api/program/{programId}/domain/{domain-id}/validate":
+    put:
       tags:
-        - Domain Names
-      summary: Makes a DNS resolution
-      description: Make a DNS resolution
-      operationId: verifyDomainName
+        - Domain
+      summary: Check validation
+      description: ""
+      operationId: domainValidationToken
       parameters:
         - name: programId
           in: path
-          description: Identifier of the program
+          description: Identifier of program id
           required: true
           type: string
-        - name: domainNameId
+        - name: domain-id
           in: path
-          description: Identifier of the domain name
-          required: true
-          type: string
-        - name: x-gw-ims-org-id
-          in: header
-          description: IMS organization ID that the request is being made under.
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
-          required: true
-          type: string
-        - name: x-api-key
-          in: header
-          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
-          required: true
-          type: string
-      responses:
-        "200":
-          description: successful operation
-          schema:
-            $ref: "#/definitions/DomainName"
-        "202":
-          description: Domain name is being verified
-          schema:
-            $ref: "#/definitions/DomainName"
-        "404":
-          description: Resource not found
-  "/api/program/{programId}/domainNames/validate":
-    post:
-      tags:
-        - Domain Names
-      summary: Validate an Domain name
-      description: Validate a new Domain name
-      operationId: validateDomainName
-      parameters:
-        - name: programId
-          in: path
-          description: Identifier of the program
+          description: Identifier of domain id
           required: true
           type: string
         - in: body
           name: body
-          description: Domain name to be validated
+          description: Payload for validation operation
           required: true
           schema:
-            $ref: "#/definitions/DomainNameValidate"
+            $ref: "#/definitions/DomainTokenValidationBody"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2860,29 +2749,421 @@ paths:
           type: string
       responses:
         "200":
-          description: Domain name successfully validated
+          description: Validation is completed
           schema:
-            $ref: "#/definitions/DomainName"
+            $ref: "#/definitions/Domain"
         "404":
-          description: Resource not found
+          description: Program not found
+  "/api/program/{programId}/domain/{domain-id}/validation":
+    post:
+      tags:
+        - Domain
+      summary: Creates validation token
+      description: ""
+      operationId: domainValidationToken
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of program id
+          required: true
+          type: string
+        - name: domain-id
+          in: path
+          description: Identifier of domain id
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Payload for validation operation
+          required: true
+          schema:
+            $ref: "#/definitions/DomainTokenValidationBody"
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Created validation token
+          schema:
+            $ref: "#/definitions/Domain"
+        "404":
+          description: Program Not found
+  "/api/program/{programId}/domain-mapping/{domainMappingId}":
+    get:
+      tags:
+        - Domain Mappings - CDN Configurations
+      summary: Get domain mapping
+      description: ""
+      operationId: getDomainMappingById
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of program
+          required: true
+          type: integer
+          format: int64
+        - name: domainMappingId
+          in: path
+          description: Identifier of domain mapping
+          required: true
+          type: integer
+          format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Domain Mapping retrieved
+          schema:
+            $ref: "#/definitions/DomainMapping"
+        "404":
+          description: Domain Mapping not found
+    put:
+      tags:
+        - Domain Mappings - CDN Configurations
+      summary: Update domain mapping
+      description: ""
+      operationId: updateDomainMapping
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of program
+          required: true
+          type: integer
+          format: int64
+        - name: domainMappingId
+          in: path
+          description: Identifier of domain mapping
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: Payload for updating a domain mapping
+          required: true
+          schema:
+            $ref: "#/definitions/Updateadomainmapping"
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Domain Mapping updated
+          schema:
+            $ref: "#/definitions/DomainMapping"
+        "404":
+          description: Domain Mapping not found
+    delete:
+      tags:
+        - Domain Mappings - CDN Configurations
+      summary: Delete domain mapping
+      description: ""
+      operationId: deleteDomainMapping
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of program
+          required: true
+          type: integer
+          format: int64
+        - name: domainMappingId
+          in: path
+          description: Identifier of domain mapping
+          required: true
+          type: integer
+          format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Domain Mapping deleted
+          schema:
+            $ref: "#/definitions/DomainMapping"
+        "404":
+          description: Domain Mapping not found
+  "/api/program/{programId}/domain-mapping/{domainMappingId}/verify":
+    put:
+      tags:
+        - Domain Mappings - CDN Configurations
+      summary: Check if customer made the required DNS changes
+      description: ""
+      operationId: validateHelixDomain
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of program
+          required: true
+          type: integer
+          format: int64
+        - name: domainMappingId
+          in: path
+          description: Identifier of domain mapping
+          required: true
+          type: integer
+          format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: DNS changes were successfully made
+          schema:
+            $ref: "#/definitions/DomainMapping"
+        "404":
+          description: Program not found
+  "/api/program/{programId}/domain-mappings":
+    get:
+      tags:
+        - Domain Mappings - CDN Configurations
+      summary: List of domain mappings
+      description: ""
+      operationId: getAllDomainMappingsByProgramId
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of program
+          required: true
+          type: integer
+          format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: List of domain mappings retrieved
+          schema:
+            $ref: "#/definitions/DomainMappingList"
+    post:
+      tags:
+        - Domain Mappings - CDN Configurations
+      summary: Create domain mapping
+      description: ""
+      operationId: createDomainMapping
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of program
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: Payload for creating a domain mapping
+          required: true
+          schema:
+            $ref: "#/definitions/Createanewdomainmapping"
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/DomainMapping"
+        "201":
+          description: Domain Mapping created
+          schema:
+            $ref: "#/definitions/DomainMapping"
+  "/api/program/{programId}/environment/{environmentId}/domain-mappings":
+    get:
+      tags:
+        - Domain Mappings - CDN Configurations
+      summary: List of domain mappings by environment
+      description: ""
+      operationId: getAllDomainMappingsByProgramIdAndEnvironmentId
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of program
+          required: true
+          type: integer
+          format: int64
+        - name: environmentId
+          in: path
+          description: Identifier of environment
+          required: true
+          type: integer
+          format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: List of domain mappings by environment retrieved
+          schema:
+            $ref: "#/definitions/DomainMappingList"
+  "/api/program/{programId}/site/{siteId}/domain-mappings":
+    get:
+      tags:
+        - Domain Mappings - CDN Configurations
+      summary: List of domain mappings by EDS site
+      description: ""
+      operationId: getAllDomainMappingsByProgramIdAndSiteId
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of program
+          required: true
+          type: integer
+          format: int64
+        - name: siteId
+          in: path
+          description: Identifier of EDS site
+          required: true
+          type: integer
+          format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: List of domain mappings by environment retrieved
+          schema:
+            $ref: "#/definitions/DomainMappingList"
   "/api/program/{programId}/certificate/{certificateId}":
     get:
       tags:
-        - SSLCertificates
-      summary: Get SSL Certificate
-      description: Returns an SSL Certificate by its id
-      operationId: getCertificate
+        - SSL Certificates
+      summary: Get certificate by ID
+      description: ""
+      operationId: getCertificateByIdAndProgramId
       parameters:
         - name: programId
           in: path
           description: Identifier of the program
           required: true
-          type: string
+          type: integer
+          format: int64
         - name: certificateId
           in: path
           description: Identifier of the certificate
           required: true
-          type: string
+          type: integer
+          format: int64
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2900,32 +3181,38 @@ paths:
           type: string
       responses:
         "200":
-          description: successful operation
+          description: Certificate retrieved
           schema:
-            $ref: "#/definitions/SslCertificate"
+            $ref: "#/definitions/SslCertificateRepresentation"
+        "404":
+          description: Certificate not found
+          schema:
+            $ref: "#/definitions/SslCertificateNotFoundException"
     put:
       tags:
-        - SSLCertificates
-      summary: Update SSL Certificate
-      description: Update a certificate.
+        - SSL Certificates
+      summary: Update certificate
+      description: ""
       operationId: updateCertificate
       parameters:
         - name: programId
           in: path
           description: Identifier of the program
           required: true
-          type: string
+          type: integer
+          format: int64
         - name: certificateId
           in: path
           description: Identifier of the certificate
           required: true
-          type: string
+          type: integer
+          format: int64
         - in: body
           name: body
-          description: Updated certificate
+          description: Payload for updating the certificate
           required: true
           schema:
-            $ref: "#/definitions/SslCertificate"
+            $ref: "#/definitions/CreateOrUpdateSslCertificateBody"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2950,79 +3237,30 @@ paths:
         "200":
           description: Certificate updated
           schema:
-            $ref: "#/definitions/SslCertificate"
+            $ref: "#/definitions/SslCertificateRepresentation"
         "404":
-          description: Resource not found
+          description: Certificate not found
+          schema:
+            $ref: "#/definitions/SslCertificateNotFoundException"
     delete:
       tags:
-        - SSLCertificates
-      summary: Delete SSL Certificate
-      description: Delete an SSL Certificate.
+        - SSL Certificates
+      summary: Delete a certificate
+      description: ""
       operationId: deleteCertificate
       parameters:
         - name: programId
           in: path
           description: Identifier of the program
           required: true
-          type: string
+          type: integer
+          format: int64
         - name: certificateId
           in: path
           description: Identifier of the certificate
           required: true
-          type: string
-        - name: x-gw-ims-org-id
-          in: header
-          description: IMS organization ID that the request is being made under.
-          required: true
-          type: string
-        - name: Authorization
-          in: header
-          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
-          required: true
-          type: string
-        - name: x-api-key
-          in: header
-          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
-          required: true
-          type: string
-      responses:
-        "204":
-          description: Certificate deleted
-          schema:
-            $ref: "#/definitions/SslCertificate"
-        "404":
-          description: Resource not found
-  "/api/program/{programId}/certificates":
-    get:
-      tags:
-        - SSLCertificates
-      summary: List certificates
-      description: Lists all certificates in a program
-      operationId: getCertificates
-      parameters:
-        - name: programId
-          in: path
-          description: Identifier of the program
-          required: true
-          type: string
-        - name: start
-          in: query
-          description: Pagination start parameter
-          required: false
-          type: string
-          default: "0"
-        - name: limit
-          in: query
-          description: Pagination limit parameter
-          required: false
           type: integer
-          default: 20
-          format: int32
-        - name: domain
-          in: query
-          description: Domain name used for filtering the certificates
-          required: false
-          type: string
+          format: int64
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3040,29 +3278,102 @@ paths:
           type: string
       responses:
         "200":
-          description: Successful retrieval of certificates list
+          description: Certificate deleted
           schema:
-            $ref: "#/definitions/CertificatesList"
+            $ref: "#/definitions/SslCertificateRepresentation"
         "404":
-          description: Program not found
-    post:
+          description: Certificate not found
+          schema:
+            $ref: "#/definitions/SslCertificateNotFoundException"
+  "/api/program/{programId}/certificates":
+    get:
       tags:
-        - SSLCertificates
-      summary: Create SSL Certificate
-      description: Create a new certificate.
-      operationId: createCertificate
+        - SSL Certificates
+      summary: Get all certificates
+      description: ""
+      operationId: getAllCertificatesForProgram
       parameters:
         - name: programId
           in: path
           description: Identifier of the program
           required: true
+          type: integer
+          format: int64
+        - name: start
+          in: query
+          description: Pagination start parameter
+          required: false
           type: string
+          default: "0"
+        - name: limit
+          in: query
+          description: Pagination limit parameter
+          required: false
+          type: integer
+          default: 20
+          format: int32
+        - name: status
+          in: query
+          description: Filter statuses separated by comma
+          required: false
+          type: string
+          enum:
+            - VALID
+            - PENDING
+            - EXPIRED
+        - name: name
+          in: query
+          description: Certificate name
+          required: false
+          type: string
+        - name: sslCertificateType
+          in: query
+          description: Certificate types separated by comma.
+          required: false
+          type: string
+          enum:
+            - DV
+            - EV
+            - OV
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Certificate list retrieved
+          schema:
+            $ref: "#/definitions/AllSSLCertificatesList"
+    post:
+      tags:
+        - SSL Certificates
+      summary: Create SSL certificate
+      description: ""
+      operationId: createSslCertificate
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: integer
+          format: int64
         - in: body
           name: body
-          description: Certificate
+          description: Payload for creating the certificate
           required: true
           schema:
-            $ref: "#/definitions/NewSslCertificate"
+            $ref: "#/definitions/CreateOrUpdateSslCertificateBody"
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3084,12 +3395,290 @@ paths:
           required: true
           type: string
       responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/SslCertificateRepresentation"
         "201":
-          description: Certificate created
+          description: SSL certificate created
+          schema:
+            $ref: "#/definitions/SslCertificateRepresentation"
+  "/api/program/{programId}/dv-certificates":
+    post:
+      tags:
+        - SSL Certificates
+      summary: Create DV certificate
+      description: ""
+      operationId: createDvCertificate
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: Payload for creating the DV certificate
+          required: true
+          schema:
+            $ref: "#/definitions/CreateDvCertificateBody"
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        "200":
+          description: successful operation
           schema:
             $ref: "#/definitions/SslCertificate"
+        "201":
+          description: Created DV certificate
+          schema:
+            $ref: "#/definitions/SslCertificate"
+  "/api/program/{programId}/site/{siteId}":
+    get:
+      tags:
+        - EDS Sites
+      summary: Get Site by Id
+      description: ""
+      operationId: retrieveSite
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          type: string
+        - name: siteId
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Site retrieved
+          schema:
+            $ref: "#/definitions/Site"
         "404":
-          description: Program not found
+          description: Site could not be found
+    put:
+      tags:
+        - EDS Sites
+      summary: Update Site
+      description: ""
+      operationId: updateSite
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          type: string
+        - name: siteId
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Site updated
+          schema:
+            $ref: "#/definitions/Site"
+        "404":
+          description: Site could not be found
+    delete:
+      tags:
+        - EDS Sites
+      summary: Delete Site
+      description: ""
+      operationId: deleteSite
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          type: string
+        - name: siteId
+          in: path
+          required: true
+          type: integer
+          format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Site deleted
+          schema:
+            $ref: "#/definitions/Site"
+        "404":
+          description: Site could not be found
+  "/api/program/{programId}/site/{siteId}/validate":
+    put:
+      tags:
+        - EDS Sites
+      summary: Validate Site
+      description: ""
+      operationId: validateSite
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: siteId
+          in: path
+          description: Identifier of the site
+          required: true
+          type: integer
+          format: int64
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Site validated
+          schema:
+            $ref: "#/definitions/Site"
+        "400":
+          description: Site could not be validated. CloudManager challenge does not match
+        "500":
+          description: Internal Server Error
+        "504":
+          description: Site could not be validated in time
+  "/api/program/{programId}/sites":
+    get:
+      tags:
+        - EDS Sites
+      summary: Get All Sites by programId
+      description: ""
+      operationId: getProgramSites
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Sites retrieved
+          schema:
+            $ref: "#/definitions/SiteList"
+    post:
+      tags:
+        - EDS Sites
+      summary: Create Site
+      description: ""
+      operationId: createSite
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: "Bearer [token] - An access token for the technical account created through integration with Adobe IO"
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Site"
+        "201":
+          description: Site created
+          schema:
+            $ref: "#/definitions/Site"
   "/api/program/{programId}/feedbacks":
     post:
       tags:
@@ -3174,7 +3763,7 @@ paths:
         "403":
           description: The requester is not authorized to access the resource.
         "405":
-          description: Client sent a request using a HTTP method that the server doesn't support.
+          description: Client sent a request using a HTTP method that the server doesn"t support.
         "406":
           description: Unacceptable content type. Client sent an Accept header for a content type which does not exist on the server.
         "422":
@@ -4044,7 +4633,7 @@ paths:
       tags:
         - ContentSets
       summary: Execute content flow using content set
-      description: "Executes a content flow. Note that the user must have appropriate rights in both the source and destination environments. See https://experienceleague.adobe.com/docs/experience-manager-cloud-service/content/implementing/developer-tools/content-copy.html for more information."
+      description: Executes a content flow
       operationId: createContentFlow
       parameters:
         - name: programId
@@ -4098,7 +4687,7 @@ paths:
     get:
       tags:
         - ContentSets
-      summary: Get content flows
+      summary: Get content flow
       description: Gets content flow for a program
       operationId: getContentFlow
       parameters:
@@ -4137,8 +4726,8 @@ paths:
     delete:
       tags:
         - ContentSets
-      summary: Cancel content flow
-      description: Cancel content flow (Cloud Service only).
+      summary: Cancel content flow (Cloud Service only).
+      description: Cancel content flow
       operationId: cancelContentFlow
       parameters:
         - name: programId
@@ -4379,6 +4968,7 @@ definitions:
         description: Name of the program
         minLength: 0
         maxLength: 64
+        pattern: '(?=.*[a-zA-Z])[-+!"\""/#$%&*.,;:()’@-}À-ÿ– 0-9]*'
       enabled:
         type: boolean
         description: Whether this Program has been enabled for Cloud Manager usage
@@ -4410,7 +5000,7 @@ definitions:
           - aem_cloud_service
           - media_library
       capabilities:
-        example: "{ 'capability1':'value1', 'capability1': {'param3':'value3'}}"
+        example: "{ ""capability1"":""value1"", ""capability1"": {""param3"":""value3""}}"
         description: Program capabilities
         $ref: "#/definitions/ProgramCapabilities"
       createdAt:
@@ -4439,9 +5029,6 @@ definitions:
             $ref: "#/definitions/HalLink"
           "http://ns.adobe.com/adobecloud/rel/certificates":
             description: The SSL certificates linked to this program.
-            $ref: "#/definitions/HalLink"
-          "http://ns.adobe.com/adobecloud/rel/domainNames":
-            description: The domain names linked to this program.
             $ref: "#/definitions/HalLink"
           "http://ns.adobe.com/adobecloud/rel/tenant":
             description: The tenant this program belongs to
@@ -4603,12 +5190,12 @@ definitions:
       repositoryId:
         type: string
         description: |-
-          Identifier of the source repository. The code from this repository will be build at the start of this phase.
+          Identifier of the source repository. The code from this repository will be build at the start of this phase. 
           Mandatory if type=BUILD
       branch:
         type: string
         description: |-
-          Name of the tracked branch or a fully qualified git tag (e.g. refs/tags/v1).
+          Name of the tracked branch or a fully qualified git tag (e.g. refs/tags/v1). 
            Assumed to be `master` if missing.
       environmentId:
         type: string
@@ -4621,6 +5208,7 @@ definitions:
           - stage
           - prod
           - rde
+          - preprod
       steps:
         type: array
         description: "Steps to be included in the phase in execution order. Might be added or not, depending on permissions or configuration"
@@ -4962,6 +5550,7 @@ definitions:
         type: string
         example: AcmeCorp Dev1 Environment
         description: Name of the environment
+        pattern: "(?=.*[a-zA-Z])[-+!"""/#$%&*.,;()@-} 0-9]*"
       description:
         type: string
         example: This is our primary development environment
@@ -4975,6 +5564,7 @@ definitions:
           - stage
           - prod
           - rde
+          - preprod
       status:
         type: string
         example: creating
@@ -5310,15 +5900,11 @@ definitions:
         type: string
         example: MY_VAR1
         description: "Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number."
-        minLength: 2
-        maxLength: 100
         pattern: "[a-zA-Z_][a-zA-Z_0-9]*"
       value:
         type: string
         example: myValue
         description: "Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted."
-        minLength: 0
-        maxLength: 2048
       type:
         type: string
         example: string
@@ -5327,21 +5913,11 @@ definitions:
           - string
           - secretString
       service:
-        type: string
-        example: author
-        description: "Service of the variable. When not provided, the variable applies to all services. Currently the values 'author', 'publish', and 'preview' are supported. Note - this value is case-sensitive."
+        description: "Service of the variable. When not provided, the variable applies to all services. Currently the values ""author"", ""publish"", and ""preview"" are supported. Note - this value is case-sensitive."
       status:
         type: string
         example: ready
         description: Status of the variable
-        enum:
-          - creating
-          - ready
-          - deleting
-          - deleted
-          - updating
-          - failed
-          - deleted_failed
     description: A named value than can be set on an Environment or Pipeline
   VariableList:
     type: object
@@ -5349,7 +5925,6 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
-        example: 1
         description: The total number of embedded items
       _embedded:
         type: object
@@ -5357,7 +5932,7 @@ definitions:
         properties:
           variables:
             type: array
-            example: "[{ 'name':'variable1Name', 'value':'variable1Value'}, { 'name':'variable1Name', 'value':'variable1Value', 'service':'author'}, { 'name':'variable2Name', 'type':'secretString', 'value':'variable2SecretValue'}]"
+            example: "[{ ""name"":""variable1Name"", ""value"":""variable1Value""}, { ""name"":""variable1Name"", ""value"":""variable1Value"", ""service"":""author""}, { ""name"":""variable2Name"", ""type"":""secretString"", ""value"":""variable2SecretValue""}]"
             description: Variables set on environment
             items:
               $ref: "#/definitions/Variable"
@@ -5365,11 +5940,8 @@ definitions:
         type: object
         readOnly: true
         properties:
-          "http://ns.adobe.com/adobecloud/rel/environment":
-            description: The environment holding the variables
-            $ref: "#/definitions/HalLink"
-          "http://ns.adobe.com/adobecloud/rel/pipeline":
-            description: The pipeline holding the variables
+          "http://ns.adobe.com/adobecloud/rel/edgeEnvironment":
+            description: The edge environment holding the variables
             $ref: "#/definitions/HalLink"
           "http://ns.adobe.com/adobecloud/rel/program":
             description: The Program
@@ -5380,73 +5952,16 @@ definitions:
   RegionDeployment:
     type: object
     properties:
-      cluster:
+      regionName:
         type: string
-        example: ethos13stageva7
-        description: The cluster where this deployment happens
-      namespace:
+      clusterName:
         type: string
-        example: ns-team-aem
-        description: The namespace in which this deployment happens
-      createdAt:
+      namespaceName:
         type: string
-        format: date-time
-        description: Created time
-      updatedAt:
-        type: string
-        format: date-time
-        description: Date of last change
-      id:
-        type: string
-        description: identifier of a region deployment
-      environmentId:
-        type: string
-        description: identifier of an environment
-      region:
-        type: string
-        example: va7
-        description: Region name of the deployment
-      integrations:
-        description: region integrations
-        $ref: "#/definitions/EnvironmentRegionintegrations"
-      status:
-        type: string
-        description: Status of the region deployment
-        enum:
-          - PENDING
-          - PROGRESSING
-          - FAILED
-          - COMPLETE
-          - DELETING
-          - DELETED
-          - DELETION_FAILED
-          - TO_DELETE
       type:
         type: string
-        example: primary
-        description: Type of the region deployment
-        enum:
-          - PRIMARY
-          - SECONDARY
-      _links:
-        type: object
-        readOnly: true
-        properties:
-          "http://ns.adobe.com/adobecloud/rel/flow":
-            $ref: "#/definitions/HalLink"
-          "http://ns.adobe.com/adobecloud/rel/kubernetesCluster":
-            description: Get the Kubernetes Cluster in which this deployment happens
-            $ref: "#/definitions/HalLink"
-          "http://ns.adobe.com/adobecloud/rel/kubernetesNamespace":
-            description: Get the Kubernetes Namespace in which this deployment happens
-            $ref: "#/definitions/HalLink"
-          "http://ns.adobe.com/adobecloud/rel/region":
-            description: Region being used for this deployment
-            $ref: "#/definitions/HalLink"
-          self:
-            $ref: "#/definitions/HalLink"
-            description: This object's representation
-    description: describes region deployments for an environment
+      dataStore:
+        $ref: "#/definitions/DataStore"
   RegionDeploymentList:
     type: object
     properties:
@@ -5626,6 +6141,9 @@ definitions:
       importResult:
         description: import results
         $ref: "#/definitions/ContentFlowResultDetails"
+      transferProgress:
+        type: string
+        description: Transfer progress percentage
     description: The Content Flow Results
   ContentFlowList:
     type: object
@@ -5785,24 +6303,15 @@ definitions:
       name:
         type: string
         description: "Name of the log for service in environment. Example: aemerror"
-  EnvironmentBlobStorageConfiguration:
+  DataStore:
     type: object
-    required:
-      - type
     properties:
       type:
         type: string
-        enum:
-          - azure_blob
-          - azure_files
-          - mongo_atlas
-    description: Settings for environment blob storage
-  EnvironmentRegionintegrations:
-    type: object
-    properties:
-      blobStorage:
-        $ref: "#/definitions/EnvironmentBlobStorageConfiguration"
-    description: integrations for a particular EnvironmentRegion
+      blobStorageAccountName:
+        type: string
+      blobContainerName:
+        type: string
   RestorePointDetails:
     type: object
     properties:
@@ -5888,17 +6397,10 @@ definitions:
     properties:
       errorCode:
         type: string
-        description: The error code
         readOnly: true
       publicDetails:
-        type: object
-        description: Additional error details that can be used by customer
-        additionalProperties:
-          type: object
         readOnly: true
       message:
-        type: string
-        description: Human readable error message
         readOnly: true
   Restore-Environmentdetailsrepresentation:
     type: object
@@ -6040,47 +6542,45 @@ definitions:
       pointInTimeInMillis:
         type: string
         description: Desired point in time
-        pattern: '\d{1,19}$'
+        pattern: "\d{1,19}$"
   IPAllowedListBinding:
     type: object
     required:
       - environmentId
     properties:
       id:
-        type: string
-        example: "14"
+        type: integer
+        format: int64
+        example: 14
         description: Identifier of the IP Allowed List Binding to an Environment
       tier:
         type: string
         example: publish
         description: Tier of the environment.
         enum:
-          - author
-          - publish
-          - preview
+          - PUBLISH
+          - PREVIEW
+          - AUTHOR
+          - STATIC
+          - DELIVERY
       status:
         type: string
         example: NOT_STARTED
         description: Status of the binding.
-        enum:
-          - failed
-          - delete_failed
-          - running
-          - deleting
-          - completed
-          - deleted
-          - not_started
       programId:
-        type: string
-        example: "22"
+        type: integer
+        format: int64
+        example: 22
         description: Identifier of the program.
       ipAllowListId:
-        type: string
-        example: "17"
+        type: integer
+        format: int64
+        example: 17
         description: Identifier of the IP allow list.
       environmentId:
-        type: string
-        example: "5"
+        type: integer
+        format: int64
+        example: 5
         description: Identifier of the environment.
       _links:
         type: object
@@ -6103,30 +6603,28 @@ definitions:
       - name
     properties:
       id:
-        type: string
-        example: "14"
+        type: integer
+        format: int64
+        example: 14
         description: Identifier of the IP Allowed List
       name:
         type: string
         example: NewYork Office
         description: Name of the IP Allowed List
-        minLength: 1
-        maxLength: 64
+      programId:
+        type: integer
+        format: int64
+        example: 22
+        description: Identifier of the program.
       ipCidrSet:
         type: array
+        example: "["11.22.33.44/28", "99.88.77.66/32"]"
         description: IP CIDR Set
         uniqueItems: true
         items:
           type: string
-        example:
-          - "11.22.33.44/28"
-          - "99.88.77.66/32"
         maxItems: 50
         minItems: 1
-      programId:
-        type: string
-        example: "22"
-        description: Identifier of the program.
       bindings:
         type: array
         description: IP Allowlist bindings
@@ -6145,6 +6643,25 @@ definitions:
             $ref: "#/definitions/HalLink"
             description: This object's representation
     description: Describes an __IP Allowed List__
+  Updateanipallowlist:
+    type: object
+    required:
+      - ipCidrSet
+      - name
+    properties:
+      name:
+        type: string
+        example: NewYork Office
+        description: Name of the IP Allowed List
+      ipCidrSet:
+        type: array
+        example: "["11.22.33.44/28", "99.88.77.66/32"]"
+        description: IP CIDR Set
+        uniqueItems: true
+        items:
+          type: string
+        maxItems: 50
+        minItems: 1
   IPAllowlistBindingsList:
     type: object
     properties:
@@ -6152,6 +6669,8 @@ definitions:
         type: integer
         format: int32
         description: The total number of embedded items
+      ipAllowlistId:
+        type: string
       _embedded:
         type: object
         readOnly: true
@@ -6201,122 +6720,356 @@ definitions:
           self:
             $ref: "#/definitions/HalLink"
             description: This object's representation
-  DomainNameTargetRepresentation:
+  Createanewipallowlist:
+    type: object
+    required:
+      - ipCidrSet
+      - name
+    properties:
+      name:
+        type: string
+        example: NewYork Office
+        description: Name of the IP Allowed List
+      ipCidrSet:
+        type: array
+        example: "["11.22.33.44/28", "99.88.77.66/32"]"
+        description: IP CIDR Set
+        uniqueItems: true
+        items:
+          type: string
+        maxItems: 50
+        minItems: 1
+  Domain:
+    type: object
+    required:
+      - label
+      - programId
+    properties:
+      deleted:
+        type: boolean
+        default: false
+      id:
+        type: integer
+        format: int64
+        description: id
+      domainName:
+        type: string
+        example: customer.domain.com
+        description: Name of the domain name
+      label:
+        type: string
+        description: Domain label
+      programId:
+        type: integer
+        format: int64
+        description: Id of the program
+      createdAt:
+        type: integer
+        format: int64
+        description: Create date
+      updatedAt:
+        type: integer
+        format: int64
+        description: Last updated date
+      deletedAt:
+        type: integer
+        format: int64
+        description: Deleted At
+      acmeValidationStatus:
+        type: string
+        example: NOT_VERIFIED
+        description: Acme Validation Status
+      adobeValidationStatus:
+        type: string
+        example: NOT_VERIFIED
+        description: Adobe Validation Status
+      acmeValidationToken:
+        type: string
+        description: Acme Validation Token
+      adobeValidationToken:
+        type: string
+        description: Adobe Validation Token
+    description: A Domain representation
+  UpdateaDomain:
+    type: object
+    required:
+      - label
+    properties:
+      label:
+        type: string
+        example: "???"
+        description: Domain label
+  Response:
     type: object
     properties:
-      target:
+      status:
+        type: integer
+        format: int32
+      entity:
+        type: object
+      metadata:
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: object
+  DomainCreate:
+    type: object
+    properties:
+      domainName:
         type: string
-        description: IP or domain name which the domain name points to.
-      detected:
-        type: boolean
-        description: Flag that shows if the target was detected or not.
-        default: false
-  DomainName:
+        example: customer.domain.com
+        description: Name of the domain name
+    description: A Domain representation for creating a domain
+  DomainTokenValidationBody:
+    type: object
+    properties:
+      validationType:
+        type: string
+        example: acme
+        description: Type of the validation
+    description: The json body for token validation
+  DomainMapping:
+    type: object
+    properties:
+      domainMappingId:
+        type: integer
+        format: int64
+        description: Domain Mapping ID
+      programId:
+        type: integer
+        format: int64
+        description: Identifier of the CM Program
+      originId:
+        type: integer
+        format: int64
+        description: Id of either EDS site or Skyline Environment
+      domainMappingStatus:
+        type: string
+        description: Status of the domain mapping
+      domainName:
+        type: string
+        description: Name of the domain
+      originType:
+        type: string
+        description: "Type of origin: EDS_SITE or SKYLINE_ENVIRONMENT"
+      tier:
+        type: string
+        description: "Type of tier: PREVIEW or PUBLISH"
+        enum:
+          - PUBLISH
+          - PREVIEW
+          - AUTHOR
+          - STATIC
+          - DELIVERY
+      domainId:
+        type: integer
+        format: int64
+        description: Id of the domain
+      certificateId:
+        type: integer
+        format: int64
+        description: Id of the certificate
+      createdAt:
+        type: integer
+        format: int64
+        description: Creation date
+      updatedAt:
+        type: integer
+        format: int64
+        description: Last modification date
+      deletedAt:
+        type: integer
+        format: int64
+        description: Deletion date
+    description: Describes a domain mapping
+  Updateadomainmapping:
     type: object
     required:
       - certificateId
+      - tier
+    properties:
+      certificateId:
+        type: integer
+        format: int64
+        description: Certificate ID
+      tier:
+        type: string
+        description: "Type of tier: PREVIEW or PUBLISH"
+        enum:
+          - PUBLISH
+          - PREVIEW
+          - AUTHOR
+          - STATIC
+          - DELIVERY
+  DomainMappingList:
+    type: object
+    properties:
+      totalNumberOfItems:
+        type: integer
+        format: int32
+      domainMappings:
+        type: array
+        items:
+          $ref: "#/definitions/DomainMapping"
+  Createanewdomainmapping:
+    type: object
+    required:
+      - certificateId
+      - domainId
+      - originId
+      - originType
+      - tier
+    properties:
+      originId:
+        type: integer
+        format: int64
+        description: "Origin ID: EDS or Skyline Environment ID"
+      domainId:
+        type: integer
+        format: int64
+        description: Domain ID
+      certificateId:
+        type: integer
+        format: int64
+        description: Certificate ID
+      tier:
+        type: string
+        description: "Type of the tier: PREVIEW or PUBLISH"
+        enum:
+          - PUBLISH
+          - PREVIEW
+          - AUTHOR
+          - STATIC
+          - DELIVERY
+      originType:
+        type: string
+        description: "Type of the origin: EDS_SITE or SKYLINE_ENVIRONMENT"
+        enum:
+          - EDS_SITE
+          - SKYLINE_ENVIRONMENT
+  SslCertificateRepresentation:
+    type: object
     properties:
       id:
         type: integer
         format: int64
         description: id
+      programId:
+        type: integer
+        format: int64
+        example: 14
+        description: Identifier of the application. Unique within the space.
+      serialNumber:
+        type: string
+        description: Unique identifier of the certificate at CA level.
       name:
         type: string
-        example: customer.domain.com
-        description: Name of the domain name
-      status:
+        example: Certificate Name Example
+        description: Name of the SSL Certificate.
+      issuer:
         type: string
-        example: ready
-        description: Status of the domain name
-        enum:
-          - not_verified
-          - pending_deployment
-          - deployment_failed
-          - deployed
-          - pending_readiness_check
-          - ready
-          - deleting
-          - deleted
-          - delete_failed
-      type:
+        description: Issuer of the SSL Certificate.
+      expireAt:
+        type: integer
+        format: int64
+        description: Expiration date of the SSL Certificate.
+      commonName:
         type: string
-        example: CNAME
-        description: Type of the domain name record
-        enum:
-          - A
-          - CNAME
-      dnsResolution:
+        description: Common name of the SSL Certificate.
+      subjectAlternativeNames:
         type: array
-        description: Pointing IPs/domain name
+        description: Subject alternative names of the SSL Certificate.
         items:
-          $ref: "#/definitions/DomainNameTargetRepresentation"
-      dnsTxtRecord:
+          type: string
+      certificate:
         type: string
-        example: adobe-aem-verification=www.adobe.com/1/2/ab-cd-ef
-        description: DNS TXT record
-      dnsZone:
+        description: Encrypted content of the SSL Certificate.
+      chain:
         type: string
-        example: adobe.com.
-        description: Name of the DNS zone
-      environmentId:
-        type: integer
-        format: int64
-        description: environmentId
-      environmentName:
-        type: string
-        example: customerEnvironmentName
-        description: Environment name
-      tier:
-        type: string
-        example: publish
-        description: Tier of the environment.
-        enum:
-          - publish
-          - preview
-      certificateId:
-        type: integer
-        format: int64
-        description: certificateId
-      certificateName:
-        type: string
-        example: My certificate
-        description: SSL Certificate name
-      certificateExpireAt:
-        type: string
-        format: date-time
-        description: SSL Certificate expiration date
+        description: Content of the Chain File.
       createdAt:
-        type: string
-        format: date-time
-        description: Create date
+        type: integer
+        format: int64
+        description: Date of SSL Certificate submission.
       updatedAt:
-        type: string
-        format: date-time
-        description: Update date
+        type: integer
+        format: int64
+        description: Date of last SSL Certificate update.
       _links:
         type: object
         readOnly: true
         properties:
-          "http://ns.adobe.com/adobecloud/rel/domainName/certificates":
-            description: SSL certificates in program
-            $ref: "#/definitions/HalLink"
-          "http://ns.adobe.com/adobecloud/rel/domainName/deploy":
-            description: Trigger DNS TXT record verification and start CDN deployment
-            $ref: "#/definitions/HalLink"
-          "http://ns.adobe.com/adobecloud/rel/domainName/verify":
-            description: Trigger DNS route verification of the domain name
-            $ref: "#/definitions/HalLink"
-          "http://ns.adobe.com/adobecloud/rel/environment":
-            description: The environment holding the domain name
-            $ref: "#/definitions/HalLink"
-          "http://ns.adobe.com/adobecloud/rel/program":
-            description: The Application this domain name belongs to.
-            $ref: "#/definitions/HalLink"
           self:
             $ref: "#/definitions/HalLink"
             description: This object's representation
-    description: A Domain Name representation
-  DomainNameList:
+    description: Describes an SSL Certificate
+  StackTraceElement:
+    type: object
+    properties:
+      classLoaderName:
+        type: string
+      moduleName:
+        type: string
+      moduleVersion:
+        type: string
+      methodName:
+        type: string
+      fileName:
+        type: string
+      lineNumber:
+        type: integer
+        format: int32
+      className:
+        type: string
+      nativeMethod:
+        type: boolean
+        default: false
+  SslCertificateNotFoundException:
+    type: object
+    properties:
+      stackTrace:
+        type: array
+        items:
+          $ref: "#/definitions/StackTraceElement"
+      message:
+        type: string
+      localizedMessage:
+        type: string
+  SecretString:
+    type: object
+    properties:
+      value:
+        type: string
+        example: my-secret
+        description: "Secret value for updating the secrets, null for not updating the existing secret"
+      path:
+        type: string
+        example: /path/to/secret
+        description: Path to the secret value
+  CreateOrUpdateSslCertificateBody:
+    type: object
+    required:
+      - name
+      - certificate
+      - privateKey
+      - chain
+    properties:
+      name:
+        type: string
+        description: The name of the new SSL Certificate.
+      certifcate:
+        type: string
+        description: The PEM-encoded certificate.
+      privateKey:
+        type: string
+        description: The PEM-encoded private key.
+      chain:
+        type: array
+        items:
+          type: string
+        description: The PEM-encoded certificate chain.
+  AllSSLCertificatesList:
     type: object
     properties:
       _totalNumberOfItems:
@@ -6330,10 +7083,10 @@ definitions:
         type: object
         readOnly: true
         properties:
-          domainNames:
+          certificates:
             type: array
             items:
-              $ref: "#/definitions/DomainName"
+              $ref: "#/definitions/SslCertificateRepresentation"
       _links:
         type: object
         readOnly: true
@@ -6350,56 +7103,119 @@ definitions:
           self:
             $ref: "#/definitions/HalLink"
             description: This object's representation
+  CreateDvCertificateBody:
+    type: object
+    required:
+      - domainIds
+    properties:
+      name:
+        type: string
+        example: my-cert
+        description: Name of the certificate
+      domainIds:
+        type: array
+        description: List of domain IDs to associate with the certificate
+        items:
+          type: integer
+          format: int64
   SslCertificate:
     type: object
     properties:
       id:
+        type: integer
+        format: int64
+      sslCertificateType:
         type: string
-        description: id
+        enum:
+          - DV
+          - EV
+          - OV
       programId:
-        type: string
-        example: "14"
-        description: Identifier of the application. Unique within the space.
+        type: integer
+        format: int64
       serialNumber:
         type: string
-        description: Unique identifier of the certificate at CA level.
       name:
         type: string
-        example: Certificate Name Example
-        description: Name of the SSL Certificate.
+      certificate:
+        type: string
       issuer:
         type: string
-        description: Issuer of the SSL Certificate.
       expireAt:
+        type: integer
+        format: int64
+      privateKeyPath:
         type: string
-        format: date-time
-        description: Expiration date of the SSL Certificate.
       commonName:
         type: string
-        description: Common name of the SSL Certificate.
+      commonNameRegex:
+        type: string
       subjectAlternativeNames:
         type: array
-        description: Subject alternative names of the SSL Certificate.
         items:
           type: string
-      attachedDomainNames:
+      subjectAlternativeNamesRegex:
         type: array
-        description: Attached domain names
         items:
           type: string
-      attachedEnvironmentNames:
-        type: array
-        description: Attached environment names
-        items:
-          type: string
+      chain:
+        type: string
       createdAt:
-        type: string
-        format: date-time
-        description: Date of SSL Certificate submission.
+        type: integer
+        format: int64
       updatedAt:
+        type: integer
+        format: int64
+      deletedAt:
+        type: integer
+        format: int64
+      externalId:
+        type: integer
+        format: int64
+      sslCertificateStatus:
         type: string
-        format: date-time
-        description: Date of last SSL Certificate update.
+        enum:
+          - PENDING
+          - VALID
+          - EXPIRED
+  Site:
+    type: object
+    properties:
+      siteId:
+        type: integer
+        format: int64
+        description: siteId
+      programId:
+        type: string
+        description: Identifier of the CM Program ID. Unique within the space.
+      siteName:
+        type: string
+        description: Name of the site
+      repoUrl:
+        type: string
+        description: CM Eds Site Repo URL.
+      siteStatus:
+        type: string
+        description: Site EDS status
+      validationToken:
+        type: string
+        description: Validation token of the CM EDS Site
+      createdAt:
+        type: integer
+        format: int64
+        description: Creation date
+      modifiedAt:
+        type: integer
+        format: int64
+        description: Last modification date
+      deletedAt:
+        type: integer
+        format: int64
+        description: Deleted date
+      deleted:
+        type: boolean
+        description: deleted or not
+        default: false
       _links:
         type: object
         readOnly: true
@@ -6407,8 +7223,10 @@ definitions:
           self:
             $ref: "#/definitions/HalLink"
             description: This object's representation
-    description: Describes an SSL Certificate
-  CertificatesList:
+          sites:
+            $ref: "#/definitions/HalLink"
+    description: Describes a Site
+  SiteList:
     type: object
     properties:
       _totalNumberOfItems:
@@ -6419,20 +7237,14 @@ definitions:
         type: object
         readOnly: true
         properties:
-          certificates:
+          sites:
             type: array
             items:
-              $ref: "#/definitions/SslCertificate"
+              $ref: "#/definitions/Site"
       _links:
         type: object
         readOnly: true
         properties:
-          next:
-            $ref: "#/definitions/HalLink"
-            description: The next page of results.
-          prev:
-            $ref: "#/definitions/HalLink"
-            description: The previous page of results.
           self:
             $ref: "#/definitions/HalLink"
             description: This object's representation
@@ -6664,6 +7476,15 @@ definitions:
           type: string
   IpSecPolicyInfrastructure:
     type: object
+    required:
+      - dhGroup
+      - ikeEncryption
+      - ikeIntegrity
+      - ipsecEncryption
+      - ipsecIntegrity
+      - pfsGroup
+      - saDatasize
+      - saLifetime
     properties:
       dhGroup:
         type: string
@@ -6731,15 +7552,18 @@ definitions:
       saDatasize:
         type: integer
         format: int64
-        description: QM SA Lifetime Seconds min. 300
+        description: QM SA Lifetime in KBytes under 1024
+        minimum: 1024
       saLifetime:
         type: integer
         format: int32
-        description: QM SA Lifetime KBytes in 1024
+        description: "QM SA Lifetime in Seconds, minimum 300"
+        minimum: 300
   VpnConnection:
     type: object
     required:
       - gateway
+      - ipsecPolicy
       - name
       - sharedKey
     properties:
@@ -6906,7 +7730,7 @@ definitions:
         readOnly: true
       nonProxyHosts:
         type: array
-        description: "A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a ''*'' for wildcards."
+        description: "A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a """"*"""" for wildcards."
         items:
           type: string
         example:
@@ -6996,12 +7820,12 @@ definitions:
         description: details
         items:
           type: string
-      phase:
-        type: string
-        description: phase
       info:
         description: info
         $ref: "#/definitions/ContentFlowInfo"
+      phase:
+        type: string
+        description: phase
     description: The Content Flow Result Details
   ContentFlowInput:
     type: object
@@ -7021,7 +7845,39 @@ definitions:
       destProgramId:
         type: string
         description: destProgramId
+      mergeExcludePaths:
+        type: boolean
+        description: mergeExcludePaths
+        default: false
+      copyVersions:
+        type: boolean
+        description: copyVersions
+        default: false
     description: Wraps the content flow execution arguments
+  ContentFlowLog:
+    type: object
+    properties:
+      jobType:
+        type: string
+        example: (import or export)
+        description: job type
+      programId:
+        type: integer
+        format: int64
+      contentFlowId:
+        type: integer
+        format: int64
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          download:
+            description: Download Logs link
+            $ref: "#/definitions/HalLink"
+          logs/tail:
+            description: Tail Log link
+            $ref: "#/definitions/HalLink"
+    description: Log from Content Flow
   Redirect:
     type: object
     required:
@@ -7030,28 +7886,6 @@ definitions:
       redirect:
         type: string
         description: The url to redirect to.
-  NewSslCertificate:
-    type: object
-    required:
-      - name
-      - certificate
-      - privateKey
-      - chain
-    properties:
-      name:
-        type: string
-        description: The name of the new SSL Certificate.
-      certifcate:
-        type: string
-        description: The PEM-encoded certificate.
-      privateKey:
-        type: string
-        description: The PEM-encoded private key.
-      chain:
-        type: array
-        items:
-          type: string
-        description: The PEM-encoded certificate chain.
   NewFeedback:
     type: object
     required:
@@ -7105,15 +7939,11 @@ definitions:
         type: string
         example: MY_VAR1
         description: "Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number."
-        minLength: 2
-        maxLength: 100
         pattern: "[a-zA-Z_][a-zA-Z_0-9]*"
       value:
         type: string
         example: myValue
         description: "Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted."
-        minLength: 0
-        maxLength: 2048
       type:
         type: string
         example: string
@@ -7122,9 +7952,7 @@ definitions:
           - string
           - secretString
       service:
-        type: string
-        example: author
-        description: "Service of the variable. When not provided, the variable applies to all services. Currently the values 'author', 'publish', and 'preview' are supported. Note - this value is case-sensitive."
+        description: "Service of the variable. When not provided, the variable applies to all services. Currently the values ""author"", ""publish"", and ""preview"" are supported. Note - this value is case-sensitive."
     description: "A change (create, update, delete) of a named value on an Environment"
   PipelineVariableUpdate:
     type: object
@@ -7133,15 +7961,11 @@ definitions:
         type: string
         example: MY_VAR1
         description: "Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number."
-        minLength: 2
-        maxLength: 100
         pattern: "[a-zA-Z_][a-zA-Z_0-9]*"
       value:
         type: string
         example: myValue
         description: "Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted."
-        minLength: 0
-        maxLength: 2048
       type:
         type: string
         example: string
@@ -7213,7 +8037,7 @@ definitions:
     properties:
       nonProxyHosts:
         type: array
-        description: "A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a ''*'' for wildcards."
+        description: "A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a """"*"""" for wildcards."
         items:
           type: string
         example:
@@ -7373,56 +8197,6 @@ definitions:
         type: string
         example: TO_DELETE
         description: Status of the region deployment to be set
-  DomainNameValidate:
-    type: object
-    description: Description of a domain name to validate
-    required:
-      - name
-      - environmentId
-      - certificateId
-    properties:
-      name:
-        type: string
-        example: customer.domain.com
-        description: Name of the domain name
-      environmentId:
-        type: integer
-        format: int64
-        description: The environment id
-      certificateId:
-        type: integer
-        format: int64
-        description: The certificate id
-  NewDomainName:
-    type: object
-    description: Description of a domain name to create
-    required:
-      - name
-      - environmentId
-      - certificateId
-      - dnsTxtRecord
-      - dnsZone
-    properties:
-      name:
-        type: string
-        example: customer.domain.com
-        description: Name of the domain name
-      environmentId:
-        type: integer
-        format: int64
-        description: The environment id
-      certificateId:
-        type: integer
-        format: int64
-        description: The certificate id
-      dnsTxtRecord:
-        type: string
-        example: adobe-aem-verification=www.adobe.com/1/2/ab-cd-ef
-        description: DNS TXT record. Must match the corresponding record returned from the validate request.
-      dnsZone:
-        type: string
-        example: adobe.com.
-        description: Name of the DNS zone. Must match the corresponding value returned from the validate request.
   NewRelicSubAccountUser:
     type: object
     properties:
