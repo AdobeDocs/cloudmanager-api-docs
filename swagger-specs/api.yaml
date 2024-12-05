@@ -3016,54 +3016,54 @@ paths:
           description: List of domain mappings retrieved
           schema:
             $ref: '#/definitions/DomainMappingList'
-      post:
-        tags:
-          - Domain Mappings - CDN Configurations
-        summary: Create domain mapping
-        description: ''
-        operationId: createDomainMapping
-        parameters:
-          - name: programId
-            in: path
-            description: Identifier of program
-            required: true
-            type: integer
-            format: int64
-          - in: body
-            name: body
-            description: Payload for creating a domain mapping
-            required: true
-            schema:
-              $ref: '#/definitions/Createanewdomainmapping'
-          - name: x-gw-ims-org-id
-            in: header
-            description: IMS organization ID that the request is being made under.
-            required: true
-            type: string
-          - name: Authorization
-            in: header
-            description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
-            required: true
-            type: string
-          - name: x-api-key
-            in: header
-            description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
-            required: true
-            type: string
-          - name: Content-Type
-            in: header
-            description: Must always be application/json
-            required: true
-            type: string
-        responses:
-          '200':
-            description: successful operation
-            schema:
-              $ref: '#/definitions/DomainMapping'
-          '201':
-            description: Domain Mapping created
-            schema:
-              $ref: '#/definitions/DomainMapping'
+    post:
+      tags:
+        - Domain Mappings - CDN Configurations
+      summary: Create domain mapping
+      description: ''
+      operationId: createDomainMapping
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of program
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: Payload for creating a domain mapping
+          required: true
+          schema:
+            $ref: '#/definitions/Createanewdomainmapping'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/DomainMapping'
+        '201':
+          description: Domain Mapping created
+          schema:
+            $ref: '#/definitions/DomainMapping'
   '/api/program/{programId}/environment/{environmentId}/domain-mappings':
     get:
       tags:
