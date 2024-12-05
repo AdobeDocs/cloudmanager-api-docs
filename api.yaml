@@ -4679,6 +4679,56 @@ paths:
           description: The requester is not authorized to access the resource.
         '404':
           description: Program not found
+  '/api/program/{programId}/contentFlow/checkCompatibility':
+    post:
+      tags:
+        - ContentSets
+      summary: Backflow Compatibility between source and target environments
+      description: Returns the compatibility between source and target environments
+      operationId: checkBackflowCompatibility
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Program
+          required: true
+          schema:
+            $ref: '#/definitions/CompatibilityCheckInput'
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+        - name: Content-Type
+          in: header
+          description: Must always be application/json
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Big Bear Topology Compatibility Response
+          schema:
+            $ref: '#/definitions/CompatibilityCheckResponse'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/BadRequestError'
+        '404':
+          description: Program not found
   '/api/program/{programId}/contentFlow/{contentFlowId}':
     get:
       tags:
@@ -6393,10 +6443,17 @@ definitions:
     properties:
       errorCode:
         type: string
+        description: The error code
         readOnly: true
       publicDetails:
+        type: object
+        description: Additional error details that can be used by customer
+        additionalProperties:
+          type: object
         readOnly: true
       message:
+        type: string
+        description: Human readable error message
         readOnly: true
   Restore-Environmentdetailsrepresentation:
     type: object
@@ -7850,6 +7907,77 @@ definitions:
         description: copyVersions
         default: false
     description: Wraps the content flow execution arguments
+  CompatibilityCheckInput:
+    type: object
+    required:
+      - destinationEnvironmentId
+      - sourceEnvironmentId
+    properties:
+      sourceEnvironmentId:
+        type: string
+      destinationEnvironmentId:
+        type: string
+      tier:
+        type: string
+        enum:
+          - PUBLISH
+          - AUTHOR
+    description: Wraps the content copy compatibility check execution arguments.
+  CompatibilityCheckResponse:
+    type: object
+    properties:
+      sourceEnvironmentId:
+        type: string
+        example: '1234'
+        description: The source environment ID
+      sourceTopologyId:
+        type: string
+        example: 1a2b3cd4
+        description: The source topology ID
+      destinationEnvironmentId:
+        type: string
+        example: '5678'
+        description: The destination environment ID
+      destinationTopologyId:
+        type: string
+        example: 1a2b3cd4
+        description: The destination topology ID
+      tier:
+        type: string
+        example: author
+        description: tier
+      overallResult:
+        type: string
+        example: PASS
+        description: The overall result of the compatibility check
+      overallMessage:
+        type: string
+        example: Destination Topology cannot be prod.
+        description: The overall response message of the compatibility check
+      failedValidation:
+        type: string
+        example: TIER_NOT_ALLOWED
+        description: Error Code for the Failed Compatibility Check
+        enum:
+          - SOURCE_DISK_ORG
+          - TARGET_DISK_ORG
+          - SOURCE_REPO_TYPE
+          - TARGET_REPO_TYPE
+          - DATASTORE_TYPE
+          - BLOCK_TYPE
+          - TARGET_ENV
+          - REGION_CRITERIA
+          - CONNECTION_ERROR
+          - UNSUPPORTED_SKYLINE_ENV
+          - BAD_REQUEST
+          - ENVIRONMENT_NOT_FOUND
+          - PROGRAM_NOT_FOUND
+          - TIER_NOT_ALLOWED
+          - UNKNOWN
+      responseStatusCode:
+        type: integer
+        format: int32
+    description: Describes the Backflow Compatibility between two topologies.
   ContentFlowLog:
     type: object
     properties:
