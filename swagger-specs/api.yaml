@@ -2616,7 +2616,7 @@ paths:
             $ref: '#/definitions/Domain'
         '404':
           description: Domain not found
-      put:
+    put:
       tags:
         - Domain
       summary: Update domain
@@ -2703,7 +2703,7 @@ paths:
           description: Domain deleted
           schema:
             $ref: '#/definitions/Response'
-            '/api/program/{programId}/domain/{domain-id}/validate':
+  '/api/program/{programId}/domain/{domain-id}/validate':
     put:
       tags:
         - Domain
@@ -2831,10 +2831,10 @@ paths:
           required: true
           type: string
         - name: Authorization
-            in: header
-            description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
-            required: true
-            type: string
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
         - name: x-api-key
           in: header
           description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
@@ -2856,7 +2856,7 @@ paths:
       parameters:
         - name: programId
           in: path
-            description: Identifier of program
+          description: Identifier of program
           required: true
           type: integer
           format: int64
