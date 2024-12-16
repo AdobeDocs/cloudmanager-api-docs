@@ -2481,7 +2481,7 @@ paths:
       tags:
         - Domain
       summary: Get list of domains
-      description: ''
+      description: Gets the list of domains for this program
       operationId: getDomain
       parameters:
         - name: programId
@@ -2532,8 +2532,8 @@ paths:
     post:
       tags:
         - Domain
-      summary: Create a domain
-      description: ''
+      summary: Create domain
+      description: Creates a domain in this program
       operationId: createDomain
       parameters:
         - name: programId
@@ -2569,6 +2569,10 @@ paths:
           type: string
       responses:
         '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Domain'
+        '201':
           description: Domain created
           schema:
             $ref: '#/definitions/Domain'
@@ -2581,7 +2585,7 @@ paths:
       tags:
         - Domain
       summary: Get domain
-      description: ''
+      description: Gets a domain by its ID
       operationId: getDomain
       parameters:
         - name: programId
@@ -2620,7 +2624,7 @@ paths:
       tags:
         - Domain
       summary: Update domain
-      description: ''
+      description: Updates a domain with specified values
       operationId: modifyDomain
       parameters:
         - name: programId
@@ -2669,8 +2673,8 @@ paths:
     delete:
       tags:
         - Domain
-      summary: Delete a domain
-      description: ''
+      summary: Delete domain
+      description: Delete a domain from this program
       operationId: deleteDomain
       parameters:
         - name: programId
@@ -2702,13 +2706,13 @@ paths:
         '200':
           description: Domain deleted
           schema:
-            $ref: '#/definitions/Response'
+            $ref: '#/definitions/Domain'
   '/api/program/{programId}/domain/{domain-id}/validate':
     put:
       tags:
         - Domain
       summary: Check validation
-      description: ''
+      description: Validate the domain based on the type of validation token
       operationId: domainValidationToken
       parameters:
         - name: programId
@@ -2759,7 +2763,7 @@ paths:
       tags:
         - Domain
       summary: Creates validation token
-      description: ''
+      description: Creates a validation token in order to establish the ownership of the domain
       operationId: domainValidationToken
       parameters:
         - name: programId
@@ -2810,7 +2814,7 @@ paths:
       tags:
         - Domain Mappings - CDN Configurations
       summary: Get domain mapping
-      description: ''
+      description: Gets a domain mapping by its ID
       operationId: getDomainMappingById
       parameters:
         - name: programId
@@ -2851,7 +2855,7 @@ paths:
       tags:
         - Domain Mappings - CDN Configurations
       summary: Update domain mapping
-      description: ''
+      description: Updates a domain mapping with the specified values
       operationId: updateDomainMapping
       parameters:
         - name: programId
@@ -2903,7 +2907,7 @@ paths:
       tags:
         - Domain Mappings - CDN Configurations
       summary: Delete domain mapping
-      description: ''
+      description: Deletes a domain mapping
       operationId: deleteDomainMapping
       parameters:
         - name: programId
@@ -2945,7 +2949,7 @@ paths:
       tags:
         - Domain Mappings - CDN Configurations
       summary: Check if customer made the required DNS changes
-      description: ''
+      description: Check if customer made the required DNS changes in order to route traffic from the domain
       operationId: validateHelixDomain
       parameters:
         - name: programId
@@ -2987,7 +2991,7 @@ paths:
       tags:
         - Domain Mappings - CDN Configurations
       summary: List of domain mappings
-      description: ''
+      description: Gets the list of domain mappings from this program.
       operationId: getAllDomainMappingsByProgramId
       parameters:
         - name: programId
@@ -2996,6 +3000,29 @@ paths:
           required: true
           type: integer
           format: int64
+        - name: originId
+          in: query
+          description: Filtering by origin ID
+          required: false
+          type: integer
+          format: int64
+        - name: certificateId
+          in: query
+          description: Filtering by certificateId
+          required: false
+          type: integer
+          format: int64
+        - name: domainId
+          in: query
+          description: Filtering by domainId
+          required: false
+          type: integer
+          format: int64
+        - name: status
+          in: query
+          description: Filtering by status separated by comma
+          required: false
+          type: string
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3020,7 +3047,7 @@ paths:
       tags:
         - Domain Mappings - CDN Configurations
       summary: Create domain mapping
-      description: ''
+      description: Creates a domain mapping (CDN configuration) in this program
       operationId: createDomainMapping
       parameters:
         - name: programId
@@ -3069,7 +3096,7 @@ paths:
       tags:
         - Domain Mappings - CDN Configurations
       summary: List of domain mappings by environment
-      description: ''
+      description: Gets the list of domain mappings for the specified environment ID.
       operationId: getAllDomainMappingsByProgramIdAndEnvironmentId
       parameters:
         - name: programId
@@ -3109,7 +3136,7 @@ paths:
       tags:
         - Domain Mappings - CDN Configurations
       summary: List of domain mappings by EDS site
-      description: ''
+      description: Get the list of domain mappings for the specified EDS site ID.
       operationId: getAllDomainMappingsByProgramIdAndSiteId
       parameters:
         - name: programId
@@ -3148,8 +3175,8 @@ paths:
     get:
       tags:
         - SSL Certificates
-      summary: Get certificate by ID
-      description: ''
+      summary: Get certificate
+      description: Gets a certificate by its ID
       operationId: getCertificateByIdAndProgramId
       parameters:
         - name: programId
@@ -3192,7 +3219,7 @@ paths:
       tags:
         - SSL Certificates
       summary: Update certificate
-      description: ''
+      description: Updates a certificate in this program
       operationId: updateCertificate
       parameters:
         - name: programId
@@ -3245,8 +3272,8 @@ paths:
     delete:
       tags:
         - SSL Certificates
-      summary: Delete a certificate
-      description: ''
+      summary: Delete certificate
+      description: Deletes a certificate from this program
       operationId: deleteCertificate
       parameters:
         - name: programId
@@ -3290,7 +3317,7 @@ paths:
       tags:
         - SSL Certificates
       summary: Get all certificates
-      description: ''
+      description: Gets the list of certificates from this program
       operationId: getAllCertificatesForProgram
       parameters:
         - name: programId
@@ -3358,8 +3385,8 @@ paths:
     post:
       tags:
         - SSL Certificates
-      summary: Create SSL certificate
-      description: ''
+      summary: Add SSL certificate
+      description: Adds a customer-managed certificate in this program
       operationId: createSslCertificate
       parameters:
         - name: programId
@@ -3408,7 +3435,7 @@ paths:
       tags:
         - SSL Certificates
       summary: Create DV certificate
-      description: ''
+      description: Initiates the creation of a DV certificate in this program
       operationId: createDvCertificate
       parameters:
         - name: programId
@@ -3671,6 +3698,10 @@ paths:
           required: true
           type: string
       responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Site'
         '201':
           description: Site created
           schema:
@@ -5629,6 +5660,7 @@ definitions:
           - resetting
           - reset_failed
           - degraded
+          - hibernated
       region:
         type: string
         example: va7
@@ -5946,11 +5978,15 @@ definitions:
         type: string
         example: MY_VAR1
         description: 'Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number.'
+        minLength: 2
+        maxLength: 100
         pattern: '[a-zA-Z_][a-zA-Z_0-9]*'
       value:
         type: string
         example: myValue
         description: 'Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted.'
+        minLength: 0
+        maxLength: 2048
       type:
         type: string
         example: string
@@ -5959,11 +5995,21 @@ definitions:
           - string
           - secretString
       service:
+        type: string
+        example: author
         description: 'Service of the variable. When not provided, the variable applies to all services. Currently the values ''author'', ''publish'', and ''preview'' are supported. Note - this value is case-sensitive.'
       status:
         type: string
         example: ready
         description: Status of the variable
+        enum:
+          - creating
+          - ready
+          - deleting
+          - deleted
+          - updating
+          - failed
+          - deleted_failed
     description: A named value than can be set on an Environment or Pipeline
   VariableList:
     type: object
@@ -5971,6 +6017,7 @@ definitions:
       _totalNumberOfItems:
         type: integer
         format: int32
+        example: 1
         description: The total number of embedded items
       _embedded:
         type: object
@@ -5986,8 +6033,11 @@ definitions:
         type: object
         readOnly: true
         properties:
-          'http://ns.adobe.com/adobecloud/rel/edgeEnvironment':
-            description: The edge environment holding the variables
+          'http://ns.adobe.com/adobecloud/rel/environment':
+            description: The environment holding the variables
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/pipeline':
+            description: The pipeline holding the variables
             $ref: '#/definitions/HalLink'
           'http://ns.adobe.com/adobecloud/rel/program':
             description: The Program
@@ -5998,16 +6048,75 @@ definitions:
   RegionDeployment:
     type: object
     properties:
-      regionName:
+      cluster:
         type: string
-      clusterName:
+        example: ethos13stageva7
+        description: The cluster where this deployment happens
+      namespace:
         type: string
-      namespaceName:
+        example: ns-team-aem
+        description: The namespace in which this deployment happens
+      createdAt:
         type: string
+        format: date-time
+        description: Created time
+      updatedAt:
+        type: string
+        format: date-time
+        description: Date of last change
+      id:
+        type: string
+        description: identifier of a region deployment
+      environmentId:
+        type: string
+        description: identifier of an environment
+      region:
+        type: string
+        example: va7
+        description: Region name of the deployment
+      integrations:
+        description: region integrations
+        $ref: '#/definitions/EnvironmentRegionintegrations'
+      status:
+        type: string
+        description: Status of the region deployment
+        enum:
+          - PENDING
+          - PROGRESSING
+          - FAILED
+          - COMPLETE
+          - DELETING
+          - DELETED
+          - DELETION_FAILED
+          - TO_DELETE
+          - DEPLOY_FAILED
+          - DEPLOY_TIMEOUT
       type:
         type: string
-      dataStore:
-        $ref: '#/definitions/DataStore'
+        example: primary
+        description: Type of the region deployment
+        enum:
+          - PRIMARY
+          - SECONDARY
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/flow':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/kubernetesCluster':
+            description: Get the Kubernetes Cluster in which this deployment happens
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/kubernetesNamespace':
+            description: Get the Kubernetes Namespace in which this deployment happens
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/region':
+            description: Region being used for this deployment
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
+    description: describes region deployments for an environment
   RegionDeploymentList:
     type: object
     properties:
@@ -6349,15 +6458,38 @@ definitions:
       name:
         type: string
         description: 'Name of the log for service in environment. Example: aemerror'
-  DataStore:
+  EnvironmentBlobStorageConfiguration:
     type: object
+    required:
+      - type
     properties:
       type:
         type: string
-      blobStorageAccountName:
+        enum:
+          - azure_blob
+          - azure_files
+          - mongo_atlas
+    description: Settings for environment blob storage
+  EnvironmentLogStorageConfiguration:
+    type: object
+    required:
+      - type
+    properties:
+      type:
         type: string
-      blobContainerName:
-        type: string
+        enum:
+          - azure_blob
+          - azure_files
+          - mongo_atlas
+    description: Settings for environment log storage
+  EnvironmentRegionintegrations:
+    type: object
+    properties:
+      blobStorage:
+        $ref: '#/definitions/EnvironmentBlobStorageConfiguration'
+      logStorage:
+        $ref: '#/definitions/EnvironmentLogStorageConfiguration'
+    description: integrations for a particular EnvironmentRegion
   RestorePointDetails:
     type: object
     properties:
@@ -6613,9 +6745,6 @@ definitions:
         enum:
           - PUBLISH
           - PREVIEW
-          - AUTHOR
-          - STATIC
-          - DELIVERY
       status:
         type: string
         example: NOT_STARTED
@@ -6850,22 +6979,8 @@ definitions:
     properties:
       label:
         type: string
-        example: '???'
+        example: any string
         description: Domain label
-  Response:
-    type: object
-    properties:
-      status:
-        type: integer
-        format: int32
-      entity:
-        type: object
-      metadata:
-        type: object
-        additionalProperties:
-          type: array
-          items:
-            type: object
   DomainCreate:
     type: object
     properties:
@@ -6881,6 +6996,9 @@ definitions:
         type: string
         example: acme
         description: Type of the validation
+        enum:
+          - acme
+          - adobe
     description: The json body for token validation
   DomainMapping:
     type: object
@@ -6992,9 +7110,6 @@ definitions:
         enum:
           - PUBLISH
           - PREVIEW
-          - AUTHOR
-          - STATIC
-          - DELIVERY
       originType:
         type: string
         description: 'Type of the origin: EDS_SITE or SKYLINE_ENVIRONMENT'
@@ -7008,6 +7123,12 @@ definitions:
         type: integer
         format: int64
         description: id
+      sslCertificateType:
+        type: string
+        description: 'Type of origin: DV, EV or OV'
+      sslCertificateStatus:
+        type: string
+        description: 'PENDING, VALID or EXPIRED'
       programId:
         type: integer
         format: int64
@@ -7057,34 +7178,9 @@ definitions:
             $ref: '#/definitions/HalLink'
             description: This object's representation
     description: Describes an SSL Certificate
-  StackTraceElement:
-    type: object
-    properties:
-      classLoaderName:
-        type: string
-      moduleName:
-        type: string
-      moduleVersion:
-        type: string
-      methodName:
-        type: string
-      fileName:
-        type: string
-      lineNumber:
-        type: integer
-        format: int32
-      className:
-        type: string
-      nativeMethod:
-        type: boolean
-        default: false
   SslCertificateNotFoundException:
     type: object
     properties:
-      stackTrace:
-        type: array
-        items:
-          $ref: '#/definitions/StackTraceElement'
       message:
         type: string
       localizedMessage:
@@ -7098,8 +7194,6 @@ definitions:
         description: 'Secret value for updating the secrets, null for not updating the existing secret'
       path:
         type: string
-        example: /path/to/secret
-        description: Path to the secret value
   CreateOrUpdateSslCertificateBody:
     type: object
     required:
@@ -7111,16 +7205,18 @@ definitions:
       name:
         type: string
         description: The name of the new SSL Certificate.
-      certifcate:
+      certificate:
         type: string
         description: The PEM-encoded certificate.
       privateKey:
-        type: string
+        type: object
+        properties:
+          value:
+            type: string
+            description: Private key value
         description: The PEM-encoded private key.
       chain:
-        type: array
-        items:
-          type: string
+        type: string
         description: The PEM-encoded certificate chain.
   AllSSLCertificatesList:
     type: object
@@ -8063,11 +8159,15 @@ definitions:
         type: string
         example: MY_VAR1
         description: 'Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number.'
+        minLength: 2
+        maxLength: 100
         pattern: '[a-zA-Z_][a-zA-Z_0-9]*'
       value:
         type: string
         example: myValue
         description: 'Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted.'
+        minLength: 0
+        maxLength: 2048
       type:
         type: string
         example: string
@@ -8076,6 +8176,8 @@ definitions:
           - string
           - secretString
       service:
+        type: string
+        example: author
         description: 'Service of the variable. When not provided, the variable applies to all services. Currently the values ''author'', ''publish'', and ''preview'' are supported. Note - this value is case-sensitive.'
     description: 'A change (create, update, delete) of a named value on an Environment'
   PipelineVariableUpdate:
@@ -8085,11 +8187,15 @@ definitions:
         type: string
         example: MY_VAR1
         description: 'Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number.'
+        minLength: 2
+        maxLength: 100
         pattern: '[a-zA-Z_][a-zA-Z_0-9]*'
       value:
         type: string
         example: myValue
         description: 'Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted.'
+        minLength: 0
+        maxLength: 2048
       type:
         type: string
         example: string
