@@ -107,7 +107,7 @@ jobs:
           cmd: install
 
       - name: Gatsby Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             public
@@ -211,7 +211,7 @@ jobs:
           cmd: install
 
       - name: Gatsby Cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: |
             public
