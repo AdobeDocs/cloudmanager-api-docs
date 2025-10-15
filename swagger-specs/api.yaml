@@ -7608,7 +7608,7 @@ definitions:
         description: List of remote DNS resolvers
         items:
           type: string
-    description: DNS Information. Only applicable to VPN infrastructures.
+    description: DNS Information. Only applicable to VPN infrastructures. These ips must be part of the connection.gateway.addressSpace if they are behind the VPN.
   GatewayInfrastructure:
     type: object
     required:
