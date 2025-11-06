@@ -84,7 +84,7 @@
     ]
   },
   "resolutions": {
-    "sharp": "0.33.0",
+    "sharp": "0.34.5",
     "gatsby-sharp": "1.12.0"
   },
   "packageManager": "yarn@3.2.2"
