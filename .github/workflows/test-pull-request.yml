@@ -50,7 +50,7 @@ jobs:
         # Use full version number to avoid cases when a next
         # released version is buggy
         # About slim image: https://github.com/github/super-linter#slim-image
-        uses: github/super-linter/slim@v4.10.1
+        uses: github/super-linter/slim@v4.10.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
