@@ -52,7 +52,7 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "jest": "27.5.1",
     "jest-junit": "13.0.0",
-    "js-yaml": "4.1.0",
+    "js-yaml": "4.1.1",
     "remark-cli": "^11.0.0",
     "remark-validate-links": "^12.1.0"
   },
