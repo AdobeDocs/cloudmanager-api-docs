@@ -7,12 +7,7 @@ keywords:
   - API Documentation
   - Cloud Manager
   - Events
+layout:none
 --- 
 
-import data from '../../../swagger-specs/events.yaml'
-
-import ModelDefinitions from "../../components/model-definitions"
-
-# Event Definitions
-
-\<ModelDefinitions data=\{data\} exclusions=\{['User', 'Organization', 'Pipeline Execution', 'Pipeline Execution Step State']\} defaultOpen=\{['Pipeline Execution Start Event']\} /\>
+<RedoclyAPIBlock src="/experience-cloud/cloud-manager/events.yaml" />

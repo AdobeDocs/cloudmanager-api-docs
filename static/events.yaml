@@ -1,206 +1,257 @@
-swagger: "2.0"
+openapi: "3.1.0"
 info:
   version: "1.0.0"
   title: Cloud Manager Event Definitions
 
-host: cloudmanager.adobe.io
+servers:
+  - url: https://cloudmanager.adobe.io
 
-basePath: /
+webhooks:
+  PipelineExecutionStartEvent:
+    post:
+      summary: Pipeline Execution Start Event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineExecutionStartEvent'
+      responses:
+        '200':
+          description: Event received
 
-schemes:
-  - https
-consumes:
-  - application/json
-produces:
-  - application/json
+  PipelineExecutionStepStartEvent:
+    post:
+      summary: Pipeline Execution Step Start Event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineExecutionStepStartEvent'
+      responses:
+        '200':
+          description: Event received
 
-paths:
+  PipelineExecutionStepWaitingEvent:
+    post:
+      summary: Pipeline Execution Step Waiting Event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineExecutionStepWaitingEvent'
+      responses:
+        '200':
+          description: Event received
 
+  PipelineExecutionStepEndEvent:
+    post:
+      summary: Pipeline Execution Step End Event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineExecutionStepEndEvent'
+      responses:
+        '200':
+          description: Event received
 
-definitions:
-  Pipeline Execution Start Event:
-    type: object
-    properties:
-      event_id:
-        type: string
-        description: Unique identifier for the event.
-      event:
-        type: object
-        properties:
-          "@id":
-            type: string
-            description: A unique identifier for the event
-          "@type":
-            type: string
-            const: https://ns.adobe.com/experience/cloudmanager/event/started
-            description: The XDM event type.
-          "xdmEventEnvelope:objectType":
-            type: string
-            const: https://ns.adobe.com/experience/cloudmanager/pipeline-execution
-            description: The object type.
-          "activitystreams:published":
-            type: string
-            description: The timestamp of the event.
-            format: date-time
-          "activitystreams:to":
-            $ref: '#/definitions/Organization'
-          "activitystreams:actor":
-            $ref: '#/definitions/User'
-          "activitystreams:object":
-            $ref: '#/definitions/Pipeline Execution'
+  PipelineExecutionEndEvent:
+    post:
+      summary: Pipeline Execution End Event
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineExecutionEndEvent'
+      responses:
+        '200':
+          description: Event received
 
-  Pipeline Execution Step Start Event:
-    type: object
-    properties:
-      event_id:
-        type: string
-        description: Unique identifier for the event.
-      event:
-        type: object
-        properties:
-          "@id":
-            type: string
-            description: A unique identifier for the event
-          "@type":
-            type: string
-            const: https://ns.adobe.com/experience/cloudmanager/event/started
-            description: The XDM event type.
-          "xdmEventEnvelope:objectType":
-            type: string
-            const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
-            description: The object type.
-          "activitystreams:published":
-            type: string
-            description: The timestamp of the event.
-            format: date-time
-          "activitystreams:to":
-            $ref: '#/definitions/Organization'
-          "activitystreams:object":
-            $ref: '#/definitions/Pipeline Execution Step State'
+components:
+  schemas:
+    PipelineExecutionStartEvent:
+      type: object
+      properties:
+        event_id:
+          type: string
+          description: Unique identifier for the event.
+        event:
+          type: object
+          properties:
+            "@id":
+              type: string
+              description: A unique identifier for the event
+            "@type":
+              type: string
+              const: https://ns.adobe.com/experience/cloudmanager/event/started
+              description: The XDM event type.
+            "xdmEventEnvelope:objectType":
+              type: string
+              const: https://ns.adobe.com/experience/cloudmanager/pipeline-execution
+              description: The object type.
+            "activitystreams:published":
+              type: string
+              description: The timestamp of the event.
+              format: date-time
+            "activitystreams:to":
+              $ref: '#/components/schemas/Organization'
+            "activitystreams:actor":
+              $ref: '#/components/schemas/User'
+            "activitystreams:object":
+              $ref: '#/components/schemas/PipelineExecution'
 
-  Pipeline Execution Step Waiting Event:
-    type: object
-    properties:
-      event_id:
-        type: string
-        description: Unique identifier for the event.
-      event:
-        type: object
-        properties:
-          "@id":
-            type: string
-            description: A unique identifier for the event
-          "@type":
-            type: string
-            const: https://ns.adobe.com/experience/cloudmanager/event/waiting
-            description: The XDM event type.
-          "xdmEventEnvelope:objectType":
-            type: string
-            const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
-            description: The object type.
-          "activitystreams:published":
-            type: string
-            description: The timestamp of the event.
-            format: date-time
-          "activitystreams:to":
-            $ref: '#/definitions/Organization'
-          "activitystreams:object":
-            $ref: '#/definitions/Pipeline Execution Step State'
+    PipelineExecutionStepStartEvent:
+      type: object
+      properties:
+        event_id:
+          type: string
+          description: Unique identifier for the event.
+        event:
+          type: object
+          properties:
+            "@id":
+              type: string
+              description: A unique identifier for the event
+            "@type":
+              type: string
+              const: https://ns.adobe.com/experience/cloudmanager/event/started
+              description: The XDM event type.
+            "xdmEventEnvelope:objectType":
+              type: string
+              const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
+              description: The object type.
+            "activitystreams:published":
+              type: string
+              description: The timestamp of the event.
+              format: date-time
+            "activitystreams:to":
+              $ref: '#/components/schemas/Organization'
+            "activitystreams:object":
+              $ref: '#/components/schemas/PipelineExecutionStepState'
 
-  Pipeline Execution Step End Event:
-    type: object
-    properties:
-      event_id:
-        type: string
-        description: Unique identifier for the event.
-      event:
-        type: object
-        properties:
-          "@id":
-            type: string
-            description: A unique identifier for the event
-          "@type":
-            type: string
-            const: https://ns.adobe.com/experience/cloudmanager/event/ended
-            description: The XDM event type.
-          "xdmEventEnvelope:objectType":
-            type: string
-            const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
-            description: The object type.
-          "activitystreams:published":
-            type: string
-            description: The timestamp of the event.
-            format: date-time
-          "activitystreams:to":
-            $ref: '#/definitions/Organization'
-          "activitystreams:object":
-            $ref: '#/definitions/Pipeline Execution Step State'
+    PipelineExecutionStepWaitingEvent:
+      type: object
+      properties:
+        event_id:
+          type: string
+          description: Unique identifier for the event.
+        event:
+          type: object
+          properties:
+            "@id":
+              type: string
+              description: A unique identifier for the event
+            "@type":
+              type: string
+              const: https://ns.adobe.com/experience/cloudmanager/event/waiting
+              description: The XDM event type.
+            "xdmEventEnvelope:objectType":
+              type: string
+              const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
+              description: The object type.
+            "activitystreams:published":
+              type: string
+              description: The timestamp of the event.
+              format: date-time
+            "activitystreams:to":
+              $ref: '#/components/schemas/Organization'
+            "activitystreams:object":
+              $ref: '#/components/schemas/PipelineExecutionStepState'
 
-  Pipeline Execution End Event:
-    type: object
-    properties:
-      event_id:
-        type: string
-        description: Unique identifier for the event.
-      event:
-        type: object
-        properties:
-          "@id":
-            type: string
-            description: A unique identifier for the event
-          "@type":
-            type: string
-            const: https://ns.adobe.com/experience/cloudmanager/event/ended
-            description: The XDM event type.
-          "xdmEventEnvelope:objectType":
-            type: string
-            const: https://ns.adobe.com/experience/cloudmanager/pipeline-execution
-            description: The object type.
-          "activitystreams:published":
-            type: string
-            description: The timestamp of the event.
-            format: date-time
-          "activitystreams:to":
-            $ref: '#/definitions/Organization'
-          "activitystreams:object":
-            $ref: '#/definitions/Pipeline Execution'
+    PipelineExecutionStepEndEvent:
+      type: object
+      properties:
+        event_id:
+          type: string
+          description: Unique identifier for the event.
+        event:
+          type: object
+          properties:
+            "@id":
+              type: string
+              description: A unique identifier for the event
+            "@type":
+              type: string
+              const: https://ns.adobe.com/experience/cloudmanager/event/ended
+              description: The XDM event type.
+            "xdmEventEnvelope:objectType":
+              type: string
+              const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
+              description: The object type.
+            "activitystreams:published":
+              type: string
+              description: The timestamp of the event.
+              format: date-time
+            "activitystreams:to":
+              $ref: '#/components/schemas/Organization'
+            "activitystreams:object":
+              $ref: '#/components/schemas/PipelineExecutionStepState'
 
+    PipelineExecutionEndEvent:
+      type: object
+      properties:
+        event_id:
+          type: string
+          description: Unique identifier for the event.
+        event:
+          type: object
+          properties:
+            "@id":
+              type: string
+              description: A unique identifier for the event
+            "@type":
+              type: string
+              const: https://ns.adobe.com/experience/cloudmanager/event/ended
+              description: The XDM event type.
+            "xdmEventEnvelope:objectType":
+              type: string
+              const: https://ns.adobe.com/experience/cloudmanager/pipeline-execution
+              description: The object type.
+            "activitystreams:published":
+              type: string
+              description: The timestamp of the event.
+              format: date-time
+            "activitystreams:to":
+              $ref: '#/components/schemas/Organization'
+            "activitystreams:object":
+              $ref: '#/components/schemas/PipelineExecution'
 
-  Pipeline Execution:
-    type: object
-    properties:
-      "@id":
-        type: string
-        description: The identifier of the pipeline execution. Will always be a URL to the execution endpoint.
-      "@type":
-        type: string
-        const: https://ns.adobe.com/experience/cloudmanager/pipeline-execution
+    PipelineExecution:
+      type: object
+      properties:
+        "@id":
+          type: string
+          description: The identifier of the pipeline execution. Will always be a URL to the execution endpoint.
+        "@type":
+          type: string
+          const: https://ns.adobe.com/experience/cloudmanager/pipeline-execution
 
-  Pipeline Execution Step State:
-    type: object
-    properties:
-      "@id":
-        type: string
-        description: The identifier of the pipeline execution. Will always be a URL to the step state endpoint.
-      "@type":
-        type: string
-        const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
+    PipelineExecutionStepState:
+      type: object
+      properties:
+        "@id":
+          type: string
+          description: The identifier of the pipeline execution. Will always be a URL to the step state endpoint.
+        "@type":
+          type: string
+          const: https://ns.adobe.com/experience/cloudmanager/execution-step-state
 
-  Organization:
-    type: object
-    properties:
-      "xdmImsOrg:id":
-        type: string
-        description: An Adobe Organization Id
-      "@type":
-        type: string
-        const: xdmImsOrg
-  User:
-    type: object
-    properties:
-      "xdmImsUser:id":
-        type: string
-        description: An Adobe User Id
-      "@type":
-        type: string
-        const: xdmImsUser
+    Organization:
+      type: object
+      properties:
+        "xdmImsOrg:id":
+          type: string
+          description: An Adobe Organization Id
+        "@type":
+          type: string
+          const: xdmImsOrg
+
+    User:
+      type: object
+      properties:
+        "xdmImsUser:id":
+          type: string
+          description: An Adobe User Id
+        "@type":
+          type: string
+          const: xdmImsUser
