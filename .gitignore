@@ -29,7 +29,6 @@ yarn-error.log
 .env.*
 .cache
 public
-static
 junit.xml
 coverage
 .idea/
