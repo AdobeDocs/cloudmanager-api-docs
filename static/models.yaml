@@ -1,0 +1,3276 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: Cloud Manager API Models
+  description: Reference document for the model objects used by the Cloud Manager API.
+tags:
+  - name: Programs
+  - name: Repositories
+  - name: Branches
+  - name: Pipelines
+  - name: Pipeline Execution
+  - name: Environments
+  - name: Region Deployments
+  - name: Variables
+  - name: IP Allowlist
+  - name: IP Allowlist Binding
+  - name: Domain
+  - name: SSL Certificates
+  - name: Tenants
+  - name: Regions
+  - name: Network infrastructure
+  - name: Environment Advanced Networking Configuration
+webhooks:
+  NewFeedback_Programs:
+    post:
+      tags:
+        - Programs
+      summary: NewFeedback
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewFeedback"
+      responses:
+        "200":
+          description: Schema definition
+  NewProgram_Programs:
+    post:
+      tags:
+        - Programs
+      summary: NewProgram
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewProgram"
+      responses:
+        "200":
+          description: Schema definition
+  NewRelicSubAccountUser_Programs:
+    post:
+      tags:
+        - Programs
+      summary: NewRelicSubAccountUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewRelicSubAccountUser"
+      responses:
+        "200":
+          description: Schema definition
+  NewRelicSubAccountUserlist_Programs:
+    post:
+      tags:
+        - Programs
+      summary: NewRelicSubAccountUserlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewRelicSubAccountUserlist"
+      responses:
+        "200":
+          description: Schema definition
+  Program_Programs:
+    post:
+      tags:
+        - Programs
+      summary: Program
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Program"
+      responses:
+        "200":
+          description: Schema definition
+  ProgramList_Programs:
+    post:
+      tags:
+        - Programs
+      summary: ProgramList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProgramList"
+      responses:
+        "200":
+          description: Schema definition
+  Repository_Repositories:
+    post:
+      tags:
+        - Repositories
+      summary: Repository
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Repository"
+      responses:
+        "200":
+          description: Schema definition
+  RepositoryList_Repositories:
+    post:
+      tags:
+        - Repositories
+      summary: RepositoryList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RepositoryList"
+      responses:
+        "200":
+          description: Schema definition
+  BranchList_Branches:
+    post:
+      tags:
+        - Branches
+      summary: BranchList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BranchList"
+      responses:
+        "200":
+          description: Schema definition
+  Pipeline_Pipelines:
+    post:
+      tags:
+        - Pipelines
+      summary: Pipeline
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pipeline"
+      responses:
+        "200":
+          description: Schema definition
+  PipelineList_Pipelines:
+    post:
+      tags:
+        - Pipelines
+      summary: PipelineList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PipelineList"
+      responses:
+        "200":
+          description: Schema definition
+  PipelineUpdate_Pipelines:
+    post:
+      tags:
+        - Pipelines
+      summary: PipelineUpdate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PipelineUpdate"
+      responses:
+        "200":
+          description: Schema definition
+  PipelineExecution_PipelineExecution:
+    post:
+      tags:
+        - Pipeline Execution
+      summary: PipelineExecution
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PipelineExecution"
+      responses:
+        "200":
+          description: Schema definition
+  PipelineExecutionListRepresentation_PipelineExecution:
+    post:
+      tags:
+        - Pipeline Execution
+      summary: PipelineExecutionListRepresentation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PipelineExecutionListRepresentation"
+      responses:
+        "200":
+          description: Schema definition
+  PipelineExecutionStepState_PipelineExecution:
+    post:
+      tags:
+        - Pipeline Execution
+      summary: PipelineExecutionStepState
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PipelineExecutionStepState"
+      responses:
+        "200":
+          description: Schema definition
+  PipelineStepMetrics_PipelineExecution:
+    post:
+      tags:
+        - Pipeline Execution
+      summary: PipelineStepMetrics
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PipelineStepMetrics"
+      responses:
+        "200":
+          description: Schema definition
+  SystemUnderMaintenanceExceptionMapper_PipelineExecution:
+    post:
+      tags:
+        - Pipeline Execution
+      summary: SystemUnderMaintenanceExceptionMapper
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SystemUnderMaintenanceExceptionMapper"
+      responses:
+        "200":
+          description: Schema definition
+  Environment_Environments:
+    post:
+      tags:
+        - Environments
+      summary: Environment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Environment"
+      responses:
+        "200":
+          description: Schema definition
+  EnvironmentList_Environments:
+    post:
+      tags:
+        - Environments
+      summary: EnvironmentList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnvironmentList"
+      responses:
+        "200":
+          description: Schema definition
+  EnvironmentLogs_Environments:
+    post:
+      tags:
+        - Environments
+      summary: EnvironmentLogs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnvironmentLogs"
+      responses:
+        "200":
+          description: Schema definition
+  NewEnvironment_Environments:
+    post:
+      tags:
+        - Environments
+      summary: NewEnvironment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewEnvironment"
+      responses:
+        "200":
+          description: Schema definition
+  NewRegionDeployment_RegionDeployments:
+    post:
+      tags:
+        - Region Deployments
+      summary: NewRegionDeployment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewRegionDeployment"
+      responses:
+        "200":
+          description: Schema definition
+  RegionDeployment_RegionDeployments:
+    post:
+      tags:
+        - Region Deployments
+      summary: RegionDeployment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegionDeployment"
+      responses:
+        "200":
+          description: Schema definition
+  RegionDeploymentDeletion_RegionDeployments:
+    post:
+      tags:
+        - Region Deployments
+      summary: RegionDeploymentDeletion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegionDeploymentDeletion"
+      responses:
+        "200":
+          description: Schema definition
+  RegionDeploymentList_RegionDeployments:
+    post:
+      tags:
+        - Region Deployments
+      summary: RegionDeploymentList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegionDeploymentList"
+      responses:
+        "200":
+          description: Schema definition
+  EnvironmentVariableUpdate_Variables:
+    post:
+      tags:
+        - Variables
+      summary: EnvironmentVariableUpdate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnvironmentVariableUpdate"
+      responses:
+        "200":
+          description: Schema definition
+  PipelineVariableUpdate_Variables:
+    post:
+      tags:
+        - Variables
+      summary: PipelineVariableUpdate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PipelineVariableUpdate"
+      responses:
+        "200":
+          description: Schema definition
+  VariableList_Variables:
+    post:
+      tags:
+        - Variables
+      summary: VariableList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VariableList"
+      responses:
+        "200":
+          description: Schema definition
+  Createanewipallowlist_IPAllowlist:
+    post:
+      tags:
+        - IP Allowlist
+      summary: Createanewipallowlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Createanewipallowlist"
+      responses:
+        "200":
+          description: Schema definition
+  IPAllowedList_IPAllowlist:
+    post:
+      tags:
+        - IP Allowlist
+      summary: IPAllowedList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IPAllowedList"
+      responses:
+        "200":
+          description: Schema definition
+  IPAllowlistList_IPAllowlist:
+    post:
+      tags:
+        - IP Allowlist
+      summary: IPAllowlistList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IPAllowlistList"
+      responses:
+        "200":
+          description: Schema definition
+  Updateanipallowlist_IPAllowlist:
+    post:
+      tags:
+        - IP Allowlist
+      summary: Updateanipallowlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Updateanipallowlist"
+      responses:
+        "200":
+          description: Schema definition
+  IPAllowedListBinding_IPAllowlistBinding:
+    post:
+      tags:
+        - IP Allowlist Binding
+      summary: IPAllowedListBinding
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IPAllowedListBinding"
+      responses:
+        "200":
+          description: Schema definition
+  IPAllowlistBindingsList_IPAllowlistBinding:
+    post:
+      tags:
+        - IP Allowlist Binding
+      summary: IPAllowlistBindingsList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/IPAllowlistBindingsList"
+      responses:
+        "200":
+          description: Schema definition
+  Domain_Domain:
+    post:
+      tags:
+        - Domain
+      summary: Domain
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Domain"
+      responses:
+        "200":
+          description: Schema definition
+  DomainCreate_Domain:
+    post:
+      tags:
+        - Domain
+      summary: DomainCreate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DomainCreate"
+      responses:
+        "200":
+          description: Schema definition
+  DomainTokenValidationBody_Domain:
+    post:
+      tags:
+        - Domain
+      summary: DomainTokenValidationBody
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DomainTokenValidationBody"
+      responses:
+        "200":
+          description: Schema definition
+  UpdateaDomain'snameorlabel_Domain:
+    post:
+      tags:
+        - Domain
+      summary: UpdateaDomain'snameorlabel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateaDomain'snameorlabel"
+      responses:
+        "200":
+          description: Schema definition
+  AllSSLCertificatesList_SSLCertificates:
+    post:
+      tags:
+        - SSL Certificates
+      summary: AllSSLCertificatesList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AllSSLCertificatesList"
+      responses:
+        "200":
+          description: Schema definition
+  CreateDvCertificateBody_SSLCertificates:
+    post:
+      tags:
+        - SSL Certificates
+      summary: CreateDvCertificateBody
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDvCertificateBody"
+      responses:
+        "200":
+          description: Schema definition
+  CreateOrUpdateSslCertificateBody_SSLCertificates:
+    post:
+      tags:
+        - SSL Certificates
+      summary: CreateOrUpdateSslCertificateBody
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrUpdateSslCertificateBody"
+      responses:
+        "200":
+          description: Schema definition
+  SslCertificate_SSLCertificates:
+    post:
+      tags:
+        - SSL Certificates
+      summary: SslCertificate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SslCertificate"
+      responses:
+        "200":
+          description: Schema definition
+  SslCertificateNotFoundException_SSLCertificates:
+    post:
+      tags:
+        - SSL Certificates
+      summary: SslCertificateNotFoundException
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SslCertificateNotFoundException"
+      responses:
+        "200":
+          description: Schema definition
+  SslCertificateRepresentation_SSLCertificates:
+    post:
+      tags:
+        - SSL Certificates
+      summary: SslCertificateRepresentation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SslCertificateRepresentation"
+      responses:
+        "200":
+          description: Schema definition
+  Tenant_Tenants:
+    post:
+      tags:
+        - Tenants
+      summary: Tenant
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Tenant"
+      responses:
+        "200":
+          description: Schema definition
+  TenantList_Tenants:
+    post:
+      tags:
+        - Tenants
+      summary: TenantList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TenantList"
+      responses:
+        "200":
+          description: Schema definition
+  RegionsList_Regions:
+    post:
+      tags:
+        - Regions
+      summary: RegionsList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegionsList"
+      responses:
+        "200":
+          description: Schema definition
+  NetworkInfrastructure_Networkinfrastructure:
+    post:
+      tags:
+        - Network infrastructure
+      summary: NetworkInfrastructure
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NetworkInfrastructure"
+      responses:
+        "200":
+          description: Schema definition
+  NetworkInfrastructuresList_Networkinfrastructure:
+    post:
+      tags:
+        - Network infrastructure
+      summary: NetworkInfrastructuresList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NetworkInfrastructuresList"
+      responses:
+        "200":
+          description: Schema definition
+  AdvancedNetworkingConfigurationList_EnvironmentAdvancedNetworkingConfiguration:
+    post:
+      tags:
+        - Environment Advanced Networking Configuration
+      summary: AdvancedNetworkingConfigurationList
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AdvancedNetworkingConfigurationList"
+      responses:
+        "200":
+          description: Schema definition
+  EnableAdvancedNetworkingConfiguration_EnvironmentAdvancedNetworkingConfiguration:
+    post:
+      tags:
+        - Environment Advanced Networking Configuration
+      summary: EnableAdvancedNetworkingConfiguration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnableAdvancedNetworkingConfiguration"
+      responses:
+        "200":
+          description: Schema definition
+components:
+  schemas:
+    AdvancedNetworkingConfiguration:
+      type: object
+      properties:
+        programId:
+          type: string
+          example: "14"
+          description: Identifier of the program. Unique within the space.
+          readOnly: true
+        environmentId:
+          type: string
+          description: Identifier of the environment. Unique within the space.
+          readOnly: true
+        networkInfrastructureId:
+          type: string
+          example: "123"
+          description: Advanced network infrastructure used.
+          readOnly: true
+        nonProxyHosts:
+          type: array
+          description: A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a ''*'' for wildcards.
+          items:
+            type: string
+          example:
+            - "*.example.com"
+            - "*.example.net"
+        portForwards:
+          type: array
+          description: List of port forwarding rules
+          items:
+            $ref: "#/components/schemas/PortForwardRepresentation"
+        advancedNetworkingEnabled:
+          type: boolean
+          description: Whether advanced networking is enabled in this environment
+          default: false
+          readOnly: true
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: Describes the Advanced Networking configuration for an environment
+    AdvancedNetworkingConfigurationList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            networkingConfigurations:
+              type: array
+              items:
+                $ref: "#/components/schemas/AdvancedNetworkingConfiguration"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    AllSSLCertificatesList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _page:
+          $ref: "#/components/schemas/RequestedPageDetails"
+          description: Details of the requested page of items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            certificates:
+              type: array
+              items:
+                $ref: "#/components/schemas/SslCertificateRepresentation"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            page:
+              $ref: "#/components/schemas/HalLink"
+              description: An arbitrary page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    BranchList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            branches:
+              type: array
+              items:
+                $ref: "#/components/schemas/RepositoryBranch"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    CreateDvCertificateBody:
+      type: object
+      required:
+        - domainIds
+      properties:
+        name:
+          type: string
+          example: my-cert
+          description: Name of the certificate
+        domainIds:
+          type: array
+          description: List of domain IDs to associate with the certificate
+          items:
+            type: integer
+            format: int64
+    CreateOrUpdateSslCertificateBody:
+      type: object
+      required:
+        - name
+        - certificate
+        - privateKey
+        - chain
+      properties:
+        name:
+          type: string
+          description: The name of the new SSL Certificate.
+        certificate:
+          type: string
+          description: The PEM-encoded certificate.
+        privateKey:
+          type: object
+          properties:
+            value:
+              type: string
+              description: Private key value
+          description: The PEM-encoded private key.
+        chain:
+          type: string
+          description: The PEM-encoded certificate chain.
+    Createanewipallowlist:
+      type: object
+      required:
+        - ipCidrSet
+        - name
+      properties:
+        name:
+          type: string
+          example: NewYork Office
+          description: Name of the IP Allowed List
+        ipCidrSet:
+          type: array
+          example: "[\"11.22.33.44/28\", \"99.88.77.66/32\"]"
+          description: IP CIDR Set
+          uniqueItems: true
+          items:
+            type: string
+          maxItems: 50
+          minItems: 1
+    DnsConfiguration:
+      type: object
+      required:
+        - resolvers
+      properties:
+        resolvers:
+          type: array
+          description: List of remote DNS resolvers
+          items:
+            type: string
+      description: DNS Information. Only applicable to VPN infrastructures.
+    Domain:
+      type: object
+      required:
+        - label
+        - programId
+      properties:
+        deleted:
+          type: boolean
+          default: false
+        id:
+          type: integer
+          format: int64
+          description: id
+        domainName:
+          type: string
+          example: customer.domain.com
+          description: Name of the domain name
+        label:
+          type: string
+          description: Domain label
+        programId:
+          type: integer
+          format: int64
+          description: Id of the program
+        createdAt:
+          type: integer
+          format: int64
+          description: Create date
+        updatedAt:
+          type: integer
+          format: int64
+          description: Last updated date
+        deletedAt:
+          type: integer
+          format: int64
+          description: Deleted At
+        acmeValidationStatus:
+          type: string
+          example: NOT_VERIFIED
+          description: Acme Validation Status
+        adobeValidationStatus:
+          type: string
+          example: NOT_VERIFIED
+          description: Adobe Validation Status
+        acmeValidationToken:
+          type: string
+          description: Acme Validation Token
+        adobeValidationToken:
+          type: string
+          description: Adobe Validation Token
+      description: A Domain representation
+    DomainCreate:
+      type: object
+      properties:
+        domainName:
+          type: string
+          example: customer.domain.com
+          description: Name of the domain name
+      description: A Domain representation for creating a domain
+    DomainTokenValidationBody:
+      type: object
+      properties:
+        validationType:
+          type: string
+          example: acme
+          description: Type of the validation
+          enum:
+            - acme
+            - adobe
+      description: The json body for token validation
+    EmbeddedProgram:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "14"
+          description: Identifier of the program. Unique within the space.
+          readOnly: true
+        name:
+          type: string
+          example: AcmeCorp Main Site
+          description: Name of the program
+          readOnly: true
+        enabled:
+          type: boolean
+          description: Whether this Program has been enabled for Cloud Manager usage
+          default: false
+          readOnly: true
+        tenantId:
+          type: string
+          example: acmeCorp
+          description: Tenant Id
+          readOnly: true
+        status:
+          type: string
+          description: Status of the program
+          enum:
+            - creating
+            - ready
+            - deleting
+            - deleted
+            - deleted_failed
+            - failed
+        createdAt:
+          type: string
+          format: date-time
+          description: Created time
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date of last change
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/tenant:
+              description: The tenant this program belongs to
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: A lightweight representation of a Program
+    EnableAdvancedNetworkingConfiguration:
+      type: object
+      properties:
+        nonProxyHosts:
+          type: array
+          description: A list of hosts that should be reached directly, bypassing the special VPN or egress routing. The patterns may start or end with a ''*'' for wildcards.
+          items:
+            type: string
+          example:
+            - "*.example.com"
+            - "*.example.net"
+        portForwards:
+          type: array
+          description: List of port forwarding rules
+          items:
+            $ref: "#/components/schemas/PortForwardRepresentation"
+    Environment:
+      type: object
+      properties:
+        id:
+          type: string
+          description: id
+        programId:
+          type: string
+          example: "14"
+          description: Identifier of the program. Unique within the space.
+        name:
+          type: string
+          example: AcmeCorp Dev1 Environment
+          description: Name of the environment
+          pattern: (?=.*[a-zA-Z])[-+!'"/#$%&*.,;()@-} 0-9]*
+        description:
+          type: string
+          example: This is our primary development environment
+          description: Description of the environment
+        type:
+          type: string
+          example: dev
+          description: Type of the environment
+          enum:
+            - dev
+            - stage
+            - prod
+            - rde
+            - preprod
+        status:
+          type: string
+          example: creating
+          description: Status of the environment
+          enum:
+            - creating
+            - ready
+            - deleting
+            - deleted
+            - updating
+            - failed
+            - deploy_failed
+            - created
+            - restoring
+            - restore_failed
+            - resetting
+            - reset_failed
+            - degraded
+            - hibernated
+        region:
+          type: string
+          example: va7
+          description: Region of the environment
+        availableLogOptions:
+          type: array
+          description: List of logs available in the environment
+          items:
+            $ref: "#/components/schemas/LogOptionRepresentation"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/program:
+              description: The Program this environment belongs to.
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/pipeline:
+              description: The Pipeline this environment is assigned to, if any
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/author:
+              description: Author URL
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/publish:
+              description: Publish URL
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/preview:
+              description: Publish URL
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/developerConsole:
+              description: Developer Console URL
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/logs:
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/variables:
+              description: Custom environment variables
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/advancedNetworking:
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: A representation of an Environment known to Cloud Manager.
+    EnvironmentBlobStorageConfiguration:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - azure_blob
+            - azure_files
+            - mongo_atlas
+      description: Settings for environment blob storage
+    EnvironmentList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            environments:
+              type: array
+              items:
+                $ref: "#/components/schemas/Environment"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    EnvironmentLog:
+      type: object
+      properties:
+        service:
+          type: string
+          example: author
+          description: Name of the service
+        name:
+          type: string
+          example: aemerror
+          description: Name of the Log
+        date:
+          type: string
+          example: "2019-04-05"
+          description: date of the Log
+          format: date
+        programId:
+          type: integer
+          format: int64
+        environmentId:
+          type: integer
+          format: int64
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/logs/download:
+              description: Download Logs link
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/logs/tail:
+              description: Tail Log link
+              $ref: "#/components/schemas/HalLink"
+      description: Log from Environment
+    EnvironmentLogStorageConfiguration:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - azure_blob
+            - azure_files
+            - mongo_atlas
+      description: Settings for environment log storage
+    EnvironmentLogs:
+      type: object
+      properties:
+        service:
+          type: array
+          example: author
+          description: Name of the service
+          items:
+            type: string
+        name:
+          type: array
+          example: aemerror
+          description: Name of the Log
+          items:
+            type: string
+        days:
+          type: integer
+          format: int32
+          example: 2
+          description: Number of days
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/program:
+              description: The Application this environment belongs to.
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            downloads:
+              type: array
+              description: Links to logs
+              items:
+                $ref: "#/components/schemas/EnvironmentLog"
+      description: Logs of an Environment
+    EnvironmentRegionintegrations:
+      type: object
+      properties:
+        blobStorage:
+          $ref: "#/components/schemas/EnvironmentBlobStorageConfiguration"
+        logStorage:
+          $ref: "#/components/schemas/EnvironmentLogStorageConfiguration"
+      description: integrations for a particular EnvironmentRegion
+    EnvironmentVariableUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: MY_VAR1
+          description: Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number.
+          minLength: 2
+          maxLength: 100
+          pattern: "[a-zA-Z_][a-zA-Z_0-9]*"
+        value:
+          type: string
+          example: myValue
+          description: Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted.
+          minLength: 0
+          maxLength: 2048
+        type:
+          type: string
+          example: string
+          description: Type of the variable. Default `string` if missing. `secretString` variables are encrypted at rest. The type of a variable be changed after creation; the variable must be deleted and recreated.
+          enum:
+            - string
+            - secretString
+        service:
+          type: string
+          example: author
+          description: Service of the variable. When not provided, the variable applies to all services. Currently the values 'author', 'publish', and 'preview' are supported. Note - this value is case-sensitive.
+      description: A change (create, update, delete) of a named value on an Environment
+    ErrorDetailsRepresentation:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          description: The error code
+          readOnly: true
+        publicDetails:
+          type: object
+          description: Additional error details that can be used by customer
+          additionalProperties:
+            type: object
+          readOnly: true
+        message:
+          type: string
+          description: Human readable error message
+          readOnly: true
+    GatewayInfrastructure:
+      type: object
+      required:
+        - address
+        - addressSpace
+      properties:
+        address:
+          type: string
+          description: Customer VPN Device IP Address
+        addressSpace:
+          type: array
+          description: IP Ranges to route through the VPN
+          items:
+            type: string
+    GoLiveDates:
+      type: object
+      properties:
+        plannedDate:
+          type: string
+          description: Date when go live is planned
+        actualDate:
+          type: string
+          description: Date when the program completed go live
+      description: Contains planned and actual go live dates of a program
+    HalLink:
+      type: object
+      properties:
+        href:
+          type: string
+        templated:
+          type: boolean
+          default: false
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        title:
+          type: string
+        hreflang:
+          type: string
+        name:
+          type: string
+    IPAllowedList:
+      type: object
+      required:
+        - ipCidrSet
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 14
+          description: Identifier of the IP Allowed List
+        name:
+          type: string
+          example: NewYork Office
+          description: Name of the IP Allowed List
+        programId:
+          type: integer
+          format: int64
+          example: 22
+          description: Identifier of the program.
+        ipCidrSet:
+          type: array
+          example: "[\"11.22.33.44/28\", \"99.88.77.66/32\"]"
+          description: IP CIDR Set
+          uniqueItems: true
+          items:
+            type: string
+          maxItems: 50
+          minItems: 1
+        bindings:
+          type: array
+          description: IP Allowlist bindings
+          items:
+            $ref: "#/components/schemas/IPAllowedListBinding"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/ipAllowlistBindings:
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/program:
+              description: The Application this environment belongs to.
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: Describes an __IP Allowed List__
+    IPAllowedListBinding:
+      type: object
+      required:
+        - environmentId
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 14
+          description: Identifier of the IP Allowed List Binding to an Environment
+        tier:
+          type: string
+          example: publish
+          description: Tier of the environment.
+          enum:
+            - PUBLISH
+            - PREVIEW
+        status:
+          type: string
+          example: NOT_STARTED
+          description: Status of the binding.
+        programId:
+          type: integer
+          format: int64
+          example: 22
+          description: Identifier of the program.
+        ipAllowListId:
+          type: integer
+          format: int64
+          example: 17
+          description: Identifier of the IP allow list.
+        environmentId:
+          type: integer
+          format: int64
+          example: 5
+          description: Identifier of the environment.
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/program:
+              description: The Application this environment belongs to.
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/ipAllowList:
+              description: IpAllowList to be binded to the environment.
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: Describes an __IP Allowed List Binding__
+    IPAllowlistBindingsList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        ipAllowlistId:
+          type: string
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            ipAllowlistBindings:
+              type: array
+              items:
+                $ref: "#/components/schemas/IPAllowedListBinding"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    IPAllowlistList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            ipAllowlists:
+              type: array
+              items:
+                $ref: "#/components/schemas/IPAllowedList"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    IpSecPolicyInfrastructure:
+      type: object
+      required:
+        - dhGroup
+        - ikeEncryption
+        - ikeIntegrity
+        - ipsecEncryption
+        - ipsecIntegrity
+        - pfsGroup
+        - saDatasize
+        - saLifetime
+      properties:
+        dhGroup:
+          type: string
+          description: DH Group
+          enum:
+            - DHGroup24
+            - ECP384
+            - ECP256
+            - DHGroup14
+            - DHGroup2048
+            - DHGroup2
+            - DHGroup1
+            - None
+        ikeEncryption:
+          type: string
+          description: IKEv2 Encryption
+          enum:
+            - AES256
+            - AES192
+            - AES128
+            - DES3
+            - DES
+        ikeIntegrity:
+          type: string
+          description: IKEv2 Integrity
+          enum:
+            - SHA384
+            - SHA256
+            - SHA1
+            - MD5
+        ipsecEncryption:
+          type: string
+          description: IPsec Encryption
+          enum:
+            - GCMAES256
+            - GCMAES192
+            - GCMAES128
+            - AES256
+            - AES192
+            - AES128
+            - DES3
+            - DES
+            - None
+        ipsecIntegrity:
+          type: string
+          description: IPsec Integrity
+          enum:
+            - GCMAES256
+            - GCMAES192
+            - GCMAES128
+            - SHA256
+            - SHA1
+            - MD5
+        pfsGroup:
+          type: string
+          description: PFS Group
+          enum:
+            - PFS24
+            - ECP384
+            - ECP256
+            - PFS2048
+            - PFS2
+            - PFS1
+            - None
+        saDatasize:
+          type: integer
+          format: int64
+          description: QM SA Lifetime in KBytes under 1024
+          minimum: 1024
+        saLifetime:
+          type: integer
+          format: int32
+          description: QM SA Lifetime in Seconds, minimum 300
+          minimum: 300
+    LogOptionRepresentation:
+      type: object
+      required:
+        - name
+        - service
+      properties:
+        service:
+          type: string
+          description: "Name of the service in environment. Example: author"
+        name:
+          type: string
+          description: "Name of the log for service in environment. Example: aemerror"
+    Metric:
+      type: object
+      properties:
+        id:
+          type: string
+          description: KPI result identifier
+        severity:
+          type: string
+          description: Severity of the metric
+          enum:
+            - critical
+            - important
+            - informational
+        passed:
+          type: boolean
+          description: Whether metric is considered passed
+          default: false
+        override:
+          type: boolean
+          description: Whether user override the failed metric
+          default: false
+        actualValue:
+          type: string
+          description: Expected value for the metric
+        expectedValue:
+          type: string
+          description: Expected value for the metric
+        comparator:
+          type: string
+          description: Comparator used for the metric
+          enum:
+            - GT
+            - GTE
+            - LT
+            - LTE
+            - EQ
+            - NEQ
+        kpi:
+          type: string
+          description: KPI identifier
+      description: A representation of a specific metric generated by a CI/CD Pipeline step.
+    NetworkInfrastructure:
+      type: object
+      required:
+        - kind
+        - region
+      properties:
+        kind:
+          type: string
+          description: Kind of the infrastructure
+          enum:
+            - vpn
+            - dedicatedEgressIp
+            - flexiblePortEgress
+        id:
+          type: string
+          description: id
+          readOnly: true
+        programId:
+          type: string
+          example: "14"
+          description: Identifier of the program. Unique within the space.
+          readOnly: true
+        status:
+          type: string
+          example: creating
+          description: Status of the network configuration
+          enum:
+            - creating
+            - failed
+            - updating
+            - deleting
+            - deleted
+            - ready
+            - error
+          readOnly: true
+        region:
+          type: string
+          example: va6
+          description: Region to create the infrastructure. Use your primary region, whose identifier can be retrieved from the [List Regions endpoint](#operation/getProgramRegions).
+        isPrimaryRegion:
+          type: boolean
+          description: Boolean property to mark whether network infrastructure being created is for primary region or not.
+          default: false
+        created:
+          type: string
+          format: date-time
+          description: Creation date
+          readOnly: true
+        updated:
+          type: string
+          format: date-time
+          description: Last modification date
+          readOnly: true
+        addressSpace:
+          type: array
+          description: A list of CIDRs. It can only be one /26 CIDR (64 IP addresses) or bigger IP range in the customer space. Cannot be changed later. Only applicable to VPN.
+          items:
+            type: string
+        dns:
+          description: DNS Information. Only applicable to VPN infrastructures.
+          $ref: "#/components/schemas/DnsConfiguration"
+        connections:
+          type: array
+          description: List of VPN connections
+          items:
+            $ref: "#/components/schemas/VpnConnection"
+        statusDetails:
+          description: Error details. Present only when failed operations.
+          $ref: "#/components/schemas/ErrorDetailsRepresentation"
+          readOnly: true
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/program:
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: An network infrastructure representation
+    NetworkInfrastructuresList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            networkInfrastructures:
+              type: array
+              items:
+                $ref: "#/components/schemas/NetworkInfrastructure"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    NewEnvironment:
+      type: object
+      description: Description of a new program to be created
+      required:
+        - name
+        - region
+        - type
+      properties:
+        name:
+          type: string
+          example: acme-dev1
+          description: Name of the environment
+        type:
+          type: string
+          enum:
+            - dev
+            - stage
+            - prod
+            - rde
+        region:
+          type: string
+          example: va7
+          description: Region to create the environment.
+        description:
+          type: string
+          example: This is our primary development environment
+          description: Description of the environment
+    NewFeedback:
+      type: object
+      required:
+        - rating
+        - type
+      properties:
+        createdAt:
+          type: string
+          description: Created time
+        id:
+          type: integer
+          description: Identifier of the feedback. Unique within the space.
+        rating:
+          type: integer
+          description: Rating values from 1 to 5
+        comment:
+          type: string
+          description: Feedback comment
+        type:
+          type: string
+          description: Type of feedback
+          enum:
+            - GO_LIVE
+        options:
+          type: object
+          description: Optional information about the feedback
+      description: Describes feedback
+    NewProgram:
+      type: object
+      required:
+        - name
+        - type
+      description: Description of a new program to be created
+      properties:
+        name:
+          type: string
+          description: New program name
+          minLength: 0
+          maxLength: 64
+        type:
+          type: string
+          enum:
+            - aem_cloud_service
+        capabilities:
+          $ref: "#/components/schemas/ProgramCapabilities"
+        solutionNames:
+          type: array
+          description: List of solutions to be enabled on the new program.
+          items:
+            type: string
+            enum:
+              - aemsites
+              - aemassets
+        goLive:
+          description: Go live dates
+          $ref: "#/components/schemas/GoLiveDates"
+    NewRegionDeployment:
+      type: object
+      description: Description of a new region deployment to be added in the environment
+      required:
+        - region
+      properties:
+        region:
+          type: string
+          example: va7
+          description: Region to be added in the environment
+    NewRelicSub-AccountUser:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "42"
+          description: Identifier of the New Relic sub account User
+        firstName:
+          type: string
+          example: John
+          description: First name of the New Relic sub account User
+        lastName:
+          type: string
+          example: Doe
+          description: Last name of the New Relic sub account User
+        email:
+          type: string
+          example: foobar@newrelic.com
+          description: email of the New Relic sub account user
+        role:
+          type: string
+          example: admin
+          description: Role of the New Relic sub account user
+        owner:
+          type: boolean
+          example: false
+          description: Owner detail of the New Relic sub account User
+          default: false
+      description: Describes __New Relic Sub-Account User__
+    NewRelicSubAccountUser:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "42"
+          description: Identifier of the New Relic sub account User
+        firstName:
+          type: string
+          example: John
+          description: First name of the New Relic sub account User
+        lastName:
+          type: string
+          example: Doe
+          description: Last name of the New Relic sub account User
+        email:
+          type: string
+          example: foobar@newrelic.com
+          description: email of the New Relic sub account user
+        role:
+          type: string
+          example: admin
+          description: Role of the New Relic sub account user
+        owner:
+          type: boolean
+          example: false
+          description: Owner detail of the New Relic sub account User
+          default: false
+      description: Describes __New Relic Sub-Account User__
+    NewRelicSubAccountUserlist:
+      type: object
+      properties:
+        _totalNumberOfNewRelicSubAccountUsers:
+          type: integer
+          format: int32
+        applicationId:
+          type: string
+          example: "44"
+          description: The id of the Cloud Manager application this sub account user list is linked to
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            newRelicUsers:
+              type: array
+              items:
+                $ref: "#/components/schemas/NewRelicSub-AccountUser"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/application:
+              description: Application linked to this New Relic sub account
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/newRelicSubAccount:
+              description: New Relic sub account linked to the New Relic sub account User list
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: List of New Relic sub account users
+    Organisation:
+      type: object
+      properties:
+        organizationName:
+          type: string
+          example: adobecloudmanager-acmeCorp
+          description: Name of the git repository organization
+          minLength: 0
+          maxLength: 50
+        status:
+          type: string
+          example: creating
+          description: Status of the organisation on-boarding process
+          enum:
+            - not_started
+            - creating
+            - ready
+            - failed
+      description: Organisation details
+    Pipeline:
+      type: object
+      required:
+        - name
+        - phases
+      properties:
+        id:
+          type: string
+          example: "29"
+          description: Identifier of the pipeline. Unique within the program.
+        programId:
+          type: string
+          example: "14"
+          description: Identifier of the program. Unique within the space.
+        name:
+          type: string
+          example: AcmeCorp Main Pipeline
+          description: Name of the pipeline
+          minLength: 1
+          maxLength: 64
+        trigger:
+          type: string
+          example: MANUAL
+          description: "How should the execution be triggered. ON_COMMIT: each time one or more commits are pushed and the Pipeline is idle then a execution is triggered. MANUAL: triggerd through UI or API."
+          enum:
+            - ON_COMMIT
+            - MANUAL
+        status:
+          type: string
+          example: IDLE
+          description: Pipeline status
+          enum:
+            - IDLE
+            - BUSY
+            - WAITING
+        createdAt:
+          type: string
+          format: date-time
+          description: Create date
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          description: Update date
+          readOnly: true
+        lastStartedAt:
+          type: string
+          format: date-time
+          description: Last pipeline execution start
+          readOnly: true
+        lastFinishedAt:
+          type: string
+          format: date-time
+          description: Last pipeline execution end
+          readOnly: true
+        phases:
+          type: array
+          description: Pipeline phases in execution order
+          items:
+            $ref: "#/components/schemas/PipelinePhase"
+          maxItems: 100
+          minItems: 1
+        type:
+          type: string
+          example: CI_CD
+          description: Pipeline type
+          enum:
+            - CI_CD
+            - CODE_GENERATOR
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/program:
+              description: The Program this pipeline belongs to.
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/execution:
+              description: Current pipeline execution if any
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/execution/id:
+              description: Get pipeline execution by id
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/executions:
+              description: Get all historic executions for this pipeline.
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/variables:
+              description: Custom pipeline variables
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/rollbackLastSuccessfulExecution:
+              description: Start a CI/CD rollback execution
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/cache:
+              description: Pipeline cache
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: A representation of a CI/CD Pipeline
+    PipelineExecution:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Pipeline execution identifier
+        programId:
+          type: string
+          example: "14"
+          description: Identifier of the program. Unique within the space.
+          readOnly: true
+        pipelineId:
+          type: string
+          example: "10"
+          description: Identifier of the pipeline. Unique within the space.
+          readOnly: true
+        artifactsVersion:
+          type: string
+          description: Version of the artifacts generated during this execution
+        user:
+          type: string
+          example: 0123456789ABCDE@AdobeID
+          description: AdobeID who started the pipeline. Empty for auto triggered builds
+        status:
+          type: string
+          description: Status of the execution
+          enum:
+            - NOT_STARTED
+            - RUNNING
+            - CANCELLING
+            - CANCELLED
+            - FINISHED
+            - ERROR
+            - FAILED
+        trigger:
+          type: string
+          description: How the execution was triggered.
+          enum:
+            - ON_COMMIT
+            - MANUAL
+            - PUSH_UPGRADES
+        pipelineExecutionMode:
+          type: string
+          description: The mode in which the execution occurred. EMERGENCY mode will skip certain steps and is only available to select AMS customers
+          enum:
+            - NORMAL
+            - EMERGENCY
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp at which the execution was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp at which the status of the execution last changed
+        finishedAt:
+          type: string
+          format: date-time
+          description: Timestamp at which the execution completed
+        pipelineType:
+          type: string
+          example: CI_CD
+          description: Pipeline type
+          enum:
+            - CI_CD
+            - CODE_GENERATOR
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            stepStates:
+              type: array
+              items:
+                $ref: "#/components/schemas/PipelineExecutionStepState"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/program:
+              description: Get the program of the execution
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/pipeline:
+              description: Get the pipeline of the execution
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: A representation of an execution of a CI/CD Pipeline.
+    PipelineExecutionListRepresentation:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _page:
+          $ref: "#/components/schemas/RequestedPageDetails"
+          description: Details of the requested page of items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            executions:
+              type: array
+              items:
+                $ref: "#/components/schemas/PipelineExecution"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            page:
+              $ref: "#/components/schemas/HalLink"
+              description: An arbitrary page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: List of pipeline executions
+    PipelineExecutionStepState:
+      type: object
+      properties:
+        id:
+          type: string
+        stepId:
+          type: string
+        phaseId:
+          type: string
+        action:
+          type: string
+          example: build
+          description: Name of the action
+        repository:
+          type: string
+          description: Target repository
+        branch:
+          type: string
+          description: Target branch
+        environment:
+          type: string
+          description: Target environment
+        environmentId:
+          type: string
+          description: Target environment id
+        environmentType:
+          type: string
+          description: Target environment type
+        startedAt:
+          type: string
+          format: date-time
+          description: Timestamp at which the step state started running
+        finishedAt:
+          type: string
+          format: date-time
+          description: Timestamp at which the step completed
+        commitId:
+          type: string
+          description: Target commit id
+        details:
+          type: object
+          description: Additional details of the step
+          $ref: "#/components/schemas/PipelineExecutionStepStateDetails"
+        status:
+          type: string
+          example: NOT_STARTED
+          description: Action status
+          enum:
+            - NOT_STARTED
+            - RUNNING
+            - FINISHED
+            - ERROR
+            - ROLLING_BACK
+            - ROLLED_BACK
+            - WAITING
+            - CANCELLED
+            - FAILED
+            - INCOMPLETE
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/execution:
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/pipeline:
+              description: Get the pipeline of the execution
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/pipeline/logs:
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/pipeline/metrics:
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/pipeline/reExecute:
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/pipeline/advance:
+              description: Post to this link in order to advance the pipeline, if paused and waiting for user interaction. Link is present in output only in that case.
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/pipeline/cancel:
+              description: Post to this link in order to cancel the pipeline. Link is present in output only in that case.
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/program:
+              description: Get the program of the execution
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: Describes the status of a particular pipeline execution step for display purposes
+    PipelineExecutionStepStateDetails:
+      type: object
+      description: Details available for each step state. The set of properties available will vary by the step action.
+      properties:
+        deployCommands:
+          type: string
+          description: For deploy steps, a JSON array encoded as a string which lists the deployment activities expected to be performed.
+        currentDeployCommandId:
+          type: string
+          description: For deploy steps, the current identifier from the deployCommands which is being executed.
+        environmentUrls:
+          type: array
+          description: For deploy steps, the the set of URLs for the environment.
+          items:
+            type: object
+            properties:
+              instanceType:
+                type: string
+              instanceUrl:
+                type: string
+        deploymentStepDescription:
+          type: string
+          description: For deploy steps, a JSON array encoded as a string which includes the detailed list of deployment activities which have been performed.
+        input:
+          type: object
+          description: Input provided when advancing the step. See documentation at https://www.adobe.io/experience-cloud/cloud-manager/guides/api-usage/advancing-and-cancelling-steps/ for details.
+    PipelineList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _page:
+          $ref: "#/components/schemas/RequestedPageDetails"
+          description: Details of the requested page of items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            pipelines:
+              type: array
+              items:
+                $ref: "#/components/schemas/Pipeline"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            page:
+              $ref: "#/components/schemas/HalLink"
+              description: An arbitrary page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    PipelinePhase:
+      type: object
+      required:
+        - type
+      properties:
+        name:
+          type: string
+          example: DEV Build
+          description: Name of the phase
+        type:
+          type: string
+          example: DEPLOY
+          description: Type of the phase
+          enum:
+            - VALIDATE
+            - BUILD
+            - DEPLOY
+        repositoryId:
+          type: string
+          description: |-
+            Identifier of the source repository. The code from this repository will be build at the start of this phase. 
+            Mandatory if type=BUILD
+        branch:
+          type: string
+          description: |-
+            Name of the tracked branch or a fully qualified git tag (e.g. refs/tags/v1). 
+             Assumed to be `master` if missing.
+        environmentId:
+          type: string
+          description: Identifier of the target environment. Mandatory if type=DEPLOY
+        environmentType:
+          type: string
+          description: Type of environment (for example stage or prod, readOnly = true)
+          enum:
+            - dev
+            - stage
+            - prod
+            - rde
+            - preprod
+        steps:
+          type: array
+          description: Steps to be included in the phase in execution order. Might be added or not, depending on permissions or configuration
+          items:
+            $ref: "#/components/schemas/PipelineStep"
+      description: Describes a phase of a pipeline
+    PipelinePhaseUpdate:
+      type: object
+      required:
+        - type
+      description: Describes an update to a phase of a pipeline
+      properties:
+        name:
+          type: string
+          example: BUILD_1
+          description: Name of the phase
+        type:
+          type: string
+          example: BUILD
+          description: Type of the phase
+          enum:
+            - BUILD
+            - DEPLOY
+        repositoryId:
+          type: string
+          description: For BUILD phase type. Identifier of the source repository. The code from this repository will be build at the start of this phase. If not provided, the current value is retained.
+        branch:
+          type: string
+          description: For BUILD phase type. Name of the tracked branch or a fully qualified git tag (e.g. refs/tags/v1). If not provided, the current value is retained.
+        environmentId:
+          type: string
+          description: For DEPLOY phase type. Identifier of the target environment.
+        steps:
+          type: array
+          description: Steps to update within the phase.
+          items:
+            $ref: "#/components/schemas/PipelineStepUpdate"
+    PipelineStep:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: deploy
+          description: Name of the step
+        options:
+          type: object
+          description: Map of option parameters for the step
+          $ref: "#/components/schemas/PipelineStepOptions"
+      description: Describes a step from a phase of a pipeline
+    PipelineStepMetrics:
+      type: object
+      properties:
+        metrics:
+          type: array
+          description: metrics
+          readOnly: true
+          items:
+            $ref: "#/components/schemas/Metric"
+    PipelineStepOptions:
+      type: object
+      description: Options for a pipeline step. Will vary based on step action and platform.
+      properties:
+        skipDetachingDispatchers:
+          type: boolean
+          description: For deploy steps on AMS pipelines, if true will not detach dispatcher from the load balancer.
+        dispatcherCacheInvalidationPaths:
+          type: array
+          items:
+            type: string
+          description: For deploy steps on AMS pipelines, list of paths to invalidate on dispatchers after package installation.
+        dispatcherCacheFlushPaths:
+          type: array
+          items:
+            type: string
+          description: For deploy steps on AMS pipelines, list of paths to flush on dispatchers after package installation.
+        cse:
+          type: string
+          enum:
+            - MY_CSE
+            - ANY_CSE
+          description: For managed steps on AMS pipelines, which CSE will be responsible for CSE oversight.
+        popularPagesWeight:
+          type: integer
+          format: int32
+          description: For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the popular pages bucket.
+        newPagesWeight:
+          type: integer
+          format: int32
+          description: For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the new pages bucket.
+        otherPagesWeight:
+          type: integer
+          format: int32
+          description: For loadTest steps on AMS pipelines, the percentage of performance test traffic which will be sent to the other pages bucket.
+        imageAssetsWeight:
+          type: integer
+          format: int32
+          description: For assetsTest steps on AMS pipelines, the percentage of asset uploads which will be test images.
+        pdfAssetsWeight:
+          type: integer
+          format: int32
+          description: For assetsTest steps on AMS pipelines, the percentage of asset uploads which will be test PDF files.
+    PipelineStepUpdate:
+      type: object
+      required:
+        - type
+      description: Describes an update to a phase of a pipeline
+      properties:
+        name:
+          type: string
+          example: deploy
+          description: Name of the step
+        options:
+          type: object
+          description: Map of option parameters for the step
+          $ref: "#/components/schemas/PipelineStepUpdateOptions"
+    PipelineStepUpdateOptions:
+      type: object
+      properties:
+        dispatcherCacheInvalidationPaths:
+          type: array
+          items:
+            type: string
+          description: For deploy steps on AMS pipelines, list of paths to invalidate on dispatchers after package installation.
+        dispatcherCacheFlushPaths:
+          type: array
+          items:
+            type: string
+          description: For deploy steps on AMS pipelines, list of paths to flush on dispatchers after package installation.
+    PipelineUpdate:
+      type: object
+      description: Describe an update to a pipeline
+      properties:
+        phases:
+          type: array
+          description: Pipeline phases to update
+          items:
+            $ref: "#/components/schemas/PipelinePhaseUpdate"
+    PipelineVariableUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: MY_VAR1
+          description: Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number.
+          minLength: 2
+          maxLength: 100
+          pattern: "[a-zA-Z_][a-zA-Z_0-9]*"
+        value:
+          type: string
+          example: myValue
+          description: Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted.
+          minLength: 0
+          maxLength: 2048
+        type:
+          type: string
+          example: string
+          description: Type of the variable. Default `string` if missing. `secretString` variables are encrypted at rest. The type of a variable be changed after creation; the variable must be deleted and recreated.
+          enum:
+            - string
+            - secretString
+      description: A change (create, update, delete) of a named value on a Pipeline
+    PortForwardRepresentation:
+      type: object
+      required:
+        - portDest
+        - portOrig
+      properties:
+        name:
+          type: string
+          example: smtp.example.com
+          description: Destination host
+          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?([.][a-z0-9]([-a-z0-9]*[a-z0-9])?)*$
+        portDest:
+          type: integer
+          format: int32
+          example: 443
+          description: Destination port
+          maximum: 65535
+        portOrig:
+          type: integer
+          format: int32
+          example: 30710
+          description: Origin port for tunnel. Must be unique and in 30000-31000 range.
+          minimum: 30000
+          maximum: 31000
+    Program:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        id:
+          type: string
+          example: "14"
+          description: Identifier of the program. Unique within the space.
+        name:
+          type: string
+          example: AcmeCorp Main Site
+          description: Name of the program
+          minLength: 0
+          maxLength: 64
+          pattern: (?=.*[a-zA-Z])[-+!'"/#$%&*.,;:()’@-}À-ÿ– 0-9]*
+        enabled:
+          type: boolean
+          description: Whether this Program has been enabled for Cloud Manager usage
+          default: false
+        tenantId:
+          type: string
+          example: acmeCorp
+          description: Tenant Id
+        imsOrgId:
+          type: string
+          example: 6522A55453334E247F120101@AdobeOrg
+          description: Organisation Id
+        status:
+          type: string
+          description: Status of the program
+          enum:
+            - creating
+            - ready
+            - deleting
+            - deleted
+            - deleted_failed
+            - failed
+        type:
+          type: string
+          example: aem_cloud_service
+          description: The type of program
+          enum:
+            - aem_managed_services
+            - aem_cloud_service
+            - media_library
+        capabilities:
+          example: "{ 'capability1':'value1', 'capability1': {'param3':'value3'}}"
+          description: Program capabilities
+          $ref: "#/components/schemas/ProgramCapabilities"
+        createdAt:
+          type: string
+          format: date-time
+          description: Created time
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date of last change
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/pipelines:
+              description: Pipelines defined in the program
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/environments:
+              description: The environments linked to this program.
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/repositories:
+              description: The repositories linked to this program.
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/ipAllowlists:
+              description: The IP allowlists linked to this program.
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/certificates:
+              description: The SSL certificates linked to this program.
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/tenant:
+              description: The tenant this program belongs to
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/networkInfrastructures:
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/regions:
+              description: The regions available for this program.
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: A representation of a Program
+    ProgramCapabilities:
+      type: object
+      properties:
+        sandbox:
+          type: boolean
+          example: true
+          description: Indicator of a sandbox program.
+          readOnly: true
+          default: false
+      description: Contains the program capabilities
+    ProgramList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _page:
+          $ref: "#/components/schemas/RequestedPageDetails"
+          description: Details of the requested page of items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            programs:
+              type: array
+              items:
+                $ref: "#/components/schemas/EmbeddedProgram"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            page:
+              $ref: "#/components/schemas/HalLink"
+              description: An arbitrary page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    Region:
+      type: object
+      properties:
+        name:
+          type: string
+          example: va7
+          description: Region name
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: Describes a __Region__
+    RegionDeployment:
+      type: object
+      properties:
+        cluster:
+          type: string
+          example: ethos13stageva7
+          description: The cluster where this deployment happens
+        namespace:
+          type: string
+          example: ns-team-aem
+          description: The namespace in which this deployment happens
+        createdAt:
+          type: string
+          format: date-time
+          description: Created time
+        updatedAt:
+          type: string
+          format: date-time
+          description: Date of last change
+        id:
+          type: string
+          description: identifier of a region deployment
+        environmentId:
+          type: string
+          description: identifier of an environment
+        region:
+          type: string
+          example: va7
+          description: Region name of the deployment
+        integrations:
+          description: region integrations
+          $ref: "#/components/schemas/EnvironmentRegionintegrations"
+        status:
+          type: string
+          description: Status of the region deployment
+          enum:
+            - PENDING
+            - PROGRESSING
+            - FAILED
+            - COMPLETE
+            - DELETING
+            - DELETED
+            - DELETION_FAILED
+            - TO_DELETE
+            - DEPLOY_FAILED
+            - DEPLOY_TIMEOUT
+        type:
+          type: string
+          example: primary
+          description: Type of the region deployment
+          enum:
+            - PRIMARY
+            - SECONDARY
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/flow:
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/kubernetesCluster:
+              description: Get the Kubernetes Cluster in which this deployment happens
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/kubernetesNamespace:
+              description: Get the Kubernetes Namespace in which this deployment happens
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/region:
+              description: Region being used for this deployment
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: describes region deployments for an environment
+    RegionDeploymentDeletion:
+      type: object
+      description: Description of region deployment to be deleted in the environment
+      required:
+        - id
+        - status
+      properties:
+        id:
+          type: string
+          description: Identifier of the  region deployment
+        status:
+          type: string
+          example: TO_DELETE
+          description: Status of the region deployment to be set
+    RegionDeploymentList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            regionDeployments:
+              type: array
+              items:
+                $ref: "#/components/schemas/RegionDeployment"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    RegionsList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            regions:
+              type: array
+              items:
+                $ref: "#/components/schemas/Region"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    Repository:
+      type: object
+      properties:
+        repo:
+          type: string
+          example: Adobe-Marketing-Cloud
+          description: Repository name. Once set it cannot be updated
+        description:
+          type: string
+          example: Description
+          description: description
+        repositoryUrl:
+          type: string
+          example: https://git.cloudmanager.adobe.com/weretailprod/we-retail-global
+          description: Repository Url.
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/program:
+              description: The Program the repository belongs to
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/branches:
+              description: List of branches in this repository
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: A sourcecode repository
+    RepositoryBranch:
+      type: object
+      properties:
+        programId:
+          type: string
+          example: "14"
+          description: Identifier of the program. Unique within the space
+        repositoryId:
+          type: integer
+          format: int64
+          example: 2
+          description: Identifier of the repository
+        name:
+          type: string
+          example: master
+          description: Name of the branch
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/program:
+              description: Program
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/repository:
+              description: Repository
+              $ref: "#/components/schemas/HalLink"
+      description: Represents a Git Branch
+    RepositoryList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _page:
+          $ref: "#/components/schemas/RequestedPageDetails"
+          description: Details of the requested page of items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            repositories:
+              type: array
+              items:
+                $ref: "#/components/schemas/Repository"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            page:
+              $ref: "#/components/schemas/HalLink"
+              description: An arbitrary page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    RequestedPageDetails:
+      type: object
+      properties:
+        start:
+          type: integer
+          format: int32
+          description: The start index for the current page of results
+        limit:
+          type: integer
+          format: int32
+          description: The item limit for the current page of results
+        next:
+          type: integer
+          format: int32
+          description: The start index for the next page of results
+        prev:
+          type: integer
+          format: int32
+          description: The start index for the previous page of results
+        orderBy:
+          type: string
+        property:
+          type: array
+          items:
+            type: string
+        type:
+          type: string
+      description: Filtering and sorting page details
+    SslCertificate:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        sslCertificateType:
+          type: string
+          enum:
+            - DV
+            - EV
+            - OV
+        programId:
+          type: integer
+          format: int64
+        serialNumber:
+          type: string
+        name:
+          type: string
+        certificate:
+          type: string
+        issuer:
+          type: string
+        expireAt:
+          type: integer
+          format: int64
+        privateKeyPath:
+          type: string
+        commonName:
+          type: string
+        commonNameRegex:
+          type: string
+        subjectAlternativeNames:
+          type: array
+          items:
+            type: string
+        subjectAlternativeNamesRegex:
+          type: array
+          items:
+            type: string
+        chain:
+          type: string
+        createdAt:
+          type: integer
+          format: int64
+        updatedAt:
+          type: integer
+          format: int64
+        deletedAt:
+          type: integer
+          format: int64
+        externalId:
+          type: integer
+          format: int64
+        sslCertificateStatus:
+          type: string
+          enum:
+            - PENDING
+            - VALID
+            - EXPIRED
+    SslCertificateNotFoundException:
+      type: object
+      properties:
+        message:
+          type: string
+        localizedMessage:
+          type: string
+    SslCertificateRepresentation:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: id
+        sslCertificateType:
+          type: string
+          description: "Type of origin: DV, EV or OV"
+        sslCertificateStatus:
+          type: string
+          description: PENDING, VALID or EXPIRED
+        programId:
+          type: integer
+          format: int64
+          example: 14
+          description: Identifier of the application. Unique within the space.
+        serialNumber:
+          type: string
+          description: Unique identifier of the certificate at CA level.
+        name:
+          type: string
+          example: Certificate Name Example
+          description: Name of the SSL Certificate.
+        issuer:
+          type: string
+          description: Issuer of the SSL Certificate.
+        expireAt:
+          type: integer
+          format: int64
+          description: Expiration date of the SSL Certificate.
+        commonName:
+          type: string
+          description: Common name of the SSL Certificate.
+        subjectAlternativeNames:
+          type: array
+          description: Subject alternative names of the SSL Certificate.
+          items:
+            type: string
+        certificate:
+          type: string
+          description: Encrypted content of the SSL Certificate.
+        chain:
+          type: string
+          description: Content of the Chain File.
+        createdAt:
+          type: integer
+          format: int64
+          description: Date of SSL Certificate submission.
+        updatedAt:
+          type: integer
+          format: int64
+          description: Date of last SSL Certificate update.
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: Describes an SSL Certificate
+    SystemUnderMaintenanceExceptionMapper:
+      type: object
+    Tenant:
+      type: object
+      required:
+        - imsOrgId
+        - imsTenantId
+      properties:
+        id:
+          type: string
+          example: "14"
+          description: Identifier of the tenant
+        imsOrgId:
+          type: string
+          example: 1AAA222B3C4444D55E666666@AdobeOrg
+          description: IMS Organization of this tenant
+          minLength: 0
+          maxLength: 255
+        imsTenantId:
+          type: string
+          example: acmeCorp
+          description: IMS Tenant Id
+          minLength: 0
+          maxLength: 255
+        description:
+          type: string
+          example: Description for acmeCorp
+          description: Description of the tenant
+          minLength: 0
+          maxLength: 255
+        status:
+          type: string
+          example: creating
+          description: Status of the tenant
+          enum:
+            - creating
+            - ready
+            - failed
+        organisation:
+          description: Tenant-level git repository organisation
+          $ref: "#/components/schemas/Organisation"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/programs:
+              description: Programs defined in the tenant
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+      description: Describes a __Tenant__
+    TenantList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          description: The total number of embedded items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            tenants:
+              type: array
+              items:
+                $ref: "#/components/schemas/Tenant"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            next:
+              $ref: "#/components/schemas/HalLink"
+              description: The next page of results.
+            prev:
+              $ref: "#/components/schemas/HalLink"
+              description: The previous page of results.
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    UpdateaDomain'snameorlabel:
+      type: object
+      required:
+        - label
+      properties:
+        label:
+          type: string
+          example: any string
+          description: Domain label
+    Updateanipallowlist:
+      type: object
+      required:
+        - ipCidrSet
+        - name
+      properties:
+        name:
+          type: string
+          example: NewYork Office
+          description: Name of the IP Allowed List
+        ipCidrSet:
+          type: array
+          example: "[\"11.22.33.44/28\", \"99.88.77.66/32\"]"
+          description: IP CIDR Set
+          uniqueItems: true
+          items:
+            type: string
+          maxItems: 50
+          minItems: 1
+    Variable:
+      type: object
+      properties:
+        name:
+          type: string
+          example: MY_VAR1
+          description: Name of the variable. Can only consist of a-z, A-Z, _ and 0-9 and cannot begin with a number.
+          minLength: 2
+          maxLength: 100
+          pattern: "[a-zA-Z_][a-zA-Z_0-9]*"
+        value:
+          type: string
+          example: myValue
+          description: Value of the variable. Read-Write for non-secrets, write-only for secrets. The length of `secretString` values must be less than 500 characters. An empty value causes a variable to be deleted.
+          minLength: 0
+          maxLength: 2048
+        type:
+          type: string
+          example: string
+          description: Type of the variable. Default `string` if missing. `secretString` variables are encrypted at rest. The type of a variable be changed after creation; the variable must be deleted and recreated.
+          enum:
+            - string
+            - secretString
+        service:
+          type: string
+          example: author
+          description: Service of the variable. When not provided, the variable applies to all services. Currently the values 'author', 'publish', and 'preview' are supported. Note - this value is case-sensitive.
+        status:
+          type: string
+          example: ready
+          description: Status of the variable
+          enum:
+            - creating
+            - ready
+            - deleting
+            - deleted
+            - updating
+            - failed
+            - deleted_failed
+      description: A named value than can be set on an Environment or Pipeline
+    VariableList:
+      type: object
+      properties:
+        _totalNumberOfItems:
+          type: integer
+          format: int32
+          example: 1
+          description: The total number of embedded items
+        _embedded:
+          type: object
+          readOnly: true
+          properties:
+            variables:
+              type: array
+              example: "[{ 'name':'variable1Name', 'value':'variable1Value'}, { 'name':'variable1Name', 'value':'variable1Value', 'service':'author'}, { 'name':'variable2Name', 'type':'secretString', 'value':'variable2SecretValue'}]"
+              description: Variables set on environment
+              items:
+                $ref: "#/components/schemas/Variable"
+        _links:
+          type: object
+          readOnly: true
+          properties:
+            http://ns.adobe.com/adobecloud/rel/environment:
+              description: The environment holding the variables
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/pipeline:
+              description: The pipeline holding the variables
+              $ref: "#/components/schemas/HalLink"
+            http://ns.adobe.com/adobecloud/rel/program:
+              description: The Program
+              $ref: "#/components/schemas/HalLink"
+            self:
+              $ref: "#/components/schemas/HalLink"
+              description: This object's representation
+    VpnConnection:
+      type: object
+      required:
+        - gateway
+        - ipsecPolicy
+        - name
+        - sharedKey
+      properties:
+        name:
+          type: string
+          description: Name of the connection
+        gateway:
+          description: Gateway configuration
+          $ref: "#/components/schemas/GatewayInfrastructure"
+        sharedKey:
+          type: string
+          description: Customer VPN preshared key
+        ipsecPolicy:
+          description: IPSec Policy
+          $ref: "#/components/schemas/IpSecPolicyInfrastructure"
