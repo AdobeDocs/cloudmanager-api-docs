@@ -9,8 +9,6 @@ keywords:
   - Permissions
 ---
 
-import PermissionsTable from "../../../components/permissions-table"
-
 # API Permissions
 
 The Cloud Manager API is accessed using a technical service account created using the Adobe Developer Console. This service account can only be used to access the API -- it does not have a normal password and so cannot be used to log into Cloud Manager or Experience Cloud in general. Although this service account is effectively created by an individual, it is "owned" by the organization. As a result, when looking at the permissions required to use the Cloud Manager API, there are two separate permissions to consider. The first is the permission required to create the project in the Adobe Developer Console. The second is the permission assigned to the service account.
@@ -39,4 +37,60 @@ With a few exception (listed below), if only read (`GET`) access is required, th
 
 ## Detailed Permission Information
 
-\<PermissionsTable /\>
+
+| Operation | Product Profile(s) | Permission |
+|-----------|---------------------|------------|
+| `deleteProgram` `DELETE /api/program/\{programId\}` | Business Owner | Not configurable |
+| `updateCertificate` `PUT /api/program/\{programId\}/certificate/\{certificateId\}` | Deployment Manager, Business Owner | SSL Certificate Manage |
+| `deleteCertificate` `DELETE /api/program/\{programId\}/certificate/\{certificateId\}` | Deployment Manager, Business Owner | SSL Certificate Manage |
+| `createCertificate` `POST /api/program/\{programId\}/certificates` | Deployment Manager, Business Owner | SSL Certificate Manage |
+| `getContentFlow` `GET /api/program/\{programId\}/contentFlow/\{contentFlowId\}` | Deployment Manager | Content Copy Manage |
+| `cancelContentFlow` `DELETE /api/program/\{programId\}/contentFlow/\{contentFlowId\}` | Deployment Manager | Content Copy Manage |
+| `getContentFlowLogs` `GET /api/program/\{programId\}/contentFlow/\{contentFlowId\}/logs` | Deployment Manager | Content Copy Manage |
+| `downloadLogs` `GET /api/program/\{programId\}/contentFlow/\{contentFlowId\}/logs/download` | Deployment Manager | Content Copy Manage |
+| `listContentFlows` `GET /api/program/\{programId\}/contentFlows` | Deployment Manager | Content Copy Manage |
+| `deleteContentSet` `DELETE /api/program/\{programId\}/contentSet/\{contentSetId\}` | Deployment Manager | Content Copy Manage |
+| `updateContentSet` `PUT /api/program/\{programId\}/contentSet/\{contentSetId\}` | Deployment Manager | Content Copy Manage |
+| `getContentSet` `GET /api/program/\{programId\}/contentSet/\{contentSetId\}` | Deployment Manager | Content Copy Manage |
+| `createContentSet` `POST /api/program/\{programId\}/contentSets` | Deployment Manager | Content Copy Manage |
+| `listContentSets` `GET /api/program/\{programId\}/contentSets` | Deployment Manager | Content Copy Manage |
+| `updateEnvironmentDomainName` `PUT /api/program/\{programId\}/domainName/\{domainNameId\}` | Deployment Manager, Business Owner | Domain Name Manage |
+| `deleteEnvironmentDomainName` `DELETE /api/program/\{programId\}/domainName/\{domainNameId\}` | Deployment Manager, Business Owner | Domain Name Manage |
+| `deployDomainName` `POST /api/program/\{programId\}/domainName/\{domainNameId\}/deploy` | Deployment Manager, Business Owner | Domain Name Manage |
+| `verifyDomainName` `POST /api/program/\{programId\}/domainName/\{domainNameId\}/verify` | Deployment Manager, Business Owner | Domain Name Manage |
+| `createEnvironmentDomainName` `POST /api/program/\{programId\}/domainNames` | Deployment Manager, Business Owner | Domain Name Manage |
+| `validateDomainName` `POST /api/program/\{programId\}/domainNames/validate` | Deployment Manager, Business Owner | Domain Name Manage |
+| `deleteEnvironment` `DELETE /api/program/\{programId\}/environment/\{environmentId\}` | Business Owner, Deployment Manager | Not Configurable |
+| `enableEnvironmentAdvancedNetworkingConfiguration` `PUT /api/program/\{programId\}/environment/\{environmentId\}/advancedNetworking` | Deployment Manager, Business Owner | Environment Edit |
+| `disableEnvironmentAdvancedNetworkingConfiguration` `DELETE /api/program/\{programId\}/environment/\{environmentId\}/advancedNetworking` | Deployment Manager, Business Owner | Environment Edit |
+| `createContentFlow` `POST /api/program/\{programId\}/environment/\{environmentId\}/contentFlow` | Deployment Manager | Content Copy Manage |
+| `getEnvironmentLogs` `GET /api/program/\{programId\}/environment/\{environmentId\}/logs` | Deployment Manager, Developer | Environment Logs Read |
+| `downloadLogs` `GET /api/program/\{programId\}/environment/\{environmentId\}/logs/download` | Deployment Manager | Content Copy Manage |
+| `createRegionDeployment` `POST /api/program/\{programId\}/environment/\{environmentId\}/regionDeployments` | Deployment Manager, Business Owner | Environment Edit |
+| `patchRegionDeployment` `PATCH /api/program/\{programId\}/environment/\{environmentId\}/regionDeployments` | Deployment Manager, Business Owner | Environment Edit |
+| `resetRde` `PUT /api/program/\{programId\}/environment/\{environmentId\}/reset` | Developer | Rapid Dev Environment Reset |
+| `restoreExecution` `PUT /api/program/\{programId\}/environment/\{environmentId\}/restoreExecution` | Deployment Manager | Environment Restore Create |
+| `patchEnvironmentVariables` `PATCH /api/program/\{programId\}/environment/\{environmentId\}/variables` | Deployment Manager | Environment Variables Manage |
+| `createEnvironment` `POST /api/program/\{programId\}/environments` | Deployment Manager, Business Owner | Environment Create |
+| `addFeedback` `POST /api/program/\{programId\}/feedbacks` | Business Owner, Deployment Manager, Program Manager, Developer | Any product profile is sufficient |
+| `updateIPAllowlist` `PUT /api/program/\{programId\}/ipAllowlist/\{ipAllowlistId\}` | Deployment Manager, Business Owner | IP Allowlist Manage |
+| `deleteIPAllowlist` `DELETE /api/program/\{programId\}/ipAllowlist/\{ipAllowlistId\}` | Deployment Manager, Business Owner | IP Allowlist Manage |
+| `deleteIPAllowlistBinding` `DELETE /api/program/\{programId\}/ipAllowlist/\{ipAllowlistId\}/binding/\{ipAllowlistBindingId\}` | Deployment Manager, Business Owner | IP Allowlist Manage |
+| `retryIPAllowlistBinding` `PUT /api/program/\{programId\}/ipAllowlist/\{ipAllowlistId\}/binding/\{ipAllowlistBindingId\}/retry` | Deployment Manager, Business Owner | IP Allowlist Manage |
+| `createIPAllowlistBinding` `POST /api/program/\{programId\}/ipAllowlist/\{ipAllowlistId\}/bindings` | Deployment Manager, Business Owner | IP Allowlist Manage |
+| `createIPAllowlist` `POST /api/program/\{programId\}/ipAllowlists` | Deployment Manager, Business Owner | IP Allowlist Manage |
+| `updateNetworkInfrastructure` `PUT /api/program/\{programId\}/networkInfrastructure/\{networkInfrastructureId\}` | Business Owner | Network Infrastructure Manage |
+| `deleteNetworkInfrastructure` `DELETE /api/program/\{programId\}/networkInfrastructure/\{networkInfrastructureId\}` | Business Owner | Network Infrastructure Manage |
+| `createNetworkInfrastructure` `POST /api/program/\{programId\}/networkInfrastructures` | Business Owner | Network Infrastructure Manage |
+| `getNewRelicSubAccountUserList` `GET /api/program/\{programId\}/newRelicUsers` | Deployment Manager, Business Owner | New Relic Sub Account User Manage |
+| `createDeleteNewRelicSubAccountUsers` `PATCH /api/program/\{programId\}/newRelicUsers` | Deployment Manager, Business Owner | New Relic Sub Account User Manage |
+| `deletePipeline` `DELETE /api/program/\{programId\}/pipeline/\{pipelineId\}` | Deployment Manager | Pipeline Delete |
+| `patchPipeline` `PATCH /api/program/\{programId\}/pipeline/\{pipelineId\}` | Deployment Manager | Pipeline Edit |
+| `invalidateCache` `DELETE /api/program/\{programId\}/pipeline/\{pipelineId\}/cache` | Deployment Manager | Pipeline Cache Invalidation |
+| `startPipeline` `PUT /api/program/\{programId\}/pipeline/\{pipelineId\}/execution` | Business Owner, Deployment Manager, Program Manager | Pipeline Executions Start |
+| `advancePipelineExecution` `PUT /api/program/\{programId\}/pipeline/\{pipelineId\}/execution/\{executionId\}/phase/\{phaseId\}/step/\{stepId\}/advance` | Business Owner, Deployment Manager, Program Manager | Production Deployments Approve/Reject, Production Deployments Schedule, Override/Reject Important Metric Failures |
+| `cancelPipelineExecutionStep` `PUT /api/program/\{programId\}/pipeline/\{pipelineId\}/execution/\{executionId\}/phase/\{phaseId\}/step/\{stepId\}/cancel` | Business Owner, Deployment Manager, Program Manager (Note: Program Manager is limited to cancelling steps with status WAITING.) | Pipeline Executions Cancel, Production Deployments Approve/Reject, Production Deployments Schedule, Override/Reject Important Metric Failures |
+| `patchPipelineVariables` `PATCH /api/program/\{programId\}/pipeline/\{pipelineId\}/variables` | Deployment Manager | Pipeline Edit |
+| `getPipelineVariables` `GET /api/program/\{programId\}/pipeline/\{pipelineId\}/variables` | Business Owner, Deployment Manager, Program Manager, Developer | Program Access |
+| `addProgram` `POST /api/tenant/\{tenantId\}/programs` | Business Owner | Program Create |
+

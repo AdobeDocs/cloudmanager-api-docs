@@ -10,8 +10,6 @@ keywords:
   - JavaScript
 ---
 
-import Glitch from "../../components/glitch"
-
 # Tutorial Step 5 - Getting Execution Data
 
 Now that we have an access token, we can use it to make API calls into Cloud Manager to get more information about the execution (and in the next step the program).
@@ -94,7 +92,7 @@ If you are running the script locally, you'll need to stop and restart the node 
 
 If you are running the script through Glitch, Glitch will restart automatically. If you don't want to update your existing Glitch project (or lost it), you can click the button below to start over.
 
-\<Glitch projectName="adobe-cloudmanager-api-tutorial-step5" /\>
+[Remix in Glitch](https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step5)
 
 ## Next Step
 

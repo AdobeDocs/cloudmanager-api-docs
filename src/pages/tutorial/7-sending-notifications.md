@@ -10,8 +10,6 @@ keywords:
   - JavaScript
 ---
 
-import Glitch from "../../components/glitch"
-
 # Tutorial Step 7 - Sending Notifications
 
 Congratulations! You've reached the end of the tutorial. This last step actually has nothing to do with Cloud Manager or Adobe I/O. In this step, we're going to take the data retrieved and send a message to either Microsoft Teams or Slack. Or you could do both if you are feeling adventurous.
@@ -63,7 +61,7 @@ This will produce a Slack message which looks like this:
 
 Of course, feel free to make the message more complex if you want.
 
-\<Glitch projectName="adobe-cloudmanager-api-tutorial-step7-slack" /\>
+[Remix in Glitch](https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step7-slack)
 
 ### Notifying Microsoft Teams
 
@@ -108,4 +106,4 @@ This will produce a Microsoft Teams message which looks like this:
 
 ![Microsoft Teams Notification](img/msteams-notification.png)
 
-\<Glitch projectName="adobe-cloudmanager-api-tutorial-step7-msteams" /\>
+[Remix in Glitch](https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step7-msteams)

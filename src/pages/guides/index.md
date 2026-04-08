@@ -8,9 +8,6 @@ keywords:
   - Cloud Manager
 ---
 
-import GettingStarted from './getting-started/index.md'
-import ApiUsage from './api-usage/index.md'
+<Fragment src="./getting-started/index.md"/>
 
-\<GettingStarted /\>
-
-\<ApiUsage /\>
+<Fragment src="./api-usage/index.md"/>

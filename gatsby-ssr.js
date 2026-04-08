@@ -12,7 +12,7 @@
 
 import React from 'react'
 import { readFileSync } from 'fs'
-import { paths } from './swagger-specs/api.yaml'
+import { paths } from './static/api.yaml'
 
 const operations = Object.keys(paths).flatMap(path => {
   return Object.keys(paths[path]).map(method => `/${paths[path][method].operationId}`)

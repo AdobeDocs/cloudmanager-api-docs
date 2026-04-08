@@ -10,8 +10,6 @@ keywords:
   - JavaScript
 ---
 
-import Glitch from "../../components/glitch"
-
 # Tutorial Step 1 - A Basic Webhook
 
 In the first step of the tutorial, we're going to create an event handler (webhook) which is compatible with Adobe I/O Events. This webhook doesn't actually do much; it just logs the body of the request. But it provides a skeleton on which you'll build in later steps.
@@ -123,7 +121,7 @@ For the purpose of this tutorial, the free ngrok service is acceptable. Just kee
 
 Alternatively, you can run the webhook script using [Glitch](https://glitch.com/). Glitch is an interactive web-based code editor for Node.js applications with built-in hosting. To save you the trouble of copy and pasting the files you've created already, you can just click the button below to create a new application on Glitch pre-populated with the content of the tutorial so far.
 
-\<Glitch projectName="adobe-cloudmanager-api-tutorial-step1" /\>
+[Remix in Glitch](https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step1)
 
 In the new Glitch project, you will need to populate the `.env` file and create the `.data/private.key` file as describe in the [introduction](index.md).
 

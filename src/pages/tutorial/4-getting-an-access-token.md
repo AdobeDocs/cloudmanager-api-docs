@@ -10,8 +10,6 @@ keywords:
   - JavaScript
 ---
 
-import Glitch from "../../components/glitch"
-
 # Tutorial Step 4 - Obtaining an Access Token
 
 The JSON object sent to the webhook is very minimal -- it largely consists of event metadata (e.g. the timestamp of the event) and a URL to either the pipeline execution. In general, the webhook implementation will need to call the Cloud Manager API to get additional information. In the case of this tutorial, the webhook is actually going to make two API calls for more information. That, however, is for the next step...
@@ -71,7 +69,7 @@ If you are running the script locally, you'll need to stop and restart the node 
 
 If you are running the script through Glitch, Glitch will restart automatically. If you don't want to update your existing Glitch project (or lost it), you can click the button below to start over.
 
-\<Glitch projectName="adobe-cloudmanager-api-tutorial-step4" /\>
+[Remix in Glitch](https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step4)
 
 ## Next Step
 

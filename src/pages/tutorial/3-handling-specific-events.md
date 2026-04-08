@@ -10,8 +10,6 @@ keywords:
   - JavaScript
 ---
 
-import Glitch from "../../components/glitch"
-
 # Tutorial Step 3 - Handling Specific Events
 
 As seen in [Step 1](1-a-basic-webhook.md), webhooks can be registered for one or more events. Depending on the type of integration you are actually building with Cloud Manager, you will end up with a single webhook script which can handle multiple events in different ways. The event can be identified by using the combination of the `@type` and `xdmEventEnvelope:objectType` values. A full list can be found on the [Receiving Events](../guides/api-usage/receiving-events.md) page. For this step in the tutorial, you're going to add a simple log statement when event being received is a Pipeline Execution Started event.
@@ -51,7 +49,7 @@ If you are running the script locally, you'll need to stop and restart the node 
 
 If you are running the script through Glitch, Glitch will restart automatically. If you don't want to update your existing Glitch project (or lost it), you can click the button below to start over.
 
-\<Glitch projectName="adobe-cloudmanager-api-tutorial-step3" /\>
+[Remix in Glitch](https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step3)
 
 ## Next Step
 

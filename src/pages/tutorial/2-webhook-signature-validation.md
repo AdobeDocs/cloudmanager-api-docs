@@ -9,8 +9,6 @@ keywords:
   - JavaScript   
 ---
 
-import Glitch from "../../components/glitch"
-
 # Tutorial Step 2 - Webhook Signature Validation
 
 In the second step of the tutorial, the webhook from the first step is going to be enhanced to validate that the POST request actually comes from Adobe I/O. Adobe I/O Events
@@ -46,7 +44,7 @@ To update your webhook script, just replace the POST handler with the one above.
 
 If you are running the script through Glitch, Glitch will restart automatically. If you don't want to update your existing Glitch project (or lost it), you can click the button below to start over.
 
-\<Glitch projectName="adobe-cloudmanager-api-tutorial-step2" /\>
+[Remix in Glitch](https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step2)
 
 ## Next Step
 
