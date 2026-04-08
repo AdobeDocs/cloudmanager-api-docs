@@ -16,64 +16,64 @@ import ModelDefinitions from "../../components/model-definitions"
 
 ## Programs
 
-<ModelDefinitions data={data} sort={true} forTag="Programs" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Programs" /\>
 
 ## Repositories
 
-<ModelDefinitions data={data} sort={true} forTag="Repositories" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Repositories" /\>
 
 ## Branches
 
-<ModelDefinitions data={data} sort={true} forTag="Branches" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Branches" /\>
 
 ## Pipelines
 
-<ModelDefinitions data={data} sort={true} forTag="Pipelines" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Pipelines" /\>
 
 ## Pipeline Execution
 
-<ModelDefinitions data={data} sort={true} forTag="Pipeline Execution" exclusions={['Redirect']}/>
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Pipeline Execution" exclusions=\{['Redirect']\}/\>
 
 ## Environments
 
-<ModelDefinitions data={data} sort={true} forTag="Environments" exclusions={['BadRequestError', 'Redirect']} />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Environments" exclusions=\{['BadRequestError', 'Redirect']\} /\>
 
 ## Region Deployment
 
-<ModelDefinitions data={data} sort={true} forTag="Region Deployments" exclusions={['BadRequestError', 'Redirect']} />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Region Deployments" exclusions=\{['BadRequestError', 'Redirect']\} /\>
 
 ## Variables
 
-<ModelDefinitions data={data} sort={true} forTag="Variables" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Variables" /\>
 
 ## IP Allowlist
 
-<ModelDefinitions data={data} sort={true} forTag="IP Allowlist" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="IP Allowlist" /\>
 
 ## IP Allowlist Binding
 
-<ModelDefinitions data={data} sort={true} forTag="IP Allowlist Binding" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="IP Allowlist Binding" /\>
 
 ## Domain Names
 
-<ModelDefinitions data={data} sort={true} forTag="Domain Names" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Domain Names" /\>
 
 ## SSL Certificates
 
-<ModelDefinitions data={data} sort={true} forTag="SSLCertificates" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="SSLCertificates" /\>
 
 ## Tenants
 
-<ModelDefinitions data={data} sort={true} forTag="Tenants" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Tenants" /\>
 
 ## Regions
 
-<ModelDefinitions data={data} sort={true} forTag="Regions" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Regions" /\>
 
 ## Network Infrastructure
 
-<ModelDefinitions data={data} sort={true} forTag="Network infrastructure" />
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Network infrastructure" /\>
 
 ## Environment Advanced Networking Configuration
 
-<ModelDefinitions data={data} sort={true} forTag="Environment Advanced Networking Configuration" exclusions={['Environment']}/>
+\<ModelDefinitions data=\{data\} sort=\{true\} forTag="Environment Advanced Networking Configuration" exclusions=\{['Environment']\}/\>

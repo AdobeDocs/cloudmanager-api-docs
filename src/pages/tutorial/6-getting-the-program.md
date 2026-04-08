@@ -16,7 +16,7 @@ import Glitch from "../../components/glitch"
 
 While the execution information is interesting, what we actually want to send in the notification sent to Microsoft Teams or Slack is the program name. This isn't in the execution response but has to be requested from a different URL, one following the pattern `/api/program/{programId}`.
 
-While it is possible for you to formulate the URL, it is a best practice to follow the links provided in the API response. The Cloud Manager API responses use a convention named <a href="https://en.wikipedia.org/wiki/Hypertext_Application_Language" target="_new">Hypertext Application Language</a> (HAL for short) to define links. But you don't really need to know too many details of HAL to use the API. The important part is that in the API response, there is a `_links` object which contains a set of objects. Each of these objects has a meaningful name that tells the API consumer where the link goes and the `href` property of the object has the destination.
+While it is possible for you to formulate the URL, it is a best practice to follow the links provided in the API response. The Cloud Manager API responses use a convention named [Hypertext Application Language](https://en.wikipedia.org/wiki/Hypertext_Application_Language) (HAL for short) to define links. But you don't really need to know too many details of HAL to use the API. The important part is that in the API response, there is a `_links` object which contains a set of objects. Each of these objects has a meaningful name that tells the API consumer where the link goes and the `href` property of the object has the destination.
 
 For example, in an execution response, you will see this:
 
@@ -99,11 +99,11 @@ if (STARTED === event['@type'] &&
 
 ## Running the Updated Webhook
 
-If you are running the script locally, you'll need to stop and restart the node process. You don't need to restart ngrok. In fact, if you do restart ngrok, the URL will likely change and you'll need to go back into the <a href="https://developer.adobe.com/console/projects" target="_new">Adobe Developer Console</a> and update the Webhook URL.
+If you are running the script locally, you'll need to stop and restart the node process. You don't need to restart ngrok. In fact, if you do restart ngrok, the URL will likely change and you'll need to go back into the [Adobe Developer Console](https://developer.adobe.com/console/projects) and update the Webhook URL.
 
 If you are running the script through Glitch, Glitch will restart automatically. If you don't want to update your existing Glitch project (or lost it), you can click the button below to start over.
 
-<Glitch projectName="adobe-cloudmanager-api-tutorial-step6" />
+\<Glitch projectName="adobe-cloudmanager-api-tutorial-step6" /\>
 
 ## Next Step
 

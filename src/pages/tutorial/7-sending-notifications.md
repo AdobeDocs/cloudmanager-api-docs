@@ -20,9 +20,9 @@ Congratulations! You've reached the end of the tutorial. This last step actually
 
 For both Microsoft Teams and Slack, notifications can be sent via an Incoming Webhook integration. The details are slightly different, but both follow the same basic concept -- when you want to post a message to a channel, you can make an HTTP POST request to a special URL generated specifically for this purpose.
 
-Documentation to create a webhook URL for Microsoft Teams can be found <a href="https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#setting-up-a-custom-incoming-webhook">here</a>
+Documentation to create a webhook URL for Microsoft Teams can be found [here](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using#setting-up-a-custom-incoming-webhook)
 
-Documentation to create a webhook URL for Slack can be found <a href="https://api.slack.com/incoming-webhooks" target="_new">here</a>.
+Documentation to create a webhook URL for Slack can be found [here](https://api.slack.com/incoming-webhooks).
 
 ### Notifying Slack
 
@@ -63,7 +63,7 @@ This will produce a Slack message which looks like this:
 
 Of course, feel free to make the message more complex if you want.
 
-<Glitch projectName="adobe-cloudmanager-api-tutorial-step7-slack" />
+\<Glitch projectName="adobe-cloudmanager-api-tutorial-step7-slack" /\>
 
 ### Notifying Microsoft Teams
 
@@ -87,7 +87,7 @@ function notifyTeams (message) {
 
 <InlineAlert slots="text" />
 
-There are a number of other options for the payload sent to Microsoft. Please read the <a href="https://docs.microsoft.com/en-us/outlook/actionable-messages/actionable-messages-via-connectors" target="_new">documentation</a> for more information.
+There are a number of other options for the payload sent to Microsoft. Please read the [documentation](https://docs.microsoft.com/en-us/outlook/actionable-messages/actionable-messages-via-connectors) for more information.
 
 And then invoke this function:
 
@@ -108,4 +108,4 @@ This will produce a Microsoft Teams message which looks like this:
 
 ![Microsoft Teams Notification](img/msteams-notification.png)
 
-<Glitch projectName="adobe-cloudmanager-api-tutorial-step7-msteams" />
+\<Glitch projectName="adobe-cloudmanager-api-tutorial-step7-msteams" /\>

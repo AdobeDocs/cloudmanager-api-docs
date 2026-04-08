@@ -55,7 +55,7 @@ The below is a summary of this process. Complete documentation can be found in t
 
 The JWT is constructed as a JSON object with these keys, referred to as _claims_:
 
-* `exp`- the requested expiration of the access token, expressed as a number of seconds since January 1st 1970 GMT. For most use cases, this should be a relatively small value, e.g. 5 minutes. For example, for five minutes from now, this value should be <Epoch addition={300} />.
+* `exp`- the requested expiration of the access token, expressed as a number of seconds since January 1st 1970 GMT. For most use cases, this should be a relatively small value, e.g. 5 minutes. For example, for five minutes from now, this value should be \<Epoch addition=\{300\} /\>.
 * `iss`	- the Organization ID from the Adobe Developer Console project, in the format org_ident@AdobeOrg.
 * `sub` - the Technical Account ID from the Adobe Developer Console integration, in the format: id@techacct.adobe.com.
 * `aud` - the Client ID from the Adobe Developer Console integration _prepended_ with `https://ims-na1.adobelogin.com/c/`.

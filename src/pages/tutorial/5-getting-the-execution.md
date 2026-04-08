@@ -18,7 +18,7 @@ Now that we have an access token, we can use it to make API calls into Cloud Man
 
 ## Adding Dependencies
 
-For the API calls, we'll use the <a href="https://github.com/node-fetch/node-fetch" target="_new">node-fetch</a> library. If you are editing the script locally, you'll need to install this package:
+For the API calls, we'll use the [node-fetch](https://github.com/node-fetch/node-fetch) library. If you are editing the script locally, you'll need to install this package:
 
 ```bash
 npm install node-fetch
@@ -73,7 +73,7 @@ async function getExecution (executionUrl) {
 
 ## Getting the Execution in the Webhook
 
-Finally, we can call the `getExecution` function with the URL contained in the event payload. There's a variety of information in the execution response (take a look at the [API Reference](/reference/api/) for all the details), but for now let's just log the execution id.
+Finally, we can call the `getExecution` function with the URL contained in the event payload. There's a variety of information in the execution response (take a look at the [API Reference](../reference/api.md) for all the details), but for now let's just log the execution id.
 
 ```javascript
 if (STARTED === event['@type'] &&
@@ -90,11 +90,11 @@ if (STARTED === event['@type'] &&
 
 ## Running the Updated Webhook
 
-If you are running the script locally, you'll need to stop and restart the node process. You don't need to restart ngrok. In fact, if you do restart ngrok, the URL will likely change and you'll need to go back into the <a href="https://developer.adobe.com/console/projects" target="_new">Adobe Developer Console</a> and update the Webhook URL.
+If you are running the script locally, you'll need to stop and restart the node process. You don't need to restart ngrok. In fact, if you do restart ngrok, the URL will likely change and you'll need to go back into the [Adobe Developer Console](https://developer.adobe.com/console/projects) and update the Webhook URL.
 
 If you are running the script through Glitch, Glitch will restart automatically. If you don't want to update your existing Glitch project (or lost it), you can click the button below to start over.
 
-<Glitch projectName="adobe-cloudmanager-api-tutorial-step5" />
+\<Glitch projectName="adobe-cloudmanager-api-tutorial-step5" /\>
 
 ## Next Step
 

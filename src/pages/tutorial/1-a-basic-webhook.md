@@ -18,7 +18,7 @@ In the first step of the tutorial, we're going to create an event handler (webho
 
 ## Dependencies
 
-To write the webhook, this tutorial uses <a href="https://expressjs.com/" target="_new">Express</a>, a minimal web framework for Node.js. To automate the parsing of JSON requests, the `body-parser` package is used. Finally, a package named `dotenv` is used to parse and load the `.env` file created in the [Overview](/tutorial/index.md). To install these three packages, run
+To write the webhook, this tutorial uses [Express](https://expressjs.com/), a minimal web framework for Node.js. To automate the parsing of JSON requests, the `body-parser` package is used. Finally, a package named `dotenv` is used to parse and load the `.env` file created in the [Overview](/tutorial/index.md). To install these three packages, run
 
 ```bash
 npm install express body-parser dotenv
@@ -97,7 +97,7 @@ Your app is listening on port 4000
 
 ### Creating a Tunnel with ngrok
 
-In order to use the webhook with Adobe I/O, it must be accessible to the public internet. But, your development machine is probably not accessible. So you need to open a _tunnel_ allowing public access to the webhook. One popular tool for doing this is <a href="https://ngrok.com" target="_new">ngrok</a>. Follow the instructions on the ngrok website to install it. Once it is installed, you can open up a tunnel by running
+In order to use the webhook with Adobe I/O, it must be accessible to the public internet. But, your development machine is probably not accessible. So you need to open a _tunnel_ allowing public access to the webhook. One popular tool for doing this is [ngrok](https://ngrok.com). Follow the instructions on the ngrok website to install it. Once it is installed, you can open up a tunnel by running
 
 ```bash
 ngrok http 4000
@@ -121,9 +121,9 @@ For the purpose of this tutorial, the free ngrok service is acceptable. Just kee
 
 ### Running the Webhook Script with Glitch
 
-Alternatively, you can run the webhook script using <a href="https://glitch.com/" target="_new">Glitch</a>. Glitch is an interactive web-based code editor for Node.js applications with built-in hosting. To save you the trouble of copy and pasting the files you've created already, you can just click the button below to create a new application on Glitch pre-populated with the content of the tutorial so far.
+Alternatively, you can run the webhook script using [Glitch](https://glitch.com/). Glitch is an interactive web-based code editor for Node.js applications with built-in hosting. To save you the trouble of copy and pasting the files you've created already, you can just click the button below to create a new application on Glitch pre-populated with the content of the tutorial so far.
 
-<Glitch projectName="adobe-cloudmanager-api-tutorial-step1" />
+\<Glitch projectName="adobe-cloudmanager-api-tutorial-step1" /\>
 
 In the new Glitch project, you will need to populate the `.env` file and create the `.data/private.key` file as describe in the [introduction](index.md).
 
@@ -134,7 +134,7 @@ Feel free to create an account with Glitch if you want to continue to use it in 
 
 ## Registering the Webhook with Adobe I/O
 
-Now that you have your webhook running at a publicly accessible URL, you can register it with Adobe I/O. To do this, open the <a href="https://console.adobe.io/projects" target="_new">Adobe Developer Console</a> and open the Project you created in Step 0. Click Add to Project and select Event. Select Cloud Manager and click Next.
+Now that you have your webhook running at a publicly accessible URL, you can register it with Adobe I/O. To do this, open the [Adobe Developer Console](https://console.adobe.io/projects) and open the Project you created in Step 0. Click Add to Project and select Event. Select Cloud Manager and click Next.
 
 ![Select Event Types](img/event-select-event-types.png)
 

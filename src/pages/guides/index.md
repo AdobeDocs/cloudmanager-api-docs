@@ -11,6 +11,6 @@ keywords:
 import GettingStarted from './getting-started/index.md'
 import ApiUsage from './api-usage/index.md'
 
-<GettingStarted />
+\<GettingStarted /\>
 
-<ApiUsage />
+\<ApiUsage /\>

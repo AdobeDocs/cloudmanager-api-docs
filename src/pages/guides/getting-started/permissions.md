@@ -39,4 +39,4 @@ With a few exception (listed below), if only read (`GET`) access is required, th
 
 ## Detailed Permission Information
 
-<PermissionsTable />
+\<PermissionsTable /\>

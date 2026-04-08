@@ -11,4 +11,4 @@ keywords:
 
 import Playground from "../../components/playground/index.js"
 
-<Playground />
+\<Playground /\>
