@@ -9,4 +9,4 @@ keywords:
 layout:none
 --- 
 
-<RedoclyAPIBlock src="/experience-cloud/cloud-manager/openapi.yaml" />
+<RedoclyAPIBlock src="/experience-cloud/cloud-manager/api.yaml" />
