@@ -11,81 +11,23 @@
     "name": "Justin Edelson",
     "url": "https://github.com/justinedelson"
   },
-  "dependencies": {
-    "@adobe/gatsby-theme-aio": "^4.14.7",
-    "@emotion/react": "11.8.2",
-    "@spectrum-css/buttongroup": "3.0.10",
-    "@spectrum-css/fieldlabel": "4.0.17",
-    "axios": "0.26.1",
-    "classnames": "2.3.1",
-    "gatsby": "4.22.0",
-    "gatsby-plugin-emotion": "^7.23.0",
-    "gatsby-plugin-static-folders": "1.0.1",
-    "history": "5.3.0",
-    "lodash.debounce": "4.0.8",
-    "lodash.uniq": "4.5.0",
-    "lodash.uniqueid": "4.0.1",
-    "os-browserify": "0.3.0",
-    "patch-package": "6.4.7",
-    "postinstall-postinstall": "2.1.0",
-    "prop-types": "15.8.1",
-    "qs": "6.10.3",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-safe": "1.3.0",
-    "tty-browserify": "0.0.1",
-    "uritemplate": "0.3.4"
-  },
-  "devDependencies": {
-    "@babel/core": "7.17.5",
-    "@babel/preset-env": "7.16.11",
-    "@emotion/eslint-plugin": "11.7.0",
-    "babel-jest": "27.5.1",
-    "eslint": "8.11.0",
-    "eslint-config-standard": "16.0.3",
-    "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-jest": "26.1.1",
-    "eslint-plugin-jsdoc": "40.1.0",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-promise": "6.0.0",
-    "eslint-plugin-react": "7.29.3",
-    "eslint-plugin-react-hooks": "4.3.0",
-    "jest": "27.5.1",
-    "jest-junit": "13.0.0",
-    "js-yaml": "4.1.0",
-    "remark-cli": "^11.0.0",
-    "remark-validate-links": "^12.1.0"
-  },
   "scripts": {
-    "start": "gatsby build && gatsby serve",
-    "start:prefix": "gatsby build --prefix-paths && gatsby serve --prefix-paths",
-    "dev": "gatsby develop",
-    "dev:https": "gatsby develop --https --host localhost.corp.adobe.com --port 443",
-    "dev:https:stage": "gatsby develop --https --host developer-stage.adobe.com --port 443",
-    "dev:https:prod": "gatsby develop --https --host www.adobe.io --port 443",
-    "dev:debug": "node --nolazy node_modules/.bin/gatsby develop --inspect-brk",
-    "build": "npx copyfiles -f swagger-specs/* static && gatsby build",
-    "build:test": "yarn run lint && yarn run test && npx copyfiles -f swagger-specs/* static && gatsby build",
-    "build:incremental": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "lint": "docker run --rm -e RUN_LOCAL=true --env-file '.github/super-linter.env' -v \"$PWD\":/tmp/lint github/super-linter:slim-v4.10.1",
-    "postinstall": "patch-package",
-    "test": "jest --config test/jest.config.js",
-    "test:links": "remark src/pages --quiet --frail",
-    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand --config test/jest.config.js"
+    "dev": "npx --yes github:AdobeDocs/adp-devsite-utils dev",
+    "buildNavigation": "npx --yes github:AdobeDocs/adp-devsite-utils buildNavigation -v",
+    "buildRedirections": "npx --yes github:AdobeDocs/adp-devsite-utils buildRedirections -v",
+    "renameFiles": "npx --yes github:AdobeDocs/adp-devsite-utils renameFiles -v",
+    "normalizeLinks": "npx --yes github:AdobeDocs/adp-devsite-utils normalizeLinks -v",
+    "buildSiteWideBanner": "npx --yes github:AdobeDocs/adp-devsite-utils buildSiteWideBanner -v",
+    "buildSiteMetadata": "npx --yes github:AdobeDocs/adp-devsite-utils buildSiteMetadata -v",
+    "buildContributors": "npx --yes github:AdobeDocs/adp-devsite-utils buildContributors -v",
+    "lint": "npx --yes github:AdobeDocs/adp-devsite-utils runLint -v",
+    "lint:errorOnly": "npx --yes github:AdobeDocs/adp-devsite-utils runLint",
+    "link:externalLinkOnly": "npx --yes github:AdobeDocs/adp-devsite-utils runLint --external-links-only -v",
+    "link:checkAllLinks": "npx --yes github:AdobeDocs/adp-devsite-utils runLint --internal-links-only --external-links-only -v",
+    "redirectCheck:stage": "npx --yes github:AdobeDocs/adp-devsite-utils redirectChecker stage --verbose",
+    "redirectCheck:prod": "npx --yes github:AdobeDocs/adp-devsite-utils redirectChecker prod --verbose"
   },
   "engines": {
     "node": ">=20.11.1"
-  },
-  "remarkConfig": {
-    "plugins": [
-      "remark-validate-links"
-    ]
-  },
-  "resolutions": {
-    "sharp": "0.33.0",
-    "gatsby-sharp": "1.12.0"
-  },
-  "packageManager": "yarn@3.2.2"
+  }
 }
