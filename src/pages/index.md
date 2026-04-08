@@ -8,7 +8,7 @@ keywords:
   - Cloud Manager
 ---
 
-<Hero slots="image, heading, text"/>
+<Superhero slots="image, heading, text"/>
 
 ![Hero image](img/pipeline-illustration.png)
 

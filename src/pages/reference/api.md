@@ -8,3 +8,5 @@ keywords:
   - API Documentation
   - Cloud Manager
 --- 
+
+<RedoclyAPIBlock src="/experience-cloud/cloud-manager/openapi.yaml" />
