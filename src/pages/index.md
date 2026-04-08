@@ -55,7 +55,7 @@ See which permissions are required for using the API.
 
 <DiscoverBlock slots="link"/>
 
-[All Guides](guides/)
+[All Guides](guides/index.md)
 
 <DiscoverBlock slots="heading, link, text"/>
 
@@ -81,7 +81,7 @@ Make API calls from your browser.
 
 ### Tutorial
 
-[Tutorial](tutorial/)
+[Tutorial](tutorial/index.md)
 
 Walk through a step-by-step tutorial
 
@@ -89,7 +89,7 @@ Walk through a step-by-step tutorial
 
 ### CLI and SDKs
 
-[CLI and SDKs](cli-and-sdks/)
+[CLI and SDKs](cli-and-sdks/index.md)
 
 Learn about the Cloud Manager CLI and the available SDKs for easy project integration.
 
