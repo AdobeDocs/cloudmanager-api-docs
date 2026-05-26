@@ -29,7 +29,7 @@ The files used in this tutorial can all be found in GitHub in the repository at 
 
 ## Prerequisites
 
-Before starting the tutorial, you must first set up an project in the <a href="https://developer.adobe.com/console/projects" target="_new">Adobe Developer Console</a>. First, follow the instructions on the [Creating an API Integration](/guides/getting-started/create-api-integration/) to create an API integration. You'll add the Event Provider integration in a later step.
+Before starting the tutorial, you must first set up an project in the [Adobe Developer Console](https://developer.adobe.com/console/projects). First, follow the instructions on the [Creating an API Integration](../guides/getting-started/create-api-integration.md) to create an API integration. You'll add the Event Provider integration in a later step.
 
 ## Project Initialization
 
@@ -59,7 +59,7 @@ Let's go through each of these and set them.
 
 ### Node.js Installation
 
-This tutorial is written in JavaScript using <a href="https://nodejs.org/" target="_new">Node.js</a>. If you don't have Node.js installed, now is the time to do so. You'll also need npm, the Node Package Manager, as this tutorial uses a number of third-party dependencies, distributed as Node packages. Most of the time, npm is installed automatically when you install Node.js.
+This tutorial is written in JavaScript using [Node.js](https://nodejs.org/). If you don't have Node.js installed, now is the time to do so. You'll also need npm, the Node Package Manager, as this tutorial uses a number of third-party dependencies, distributed as Node packages. Most of the time, npm is installed automatically when you install Node.js.
 
 ### Node.js Initialization
 

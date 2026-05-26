@@ -9,8 +9,6 @@ keywords:
   - JavaScript   
 ---
 
-import Glitch from "../../components/glitch"
-
 # Tutorial Step 2 - Webhook Signature Validation
 
 In the second step of the tutorial, the webhook from the first step is going to be enhanced to validate that the POST request actually comes from Adobe I/O. Adobe I/O Events
@@ -42,11 +40,11 @@ documentation for more information.
 
 ## Updating the Webhook
 
-To update your webhook script, just replace the POST handler with the one above. If you are running the script locally, you'll need to stop and restart the node process. You don't need to restart ngrok. In fact, if you do restart ngrok, the URL will likely change and you'll need to go back into the <a href="https://developer.adobe.com/console/projects" target="_new">Adobe Developer Console</a> and update the Webhook URL.
+To update your webhook script, just replace the POST handler with the one above. If you are running the script locally, you'll need to stop and restart the node process. You don't need to restart ngrok. In fact, if you do restart ngrok, the URL will likely change and you'll need to go back into the [Adobe Developer Console](https://developer.adobe.com/console/projects) and update the Webhook URL.
 
 If you are running the script through Glitch, Glitch will restart automatically. If you don't want to update your existing Glitch project (or lost it), you can click the button below to start over.
 
-<Glitch projectName="adobe-cloudmanager-api-tutorial-step2" />
+[Remix in Glitch](https://glitch.com/edit/#!/remix/adobe-cloudmanager-api-tutorial-step2)
 
 ## Next Step
 

@@ -1,0 +1,38 @@
+- pathPrefix:
+    - /experience-cloud/cloud-manager/
+
+- pages:
+    - [Cloud Manager](/index.md)
+    - [Guides](/guides/index.md)
+    - [Tutorial](/tutorial/index.md)
+    - API Reference
+        - [Cloud Manager API](/reference/api.md) Reference document for the Cloud Manager API
+        - [Cloud Manager API Models](/reference/models.md) Reference document for the model objects Cloud Manager API
+        - [Event Definitions](/reference/events.md) Definition of Event Payloads
+        - [Playground](/reference/playground.md) API Playground (Early Access)
+    - [CLI and SDKs](/cli-and-sdks/index.md)
+
+- subPages:
+    - Getting Started header
+    - [Understanding the API](/guides/getting-started/understanding-the-api.md)
+    - [Create an API Integration Project](/guides/getting-started/create-api-integration.md)
+    - [Create an Event Integration Project](/guides/getting-started/create-event-integration.md)
+    - [Authentication](guides/getting-started/authentication/authentication.md)
+    - [JWT Authentication (Deprecated)](guides/getting-started/authentication/jwt-authentication.md)
+    - [API Permissions](guides/getting-started/permissions.md)
+    - [Getting Started with Postman](/guides/getting-started/getting-started-with-postman.md)
+    - API Usage header
+    - [Receiving Events](guides/api-usage/receiving-events.md)
+    - [Understanding Metric Data](guides/api-usage/understanding-metric-data.md)
+    - [Editing and Deleting Pipelines](guides/api-usage/editing-and-deleting-pipelines.md)
+    - [Advancing and Cancelling Steps](guides/api-usage/advancing-and-cancelling-steps.md)
+    - [Creating Programs and Environments](guides/api-usage/creating-programs-and-environments.md)
+    - [Adding Custom Domain Names](guides/api-usage/adding-custom-domain-names.md)
+    - [Tutorial Overview](/tutorial/index.md)
+    - [Step 1 - A Basic Webhook](/tutorial/1-a-basic-webhook.md)
+    - [Step 2 - Webhook Signature Validation](/tutorial/2-webhook-signature-validation.md)
+    - [Step 3 - Handling Specific Events](/tutorial/3-handling-specific-events.md)
+    - [Step 4 - Getting an Access Token](/tutorial/4-getting-an-access-token.md)
+    - [Step 5 - Getting the Execution](/tutorial/5-getting-the-execution.md)
+    - [Step 6 - Getting the Program](/tutorial/6-getting-the-program.md)
+    - [Step 7 - Sending Notifications](/tutorial/7-sending-notifications.md)

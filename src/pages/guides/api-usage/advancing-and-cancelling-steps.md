@@ -27,7 +27,7 @@ For both advance and cancel functions, a `PUT` request is made to the appropriat
 
 <InlineAlert slots="text" />
 
-These requests require that the service account for the integration be assigned the Deployment Manager, Program Manager, or Business Owner role. See the Cloud Manager <a href="https://www.adobe.com/go/aem_cloud_mrg_usersroles_en">documentation</a> for more information.
+These requests require that the service account for the integration be assigned the Deployment Manager, Program Manager, or Business Owner role. See the Cloud Manager [documentation](https://www.adobe.com/go/aem_cloud_mrg_usersroles_en) for more information.
 
 ## Advance Body Definitions
 

@@ -19,48 +19,48 @@ When Cloud Manager emits an event, all webhooks configured for that event will b
 
 ### Pipeline Execution Started
 
-<dl class="event-description">
-  <dt><span class="spectrum-Code spectrum-Code--sizeM">@type</span></dt>
-  <dd><span class="spectrum-Code spectrum-Code--sizeM">https://ns.adobe.com/experience/cloudmanager/event/started</span></dd>
-  <dt><span class="spectrum-Code spectrum-Code--sizeM">xdmEventEnvelope:objectType</span></dt>
-  <dd><span class="spectrum-Code spectrum-Code--sizeM">https://ns.adobe.com/experience/cloudmanager/pipeline-execution</span></dd>
-</dl>
+\<dl class="event-description"\>
+  \<dt\>\<span class="spectrum-Code spectrum-Code--sizeM"\>@type\</span\>\</dt\>
+  \<dd\>\<span class="spectrum-Code spectrum-Code--sizeM"\>https://ns.adobe.com/experience/cloudmanager/event/started\</span\>\</dd\>
+  \<dt\>\<span class="spectrum-Code spectrum-Code--sizeM"\>xdmEventEnvelope:objectType\</span\>\</dt\>
+  \<dd\>\<span class="spectrum-Code spectrum-Code--sizeM"\>https://ns.adobe.com/experience/cloudmanager/pipeline-execution\</span\>\</dd\>
+\</dl\>
 
 ### Pipeline Execution Step Started
 
-<dl class="event-description">
-  <dt><span class="spectrum-Code spectrum-Code--sizeM">@type</span></dt>
-  <dd><span class="spectrum-Code spectrum-Code--sizeM">https://ns.adobe.com/experience/cloudmanager/event/started</span></dd>
-  <dt><span class="spectrum-Code spectrum-Code--sizeM">xdmEventEnvelope:objectType</span></dt>
-  <dd><span class="spectrum-Code spectrum-Code--sizeM">https://ns.adobe.com/experience/cloudmanager/execution-step-state</span></dd>
-</dl>
+\<dl class="event-description"\>
+  \<dt\>\<span class="spectrum-Code spectrum-Code--sizeM"\>@type\</span\>\</dt\>
+  \<dd\>\<span class="spectrum-Code spectrum-Code--sizeM"\>https://ns.adobe.com/experience/cloudmanager/event/started\</span\>\</dd\>
+  \<dt\>\<span class="spectrum-Code spectrum-Code--sizeM"\>xdmEventEnvelope:objectType\</span\>\</dt\>
+  \<dd\>\<span class="spectrum-Code spectrum-Code--sizeM"\>https://ns.adobe.com/experience/cloudmanager/execution-step-state\</span\>\</dd\>
+\</dl\>
 
 ### Pipeline Execution Step Waiting
 
-<dl class="event-description">
-  <dt><span class="spectrum-Code spectrum-Code--sizeM">@type</span></dt>
-  <dd><span class="spectrum-Code spectrum-Code--sizeM">https://ns.adobe.com/experience/cloudmanager/event/waiting</span></dd>
-  <dt><span class="spectrum-Code spectrum-Code--sizeM">xdmEventEnvelope:objectType</span></dt>
-  <dd><span class="spectrum-Code spectrum-Code--sizeM">https://ns.adobe.com/experience/cloudmanager/execution-step-state</span></dd>
-</dl>
+\<dl class="event-description"\>
+  \<dt\>\<span class="spectrum-Code spectrum-Code--sizeM"\>@type\</span\>\</dt\>
+  \<dd\>\<span class="spectrum-Code spectrum-Code--sizeM"\>https://ns.adobe.com/experience/cloudmanager/event/waiting\</span\>\</dd\>
+  \<dt\>\<span class="spectrum-Code spectrum-Code--sizeM"\>xdmEventEnvelope:objectType\</span\>\</dt\>
+  \<dd\>\<span class="spectrum-Code spectrum-Code--sizeM"\>https://ns.adobe.com/experience/cloudmanager/execution-step-state\</span\>\</dd\>
+\</dl\>
 
 ### Pipeline Execution Step Ended
 
-<dl class="event-description">
-  <dt><span class="spectrum-Code spectrum-Code--sizeM">@type</span></dt>
-  <dd><span class="spectrum-Code spectrum-Code--sizeM">https://ns.adobe.com/experience/cloudmanager/event/ended</span></dd>
-  <dt><span class="spectrum-Code spectrum-Code--sizeM">xdmEventEnvelope:objectType</span></dt>
-  <dd><span class="spectrum-Code spectrum-Code--sizeM">https://ns.adobe.com/experience/cloudmanager/execution-step-state</span></dd>
-</dl>
+\<dl class="event-description"\>
+  \<dt\>\<span class="spectrum-Code spectrum-Code--sizeM"\>@type\</span\>\</dt\>
+  \<dd\>\<span class="spectrum-Code spectrum-Code--sizeM"\>https://ns.adobe.com/experience/cloudmanager/event/ended\</span\>\</dd\>
+  \<dt\>\<span class="spectrum-Code spectrum-Code--sizeM"\>xdmEventEnvelope:objectType\</span\>\</dt\>
+  \<dd\>\<span class="spectrum-Code spectrum-Code--sizeM"\>https://ns.adobe.com/experience/cloudmanager/execution-step-state\</span\>\</dd\>
+\</dl\>
 
 ### Pipeline Execution Ended
 
-<dl class="event-description">
-  <dt><span class="spectrum-Code spectrum-Code--sizeM">@type</span></dt>
-  <dd><span class="spectrum-Code spectrum-Code--sizeM">https://ns.adobe.com/experience/cloudmanager/event/ended</span></dd>
-  <dt><span class="spectrum-Code spectrum-Code--sizeM">xdmEventEnvelope:objectType</span></dt>
-  <dd><span class="spectrum-Code spectrum-Code--sizeM">https://ns.adobe.com/experience/cloudmanager/pipeline-execution</span></dd>
-</dl>
+\<dl class="event-description"\>
+  \<dt\>\<span class="spectrum-Code spectrum-Code--sizeM"\>@type\</span\>\</dt\>
+  \<dd\>\<span class="spectrum-Code spectrum-Code--sizeM"\>https://ns.adobe.com/experience/cloudmanager/event/ended\</span\>\</dd\>
+  \<dt\>\<span class="spectrum-Code spectrum-Code--sizeM"\>xdmEventEnvelope:objectType\</span\>\</dt\>
+  \<dd\>\<span class="spectrum-Code spectrum-Code--sizeM"\>https://ns.adobe.com/experience/cloudmanager/pipeline-execution\</span\>\</dd\>
+\</dl\>
 
 The body of the requests received by the webhook will vary based on the event type. The [Reference Document](../../reference/events.md) details the schema for each event body.
 
