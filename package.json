@@ -1,14 +1,15 @@
 {
-  "name": "dev-docs-template",
+  "private": true,
+  "name": "cloudmanager-api-docs",
   "version": "1.0.0",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AdobeDocs/dev-docs-template"
+    "url": "https://github.com/AdobeDocs/cloudmanager-api-docs"
   },
   "author": {
-    "name": "Tim Kim",
-    "url": "https://github.com/timkim"
+    "name": "Justin Edelson",
+    "url": "https://github.com/justinedelson"
   },
   "engines": {
     "node": "^24.11.0"
