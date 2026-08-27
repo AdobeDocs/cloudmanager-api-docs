@@ -1296,6 +1296,93 @@ paths:
             $ref: '#/definitions/BadRequestError'
         '404':
           description: Environment not found
+  '/api/program/{programId}/environment/{environmentId}/dynamicMediaOpenAPI':
+    post:
+      tags:
+        - Environments
+      summary: Enable Dynamic Media Open API
+      description: Enable Dynamic Media Open API for an environment (Cloud Service only)
+      operationId: provisionDynamicMediaOpenAPI
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Provisioning in progress
+          schema:
+            $ref: '#/definitions/DynamicMediaOpenAPI'
+        '400':
+          description: Dynamic Media Open API status not in a provisionable status
+          schema:
+            $ref: '#/definitions/BadRequestError'
+        '404':
+          description: Environment not found
+    delete:
+      tags:
+        - Environments
+      summary: Disable Dynamic Media Open API
+      description: Disable Dynamic Media Open API for an environment (Cloud Service only)
+      operationId: deprovisionDynamicMediaOpenAPI
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: environmentId
+          in: path
+          description: Identifier of the environment
+          required: true
+          type: string
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Deprovisioning in progress
+          schema:
+            $ref: '#/definitions/DynamicMediaOpenAPI'
+        '400':
+          description: Dynamic Media Open API status not in a provisionable status
+          schema:
+            $ref: '#/definitions/BadRequestError'
+        '404':
+          description: Environment not found
   '/api/program/{programId}/environment/{environmentId}/regionDeployments/{regionDeploymentId}':
     get:
       tags:
@@ -5755,6 +5842,39 @@ definitions:
             $ref: '#/definitions/HalLink'
             description: This object's representation
     description: A representation of an Environment known to Cloud Manager.
+  DynamicMediaOpenAPI:
+    type: object
+    description: Enables Dynamic Media Open API for an Environment
+    properties:
+      programId:
+        type: string
+        example: '14'
+        description: Identifier of the program. Unique within the space.
+      environmentId:
+        type: string
+        example: '123'
+        description: Identifier of the environment. Unique within the space.
+      tenantId:
+        type: string
+        example: '3'
+        description: Identifier of the Tenant. Unique within the space.
+      flowId:
+        type: string
+        example: '3'
+        description: Identifier of flow that just ran
+      _links:
+        type: object
+        readOnly: true
+        properties:
+          'http://ns.adobe.com/adobecloud/rel/program':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/environment':
+            $ref: '#/definitions/HalLink'
+          'http://ns.adobe.com/adobecloud/rel/tenant':
+            $ref: '#/definitions/HalLink'
+          self:
+            $ref: '#/definitions/HalLink'
+            description: This object's representation
   Repository:
     type: object
     properties:
