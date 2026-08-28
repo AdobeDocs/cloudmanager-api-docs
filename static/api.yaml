@@ -7613,14 +7613,13 @@ definitions:
     type: object
     required:
       - address
-      - addressSpace
     properties:
       address:
         type: string
         description: Customer VPN Device IP Address
       addressSpace:
         type: array
-        description: IP Ranges to route through the VPN
+        description: 'IP Ranges (CIDRs) to route through the VPN. Required for static-routing connections. Optional when the connection uses BGP dynamic routing (bgpAsn and bgpPeeringAddress provided), in which case routes are learned dynamically. When both a BGP-advertised route and a static addressSpace route overlap, the most specific (longest-prefix) subnet is preferred.'
         items:
           type: string
   IpSecPolicyInfrastructure:
@@ -7725,6 +7724,15 @@ definitions:
       sharedKey:
         type: string
         description: Customer VPN preshared key
+      bgpAsn:
+        type: integer
+        description: 'Customer-side BGP Autonomous System Number for dynamic routing. No range restriction. Must be provided together with bgpPeeringAddress.'
+      bgpPeeringAddress:
+        type: string
+        description: 'Customer-side BGP peering IP address. Must be a valid IPv4 address. Must be provided together with bgpAsn.'
+      adobeApipaAddress:
+        type: string
+        description: 'Adobe-side APIPA address used for BGP peering. When provided, must be in the range 169.254.21.0 to 169.254.22.255. If omitted, Adobe auto-assigns an IP from infrastructure-level address space.'
       ipsecPolicy:
         description: IPSec Policy
         $ref: '#/definitions/IpSecPolicyInfrastructure'
@@ -7789,9 +7797,12 @@ definitions:
       dns:
         description: DNS Information. Only applicable to VPN infrastructures.
         $ref: '#/definitions/DnsConfiguration'
+      adobeAsn:
+        type: integer
+        description: 'ASN of the Adobe-configured VPN gateway. Optional in general, but mandatory when any connection specifies bgpAsn or bgpPeeringAddress. Must be in the range 64512 to 65514 or 65521 to 65534. Only applicable to VPN.'
       connections:
         type: array
-        description: List of VPN connections
+        description: 'List of VPN connections. Supports multiple connections per network infrastructure (recommended maximum of 20). Connections can mix static and BGP dynamic routing.'
         items:
           $ref: '#/definitions/VpnConnection'
       statusDetails:
