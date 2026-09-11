@@ -3285,3 +3285,65 @@ components:
         ipsecPolicy:
           description: IPSec Policy
           $ref: "#/components/schemas/IpSecPolicyInfrastructure"
+    NetworkConnectivityCheckResponse:
+      type: object
+      description: Result of a network connectivity check, with one entry per DNS resolver configured on the environment.
+      properties:
+        resolvers:
+          type: array
+          description: Array of resolver results.
+          items:
+            $ref: "#/components/schemas/NetworkConnectivityResolverResult"
+    NetworkConnectivityResolverResult:
+      type: object
+      description: Result from a single DNS resolver.
+      properties:
+        name:
+          type: string
+          description: Name of the resolver.
+        resolver_ip:
+          type: string
+          description: IP address of the resolver.
+        dns_resolution:
+          description: DNS resolution result.
+          $ref: "#/components/schemas/NetworkConnectivityDnsResolution"
+        port_open:
+          type: boolean
+          description: Whether the target TCP port is open.
+        http_connectivity:
+          description: HTTP connectivity check result.
+          $ref: "#/components/schemas/NetworkConnectivityHttp"
+        reachability:
+          type: string
+          description: Overall reachability status for this resolver.
+    NetworkConnectivityDnsResolution:
+      type: object
+      description: DNS resolution result.
+      properties:
+        ips:
+          type: array
+          description: List of resolved IP addresses.
+          items:
+            type: string
+        error:
+          type: string
+          description: Error message if DNS resolution failed. Present only on failure.
+    NetworkConnectivityHttp:
+      type: object
+      description: HTTP connectivity check result.
+      properties:
+        protocol:
+          type: string
+          description: 'Protocol used, for example "http" or "https".'
+        status_code:
+          type: integer
+          description: HTTP status code.
+        reason:
+          type: string
+          description: HTTP status reason phrase.
+        note:
+          type: string
+          description: Additional note about the connectivity check.
+        error:
+          type: string
+          description: Error message if the HTTP connectivity check failed. Present only on failure.
