@@ -4257,6 +4257,58 @@ paths:
           description: Network Infrastructure cannot be deleted
         '404':
           description: Network Infrastructure not found
+  '/api/program/{programId}/networkConnectivityCheck':
+    get:
+      tags:
+        - Network infrastructure
+      summary: Check network connectivity
+      description: >-
+        Tests advanced networking connectivity from the program's environments to a specific host and port. For each DNS resolver configured on the environment, the check reports DNS resolution, whether the TCP port is open, the result of an HTTP probe, and an overall reachability verdict. Requires the advanced networking connectivity check to be enabled for the organization.
+      operationId: checkNetworkConnectivity
+      parameters:
+        - name: programId
+          in: path
+          description: Identifier of the program
+          required: true
+          type: string
+        - name: host
+          in: query
+          description: Target host to check connectivity to
+          required: true
+          type: string
+        - name: port
+          in: query
+          description: Target port to check connectivity to (1-65535)
+          required: true
+          type: integer
+          minimum: 1
+          maximum: 65535
+        - name: x-gw-ims-org-id
+          in: header
+          description: IMS organization ID that the request is being made under.
+          required: true
+          type: string
+        - name: Authorization
+          in: header
+          description: 'Bearer [token] - An access token for the technical account created through integration with Adobe IO'
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: IMS Client ID (API Key) which is subscribed to consume services on console.adobe.io
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Successful connectivity check
+          schema:
+            $ref: '#/definitions/NetworkConnectivityCheckResponse'
+        '400':
+          description: Invalid request parameters
+        '403':
+          description: Insufficient permissions
+        '500':
+          description: Internal server error during connectivity check
   '/api/program/{programId}/environment/{environmentId}/advancedNetworking':
     get:
       tags:
@@ -7736,6 +7788,68 @@ definitions:
       ipsecPolicy:
         description: IPSec Policy
         $ref: '#/definitions/IpSecPolicyInfrastructure'
+  NetworkConnectivityCheckResponse:
+    type: object
+    description: Result of a network connectivity check, with one entry per DNS resolver configured on the environment.
+    properties:
+      resolvers:
+        type: array
+        description: Array of resolver results.
+        items:
+          $ref: '#/definitions/NetworkConnectivityResolverResult'
+  NetworkConnectivityResolverResult:
+    type: object
+    description: Result from a single DNS resolver.
+    properties:
+      name:
+        type: string
+        description: Name of the resolver.
+      resolver_ip:
+        type: string
+        description: IP address of the resolver.
+      dns_resolution:
+        description: DNS resolution result.
+        $ref: '#/definitions/NetworkConnectivityDnsResolution'
+      port_open:
+        type: boolean
+        description: Whether the target TCP port is open.
+      http_connectivity:
+        description: HTTP connectivity check result.
+        $ref: '#/definitions/NetworkConnectivityHttp'
+      reachability:
+        type: string
+        description: Overall reachability status for this resolver.
+  NetworkConnectivityDnsResolution:
+    type: object
+    description: DNS resolution result.
+    properties:
+      ips:
+        type: array
+        description: List of resolved IP addresses.
+        items:
+          type: string
+      error:
+        type: string
+        description: Error message if DNS resolution failed. Present only on failure.
+  NetworkConnectivityHttp:
+    type: object
+    description: HTTP connectivity check result.
+    properties:
+      protocol:
+        type: string
+        description: 'Protocol used, for example "http" or "https".'
+      status_code:
+        type: integer
+        description: HTTP status code.
+      reason:
+        type: string
+        description: HTTP status reason phrase.
+      note:
+        type: string
+        description: Additional note about the connectivity check.
+      error:
+        type: string
+        description: Error message if the HTTP connectivity check failed. Present only on failure.
   NetworkInfrastructure:
     type: object
     required:
