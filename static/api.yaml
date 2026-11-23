@@ -3731,13 +3731,91 @@ paths:
       tags:
         - EDS Sites
       summary: Get All Sites by programId
-      description: ''
+      description: |
+        Lists the non-deleted Edge Delivery Services sites in a program, with optional
+        filtering, sorting, and offset pagination. Name and status filters are combined
+        with AND; multiple statuses are combined with OR.
+
+        Without `limit`, all matching sites are returned and `_page`, `_links.next`,
+        and `_links.prev` are omitted. Supplying `limit` enables pagination, with
+        `start` defaulting to 0. `_totalNumberOfItems` is the matching count before
+        pagination. An offset at or beyond this count returns an empty sites array.
+
+        Paginated HAL links preserve the supplied filters and sorting. Follow
+        `_links.next` when present to retrieve more results; `_page.next` remains
+        numeric even on the last page.
+
+        For example, `/api/program/4/sites?name=demo&status=VALIDATED,CREATING&sort=name,asc&start=0&limit=10`
+        returns the first 10 matching sites ordered by name.
       operationId: getProgramSites
       parameters:
         - name: programId
           in: path
           required: true
           type: string
+        - name: name
+          in: query
+          description: |
+            Literal, case-insensitive substring of the site name. Leading and trailing
+            whitespace is trimmed; blank values are ignored. Characters such as `%`,
+            `_`, and `\` are treated literally, not as wildcards.
+          required: false
+          type: string
+        - name: status
+          in: query
+          description: |
+            Comma-separated site statuses. Matches any selected status. Values are
+            case-sensitive and must not contain surrounding whitespace or empty entries.
+            Soft-deleted sites remain excluded.
+          required: false
+          type: array
+          collectionFormat: csv
+          minItems: 1
+          items:
+            type: string
+            enum:
+              - VALIDATED
+              - PENDING_VALIDATION
+              - DELETED
+              - CREATING
+              - FAILED
+        - name: sort
+          in: query
+          description: |
+            Sort field and direction, separated by a comma. Fields are `name`, `status`,
+            and `createdAt`; directions are `asc` and `desc`. Values are case-sensitive.
+            Sites with equal sort values are ordered by site ID descending.
+          required: false
+          type: string
+          default: createdAt,desc
+          enum:
+            - name,asc
+            - name,desc
+            - status,asc
+            - status,desc
+            - createdAt,asc
+            - createdAt,desc
+        - name: start
+          in: query
+          description: |
+            Zero-based row offset. Requires `limit`, even when `start` is 0.
+            Must contain only digits and need not be a multiple of `limit`.
+          required: false
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 2147483647
+          default: 0
+        - name: limit
+          in: query
+          description: |
+            Maximum number of sites to return. Must contain only digits, with a value
+            from 1 through 100. Omit this parameter to return all matching sites.
+          required: false
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 100
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -3758,6 +3836,11 @@ paths:
           description: Sites retrieved
           schema:
             $ref: '#/definitions/SiteList'
+        '400':
+          description: |
+            Invalid filter, sort, or pagination parameter. This includes unknown or
+            empty statuses, unsupported sort fields or directions, invalid integers,
+            out-of-range values, or supplying `start` without `limit`.
     post:
       tags:
         - EDS Sites
@@ -7552,8 +7635,11 @@ definitions:
     properties:
       _totalNumberOfItems:
         type: integer
-        format: int32
-        description: The total number of embedded items
+        format: int64
+        description: The total number of matching non-deleted sites before pagination
+      _page:
+        $ref: '#/definitions/SitePageDetails'
+        description: Pagination details, present only when limit is supplied
       _embedded:
         type: object
         readOnly: true
@@ -7568,7 +7654,38 @@ definitions:
         properties:
           self:
             $ref: '#/definitions/HalLink'
-            description: This object's representation
+            description: This object's representation, preserving the supplied filters and sorting
+          next:
+            $ref: '#/definitions/HalLink'
+            description: The next page, present only when pagination is enabled and more matching sites exist
+          prev:
+            $ref: '#/definitions/HalLink'
+            description: The previous page, present only when pagination is enabled and start is greater than 0
+  SitePageDetails:
+    type: object
+    description: Exact offset pagination details for a sites list
+    properties:
+      start:
+        type: integer
+        format: int32
+        minimum: 0
+        maximum: 2147483647
+        description: The zero-based row offset of the current page
+      limit:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 100
+        description: The requested maximum number of sites in the page
+      next:
+        type: integer
+        format: int64
+        description: The current start plus limit, even when no next page exists; use _links.next to determine whether to continue
+      prev:
+        type: integer
+        format: int32
+        minimum: 0
+        description: The current start minus limit, or 0 if that would be negative
   NewRelicSub-AccountUser:
     type: object
     properties:
