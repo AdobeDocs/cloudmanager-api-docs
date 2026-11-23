@@ -2568,7 +2568,10 @@ paths:
       tags:
         - Domain
       summary: Get list of domains
-      description: Gets the list of domains for this program
+      description: >-
+        Gets the list of domains for this program. Without the start and limit parameters, all matching
+        domains are returned as a JSON array. When start and/or limit is provided, a paginated object
+        (DomainList) is returned instead, with the domains in the domains property.
       operationId: getDomain
       parameters:
         - name: programId
@@ -2596,6 +2599,31 @@ paths:
           description: Is ACME verified
           required: false
           type: boolean
+        - name: start
+          in: query
+          description: >-
+            Pagination start parameter. When start and/or limit is provided, the response is paginated and
+            start defaults to 0.
+          required: false
+          type: string
+          default: '0'
+        - name: limit
+          in: query
+          description: >-
+            Pagination limit parameter. When start and/or limit is provided, the response is paginated and
+            limit defaults to 20.
+          required: false
+          type: integer
+          default: 20
+          format: int32
+        - name: orderBy
+          in: query
+          description: >-
+            Sorting parameter in the form '<field>,<direction>'. Supported fields: domainName. Direction: asc or desc.
+            Applies to both the array and the paginated response.
+          required: false
+          type: string
+          example: 'domainName,asc'
         - name: x-gw-ims-org-id
           in: header
           description: IMS organization ID that the request is being made under.
@@ -2613,9 +2641,13 @@ paths:
           type: string
       responses:
         '200':
-          description: List of domains received
+          description: >-
+            List of domains received: a JSON array of Domain when no start or limit is provided, or a
+            DomainList object when start and/or limit is provided.
           schema:
-            $ref: '#/definitions/Domain'
+            type: array
+            items:
+              $ref: '#/definitions/Domain'
     post:
       tags:
         - Domain
@@ -7245,6 +7277,30 @@ definitions:
           - AUTHOR
           - STATIC
           - DELIVERY
+  DomainList:
+    type: object
+    description: Paginated list of domains, returned by GET /api/program/{programId}/domains when start and/or limit is provided
+    properties:
+      programId:
+        type: string
+      _totalNumberOfItems:
+        type: integer
+        format: int32
+        description: Total number of domains matching the filters
+      _page:
+        $ref: '#/definitions/RequestedPageDetails'
+      domains:
+        type: array
+        items:
+          $ref: '#/definitions/Domain'
+      self:
+        $ref: '#/definitions/HalLink'
+      next:
+        $ref: '#/definitions/HalLink'
+      prev:
+        $ref: '#/definitions/HalLink'
+      pageTemplate:
+        $ref: '#/definitions/HalLink'
   DomainMappingList:
     type: object
     properties:
